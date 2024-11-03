@@ -20,22 +20,21 @@ class Container {
         }
     }
 
-    PVector getContainerPos(int x, int y, String containerAnker, PVector size) {
-        int gx = getContainerBlockWidth(x);
-        int gy = getContainerBlockHeight(y);
+    PVector getContainerPos(int x, int y, String containerAnker, String blockMode, PVector size) {
+        PVector g_pos = getContainerBlockSize(x, y, blockMode);
         switch (containerAnker) {
             case "topLeft":
-                return new PVector(gx, gy);
+                return new PVector(g_pos.x, g_pos.y);
             case "topRight":
-                return new PVector(width - size.x - gx, gy);
+                return new PVector(width - size.x - g_pos.x, g_pos.y);
             case "bottomLeft":
-                return new PVector(gx, height - size.y - gy);
+                return new PVector(g_pos.x, height - size.y - g_pos.y);
             case "bottomRight":
-                return new PVector(width - size.x - gx, height - size.y - gy);
+                return new PVector(width - size.x - g_pos.x, height - size.y - g_pos.y);
             case "center":
-                return new PVector(width / 2 - size.x / 2 + gx, height / 2 - size.y / 2 + gy);
+                return new PVector(width / 2 - size.x / 2 + g_pos.x, height / 2 - size.y / 2 + g_pos.y);
             default:
-                return new PVector(gx, gy);
+                return new PVector(g_pos.x, g_pos.y);
         }
     }
 
@@ -78,7 +77,7 @@ class Block extends Container {
 
     void box(int x, int y, int w, int h, String containerAnker, String blockMode) {
         PVector size = getContainerBlockSize(w, h, blockMode);
-        PVector pos = getContainerPos(x, y, containerAnker, size);
+        PVector pos = getContainerPos(x, y, containerAnker, blockMode, size);
         switch (blockAnker) {
             case "CORNER" :
                 rect(pos.x, pos.y, size.x, size.y);
