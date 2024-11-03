@@ -1,0 +1,8 @@
+void setup(){
+  size(800, 450);
+  surface.setResizable(true);
+}
+
+void draw(){
+  PVector tets = PVector(10, 10)
+}
