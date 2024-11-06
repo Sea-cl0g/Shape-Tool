@@ -48,14 +48,21 @@ class Container {
 }
 
 //--------------------------------------------------
-class Popup extends Container {
-    Popup(int splitW, int splitH) {
+class Dialog extends Container{
+    Dialog(int splitW, int splitH) {
         super(splitW, splitH);
     }
 }
 
 //--------------------------------------------------
-class Block extends Container {
+class StandardButton extends Container{
+    StandardButton(int splitW, int splitH) {
+        super(splitW, splitH);
+    }
+}
+
+//--------------------------------------------------
+class Block extends Container{
     String blockAnker;
 
     Block(int splitW, int splitH) {
@@ -75,7 +82,18 @@ class Block extends Container {
         return blockAnker == "CORNER" || blockAnker == "CENTER";
     }
 
+    //関数のオーバーロード
     void box(int x, int y, int w, int h, String containerAnker, String blockMode) {
+        drawBox(x, y, w, h, -1, -1, -1, -1, containerAnker, blockMode);
+    }
+    void box(int x, int y, int w, int h, float r, String containerAnker, String blockMode) {
+        drawBox(x, y, w, h, r, r, r, r, containerAnker, blockMode);
+    }
+    void box(int x, int y, int w, int h, float tl, float tr, float br, float bl, String containerAnker, String blockMode) {
+        drawBox(x, y, w, h, tl, tr, br, bl, containerAnker, blockMode);
+    }
+
+    void drawBox(int x, int y, int w, int h, float tl, float tr, float br, float bl, String containerAnker, String blockMode){
         PVector size = getContainerBlockSize(w, h, blockMode);
         PVector pos = getContainerPos(x, y, containerAnker, blockMode, size);
         switch (blockAnker) {
@@ -89,6 +107,13 @@ class Block extends Container {
                 rect(pos.x, pos.y, size.x, size.y);
             break;	
         }
-        
+    }
+
+    void debugGrid(String containerAnker, String blockMode){
+        for(int i = 0; i < 20; i++){
+            for(int q = 0; q < 20; q++){
+                block.box(q, i, 1, 1, containerAnker, blockMode);
+            }
+        }
     }
 }

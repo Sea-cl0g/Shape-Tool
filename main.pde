@@ -1,5 +1,6 @@
 Block block;
-Popup popup;
+Dialog dialog;
+StandardButton button;
 
 //--------------------------------------------------
 void setup(){
@@ -7,7 +8,8 @@ void setup(){
   surface.setResizable(true);
 
     block = new Block(16, 16);
-    popup = new Popup(16, 16);
+    dialog = new Dialog(16, 16);
+    button = new StandardButton(16, 16);
 }
 
 void draw() {
@@ -30,18 +32,8 @@ void menu(){
   block.box(4, 4, 3, 3, "topLeft", "vertical");
 
   
-  ///*
   noFill();
+  stroke(255, 0, 0);
   block.blockAnker("CORNER");
-  for(int i = 0; i < 20; i++){
-    for(int q = 0; q < 20; q++){
-      stroke(255, 0, 0);
-      block.box(q, i, 1, 1, "topLeft", "vertical");
-      stroke(0, 0, 255);
-      //block.box(q, i, 1, 1, "topLeft", "both");
-      stroke(0, 255, 0);
-      //block.box(q, i, 1, 1, "topLeft", "horizontal");
-   }
-  }
-  //*/
+  block.debugGrid("topLeft", "vertical");
 }
