@@ -84,7 +84,7 @@ class Block extends Container{
 
     //関数のオーバーロード
     void box(int x, int y, int w, int h, String containerAnker, String blockMode) {
-        drawBox(x, y, w, h, -1, -1, -1, -1, containerAnker, blockMode);
+        drawBox(x, y, w, h, 0, 0, 0, 0, containerAnker, blockMode);
     }
     void box(int x, int y, int w, int h, float r, String containerAnker, String blockMode) {
         drawBox(x, y, w, h, r, r, r, r, containerAnker, blockMode);
