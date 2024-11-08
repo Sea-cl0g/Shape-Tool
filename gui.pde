@@ -71,6 +71,58 @@ class StandardButton extends Container{
     }
 
     // ボタンテンプレート
+    //四角いボタン
+    void drawSquareButton(float x, float y, float w, float h, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
+        if (shadow){
+            PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
+            drawSquareButton(shadowPos.x, shadowPos.y, w, h, subColor, containerAnker, blockMode);
+        }
+        drawSquareButton(x, y, w, h, mainColor, containerAnker, blockMode);
+    }
+    void drawSquareButton(float x, float y, float w, float h, color mainColor, String containerAnker, String blockMode){
+        fill(mainColor);
+        noStroke();
+        block.box(x, y, w, h, containerAnker, blockMode);
+    }
+    //角が丸い四角いボタン
+    void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
+        if (shadow){
+            PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
+            drawRoundedSquareButton(shadowPos.x, shadowPos.y, w, h, r, subColor, containerAnker, blockMode);
+        }
+        drawRoundedSquareButton(x, y, w, h, r, mainColor, containerAnker, blockMode);
+    }
+    void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainColor, String containerAnker, String blockMode){
+        fill(mainColor);
+        noStroke();
+        block.box(x, y, w, h, r, containerAnker, blockMode);
+    }
+    //横が丸いボタン
+    void drawHorizontallyRoundedButton(float x, float y, float w, float h, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
+        if (shadow){
+            PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
+            drawHorizontallyRoundedButton(shadowPos.x, shadowPos.y, w, h, subColor, containerAnker, blockMode);
+        }
+        drawHorizontallyRoundedButton(x, y, w, h, mainColor, containerAnker, blockMode);
+    }
+    void drawHorizontallyRoundedButton(float x, float y, float w, float h, color mainColor, String containerAnker, String blockMode){
+        fill(mainColor);
+        noStroke();
+        block.box(x, y, w, h, y / 2, containerAnker, blockMode);
+    }
+    //縦が丸いボタン
+    void drawVerticallyRoundedButton(float x, float y, float w, float h, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
+        if (shadow){
+            PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
+            drawVerticallyRoundedButton(shadowPos.x, shadowPos.y, w, h, subColor, containerAnker, blockMode);
+        }
+        drawVerticallyRoundedButton(x, y, w, h, mainColor, containerAnker, blockMode);
+    }
+    void drawVerticallyRoundedButton(float x, float y, float w, float h, color mainColor, String containerAnker, String blockMode){
+        fill(mainColor);
+        noStroke();
+        block.box(x, y, w, h, x / 2, containerAnker, blockMode);
+    }
     //影の座標を取得
     PVector getShadowPos(float x, float y, String shadowMode, float shadowDist){
         switch (shadowMode) {
@@ -93,32 +145,6 @@ class StandardButton extends Container{
             default :
                 return new PVector(x, y);
         }
-    }
-    //四角いボタン
-    void drawSquareButton(float x, float y, float w, float h, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
-        if (shadow){
-            PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
-            drawSquareButton(shadowPos.x, shadowPos.y, w, h, subColor, containerAnker, blockMode);
-        }
-        drawSquareButton(x, y, w, h, mainColor, containerAnker, blockMode);
-    }
-    void drawSquareButton(float x, float y, float w, float h, color mainColor, String containerAnker, String blockMode){
-        fill(mainColor);
-        block.box(x, y, w, h, containerAnker, blockMode);
-    }
-
-    //角が丸い四角いボタン
-    void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
-        if (shadow){
-            PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
-            drawRoundedSquareButton(shadowPos.x, shadowPos.y, w, h, r, subColor, containerAnker, blockMode);
-        }
-        drawRoundedSquareButton(x, y, w, h, r, mainColor, containerAnker, blockMode);
-    }
-    void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainColor, String containerAnker, String blockMode){
-        fill(mainColor);
-        noStroke();
-        block.box(x, y, w, h, r, containerAnker, blockMode);
     }
 }
 
