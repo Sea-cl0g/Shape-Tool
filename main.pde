@@ -22,15 +22,15 @@ void menu(){
   // side bar
   noStroke();
   fill(47, 55, 54);
-  block.blockAnker("CORNER");
+  block.setBlockAnker("CORNER");
   block.box(0, 0, 8, 16, "topLeft", "vertical");
   block.box(0, 0, 8, 16, "topRight", "vertical");
   // shape_button
-  block.blockAnker("CENTER");
-  button.drawVerticallyRoundedButton(4, 4, 3, 3, color(255, 255, 255), false, "BOTTOMRIGHT", 0.3, color(0, 0, 0), "topLeft", "vertical");
+  block.setBlockAnker("CENTER");
+  button.drawSquareButton(4, 4, 3, 3, color(255, 255, 255), false, "BOTTOMRIGHT", 0.3, color(0, 0, 0), "topLeft", "vertical");
 
   noFill();
   stroke(255, 0, 0);
-  block.blockAnker("CORNER");
+  block.setBlockAnker("CORNER");
   block.debugGrid("topLeft", "vertical");
 }

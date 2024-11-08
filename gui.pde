@@ -49,6 +49,7 @@ class Container {
 
 //--------------------------------------------------
 class Dialog extends Container{
+        //親をブロックにする
     Dialog(int splitW, int splitH) {
         super(splitW, splitH);
     }
@@ -56,6 +57,7 @@ class Dialog extends Container{
 
 //--------------------------------------------------
 class StandardButton extends Container{
+        //親をブロックにする
     SafeLoad safeLoad;
     
     PShape add_rectangle;
@@ -68,6 +70,10 @@ class StandardButton extends Container{
     
     void loadShapes(){
         add_rectangle = safeLoad.svgLoad("data/assets/TMP_ICON1.svg");
+    }
+    // ボタンプリセット
+    boolean icon(float x, float y, float w, float h, PVector icon){
+        return false;
     }
 
     // ボタンテンプレート
@@ -154,10 +160,11 @@ class Block extends Container{
 
     Block(int splitW, int splitH) {
         super(splitW, splitH);
-        blockAnker("DEFAULT");
+        setBlockAnker("DEFAULT");
     }
 
-    void blockAnker(String blockAnker){
+    //blockAnker関係
+    void setBlockAnker(String blockAnker){
         if(is_blockAnkerType(blockAnker)){
           this.blockAnker = blockAnker;
         }else if(!(is_blockAnkerType(this.blockAnker))){
@@ -169,7 +176,15 @@ class Block extends Container{
         return blockAnker == "CORNER" || blockAnker == "CENTER";
     }
 
-    //box関数（オーバーロード）
+    PVector getObjectPos(float x, float y, float w, float h, String blockAnker){
+        switch (blockAnker) {
+            case "CENTER" :
+                return new PVector(x - w / 2, y - h / 2);
+            default :
+                return new PVector(x, y);
+        }
+    }
+
     void box(float x, float y, float w, float h, String containerAnker, String blockMode) {
         drawBox(x, y, w, h, 0, 0, 0, 0, containerAnker, blockMode);
     }
@@ -182,21 +197,16 @@ class Block extends Container{
 
     void drawBox(float x, float y, float w, float h, float tl, float tr, float br, float bl, String containerAnker, String blockMode){
         PVector size = getContainerBlockSize(w, h, blockMode);
-        PVector pos = getContainerPos(x, y, containerAnker, blockMode, size);
+        PVector blockPos = getContainerPos(x, y, containerAnker, blockMode, size);
+        PVector pos = getObjectPos(blockPos.x, blockPos.y, size.x, size.y, blockAnker);
         tl = getContainerBlockSize(tl, tl, blockMode).x;
         tr = getContainerBlockSize(tr, tr, blockMode).x;
         br = getContainerBlockSize(br, br, blockMode).x;
         bl = getContainerBlockSize(bl, bl, blockMode).x;
-        switch (blockAnker) {
-            case "CENTER" :
-                rect(pos.x - size.x / 2, pos.y - size.y / 2, size.x, size.y, tl, tr, br, bl);
-            break;
-            default :
-                rect(pos.x, pos.y, size.x, size.y, tl, tr, br, bl);
-            break;	
-        }
+        rect(pos.x, pos.y, size.x, size.y, tl, tr, br, bl);
     }
 
+    // プリセット
     void debugGrid(String containerAnker, String blockMode){
         for(int i = 0; i < 20; i++){
             for(int q = 0; q < 20; q++){
