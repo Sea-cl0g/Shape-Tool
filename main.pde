@@ -8,7 +8,7 @@ void setup(){
   surface.setResizable(true);
 
     block = new Block(16, 16);
-    dialog = new Dialog(16, 16);0000
+    dialog = new Dialog(16, 16);
     button = new StandardButton(16, 16);
 }
 
@@ -26,7 +26,8 @@ void menu(){
   block.box(0, 0, 8, 16, "topLeft", "vertical");
   block.box(0, 0, 8, 16, "topRight", "vertical");
   // shape_button
-  button.normalButton();
+  block.blockAnker("CENTER");
+  button.drawRoundedSquareButton(4, 4, 3, 3, 1, color(255, 0, 0), "topLeft", "vertical");
 
   noFill();
   stroke(255, 0, 0);

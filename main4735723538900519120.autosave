@@ -26,10 +26,8 @@ void menu(){
   block.box(0, 0, 8, 16, "topLeft", "vertical");
   block.box(0, 0, 8, 16, "topRight", "vertical");
   // shape_button
-  fill(255, 255, 255);
-  stroke(0, 0, 0);
   block.blockAnker("CENTER");
-  block.box(4, 4, 3, 3, "topLeft", "vertical");
+  button.normalButton();
 
   noFill();
   stroke(255, 0, 0);
