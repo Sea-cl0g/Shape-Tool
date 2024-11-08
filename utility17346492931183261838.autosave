@@ -1,0 +1,20 @@
+static class FileChecker{
+
+    static boolean canLoad(String filePath, String fileType){
+        //パスのファイルが存在するか？
+        Path apath = Paths.get(sketchPath() + filePath);
+        if(!Files.exists(apath)){
+            println("File type mismatch. Expected: " + fileType);
+            return false;
+        }
+        //ファイルの型が想定通りか？
+        if (!filePath.endsWith(fileType)) {
+            println("File type mismatch. Expected: " + fileType);
+            return false;
+        }
+        println("File can be loaded.");
+        return true;
+    }
+
+    
+}

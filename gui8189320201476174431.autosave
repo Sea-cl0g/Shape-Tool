@@ -56,17 +56,28 @@ class Dialog extends Container{
 
 //--------------------------------------------------
 class StandardButton extends Container{
-    SafeLoad safeLoad;
+    static final String ERROR_ICON_PATH = "data/assets/image.svg";
+    FileChecker fcheck;
     PShape add_rectangle;
 
     StandardButton(int splitW, int splitH){
         super(splitW, splitH);
-        safeLoad = new SafeLoad();
+        fcheck = new FileChecker();
         loadShapes();
     }
     
     void loadShapes(){
-        add_rectangle = safeLoad.svgLoad("data/assets/TMP_ICON1.svg");
+        add_rectangle = safeloadShape("data/assets/TMP_ICON1.svg");
+    }
+
+    PShape safeloadShape(String filePath){
+        if(fcheck.canLoad(filePath, ".svg")){
+            return loadShape(ERROR_ICON_PATH);
+        }else if(fcheck.canLoad(ERROR_ICON_PATH, ".svg")){
+            return loadShape(ERROR_ICON_PATH);
+        }
+        println("ERROR: " + ERROR_ICON_PATH + " not found");
+        return new PShape();
     }
 }
 
@@ -91,7 +102,7 @@ class Block extends Container{
         return blockAnker == "CORNER" || blockAnker == "CENTER";
     }
 
-    //box関数（オーバーロード）
+    //関数のオーバーロード
     void box(int x, int y, int w, int h, String containerAnker, String blockMode) {
         drawBox(x, y, w, h, 0, 0, 0, 0, containerAnker, blockMode);
     }
