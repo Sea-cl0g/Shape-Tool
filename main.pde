@@ -27,7 +27,7 @@ void menu(){
   block.box(0, 0, 8, 16, "topRight", "vertical");
   // shape_button
   block.blockAnker("CENTER");
-  button.drawRoundedSquareButton(4, 4, 3, 3, 1, color(255, 0, 0), "topLeft", "vertical");
+  button.drawRoundedSquareButton(4, 4, 3, 3, 0.5, color(255, 255, 255), true, "BOTTOMRIGHT", 0.3, color(0, 0, 0), "topLeft", "vertical");
 
   noFill();
   stroke(255, 0, 0);

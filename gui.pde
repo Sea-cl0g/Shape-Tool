@@ -7,7 +7,7 @@ class Container {
         this.splitH = splitH;
     }
 
-    PVector getContainerBlockSize(int w, int h, String blockMode) {
+    PVector getContainerBlockSize(float w, float h, String blockMode) {
         switch (blockMode) {
             case "vertical":
                 return new PVector(getContainerBlockHeight(w), getContainerBlockHeight(h));
@@ -20,7 +20,7 @@ class Container {
         }
     }
 
-    PVector getContainerPos(int x, int y, String containerAnker, String blockMode, PVector size) {
+    PVector getContainerPos(float x, float y, String containerAnker, String blockMode, PVector size) {
         PVector g_pos = getContainerBlockSize(x, y, blockMode);
         switch (containerAnker) {
             case "topLeft":
@@ -38,11 +38,11 @@ class Container {
         }
     }
 
-    int getContainerBlockWidth(int w) {
+    float getContainerBlockWidth(float w) {
         return width * w / splitW;
     }
 
-    int getContainerBlockHeight(int h) {
+    float getContainerBlockHeight(float h) {
         return height * h / splitH;
     }
 }
@@ -57,7 +57,6 @@ class Dialog extends Container{
 //--------------------------------------------------
 class StandardButton extends Container{
     SafeLoad safeLoad;
-    static final int shadowDist = 10;
     
     PShape add_rectangle;
 
@@ -72,7 +71,7 @@ class StandardButton extends Container{
     }
 
     //四角いボタン
-    void drawSquareButton(int x, int y, int w, int h, color mainColor, boolean shadow, String shadowMode, color subColor, String containerAnker, String blockMode){
+    void drawSquareButton(float x, float y, float w, float h, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
         if (shadow){
             fill(subColor);
             switch (shadowMode) {
@@ -107,13 +106,13 @@ class StandardButton extends Container{
         }
         drawSquareButton(x, y, w, h, mainColor, containerAnker, blockMode);
     }
-    void drawSquareButton(int x, int y, int w, int h, color mainColor, String containerAnker, String blockMode){
+    void drawSquareButton(float x, float y, float w, float h, color mainColor, String containerAnker, String blockMode){
         fill(mainColor);
         block.box(x, y, w, h, containerAnker, blockMode);
     }
 
     //角が丸い四角いボタン
-    void drawRoundedSquareButton(int x, int y, int w, int h, int r, color mainColor, boolean shadow, String shadowMode, color subColor, String containerAnker, String blockMode){
+    void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
         if (shadow){
             fill(subColor);
             noStroke();
@@ -149,7 +148,7 @@ class StandardButton extends Container{
         }
         drawRoundedSquareButton(x, y, w, h, r, mainColor, containerAnker, blockMode);
     }
-    void drawRoundedSquareButton(int x, int y, int w, int h, int r, color mainColor, String containerAnker, String blockMode){
+    void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainColor, String containerAnker, String blockMode){
         fill(mainColor);
         noStroke();
         block.box(x, y, w, h, r, containerAnker, blockMode);
@@ -178,23 +177,23 @@ class Block extends Container{
     }
 
     //box関数（オーバーロード）
-    void box(int x, int y, int w, int h, String containerAnker, String blockMode) {
+    void box(float x, float y, float w, float h, String containerAnker, String blockMode) {
         drawBox(x, y, w, h, 0, 0, 0, 0, containerAnker, blockMode);
     }
-    void box(int x, int y, int w, int h, float r, String containerAnker, String blockMode) {
+    void box(float x, float y, float w, float h, float r, String containerAnker, String blockMode) {
         drawBox(x, y, w, h, r, r, r, r, containerAnker, blockMode);
     }
-    void box(int x, int y, int w, int h, float tl, float tr, float br, float bl, String containerAnker, String blockMode) {
+    void box(float x, float y, float w, float h, float tl, float tr, float br, float bl, String containerAnker, String blockMode) {
         drawBox(x, y, w, h, tl, tr, br, bl, containerAnker, blockMode);
     }
 
-    void drawBox(int x, int y, int w, int h, float tl, float tr, float br, float bl, String containerAnker, String blockMode){
+    void drawBox(float x, float y, float w, float h, float tl, float tr, float br, float bl, String containerAnker, String blockMode){
         PVector size = getContainerBlockSize(w, h, blockMode);
         PVector pos = getContainerPos(x, y, containerAnker, blockMode, size);
-        tl = getContainerBlockSize(int(tl), int(tl), blockMode).x;
-        tr = getContainerBlockSize(int(tr), int(tr), blockMode).x;
-        br = getContainerBlockSize(int(br), int(br), blockMode).x;
-        bl = getContainerBlockSize(int(bl), int(bl), blockMode).x;
+        tl = getContainerBlockSize(tl, tl, blockMode).x;
+        tr = getContainerBlockSize(tr, tr, blockMode).x;
+        br = getContainerBlockSize(br, br, blockMode).x;
+        bl = getContainerBlockSize(bl, bl, blockMode).x;
         switch (blockAnker) {
             case "CENTER" :
                 rect(pos.x - size.x / 2, pos.y - size.y / 2, size.x, size.y, tl, tr, br, bl);
