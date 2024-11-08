@@ -48,15 +48,16 @@ class Container {
 }
 
 //--------------------------------------------------
-class Dialog extends Container{
+class Dialog extends Block{
         //親をブロックにする
+        //こっちでボタンを使うときはこっちはこっちでインスタンス化する
     Dialog(int splitW, int splitH) {
         super(splitW, splitH);
     }
 }
 
 //--------------------------------------------------
-class StandardButton extends Container{
+class StandardButton extends Block{
         //親をブロックにする
     SafeLoad safeLoad;
     
@@ -65,14 +66,29 @@ class StandardButton extends Container{
     StandardButton(int splitW, int splitH){
         super(splitW, splitH);
         safeLoad = new SafeLoad();
-        loadShapes();
+        loadShapeFile();
     }
     
-    void loadShapes(){
+    void loadShapeFile(){
         add_rectangle = safeLoad.svgLoad("data/assets/TMP_ICON1.svg");
     }
+
     // ボタンプリセット
-    boolean icon(float x, float y, float w, float h, PVector icon){
+    void test_button(float x, float y, float w, float h, String containerAnker, String blockMode){
+        drawSquareButton(x, y, w, h, color(0, 0, 0), true, "BOTTOMRIGHT", 0.3, color(0, 0, 0), containerAnker, blockMode);
+        if(icon(x, y, w, h, 0.8, add_rectangle, containerAnker, blockMode)){
+            println("a");
+        }else{
+
+        }
+    }
+
+    // アイコン
+    boolean icon(float x, float y, float w, float h, float scale, PShape icon, String containerAnker, String blockMode){
+        PVector size = getContainerBlockSize(w * scale, h * scale, blockMode);
+        PVector blockPos = getContainerPos(x, y, containerAnker, blockMode, size);
+        PVector pos = getObjectPos(blockPos.x, blockPos.y, size.x, size.y, blockAnker);
+        shape(icon, pos.x, pos.y, size.x, size.y);
         return false;
     }
 
@@ -88,7 +104,7 @@ class StandardButton extends Container{
     void drawSquareButton(float x, float y, float w, float h, color mainColor, String containerAnker, String blockMode){
         fill(mainColor);
         noStroke();
-        block.box(x, y, w, h, containerAnker, blockMode);
+        box(x, y, w, h, containerAnker, blockMode);
     }
     //角が丸い四角いボタン
     void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
@@ -101,7 +117,7 @@ class StandardButton extends Container{
     void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainColor, String containerAnker, String blockMode){
         fill(mainColor);
         noStroke();
-        block.box(x, y, w, h, r, containerAnker, blockMode);
+        box(x, y, w, h, r, containerAnker, blockMode);
     }
     //横が丸いボタン
     void drawHorizontallyRoundedButton(float x, float y, float w, float h, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
@@ -114,7 +130,7 @@ class StandardButton extends Container{
     void drawHorizontallyRoundedButton(float x, float y, float w, float h, color mainColor, String containerAnker, String blockMode){
         fill(mainColor);
         noStroke();
-        block.box(x, y, w, h, y / 2, containerAnker, blockMode);
+        box(x, y, w, h, y / 2, containerAnker, blockMode);
     }
     //縦が丸いボタン
     void drawVerticallyRoundedButton(float x, float y, float w, float h, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor, String containerAnker, String blockMode){
@@ -127,7 +143,7 @@ class StandardButton extends Container{
     void drawVerticallyRoundedButton(float x, float y, float w, float h, color mainColor, String containerAnker, String blockMode){
         fill(mainColor);
         noStroke();
-        block.box(x, y, w, h, x / 2, containerAnker, blockMode);
+        box(x, y, w, h, x / 2, containerAnker, blockMode);
     }
     //影の座標を取得
     PVector getShadowPos(float x, float y, String shadowMode, float shadowDist){
@@ -210,7 +226,7 @@ class Block extends Container{
     void debugGrid(String containerAnker, String blockMode){
         for(int i = 0; i < 20; i++){
             for(int q = 0; q < 20; q++){
-                block.box(q, i, 1, 1, containerAnker, blockMode);
+                box(q, i, 1, 1, containerAnker, blockMode);
             }
         }
     }

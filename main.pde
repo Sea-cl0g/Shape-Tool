@@ -26,11 +26,14 @@ void menu(){
   block.box(0, 0, 8, 16, "topLeft", "vertical");
   block.box(0, 0, 8, 16, "topRight", "vertical");
   // shape_button
-  block.setBlockAnker("CENTER");
-  button.drawSquareButton(4, 4, 3, 3, color(255, 255, 255), false, "BOTTOMRIGHT", 0.3, color(0, 0, 0), "topLeft", "vertical");
-
+  button.setBlockAnker("CENTER");
+  button.drawRoundedSquareButton(4, 4, 3, 3, 1, color(255, 255, 255), false, "BOTTOMRIGHT", 0.3, color(0, 0, 0), "topLeft", "vertical");
+  button.test_button(4, 4, 3, 3, "topLeft", "vertical");
+  
+  /*
   noFill();
   stroke(255, 0, 0);
   block.setBlockAnker("CORNER");
   block.debugGrid("topLeft", "vertical");
+  */
 }
