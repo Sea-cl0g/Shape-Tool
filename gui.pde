@@ -83,16 +83,38 @@ class Container {
 
 //--------------------------------------------------
 class Dialog extends Block{
-        //親をブロックにする
-        //こっちでボタンを使うときはこっちはこっちでインスタンス化する
+    //こっちでボタンを使うときはこっちはこっちでインスタンス化する
+    StandardButton sb;
+
+    int LAYER_BOX_BORDER = 10;
+
     Dialog(int splitW, int splitH) {
         super(splitW, splitH);
+        sb = new StandardButton(splitW, splitH);
+    }
+
+    //layer_box
+    void drawLayerBox(float x, float y, float w, float h){
+        //背景
+        noFill();
+        stroke(217, 217, 217);
+        float strokeWeight = LAYER_BOX_BORDER / 100.0;
+        strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
+        box(x, y, w, h);
+
+        //ボタン
+        sb.setContainerAnker(this.containerAnker);
+        sb.setBlockMode(this.blockMode);
+        sb.setBlockAnker(this.blockAnker);
+        for(int i = 0; i < 6; i++){
+            sb.test_button(x + w * i / 6, y + h - w / 6, w / 6, w /6);
+        }
+        
     }
 }
 
 //--------------------------------------------------
 class StandardButton extends Block{
-        //親をブロックにする
     SafeLoad safeLoad;
     
     PShape add_rectangle;
@@ -129,9 +151,8 @@ class StandardButton extends Block{
     */
     boolean icon(float x, float y, float w, float h, float scale, PShape icon){
         PVector size = getContainerBlockSize(w, h);
-        PVector blockPos = getContainerPos(x, y, size);
-        PVector pos = getObjectPos(blockPos.x, blockPos.y, size.x, size.y, blockAnker);
-        
+        PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
+
         PVector iconSize = getContainerBlockSize(w * scale, h * scale);
         PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
         shape(icon, pos.x + speaceSize.x, pos.y + speaceSize.y, iconSize.x, iconSize.y);
@@ -152,6 +173,7 @@ class StandardButton extends Block{
         noStroke();
         box(x, y, w, h);
     }
+    
     //角が丸い四角いボタン
     void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainColor, boolean shadow, String shadowMode, float shadowDist, color subColor){
         if (shadow){
@@ -238,12 +260,12 @@ class Block extends Container{
         || blockAnker == "CENTER";
     }
 
-    PVector getObjectPos(float x, float y, float w, float h, String blockAnker){
+    PVector getObjectPos(float x, float y, float w, float h, PVector size, String blockAnker){
         switch (blockAnker) {
             case "CENTER" :
-                return new PVector(x - w / 2, y - h / 2);
+                return getContainerPos(x + w / 2, y + h / 2, size);
             default :
-                return new PVector(x, y);
+                return getContainerPos(x, y, size);
         }
     }
 
@@ -259,8 +281,7 @@ class Block extends Container{
 
     void drawBox(float x, float y, float w, float h, float tl, float tr, float br, float bl){
         PVector size = getContainerBlockSize(w, h);
-        PVector blockPos = getContainerPos(x, y, size);
-        PVector pos = getObjectPos(blockPos.x, blockPos.y, size.x, size.y, blockAnker);
+        PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
         tl = getContainerBlockSize(tl, tl).x;
         tr = getContainerBlockSize(tr, tr).x;
         br = getContainerBlockSize(br, br).x;

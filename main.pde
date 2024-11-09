@@ -19,50 +19,57 @@ void draw() {
 
 //--------------------------------------------------
 void menu(){
+  /*
   // side bar
   noStroke();
   fill(67, 67, 67);
   block.setContainerAnker("topLeft");
-  block.box(0, 0, 8, 16);
+  block.box(0, 0, 7, 16);
   block.setContainerAnker("topRight");
-  block.box(0, 0, 8, 16);
+  block.box(0, 0, 7, 16);
   // shape_button
     button.setContainerAnker("topLeft");
     button.setBlockMode("vertical");
     button.setBlockAnker("CENTER");
     //add_rectangle
-    button.test_button(4, 3, 2.5, 2.5);
+    button.test_button(3.5, 3, 2.5, 2.5);
     //add_ellipse
-    button.test_button(4, 6, 2.5, 2.5);
+    button.test_button(3.5, 6, 2.5, 2.5);
   
   // layer_box
-    button.setContainerAnker("bottomLeft");
-    button.setBlockMode("vertical");
-    button.setBlockAnker("CORNER");
-    block.box(0.5, 0.5, 7, 5);
-    
-  
+    dialog.setContainerAnker("topRight");
+    dialog.setBlockMode("vertical");
+    dialog.setBlockAnker("CENTER");
+    //dialog.drawLayerBox(3.5, 0, 6, 6);
+  */
+    dialog.setBlockMode("vertical");
+    dialog.setBlockAnker("CORNER");
+    dialog.setContainerAnker("topLeft");
+    dialog.box(0, 0, 1, 1);
+    dialog.setContainerAnker("topRight");
+    dialog.box(0, 0, 1, 1);
+    dialog.setContainerAnker("bottomLeft");
+    dialog.box(0, 0, 1, 1);
+    dialog.setContainerAnker("bottomRight");
+    dialog.box(0, 0, 1, 1);
+  /*
   // other_button
     button.setContainerAnker("bottomRight");
     button.setBlockMode("vertical");
-    button.setBlockAnker("CENTER");
-    //save_prj
-    button.test_button(-0.5, 6, 1.8, 1.8);
-    button.test_button(-0.5, 4, 1.8, 1.8);
-    button.test_button(-0.5, 2, 1.8, 1.8);
-    button.test_button(-0.5, 0, 1.8, 1.8);
+    button.setBlockAnker("CORNER");
+    button.test_button(0.5, 6.5, 1.8, 1.8);
+    button.test_button(0.5, 4.5, 1.8, 1.8);
+    button.test_button(0.5, 2.5, 1.8, 1.8);
+    button.test_button(0.5, 0.5, 1.8, 1.8);
 
 
-  /*
+  //
   noFill();
-  stroke(255, 0, 0);
-  block.setBlockAnker("CORNER");
-  block.setContainerAnker("topLeft");
-  block.debugGrid(10, 10);
+  strokeWeight(1);
 
   stroke(0, 255, 0);
   block.setBlockAnker("CORNER");
-  block.setContainerAnker("bottomRight");
+  block.setContainerAnker("bottomLeft");
   block.debugGrid(10, 10);
   */
 }
