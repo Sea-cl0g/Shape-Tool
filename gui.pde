@@ -109,20 +109,32 @@ class StandardButton extends Block{
 
     // ボタンプリセット
     void test_button(float x, float y, float w, float h){
-        drawSquareButton(x, y, w, h, color(0, 0, 0), true, "BOTTOMRIGHT", 0.3, color(0, 0, 0));
+        drawRoundedSquareButton(x, y, w, h, 0.2, color(102, 102, 102), false, "BOTTOMRIGHT", 0.3, color(0, 0, 0));
         if(icon(x, y, w, h, 0.8, add_rectangle)){
             println("a");
         }else{
-
+            
         }
     }
 
     // アイコン
+    /*
     boolean icon(float x, float y, float w, float h, float scale, PShape icon){
         PVector size = getContainerBlockSize(w * scale, h * scale);
         PVector blockPos = getContainerPos(x, y, size);
         PVector pos = getObjectPos(blockPos.x, blockPos.y, size.x, size.y, blockAnker);
         shape(icon, pos.x, pos.y, size.x, size.y);
+        return false;
+    }
+    */
+    boolean icon(float x, float y, float w, float h, float scale, PShape icon){
+        PVector size = getContainerBlockSize(w, h);
+        PVector blockPos = getContainerPos(x, y, size);
+        PVector pos = getObjectPos(blockPos.x, blockPos.y, size.x, size.y, blockAnker);
+        
+        PVector iconSize = getContainerBlockSize(w * scale, h * scale);
+        PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
+        shape(icon, pos.x + speaceSize.x, pos.y + speaceSize.y, iconSize.x, iconSize.y);
         return false;
     }
 
