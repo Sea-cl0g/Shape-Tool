@@ -73,11 +73,11 @@ class Container {
     }
 
     float getContainerBlockWidth(float w) {
-        return width * w / splitW;
+        return 800 * w / splitW;
     }
 
     float getContainerBlockHeight(float h) {
-        return height * h / splitH;
+        return 450 * h / splitH;
     }
 }
 
@@ -263,7 +263,7 @@ class Block extends Container{
     PVector getObjectPos(float x, float y, float w, float h, PVector size, String blockAnker){
         switch (blockAnker) {
             case "CENTER" :
-                return getContainerPos(x + w / 2, y + h / 2, size);
+                return getContainerPos(x - w / 2, y - h / 2, size);
             default :
                 return getContainerPos(x, y, size);
         }
