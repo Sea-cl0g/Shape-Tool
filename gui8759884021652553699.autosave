@@ -105,7 +105,7 @@ class Dialog extends Block{
         int buttonNum = 6;
         float buttonSize = w / buttonNum;
         for(int i = 0; i < 6; i++){
-            sb.test_button(x - w / 2 + i * w / buttonNum + buttonSize / 2, y + h / 2 - 1.5, buttonSize, buttonSize);
+            sb.test_button(x - w / 2 + i * w / buttonNum + buttonSize / 2, y + h / 2 - 1, buttonSize, buttonSize);
         }
         
     }
@@ -160,20 +160,22 @@ class StandardButton extends Block{
     // ボタンプリセット
     void test_button(float x, float y, float w, float h){
         drawRoundedSquareButton(x, y, w, h, 0.2, color(102, 102, 102), false, "BOTTOMRIGHT", 0.3, color(0, 0, 0));
-        if(isBoxClicked(x, y, w, h)){
-            println(x, w, y, h);
+        if(icon(x, y, w, h, 0.8, add_rectangle)){
+            println("a");
+        }else{
+            
         }
-        icon(x, y, w, h, 0.8, add_rectangle);
     }
 
     // アイコン
-    void icon(float x, float y, float w, float h, float scale, PShape icon){
+    boolean icon(float x, float y, float w, float h, float scale, PShape icon){
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
 
         PVector iconSize = getContainerBlockSize(w * scale, h * scale);
         PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
         shape(icon, pos.x + speaceSize.x, pos.y + speaceSize.y, iconSize.x, iconSize.y);
+        return false;
     }
 
     // ボタンテンプレート
@@ -204,7 +206,6 @@ class StandardButton extends Block{
         noStroke();
         box(x, y, w, h, r);
     }
-
     //横が丸いボタン
     void drawHorizontallyRoundedButton(float x, float y, float w, float h, color mainCol, boolean shadow, String shadowMode, float shadowDist, color subCol){
         if (shadow){
@@ -218,7 +219,6 @@ class StandardButton extends Block{
         noStroke();
         box(x, y, w, h, y / 2);
     }
-
     //縦が丸いボタン
     void drawVerticallyRoundedButton(float x, float y, float w, float h, color mainCol, boolean shadow, String shadowMode, float shadowDist, color subCol){
         if (shadow){
@@ -232,7 +232,6 @@ class StandardButton extends Block{
         noStroke();
         box(x, y, w, h, x / 2);
     }
-
     //影の座標を取得
     PVector getShadowPos(float x, float y, String shadowMode, float shadowDist){
         switch (shadowMode) {
@@ -256,35 +255,7 @@ class StandardButton extends Block{
                 return new PVector(x, y);
         }
     }
-
-    //boxの左上角の座標を取得
-    PVector getBoxCorner(float x, float y, float w, float h){
-        if(blockAnker == "CENTER"){
-            return new PVector(x, y);
-        }else{
-            return new PVector(x - w / 2, y - h / 2);
-        }
-    }
-
-    //ボタンに触れているか？
-    boolean isMouseInBox(float x, float y, float w, float h){
-        PVector cornerPos = getBoxCorner(x, y, w, h);
-        boolean xCheck = cornerPos.x < mouseX && mouseX < cornerPos.x + w;
-        boolean yCheck = cornerPos.y < mouseY && mouseY < cornerPos.y + h;
-        return xCheck && yCheck;
-    }
-
-    //ボタンをクリックしているか？
-    boolean isBoxClicked(float x, float y, float w, float h){
-        boolean result = false;
-        if(isMouseInBox(x, y, w, h) && isMouseClicking){
-            result = true;
-            isMouseClicking = false;
-        }
-        return result;
-    }
 }
-
 
 //--------------------------------------------------
 class Block extends Container{
