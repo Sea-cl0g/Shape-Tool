@@ -170,7 +170,7 @@ class StandardButton extends Block{
         }else{
             tmp = 1;
         }
-        drawRoundedSquareButton(x, y, w, h, 0.2, color(102 * tmp, 102 * tmp, 102 * tmp), false, "BOTTOMRIGHT", 0.3, color(0, 0, 0));
+        drawRoundedSquareButton(x, y, w, h, 0.2, color(102 * tmp, 102 * tmp, 102 * tmp), true, "BOTTOMRIGHT", 0.1, color(0, 0, 0));
         icon(x, y, w, h, 0.8, add_rectangle);
     }
 
@@ -243,23 +243,37 @@ class StandardButton extends Block{
 
     //影の座標を取得
     PVector getShadowPos(float x, float y, String shadowMode, float shadowDist){
+        int calcModeX = 1;
+        int calcModeY = 1;
+        switch (containerAnker) {
+            case "topRight" :
+                calcModeX = -1;
+            break;	
+            case "bottomLeft" :
+                calcModeY = -1;
+            break;	
+            case "bottomRight" :
+                calcModeX = -1;
+                calcModeY = -1;
+            break;	
+        }
         switch (shadowMode) {
             case "BOTTOM" :
-                return new PVector(x, y + shadowDist);
+                return new PVector(x, y + shadowDist * calcModeY);
             case "TOP" :
                 return new PVector(x, y - shadowDist);
             case "RIGHT" :
-                return new PVector(x + shadowDist, y);
+                return new PVector(x + shadowDist * calcModeX, y);
             case "LEFT" :
-                return new PVector(x - shadowDist, y);
+                return new PVector(x - shadowDist * calcModeX, y);
             case "BOTTOMRIGHT" :
-                return new PVector(x + shadowDist, y + shadowDist);
+                return new PVector(x + shadowDist * calcModeX, y + shadowDist * calcModeY);
             case "BOTTOMLEFT" :
-                return new PVector(x - shadowDist, y + shadowDist);
+                return new PVector(x - shadowDist * calcModeX, y + shadowDist * calcModeY);
             case "TOPRIGHT" :
-                return new PVector(x + shadowDist, y - shadowDist);
+                return new PVector(x + shadowDist * calcModeX, y - shadowDist * calcModeY);
             case "TOPLEFT" :
-                return new PVector(x - shadowDist, y - shadowDist);
+                return new PVector(x - shadowDist * calcModeX, y - shadowDist * calcModeY);
             default :
                 return new PVector(x, y);
         }
