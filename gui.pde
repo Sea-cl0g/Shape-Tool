@@ -277,6 +277,7 @@ class StandardButton extends Block{
     //ボタンに触れているか？
     boolean isMouseInBox(float x, float y, float w, float h){
         PVector cornerPos = getBoxCorner(x, y, w, h);
+        
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
         boolean xCheck = pos.x < mouseX && mouseX < pos.x + size.x;

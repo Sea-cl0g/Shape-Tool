@@ -3,6 +3,7 @@ Dialog dialog;
 StandardButton button;
 
 boolean isMouseClicking;
+boolean isKeyPressing;
 
 //--------------------------------------------------
 void setup(){
@@ -16,13 +17,29 @@ void setup(){
 
 void draw() {
     background(255, 255, 255);
-    isMouseClicking = mousePressed;
     menu();
+    //checkBlocks(5, 5, "vertical", "CORNER");
 }
 
-color backgroundCol = color(67, 67, 67);
+//--------------------------------------------------
+void mousePressed() {
+  isMouseClicking = true;
+}
+
+void mouseReleased() {
+  isMouseClicking = false;
+}
+
+void keyPressed(){
+  isKeyPressing = true;
+}
+
+void keyReleased(){
+  isKeyPressing = false;
+}
 
 //--------------------------------------------------
+color backgroundCol = color(67, 67, 67);
 void menu(){
   // side bar
   noStroke();
@@ -55,17 +72,22 @@ void menu(){
     button.test_button(0.5, 0.5, 1.8, 1.8);
 }
 
-//checkBlocks(1, 1, "vertical", "CENTER");
 void checkBlocks(int wCount, int hCount, String blockMode, String blockAnker){
   Block tmpBlock = new Block(16, 16);
     tmpBlock.setBlockMode(blockMode);
     tmpBlock.setBlockAnker(blockAnker);
+    noFill();
+
+    stroke(255, 0, 0);
     tmpBlock.setContainerAnker("topLeft");
     tmpBlock.debugGrid(wCount, hCount);
+    stroke(0, 255, 0);
     tmpBlock.setContainerAnker("topRight");
     tmpBlock.debugGrid(wCount, hCount);
+    stroke(0, 0, 255);
     tmpBlock.setContainerAnker("bottomLeft");
     tmpBlock.debugGrid(wCount, hCount);
+    stroke(255, 0, 255);
     tmpBlock.setContainerAnker("bottomRight");
     tmpBlock.debugGrid(wCount, hCount);
 }
