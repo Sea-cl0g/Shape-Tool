@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 
 class SafeLoad{
     static final String ERROR_SVG_PATH = "data/assets/ERROR_ICON.svg";
+    static final String DEFAULT_THEME_PATH = "data/themes/default.json";
 
     boolean canLoad(String filePath, String fileType){
         //パスのファイルが存在するか？
@@ -38,5 +39,15 @@ class SafeLoad{
         }
         println("ERROR: " + ERROR_SVG_PATH + " not found");
         return new PShape();
+    }
+    
+    JSONObject jsonLoad(String filePath){
+        if(canLoad(filePath, ".json")){
+            return loadJSONObject(filePath);
+        }else if(canLoad(DEFAULT_THEME_PATH, ".json")){
+            return loadJSONObject(DEFAULT_THEME_PATH);
+        }
+        println("ERROR: " + DEFAULT_THEME_PATH + " not found");
+        return new JSONObject();
     }
 }

@@ -1,0 +1,54 @@
+{
+    "description" : "Most basic and easy-to-see color theme",
+    "author" : "boo_manKnow",
+    "colors":{
+        "backgroundCol": "#ffffff",
+        "sidebarCol": "#ffffff"
+    },
+    "buttonStyle":{
+        "shapeButtton": {
+        },
+        "buttonTemplate": {
+            "blockAnker": "CORNER",
+            "buttonType": "drawSquareButton",
+            "corner": [10, 10, 10, 10],
+            "fill":{
+                "defaultCol": "#4a7083ff",
+                "または、":"",
+                "defaultCo": [],
+                "selectedCol": "#4a7083ff",
+                "または、 ":"",
+                "selectedCo": [],
+                "または、  ":"",
+                "selectedC": 0.8
+            },
+            "line":{
+                "lineWeight": 10,
+                
+                "defaultCol": "#4a7083ff",
+                "selectedCol": "#4a7083ff"
+            },
+            "stroke":{
+                "strokeWeight": 10,
+
+                "selectedTh": 0.5,
+                 "or ": "",
+                "defaultCol": "#4a7083ff",
+                "selectedCol": "#4a7083ff"
+            },
+            "shadow":{
+                "shadowMode": "BOTTOM",
+                "shadowDist": 10,
+
+                "defaultCol": "#4a7083ff",
+                "selectedCol": "#4a7083ff"
+            },
+            "icon":{
+                "size": 0.8,
+
+                "defaultCol": "#4a7083ff",
+                "selectedCol": "#4a7083ff"
+            }
+        }
+    }
+}

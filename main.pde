@@ -5,6 +5,7 @@ StandardButton button;
 boolean isMouseClicking;
 boolean isKeyPressing;
 
+JSONObject theme;
 //--------------------------------------------------
 void setup(){
   size(800, 450);
@@ -76,8 +77,8 @@ void checkBlocks(int wCount, int hCount, String blockMode, String blockAnker){
   Block tmpBlock = new Block(16, 16);
     tmpBlock.setBlockMode(blockMode);
     tmpBlock.setBlockAnker(blockAnker);
+    
     noFill();
-
     stroke(255, 0, 0);
     tmpBlock.setContainerAnker("topLeft");
     tmpBlock.debugGrid(wCount, hCount);
