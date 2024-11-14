@@ -158,11 +158,19 @@ class StandardButton extends Block{
     }
 
     // ボタンプリセット
+    //仮実装
     void test_button(float x, float y, float w, float h){
-        drawRoundedSquareButton(x, y, w, h, 0.2, color(102, 102, 102), false, "BOTTOMRIGHT", 0.3, color(0, 0, 0));
-        if(isBoxClicked(x, y, w, h)){
-            println(x, w, y, h);
+        float tmp;
+        if(isMouseInBox(x, y, w, h)){
+            tmp = 0.5;
+            if(isMouseClicking){
+                isMouseClicking = false;
+                tmp = 0.8;
+            }
+        }else{
+            tmp = 1;
         }
+        drawRoundedSquareButton(x, y, w, h, 0.2, color(102 * tmp, 102 * tmp, 102 * tmp), false, "BOTTOMRIGHT", 0.3, color(0, 0, 0));
         icon(x, y, w, h, 0.8, add_rectangle);
     }
 
@@ -269,19 +277,11 @@ class StandardButton extends Block{
     //ボタンに触れているか？
     boolean isMouseInBox(float x, float y, float w, float h){
         PVector cornerPos = getBoxCorner(x, y, w, h);
-        boolean xCheck = cornerPos.x < mouseX && mouseX < cornerPos.x + w;
-        boolean yCheck = cornerPos.y < mouseY && mouseY < cornerPos.y + h;
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
+        boolean xCheck = pos.x < mouseX && mouseX < pos.x + size.x;
+        boolean yCheck = pos.y < mouseY && mouseY < pos.y + size.y;
         return xCheck && yCheck;
-    }
-
-    //ボタンをクリックしているか？
-    boolean isBoxClicked(float x, float y, float w, float h){
-        boolean result = false;
-        if(isMouseInBox(x, y, w, h) && isMouseClicking){
-            result = true;
-            isMouseClicking = false;
-        }
-        return result;
     }
 }
 
