@@ -1,6 +1,6 @@
 Block block;
 Dialog dialog;
-ButtonTemplate button;
+StandardButton button;
 
 boolean isMouseClicking;
 boolean isKeyPressing;
@@ -10,10 +10,10 @@ JSONObject theme;
 void setup(){
   size(800, 450);
   surface.setResizable(true);
-
+  
   block = new Block(16, 16);
   dialog = new Dialog(16, 16);
-  button = new ButtonTemplate(16, 16);
+  button = new StandardButton(16, 16);
 }
 
 void draw() {
@@ -40,8 +40,6 @@ void keyReleased(){
 }
 
 //--------------------------------------------------
-
-// ↓消す
 color backgroundCol = color(67, 67, 67);
 void menu(){
   // side bar

@@ -1,0 +1,12 @@
+{
+    "description" : "Example of writing a button class theme by inheriting and overriding other files",
+    "author" : "boo_manKnow",
+
+    "element1":{
+      "parent": "designs/examples/example2.json",
+      "overrides": [
+        {"predicate":"normal", "layout": {"x_point": 10, "y_point": 10, "width_point": 12, "height_point": 12}},
+        {"predicate":["touched", "selected"], "color": "#a83232"}
+      ]
+    }
+}

@@ -1,6 +1,6 @@
 Block block;
 Dialog dialog;
-ButtonTemplate button;
+StandardButton button;
 
 boolean isMouseClicking;
 boolean isKeyPressing;
@@ -13,7 +13,7 @@ void setup(){
 
   block = new Block(16, 16);
   dialog = new Dialog(16, 16);
-  button = new ButtonTemplate(16, 16);
+  button = new StandardButton(16, 16);
 }
 
 void draw() {

@@ -83,13 +83,13 @@ class Container {
 
 //--------------------------------------------------
 class Dialog extends Block{
-    StandardButton sb;
+    ButtonTemplate bt;
 
     int LAYER_BOX_BORDER = 10;
 
     Dialog(int splitW, int splitH) {
         super(splitW, splitH);
-        sb = new StandardButton(splitW, splitH);
+        bt = new ButtonTemplate(splitW, splitH);
     }
 
     //layer_box
@@ -99,13 +99,13 @@ class Dialog extends Block{
         outlineBox(x, y, w, h, backgroundCol, 0.1, color(217, 217, 217));
 
         //ボタン
-        sb.setContainerAnker(this.containerAnker);
-        sb.setBlockMode(this.blockMode);
-        sb.setBlockAnker(this.blockAnker);
+        bt.setContainerAnker(this.containerAnker);
+        bt.setBlockMode(this.blockMode);
+        bt.setBlockAnker(this.blockAnker);
         int buttonNum = 6;
         float buttonSize = w / buttonNum;
         for(int i = 0; i < 6; i++){
-            sb.test_button(x - w / 2 + i * w / buttonNum + buttonSize / 2, y + h / 2 - 1.5, buttonSize, buttonSize);
+            bt.test_button(x - w / 2 + i * w / buttonNum + buttonSize / 2, y + h / 2 - 1.5, buttonSize, buttonSize);
         }
         
     }
@@ -142,12 +142,22 @@ class Dialog extends Block{
 }
 
 //--------------------------------------------------
-class StandardButton extends Block{
+class Button extends ButtonTemplate{
+    Button(){
+
+    }
+}
+
+void add_rectangle{
+    
+}
+//--------------------------------------------------
+class ButtonTemplate extends Block{
     SafeLoad safeLoad;
     
     PShape add_rectangle;
 
-    StandardButton(int splitW, int splitH){
+    ButtonTemplate(int splitW, int splitH){
         super(splitW, splitH);
         safeLoad = new SafeLoad();
         loadShapeFile();
@@ -157,7 +167,9 @@ class StandardButton extends Block{
         add_rectangle = safeLoad.svgLoad("data/assets/TMP_ICON1.svg");
     }
 
-    // ボタンプリセット
+    // ボタン
+
+
     //仮実装
     void test_button(float x, float y, float w, float h){
         float tmp;
@@ -186,10 +198,10 @@ class StandardButton extends Block{
 
     // ボタンテンプレート
     //四角いボタン
-    void drawSquareButton(float x, float y, float w, float h, color mainCol, boolean shadow, String shadowMode, float shadowDist, color subCol){
+    void drawSquareButton(float x, float y, float w, float h, color mainCol, boolean shadow, String shadowMode, float shadowDist, color shadowCol){
         if (shadow){
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
-            drawSquareButton(shadowPos.x, shadowPos.y, w, h, subCol);
+            drawSquareButton(shadowPos.x, shadowPos.y, w, h, shadowCol);
         }
         drawSquareButton(x, y, w, h, mainCol);
     }
@@ -199,11 +211,11 @@ class StandardButton extends Block{
         box(x, y, w, h);
     }
     
-    //角が丸い四角いボタン
-    void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainCol, boolean shadow, String shadowMode, float shadowDist, color subCol){
+    //すべての角が一定の丸みを持つ四角いボタン
+    void drawRoundedSquareButton(float x, float y, float w, float h, float r, color mainCol, boolean shadow, String shadowMode, float shadowDist, color shadowCol){
         if (shadow){
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
-            drawRoundedSquareButton(shadowPos.x, shadowPos.y, w, h, r, subCol);
+            drawRoundedSquareButton(shadowPos.x, shadowPos.y, w, h, r, shadowCol);
         }
         drawRoundedSquareButton(x, y, w, h, r, mainCol);
     }
@@ -213,11 +225,26 @@ class StandardButton extends Block{
         box(x, y, w, h, r);
     }
 
-    //横が丸いボタン
-    void drawHorizontallyRoundedButton(float x, float y, float w, float h, color mainCol, boolean shadow, String shadowMode, float shadowDist, color subCol){
+    //角ごとに丸みを指定できるボタン
+    void drawRoundedSquareButton(float x, float y, float w, float h, float tl, float tr, float br, float bl, color mainCol, boolean shadow, String shadowMode, float shadowDist, color shadowCol){
         if (shadow){
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
-            drawHorizontallyRoundedButton(shadowPos.x, shadowPos.y, w, h, subCol);
+            drawRoundedSquareButton(shadowPos.x, shadowPos.y, w, h, r, shadowCol);
+        }
+        drawRoundedSquareButton(x, y, w, h, tl, tr, br, bl, mainCol);
+    }
+    void drawRoundedSquareButton(float x, float y, float w, float h, float tl, float tr, float br, float bl, color mainCol){
+        fill(mainCol);
+        noStroke();
+        box(x, y, w, h, tl, tr, br, bl);
+    }
+
+
+    //横が丸いボタン
+    void drawHorizontallyRoundedButton(float x, float y, float w, float h, color mainCol, boolean shadow, String shadowMode, float shadowDist, color shadowCol){
+        if (shadow){
+            PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
+            drawHorizontallyRoundedButton(shadowPos.x, shadowPos.y, w, h, shadowCol);
         }
         drawHorizontallyRoundedButton(x, y, w, h, mainCol);
     }
@@ -228,10 +255,10 @@ class StandardButton extends Block{
     }
 
     //縦が丸いボタン
-    void drawVerticallyRoundedButton(float x, float y, float w, float h, color mainCol, boolean shadow, String shadowMode, float shadowDist, color subCol){
+    void drawVerticallyRoundedButton(float x, float y, float w, float h, color mainCol, boolean shadow, String shadowMode, float shadowDist, color shadowCol){
         if (shadow){
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
-            drawVerticallyRoundedButton(shadowPos.x, shadowPos.y, w, h, subCol);
+            drawVerticallyRoundedButton(shadowPos.x, shadowPos.y, w, h, shadowCol);
         }
         drawVerticallyRoundedButton(x, y, w, h, mainCol);
     }

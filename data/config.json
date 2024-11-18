@@ -1,0 +1,28 @@
+{
+    "current_theme": "data/themes/default",
+
+    "DEFAULT_THEME": "data/themes/default",
+    "assets_path": {
+        "sideBar": "base/.json",
+
+        "add_rectangle": "button/add_rectangle.json",
+        "add_ellipse": "button/add_ellipse.json",
+
+        "edit_layer_name": "button/edit_layer_name.json",
+        "create_a_layer": "button/create_a_layer.json",
+        "duplicate_layer": "button/duplicate_layer.json",
+        "move_layer_up": "button/move_layer_up.json",
+        "move_layer_down": "button/move_layer_down.json",
+        "delete_selected_layer": "button/delete_selected_layer.json",
+
+        "vertex_mode_pointed": "button/vertex_mode_pointed.json",
+        "vertex_mode_curved": "button/vertex_mode_curved.json",
+
+        "save_prj": "button/save_prj.json",
+        "export_prj": "button/export_prj.json",
+        "import_prj": "button/import_prj.json",
+        "option": "button/option.json",
+
+        "": "button/.json"
+    }
+}
