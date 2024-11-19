@@ -1,28 +1,72 @@
 {
     "current_theme": "data/themes/default",
+    "DEFAULT_THEME_PATH": "data/themes/default",
+    "ERROR_SVG_PATH": "data/themes/default/assets/images/ERROR_ICON.svg",
 
-    "DEFAULT_THEME": "data/themes/default",
     "assets_path": {
-        "sideBar": "base/.json",
+        "sideBar": {
+            "path": "base/sideBar.json",
+            "elements": {"element1": "base"}
+        },
 
-        "add_rectangle": "button/add_rectangle.json",
-        "add_ellipse": "button/add_ellipse.json",
+        "add_rectangle": {
+            "path": "button/add_rectangle.json",
+            "elements": {"element1": "button"}
+        },
+        "add_ellipse": {
+            "path": "button/add_ellipse.json",
+            "elements": {"element1": "button"}
+        },
 
-        "edit_layer_name": "button/edit_layer_name.json",
-        "create_a_layer": "button/create_a_layer.json",
-        "duplicate_layer": "button/duplicate_layer.json",
-        "move_layer_up": "button/move_layer_up.json",
-        "move_layer_down": "button/move_layer_down.json",
-        "delete_selected_layer": "button/delete_selected_layer.json",
+        "edit_layer_name": {
+            "path": "button/edit_layer_name.json",
+            "elements": {"element1": "button"}
+        },
+        "create_a_layer": {
+            "path": "button/create_a_layer.json",
+            "elements": {"element1": "button"}
+        },
+        "duplicate_layer": {
+            "path": "button/duplicate_layer.json",
+            "elements": {"element1": "button"}
+        },
+        "move_layer_up": {
+            "path": "button/move_layer_up.json",
+            "elements": {"element1": "button"}
+        },
+        "move_layer_down": {
+            "path": "button/move_layer_down.json",
+            "elements": {"element1": "button"}
+        },
+        "delete_selected_layer": {
+            "path": "button/delete_selected_layer.json",
+            "elements": {"element1": "button"}
+        },
 
-        "vertex_mode_pointed": "button/vertex_mode_pointed.json",
-        "vertex_mode_curved": "button/vertex_mode_curved.json",
+        "vertex_mode_pointed": {
+            "path": "button/vertex_mode_pointed.json",
+            "elements": {"element1": "button"}
+        },
+        "vertex_mode_curved": {
+            "path": "button/vertex_mode_curved.json",
+            "elements": {"element1": "button"}
+        },
 
-        "save_prj": "button/save_prj.json",
-        "export_prj": "button/export_prj.json",
-        "import_prj": "button/import_prj.json",
-        "option": "button/option.json",
-
-        "": "button/.json"
+        "save_prj": {
+            "path": "button/save_prj.json",
+            "elements": {"element1": "button"}
+        },
+        "": {
+            "path": "button/export_prj.json",
+            "elements": {"element1": "button"}
+        },
+        "import_prj": {
+            "path": "button/import_prj.json",
+            "elements": {"element1": "button"}
+        },
+        "option": {
+            "path": "button/option.json",
+            "elements": {"element1": "button"}
+        }
     }
 }

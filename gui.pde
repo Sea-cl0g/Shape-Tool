@@ -143,23 +143,34 @@ class Dialog extends Block{
 
 //--------------------------------------------------
 class Button extends ButtonTemplate{
-    Button(){
-
-    }
-}
-
-void add_rectangle{
+    StyleData normal, touched, clicked, selected;
+    Runnable onClick;
     
+    Button(int splitW, int splitH, StyleData normal, StyleData touched, StyleData clicked){
+        super(splitW, splitH);
+    }
+    Button(int splitW, int splitH, StyleData normal, StyleData touched, StyleData clicked, StyleData selected){
+        super(splitW, splitH);
+    }
+
+    /*
+    void drawButton() {
+        switch () {
+            
+        }
+
+        drawRoundedSquareButton(x, y, w, h, 0.2, color(102 * tmp, 102 * tmp, 102 * tmp), true, "BOTTOMRIGHT", 0.1, color(0, 0, 0));
+        icon(x, y, w, h, 0.8, add_rectangle);
+    }
+    */
 }
+
 //--------------------------------------------------
 class ButtonTemplate extends Block{
-    SafeLoad safeLoad;
-    
     PShape add_rectangle;
 
     ButtonTemplate(int splitW, int splitH){
         super(splitW, splitH);
-        safeLoad = new SafeLoad();
         loadShapeFile();
     }
     
@@ -226,14 +237,14 @@ class ButtonTemplate extends Block{
     }
 
     //角ごとに丸みを指定できるボタン
-    void drawRoundedSquareButton(float x, float y, float w, float h, float tl, float tr, float br, float bl, color mainCol, boolean shadow, String shadowMode, float shadowDist, color shadowCol){
+    void drawEachRoundedButton(float x, float y, float w, float h, float tl, float tr, float br, float bl, color mainCol, boolean shadow, String shadowMode, float shadowDist, color shadowCol){
         if (shadow){
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
-            drawRoundedSquareButton(shadowPos.x, shadowPos.y, w, h, r, shadowCol);
+            drawEachRoundedButton(shadowPos.x, shadowPos.y,  w, h, tl, tr, br, bl, shadowCol);
         }
-        drawRoundedSquareButton(x, y, w, h, tl, tr, br, bl, mainCol);
+        drawEachRoundedButton(x, y, w, h, tl, tr, br, bl, mainCol);
     }
-    void drawRoundedSquareButton(float x, float y, float w, float h, float tl, float tr, float br, float bl, color mainCol){
+    void drawEachRoundedButton(float x, float y, float w, float h, float tl, float tr, float br, float bl, color mainCol){
         fill(mainCol);
         noStroke();
         box(x, y, w, h, tl, tr, br, bl);

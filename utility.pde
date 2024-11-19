@@ -4,8 +4,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 class SafeLoad{
-    static final String ERROR_SVG_PATH = "data/assets/ERROR_ICON.svg";
-    static final String DEFAULT_THEME_PATH = "data/themes/default.json";
+    String ERROR_SVG_PATH, DEFAULT_THEME_PATH;
+    String configPath = "data/config.json";
+
+    SafeLoad(){
+        config = configLoad();
+        ERROR_SVG_PATH = config.getString("ERROR_SVG_PATH");
+        DEFAULT_THEME_PATH = config.getString("DEFAULT_THEME_PATH");
+    }
+
 
     boolean canLoad(String filePath, String fileType){
         //パスのファイルが存在するか？
@@ -41,13 +48,114 @@ class SafeLoad{
         return new PShape();
     }
     
-    JSONObject jsonLoad(String filePath){
-        if(canLoad(filePath, ".json")){
-            return loadJSONObject(filePath);
-        }else if(canLoad(DEFAULT_THEME_PATH, ".json")){
-            return loadJSONObject(DEFAULT_THEME_PATH);
+    JSONObject assetLoad(String currThemeDir, String assetPath){
+        String currThemeAsset = currThemeDir + "/assets/designs/" + assetPath;
+        String defaultThemeAsset = DEFAULT_THEME_PATH + "/assets/designs/" + assetPath;
+        if(canLoad(currThemeAsset, ".json")){
+            return loadJSONObject(currThemeAsset);
+        }else if(canLoad(defaultThemeAsset, ".json")){
+            return loadJSONObject(defaultThemeAsset);
         }
-        println("ERROR: " + DEFAULT_THEME_PATH + " not found");
+        println("ERROR: " + defaultThemeAsset + " not found");
         return new JSONObject();
+    }
+
+    JSONObject configLoad(){
+        if(canLoad(configPath, ".json")){
+            return loadJSONObject(configPath);
+        }
+        println("ERROR: " + configPath + " not found");
+        return new JSONObject();
+    }
+
+}
+
+//--------------------------------------------------
+class DrawMode{
+    String containerAnker, blockMode, blockAnker;
+    DrawMode(JSONObject drawModeJSON){
+        this.containerAnker = drawModeJSON.getString("containerAnker");
+        this.blockMode = drawModeJSON.getString("blockMode");
+        this.blockAnker = drawModeJSON.getString("blockAnker");
+    }
+}
+
+class StyleData{
+    String button_type;
+    LayoutData layoutData;
+    StrokeData strokeData;
+    IconData iconData;
+    ShadowData shadowData;
+
+
+    StyleData(JSONObject styleJSON){
+        button_type = styleJSON.getString("button_type");
+        layoutData = new LayoutData(styleJSON.getJSONObject("layout"));
+        strokeData = new StrokeData(styleJSON.getJSONObject("stroke"));
+        iconData = new IconData(styleJSON.getJSONObject("icon"));
+        shadowData = new ShadowData(styleJSON.getJSONObject("shadow"));
+    }
+}
+
+class LayoutData{
+    float x_point, y_point, width_point, height_point;
+    float r_point, tl_point, tr_point, br_point, bl_point;
+
+    LayoutData(JSONObject layoutJSON){
+        this.x_point = layoutJSON.getFloat("x_point");
+        this.y_point = layoutJSON.getFloat("y_point");
+        this.width_point = layoutJSON.getFloat("width_point");
+        this.height_point = layoutJSON.getFloat("height_point");
+
+        this.r_point = layoutJSON.getFloat("r_point");
+
+        this.tl_point = layoutJSON.getFloat("tl_point");
+        this.tr_point = layoutJSON.getFloat("tr_point");
+        this.br_point = layoutJSON.getFloat("br_point");
+        this.bl_point = layoutJSON.getFloat("bl_point");
+    }
+}
+
+class StrokeData{
+    float strokeWeight;
+    color strokeCol;
+
+    StrokeData(JSONObject strokeJSON){
+        this.strokeWeight = strokeJSON.getFloat("strokeWeight");
+        this.strokeCol = hexToColor(strokeJSON.getString("color"));
+    }
+}
+
+class IconData{
+    float size;
+    PShape icon;
+
+    IconData(JSONObject iconJSON){
+        this.size = iconJSON.getFloat("size");
+        color iconCol = hexToColor(iconJSON.getString("color"));
+        PShape shape = safeLoad.svgLoad(iconJSON.getString("path"));
+        changeIconColor(shape, iconCol);
+    }
+
+    void changeIconColor(PShape shape, color overrideCol){
+        if(0 < shape.getChildCount()){
+            for(int i = 0; i < shape.getChildCount(); i++){
+                changeIconColor(shape.getChild(i), overrideCol);
+            }
+        }else{
+            shape.setFill(overrideCol);
+        }
+    }
+}
+
+class ShadowData{
+    String shadowMode;
+    float shadowDistPoint;
+    color shadowCol;
+    
+    ShadowData(JSONObject shadowJSON){
+        this.shadowMode = shadowJSON.getString("shadowMode");
+        this.shadowDistPoint = shadowJSON.getFloat("shadowDistPoint");
+        this.shadowCol = hexToColor(shadowJSON.getString("color"));
     }
 }

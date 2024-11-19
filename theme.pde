@@ -8,7 +8,7 @@ class json {
 }
 
 //--------------------------------------------------
-
+/*
 class Theme extends json {
     Theme(String themePath) {
         SafeLoad safeLoad = new SafeLoad();
@@ -17,3 +17,4 @@ class Theme extends json {
     
     
 }
+*/

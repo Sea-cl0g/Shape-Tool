@@ -1,5 +1,5 @@
 {
-    "description" : "Example of describing overlapping layouts in an JSONarray",
+    "description" : "Example of describing a button class theme when using references",
     "author" : "boo_manKnow",
     
     "containerAnker": "topLeft",
@@ -37,23 +37,27 @@
         "main":{
             "shadowMode": "BOTTOMRIGHT",
             "shadowDistPoint": 0.1,
-            "shadowCol": "$accent"
+            "color": "$accent"
         }
     },
+    "button_types":{
+        "standard":"squareButton"
+    },
 
-    "element1":{
+    "element1": {
         "type": "button",
-        "button_type": "squareButton",
         "style":[
             {
                 "predicate": "normal", 
+                "button_type": "$standard",
                 "layout": "$default",
                 "color": "$main",
                 "icon":"$main",
                 "shadow": "$main"
             },
             {
-                "predicate": "touched", 
+                "predicate": "touched",
+                "button_type": "$standard", 
                 "layout": "$default",
                 "color": "$main",
                 "stroke":{
@@ -64,13 +68,21 @@
                 "shadow": "$main"
             },
             {
-                "predicate": ["clicked", "selected"], 
+                "predicate": "clicked", 
+                "button_type": "$standard",
                 "layout": "$smaller",
                 "color": "$main",
                 "icon":"$main",
                 "shadow": "$main"
+            },
+            {
+                "predicate": "selected", 
+                "button_type": "$standard",
+                "layout": "$default",
+                "color": "$main * 2.0",
+                "icon":"$main",
+                "shadow": "$main"
             }
-        ],
-        "Tips": "This will have different drawing results when selected than ex1, ex2."
+        ]
     }
 }

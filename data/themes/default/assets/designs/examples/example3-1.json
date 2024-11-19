@@ -8,10 +8,10 @@
 
     "element1": {
         "type": "button",
-        "button_type": "squareButton",
         "style":[
             {
                 "predicate": "normal", 
+                "button_type": "squareButton",
                 "layout": {
                     "x_point": 10, 
                     "y_point": 10, 
@@ -26,11 +26,12 @@
                 },"shadow": {
                     "shadowMode": "BOTTOMRIGHT",
                     "shadowDistPoint": 0.1,
-                    "shadowCol": "#000000"
+                    "color": "#000000"
                 }
             },
             {
                 "predicate": "touched", 
+                "button_type": "squareButton",
                 "layout": {
                     "x_point": 10, 
                     "y_point": 10, 
@@ -49,11 +50,12 @@
                 },"shadow": {
                     "shadowMode": "BOTTOMRIGHT",
                     "shadowDistPoint": 0.1,
-                    "shadowCol": "#000000"
+                    "color": "#000000"
                 }
             },
             {
                 "predicate": "clicked", 
+                "button_type": "squareButton",
                 "layout": {
                     "x_point": 10, 
                     "y_point": 10, 
@@ -68,11 +70,12 @@
                 },"shadow": {
                     "shadowMode": "BOTTOMRIGHT",
                     "shadowDistPoint": 0.1,
-                    "shadowCol": "#000000"
+                    "color": "#000000"
                 }
             },
             {
-                "predicate": "selected", 
+                "predicate": "selected",
+                "button_type": "squareButton", 
                 "layout": {
                     "x_point": 10, 
                     "y_point": 10, 
@@ -87,7 +90,7 @@
                 },"shadow": {
                     "shadowMode": "BOTTOMRIGHT",
                     "shadowDistPoint": 0.1,
-                    "shadowCol": "#000000"
+                    "color": "#000000"
                 }
             }
         ]

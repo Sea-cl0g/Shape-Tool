@@ -1,0 +1,95 @@
+{
+    "description" : "Most basic and easy-to-see color theme",
+    "author" : "boo_manKnow",
+    
+    "containerAnker": "topLeft",
+    "blockMode": "vertical",
+    "blockAnker":"CORNER",
+
+    "element1": {
+        "type": "button",
+        "button_type": "squareButton",
+        "style":[
+            {
+                "predicate": "normal", 
+                "layout": {
+                    "x_point": 10, 
+                    "y_point": 10, 
+                    "width_point": 10, 
+                    "height_point": 10
+                },
+                "color": "#7d7d7d",
+                "icon":{
+                    "size": 0.8,
+                    "path": "icon/ERROR_ICON.svg",
+                    "color": "#ffffff"
+                },"shadow": {
+                    "shadowMode": "BOTTOMRIGHT",
+                    "shadowDistPoint": 0.1,
+                    "shadowCol": "#000000"
+                }
+            },
+            {
+                "predicate": "touched", 
+                "layout": {
+                    "x_point": 10, 
+                    "y_point": 10, 
+                    "width_point": 10, 
+                    "height_point": 10
+                },
+                "color": "#7d7d7d",
+                "stroke":{
+                    "strokeWeight": 10,
+                    "color": "#42c8ed"
+                },
+                "icon":{
+                    "size": 0.8,
+                    "path": "icon/ERROR_ICON.svg",
+                    "color": "#ffffff"
+                },"shadow": {
+                    "shadowMode": "BOTTOMRIGHT",
+                    "shadowDistPoint": 0.1,
+                    "shadowCol": "#000000"
+                }
+            },
+            {
+                "predicate": "clicked", 
+                "layout": {
+                    "x_point": 10, 
+                    "y_point": 10, 
+                    "width_point": 8, 
+                    "height_point": 8
+                },
+                "color": "#7d7d7d",
+                "icon":{
+                    "size": 0.8,
+                    "path": "icon/ERROR_ICON.svg",
+                    "color": "#ffffff"
+                },"shadow": {
+                    "shadowMode": "BOTTOMRIGHT",
+                    "shadowDistPoint": 0.1,
+                    "shadowCol": "#000000"
+                }
+            },
+            {
+                "predicate": "selected", 
+                "layout": {
+                    "x_point": 10, 
+                    "y_point": 10, 
+                    "width_point": 10, 
+                    "height_point": 10
+                },
+                "color": "#7d7d7d * 2.0",
+                "icon":{
+                    "size": 0.8,
+                    "path": "icon/ERROR_ICON.svg",
+                    "color": "#ffffff"
+                },"shadow": {
+                    "shadowMode": "BOTTOMRIGHT",
+                    "shadowDistPoint": 0.1,
+                    "shadowCol": "#000000"
+                }
+            }
+        ]
+    }
+}
