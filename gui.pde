@@ -143,22 +143,34 @@ class Dialog extends Block{
 
 //--------------------------------------------------
 class Button extends ButtonTemplate{
-    StyleData normal, touched, clicked, selected;
+    Runnable normal, touched, clicked;
     Runnable onClick;
     
     Button(int splitW, int splitH, StyleData normal, StyleData touched, StyleData clicked){
         super(splitW, splitH);
     }
+    /*
     Button(int splitW, int splitH, StyleData normal, StyleData touched, StyleData clicked, StyleData selected){
         super(splitW, splitH);
+        this.normal = buildButton(normal);
+        this.touched = touched;
+        this.clicked = clicked;
+        this.selected = selected;
     }
 
-    /*
-    void drawButton() {
-        switch () {
-            
+    Runnable buildButton(StyleData styleData){
+        float x = styleData.layoutData.x_point;
+        float y = styleData.layoutData.y_point;
+        float w = styleData.layoutData.width_point;
+        float h = styleData.layoutData.height_point;
+        switch (styleData.button_type) {
+            case  "squareButton":
+                drawSquareButton(x, y, w, h, )
+            break;	
         }
+    }
 
+    void drawButton() {
         drawRoundedSquareButton(x, y, w, h, 0.2, color(102 * tmp, 102 * tmp, 102 * tmp), true, "BOTTOMRIGHT", 0.1, color(0, 0, 0));
         icon(x, y, w, h, 0.8, add_rectangle);
     }

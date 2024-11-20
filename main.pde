@@ -40,29 +40,65 @@ void loadTheme(){
     println();
     String key = (String) keyObj;
     JSONObject asset = assetsPath.getJSONObject(key);
-    //themeファイルの読み込み
     JSONObject design = safeLoad.assetLoad(currThemeDir, asset.getString("path"));
-    DrawMode drawMode = new DrawMode(design);
-    if(drawMode.containerAnker != null){
-      JSONObject elements = asset.getJSONObject("elements");
-      for(Object elementObj : elements.keys()){
-        String elementID = (String) elementObj;
-        JSONObject element = design.getJSONObject(elementID);
-        switch (element.getString("type")) {
-          case "base" :
-            
-          break;	
-          case "color" :
-            
-          break;	
-          case "button" :
-            println("pika-!!!");
-          break;	
-        }
+    readDesign(asset, design);
+  }
+}
+
+void readDesign(JSONObject asset, JSONObject design){
+  DrawMode drawMode = new DrawMode(design);
+  if(drawMode.containerAnker != null){
+    JSONObject elements = asset.getJSONObject("elements");
+    for(Object elementObj : elements.keys()){
+      String elementID = (String) elementObj;
+      JSONObject element = design.getJSONObject(elementID);
+      switch (element.getString("type")) {
+        case "base" :
+          
+        break;	
+        case "color" :
+          
+        break;	
+        case "button" :
+          JSONArray styleList = element.getJSONArray("style");
+          StyleData normal;
+          StyleData touched;
+          StyleData clicked;
+          StyleData selected;
+          for(int i = 0; i < styleList.size(); i++){
+            JSONObject style = styleList.getJSONObject(i);
+            //predicateに応じて関数を初期化
+            Object predicateObj = style.get("predicate");
+            JSONArray query = new JSONArray();
+            if(predicateObj instanceof String){
+              String predicate_tmp = (String) predicateObj;
+              query.append(predicate_tmp);
+            }else{
+              query = (JSONArray) predicateObj;
+            }
+            for(int q = 0; q < query.size(); q++){
+              switch (query.getString(q)) {
+                case "normal" :
+                  normal = new StyleData(style);
+                break;
+                case "touched" :
+                  touched = new StyleData(style);
+                break;	
+                case "clicked" :
+                  clicked = new StyleData(style);
+                break;	
+                case "selected" :
+                  selected = new StyleData(style);
+                break;	
+              }
+            }
+          }
+        break;	
       }
     }
   }
 }
+
 
 color hexToColor(String hex){
   if (hex.startsWith("#")) {
@@ -77,6 +113,45 @@ color hexToColor(String hex){
   return color(r, g, b, a);
 }
 
+class EasyJSONObject extends JSONObject{
+  color exceptionCol = color(255, 0, 255);
+
+  JSONObject jsonObj;
+  EasyJSONObject(JSONObject jsonObj){
+    this.jsonObj = jsonObj;
+  }
+
+  float safeGetFloat(String key){
+    return !jsonObj.isNull(key) ? jsonObj.getFloat(key) : 0.0;
+  }
+
+  color safeGetColor(Object colorObj){
+    if(colorObj instanceof String){
+      String colorHex = (String) colorObj;
+      return hexToColor(colorHex);
+    }else if(colorObj instanceof JSONArray){
+      JSONArray colorArrayTmp = (JSONArray) colorObj;
+      EasyJSONArray colorArray = new EasyJSONArray(colorArrayTmp);
+      if(colorArray.size() == 3){
+        return color(colorArray.safeGetFloat(0), colorArray.safeGetFloat(1), colorArray.safeGetFloat(2));
+      }else if(colorArray.size() == 4){
+        return color(colorArray.safeGetFloat(0), colorArray.safeGetFloat(1), colorArray.safeGetFloat(2), colorArray.safeGetFloat(3));
+      }
+    }
+    return exceptionCol;
+  }
+}
+
+class EasyJSONArray extends JSONArray{
+  JSONArray jsonArray;
+  EasyJSONArray(JSONArray jsonArray){
+    this.jsonArray = jsonArray;
+  }
+
+  float safeGetFloat(int index){
+    return !jsonArray.isNull(index) ? jsonArray.getFloat(index) : 0.0;
+  }
+}
 //--------------------------------------------------
 void mousePressed() {
   isMouseClicking = true;

@@ -24,7 +24,6 @@ class SafeLoad{
             filePath = sketchPath() + "/" + filePath;
         }
         Path apath = Paths.get(filePath);
-        println(apath);
         if(!Files.exists(apath)){
             println("File does not exist: " + filePath);
             return false;
@@ -86,14 +85,19 @@ class StyleData{
     StrokeData strokeData;
     IconData iconData;
     ShadowData shadowData;
-
+    //もういっそのことeasyjsonクラスで扱う？？
 
     StyleData(JSONObject styleJSON){
         button_type = styleJSON.getString("button_type");
+        println(button_type);
         layoutData = new LayoutData(styleJSON.getJSONObject("layout"));
+        println(layoutData);
         strokeData = new StrokeData(styleJSON.getJSONObject("stroke"));
+        println(strokeData);
         iconData = new IconData(styleJSON.getJSONObject("icon"));
+        println(iconData);
         shadowData = new ShadowData(styleJSON.getJSONObject("shadow"));
+        println(shadowData);
     }
 }
 
@@ -102,27 +106,31 @@ class LayoutData{
     float r_point, tl_point, tr_point, br_point, bl_point;
 
     LayoutData(JSONObject layoutJSON){
-        this.x_point = layoutJSON.getFloat("x_point");
-        this.y_point = layoutJSON.getFloat("y_point");
-        this.width_point = layoutJSON.getFloat("width_point");
-        this.height_point = layoutJSON.getFloat("height_point");
+        EasyJSONObject ejson = new EasyJSONObject(layoutJSON);
+        this.x_point = ejson.safeGetFloat("x_point");
+        this.y_point = ejson.safeGetFloat("y_point");
+        this.width_point = ejson.safeGetFloat("width_point");
+        this.height_point = ejson.safeGetFloat("height_point");
 
-        this.r_point = layoutJSON.getFloat("r_point");
+        this.r_point = ejson.safeGetFloat("r_point");
 
-        this.tl_point = layoutJSON.getFloat("tl_point");
-        this.tr_point = layoutJSON.getFloat("tr_point");
-        this.br_point = layoutJSON.getFloat("br_point");
-        this.bl_point = layoutJSON.getFloat("bl_point");
+        this.tl_point = ejson.safeGetFloat("tl_point");
+        this.tr_point = ejson.safeGetFloat("tr_point");
+        this.br_point = ejson.safeGetFloat("br_point");
+        this.bl_point = ejson.safeGetFloat("bl_point");
     }
 }
 
 class StrokeData{
+    boolean isNeed;
     float strokeWeight;
     color strokeCol;
 
     StrokeData(JSONObject strokeJSON){
-        this.strokeWeight = strokeJSON.getFloat("strokeWeight");
-        this.strokeCol = hexToColor(strokeJSON.getString("color"));
+        EasyJSONObject ejson = new EasyJSONObject(strokeJSON);
+        this.strokeWeight = ejson.safeGetFloat("strokeWeight");
+        println(this.strokeWeight);
+        this.strokeWeight = ejson.safeGetColor("color");
     }
 }
 
