@@ -113,7 +113,7 @@ color hexToColor(String hex){
   return color(r, g, b, a);
 }
 
-class EasyJSONObject extends JSONObject{
+class EasyJSONObject{
   color exceptionCol = color(255, 0, 255);
 
   JSONObject jsonObj;
@@ -122,8 +122,9 @@ class EasyJSONObject extends JSONObject{
   }
 
   float safeGetFloat(String key){
-    return !jsonObj.isNull(key) ? jsonObj.getFloat(key) : 0.0;
+    return jsonObj.isNull(key) ? 0.0 : jsonObj.getFloat(key);
   }
+  
 
   color safeGetColor(Object colorObj){
     if(colorObj instanceof String){
@@ -140,6 +141,11 @@ class EasyJSONObject extends JSONObject{
     }
     return exceptionCol;
   }
+  
+  // JSONObjectクラス関数のラップ
+  boolean isNull(String key){
+    return jsonObj.isNull(key);
+  }
 }
 
 class EasyJSONArray extends JSONArray{
@@ -149,9 +155,15 @@ class EasyJSONArray extends JSONArray{
   }
 
   float safeGetFloat(int index){
-    return !jsonArray.isNull(index) ? jsonArray.getFloat(index) : 0.0;
+    return !jsonArray.isNull(index) ? 0.0 : jsonArray.getFloat(index);
+  }
+
+  // JSONObjectクラス関数のオーバーライド
+  boolean isNull(int index){
+    return jsonArray.isNull(index);
   }
 }
+
 //--------------------------------------------------
 void mousePressed() {
   isMouseClicking = true;

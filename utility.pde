@@ -85,7 +85,6 @@ class StyleData{
     StrokeData strokeData;
     IconData iconData;
     ShadowData shadowData;
-    //もういっそのことeasyjsonクラスで扱う？？
 
     StyleData(JSONObject styleJSON){
         button_type = styleJSON.getString("button_type");
@@ -129,8 +128,7 @@ class StrokeData{
     StrokeData(JSONObject strokeJSON){
         EasyJSONObject ejson = new EasyJSONObject(strokeJSON);
         this.strokeWeight = ejson.safeGetFloat("strokeWeight");
-        println(this.strokeWeight);
-        this.strokeWeight = ejson.safeGetColor("color");
+        this.strokeCol = ejson.safeGetColor("color");
     }
 }
 
