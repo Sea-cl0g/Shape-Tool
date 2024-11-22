@@ -31,6 +31,7 @@ void draw() {
 //--------------------------------------------------
 ArrayList<Button> buttons = new ArrayList<Button>();
 void loadTheme(){
+  println("Theme Loading...");
   config = safeLoad.configLoad();
   String currThemeDir = config.getString("current_theme");
 
@@ -40,8 +41,11 @@ void loadTheme(){
     println();
     String key = (String) keyObj;
     JSONObject asset = assetsPath.getJSONObject(key);
-    JSONObject design = safeLoad.assetLoad(currThemeDir, asset.getString("path"));
-    readDesign(asset, design);
+    String assetPaht = asset.getString("path");
+    if(safeLoad.canLoad(safeLoad.connectThemePathAndDesignFilePath(currThemeDir, assetPaht), ".json")){
+      JSONObject design = safeLoad.assetLoad(currThemeDir, assetPaht);
+      readDesign(asset, design);
+    }
   }
 }
 
@@ -52,6 +56,7 @@ void readDesign(JSONObject asset, JSONObject design){
     for(Object elementObj : elements.keys()){
       String elementID = (String) elementObj;
       JSONObject element = design.getJSONObject(elementID);
+      //println(design);//easyjsonにしてnullを回避すべき
       switch (element.getString("type")) {
         case "base" :
           
@@ -100,33 +105,33 @@ void readDesign(JSONObject asset, JSONObject design){
 }
 
 
-color hexToColor(String hex){
-  if (hex.startsWith("#")) {
-    hex = hex.substring(1);
-  }
-  
-  int r = unhex(hex.substring(0, 2));
-  int g = unhex(hex.substring(2, 4));
-  int b = unhex(hex.substring(4, 6));
-  int a = hex.length() == 8 ? unhex(hex.substring(6, 8)) : 255;
-  
-  return color(r, g, b, a);
-}
 
 class EasyJSONObject{
-  color exceptionCol = color(255, 0, 255);
 
   JSONObject jsonObj;
   EasyJSONObject(JSONObject jsonObj){
     this.jsonObj = jsonObj;
   }
 
-  float safeGetFloat(String key){
-    return jsonObj.isNull(key) ? 0.0 : jsonObj.getFloat(key);
+  String safeGetString(String key){
+    return safeGetString(key, "ERR");
   }
-  
+  String safeGetString(String key, String ifNull){
+    return jsonObj.isNull(key) ? ifNull : jsonObj.getString(key);
+  }
 
-  color safeGetColor(Object colorObj){
+  float safeGetFloat(String key){
+    return safeGetFloat(key, 0.0);
+  }
+  float safeGetFloat(String key, float ifNull){
+    return jsonObj.isNull(key) ? ifNull : jsonObj.getFloat(key);
+  }
+
+  color safeGetColor(String key){
+    return safeGetColor(key, color(255, 0, 255));
+  }
+  color safeGetColor(String key, color ifNull){
+    Object colorObj = jsonObj.get(key);
     if(colorObj instanceof String){
       String colorHex = (String) colorObj;
       return hexToColor(colorHex);
@@ -139,14 +144,27 @@ class EasyJSONObject{
         return color(colorArray.safeGetFloat(0), colorArray.safeGetFloat(1), colorArray.safeGetFloat(2), colorArray.safeGetFloat(3));
       }
     }
-    return exceptionCol;
+    return ifNull;
   }
   
+  JSONObject getNormalJSONObject(){
+    return jsonObj;
+  }
+
   // JSONObjectクラス関数のラップ
+  EasyJSONObject getEasyJSONObject(String key){
+    return new EasyJSONObject(jsonObj.getJSONObject(key));
+  }
+
+  EasyJSONArray getEasyJSONArray(String key){
+    return new EasyJSONArray(jsonObj.getJSONArray(key));
+  }
+
   boolean isNull(String key){
     return jsonObj.isNull(key);
   }
 }
+
 
 class EasyJSONArray extends JSONArray{
   JSONArray jsonArray;
@@ -163,6 +181,19 @@ class EasyJSONArray extends JSONArray{
     return jsonArray.isNull(index);
   }
 }
+
+color hexToColor(String hex){
+        if (hex.startsWith("#")) {
+            hex = hex.substring(1);
+        }
+        
+        int r = unhex(hex.substring(0, 2));
+        int g = unhex(hex.substring(2, 4));
+        int b = unhex(hex.substring(4, 6));
+        int a = hex.length() == 8 ? unhex(hex.substring(6, 8)) : 255;
+        
+        return color(r, g, b, a);
+    }
 
 //--------------------------------------------------
 void mousePressed() {
@@ -219,20 +250,20 @@ void menu(){
 
 void checkBlocks(int wCount, int hCount, String blockMode, String blockAnker){
   Block tmpBlock = new Block(16, 16);
-    tmpBlock.setBlockMode(blockMode);
-    tmpBlock.setBlockAnker(blockAnker);
-    
-    noFill();
-    stroke(255, 0, 0);
-    tmpBlock.setContainerAnker("topLeft");
-    tmpBlock.debugGrid(wCount, hCount);
-    stroke(0, 255, 0);
-    tmpBlock.setContainerAnker("topRight");
-    tmpBlock.debugGrid(wCount, hCount);
-    stroke(0, 0, 255);
-    tmpBlock.setContainerAnker("bottomLeft");
-    tmpBlock.debugGrid(wCount, hCount);
-    stroke(255, 0, 255);
-    tmpBlock.setContainerAnker("bottomRight");
-    tmpBlock.debugGrid(wCount, hCount);
+  tmpBlock.setBlockMode(blockMode);
+  tmpBlock.setBlockAnker(blockAnker);
+  
+  noFill();
+  stroke(255, 0, 0);
+  tmpBlock.setContainerAnker("topLeft");
+  tmpBlock.debugGrid(wCount, hCount);
+  stroke(0, 255, 0);
+  tmpBlock.setContainerAnker("topRight");
+  tmpBlock.debugGrid(wCount, hCount);
+  stroke(0, 0, 255);
+  tmpBlock.setContainerAnker("bottomLeft");
+  tmpBlock.debugGrid(wCount, hCount);
+  stroke(255, 0, 255);
+  tmpBlock.setContainerAnker("bottomRight");
+  tmpBlock.debugGrid(wCount, hCount);
 }

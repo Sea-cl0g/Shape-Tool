@@ -1,4 +1,3 @@
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,13 +46,21 @@ class SafeLoad{
         return new PShape();
     }
     
+    String connectThemePathAndDesignFilePath(String themePath, String assetPath){
+        //パスの修正機能を追加したい
+        return themePath + "/assets/designs/" + assetPath;
+    }
+
     JSONObject assetLoad(String currThemeDir, String assetPath){
-        String currThemeAsset = currThemeDir + "/assets/designs/" + assetPath;
+        String currThemeAsset = connectThemePathAndDesignFilePath(currThemeDir, assetPath);
         String defaultThemeAsset = DEFAULT_THEME_PATH + "/assets/designs/" + assetPath;
         if(canLoad(currThemeAsset, ".json")){
+            println("Log: " + currThemeAsset + " has loaded!!");
             return loadJSONObject(currThemeAsset);
         }else if(canLoad(defaultThemeAsset, ".json")){
-            return loadJSONObject(defaultThemeAsset);
+            println("ERROR: " + currThemeAsset + " not found");
+            println("Log: " + defaultThemeAsset + " has loaded!!");
+            return loadJSONObject(currThemeAsset);
         }
         println("ERROR: " + defaultThemeAsset + " not found");
         return new JSONObject();
@@ -70,12 +77,31 @@ class SafeLoad{
 }
 
 //--------------------------------------------------
+/*
+class Utils{
+    color hexToColor(String hex){
+        if (hex.startsWith("#")) {
+            hex = hex.substring(1);
+        }
+        
+        int r = unhex(hex.substring(0, 2));
+        int g = unhex(hex.substring(2, 4));
+        int b = unhex(hex.substring(4, 6));
+        int a = hex.length() == 8 ? unhex(hex.substring(6, 8)) : 255;
+        
+        return color(r, g, b, a);
+    }
+}
+*/
+
+//--------------------------------------------------
 class DrawMode{
     String containerAnker, blockMode, blockAnker;
     DrawMode(JSONObject drawModeJSON){
-        this.containerAnker = drawModeJSON.getString("containerAnker");
-        this.blockMode = drawModeJSON.getString("blockMode");
-        this.blockAnker = drawModeJSON.getString("blockAnker");
+        EasyJSONObject drawModeEJSON = new EasyJSONObject(drawModeJSON);
+        this.containerAnker = drawModeEJSON.safeGetString("containerAnker", "topLeft");
+        this.blockMode = drawModeEJSON.safeGetString("blockMode", "vertical");
+        this.blockAnker = drawModeEJSON.safeGetString("blockAnker", "CORNER");
     }
 }
 
@@ -87,15 +113,32 @@ class StyleData{
     ShadowData shadowData;
 
     StyleData(JSONObject styleJSON){
-        button_type = styleJSON.getString("button_type");
+        EasyJSONObject styleEJSON = new EasyJSONObject(styleJSON);
+        button_type = styleEJSON.safeGetString("button_type");
         println(button_type);
-        layoutData = new LayoutData(styleJSON.getJSONObject("layout"));
+
+        EasyJSONObject layoutEJSON = styleEJSON.getEasyJSONObject("layout");
+        if(layoutEJSON.getNormalJSONObject() != null){
+            layoutData = new LayoutData(layoutEJSON);
+        }
         println(layoutData);
-        strokeData = new StrokeData(styleJSON.getJSONObject("stroke"));
+        
+        EasyJSONObject strokeEJSON = styleEJSON.getEasyJSONObject("stroke");
+        if(strokeEJSON.getNormalJSONObject() != null){
+            strokeData = new StrokeData(strokeEJSON);
+        }
         println(strokeData);
-        iconData = new IconData(styleJSON.getJSONObject("icon"));
+
+        EasyJSONObject iconEJSON = styleEJSON.getEasyJSONObject("icon");
+        if(iconEJSON.getNormalJSONObject() != null){
+            iconData = new IconData(iconEJSON);
+        }
         println(iconData);
-        shadowData = new ShadowData(styleJSON.getJSONObject("shadow"));
+
+        EasyJSONObject shadowEJSON = styleEJSON.getEasyJSONObject("shadow");
+        if(shadowEJSON.getNormalJSONObject() != null){
+            shadowData = new ShadowData(shadowEJSON);
+        }
         println(shadowData);
     }
 }
@@ -104,19 +147,18 @@ class LayoutData{
     float x_point, y_point, width_point, height_point;
     float r_point, tl_point, tr_point, br_point, bl_point;
 
-    LayoutData(JSONObject layoutJSON){
-        EasyJSONObject ejson = new EasyJSONObject(layoutJSON);
-        this.x_point = ejson.safeGetFloat("x_point");
-        this.y_point = ejson.safeGetFloat("y_point");
-        this.width_point = ejson.safeGetFloat("width_point");
-        this.height_point = ejson.safeGetFloat("height_point");
+    LayoutData(EasyJSONObject layoutEJSON){
+        this.x_point = layoutEJSON.safeGetFloat("x_point");
+        this.y_point = layoutEJSON.safeGetFloat("y_point");
+        this.width_point = layoutEJSON.safeGetFloat("width_point");
+        this.height_point = layoutEJSON.safeGetFloat("height_point");
 
-        this.r_point = ejson.safeGetFloat("r_point");
+        this.r_point = layoutEJSON.safeGetFloat("r_point");
 
-        this.tl_point = ejson.safeGetFloat("tl_point");
-        this.tr_point = ejson.safeGetFloat("tr_point");
-        this.br_point = ejson.safeGetFloat("br_point");
-        this.bl_point = ejson.safeGetFloat("bl_point");
+        this.tl_point = layoutEJSON.safeGetFloat("tl_point");
+        this.tr_point = layoutEJSON.safeGetFloat("tr_point");
+        this.br_point = layoutEJSON.safeGetFloat("br_point");
+        this.bl_point = layoutEJSON.safeGetFloat("bl_point");
     }
 }
 
@@ -125,10 +167,9 @@ class StrokeData{
     float strokeWeight;
     color strokeCol;
 
-    StrokeData(JSONObject strokeJSON){
-        EasyJSONObject ejson = new EasyJSONObject(strokeJSON);
-        this.strokeWeight = ejson.safeGetFloat("strokeWeight");
-        this.strokeCol = ejson.safeGetColor("color");
+    StrokeData(EasyJSONObject strokeEJSON){
+        this.strokeWeight = strokeEJSON.safeGetFloat("strokeWeight");
+        this.strokeCol = strokeEJSON.safeGetColor("color");
     }
 }
 
@@ -136,10 +177,10 @@ class IconData{
     float size;
     PShape icon;
 
-    IconData(JSONObject iconJSON){
-        this.size = iconJSON.getFloat("size");
-        color iconCol = hexToColor(iconJSON.getString("color"));
-        PShape shape = safeLoad.svgLoad(iconJSON.getString("path"));
+    IconData(EasyJSONObject iconEJSON){
+        this.size = iconEJSON.safeGetFloat("size");
+        color iconCol = iconEJSON.safeGetColor("color");
+        PShape shape = safeLoad.svgLoad(iconEJSON.safeGetString("path"));
         changeIconColor(shape, iconCol);
     }
 
@@ -159,9 +200,9 @@ class ShadowData{
     float shadowDistPoint;
     color shadowCol;
     
-    ShadowData(JSONObject shadowJSON){
-        this.shadowMode = shadowJSON.getString("shadowMode");
-        this.shadowDistPoint = shadowJSON.getFloat("shadowDistPoint");
-        this.shadowCol = hexToColor(shadowJSON.getString("color"));
+    ShadowData(EasyJSONObject shadowEJSON){
+        this.shadowMode = shadowEJSON.safeGetString("shadowMode");
+        this.shadowDistPoint = shadowEJSON.safeGetFloat("shadowDistPoint");
+        this.shadowCol = shadowEJSON.safeGetColor("color");
     }
 }

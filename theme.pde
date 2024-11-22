@@ -1,3 +1,4 @@
+/*
 class json {
     json () {
 
@@ -6,7 +7,7 @@ class json {
 
 
 }
-
+*/
 //--------------------------------------------------
 /*
 class Theme extends json {
