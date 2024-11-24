@@ -6,12 +6,16 @@
     "blockMode": "vertical",
     "blockAnker":"CORNER",
     
+    "button_types":{
+        "standard":"squareButton"
+    },
+
     "element1": {
         "type": "triggerButton",
         "style":[
             {
                 "predicate": "normal", 
-                "button_type": "squareButton",
+                "button_type": "$standard",
                 "layout": {
                     "x_point": 0, 
                     "y_point": 0, 

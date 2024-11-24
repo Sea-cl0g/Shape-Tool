@@ -1,4 +1,6 @@
 class Theme{
+    JSONObject variableJSON = new JSONObject();
+
     ArrayList<TriggerButton> triggerButtonList = new ArrayList<TriggerButton>();
 
     void drawMenu(){
@@ -9,15 +11,17 @@ class Theme{
 
     void loadTheme(){
         JSONObject assetsPath = config.getJSONObject("assets_path");
-        for(Object keyObj : assetsPath.keys()){
-            String key = (String) keyObj;
-            JSONObject asset = assetsPath.getJSONObject(key);
+        for(Object assetNameObj : assetsPath.keys()){
+            String assetName = (String) assetNameObj;
+            JSONObject asset = assetsPath.getJSONObject(assetName);
             EasyJSONObject design = new EasyJSONObject(safeLoad.assetLoad(asset.getString("path")));
             readDesign(asset, design);
         }
     }
 
     void readDesign(JSONObject asset, EasyJSONObject design){
+        buildVariableJSON(design.getNormalJSONObject());
+
         JSONObject elements = asset.getJSONObject("elements");
         for(Object elementObj : elements.keys()){
             String elementID = (String) elementObj;
@@ -59,21 +63,36 @@ class Theme{
             for(int q = 0; q < query.size(); q++){
                 switch (query.getString(q)) {
                     case "normal" :
-                        normal.readData(style);
+                        normal.readData(style, variableJSON);
                     break;
                     case "touched" :
-                        touched.readData(style);
+                        touched.readData(style, variableJSON);
                     break;	
                     case "clicked" :
-                        clicked.readData(style);
-                    break;	
+                        clicked.readData(style, variableJSON);
+                    break;
                     case "selected" :
-                        selected.readData(style);
-                    break;	
+                        selected.readData(style, variableJSON);
+                    break;
                 }
             }
         }
         return new TriggerButton(16, 16, drawMode, normal, touched, clicked);
+    }
+
+    void readVariableJSON(){
+
+    }
+
+    void buildVariableJSON(JSONObject design){
+        for(Object keyObj : design.keys()){
+                String key = (String) keyObj;
+                Object valueObj = design.get(key);
+                if(valueObj instanceof JSONObject){
+                    JSONObject value = (JSONObject) valueObj;
+                    variableJSON.setJSONObject(key, value);
+                }
+        }
     }
 }
 
@@ -96,8 +115,13 @@ class StyleData{
     IconData iconData;
     ShadowData shadowData;
 
-    void readData(EasyJSONObject styleEJSON){
+    void readData(EasyJSONObject styleEJSON, JSONObject variableJSON){
         buttonType = styleEJSON.safeGetString("button_type");
+        if(buttonType.startsWith("$")){
+             String variableName = buttonType.substring(1);
+             JSONObject buttonTypesJson = variableJSON.getJSONObject("button_types");
+             buttonType = buttonTypesJson.getString(variableName);
+        }
         println(buttonType);
 
         fillCol = styleEJSON.safeGetColor("color");

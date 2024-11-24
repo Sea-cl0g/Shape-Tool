@@ -10,7 +10,7 @@
         "main": "#7d7d7d",
         "icon": "#ffffff",
         "sub": "#42c8ed",
-        "accent": "$accent"
+        "accent": "#42c8ed"
     },
     "layouts":{
         "default": {
@@ -45,7 +45,7 @@
     },
 
     "element1": {
-        "type": "button",
+        "type": "triggerButton",
         "style":[
             {
                 "predicate": "normal", 
