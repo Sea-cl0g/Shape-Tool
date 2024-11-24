@@ -10,7 +10,6 @@ class SafeLoad{
         DEFAULT_THEME_DIR = config.getString("DEFAULT_THEME_DIR");
     }
 
-
     boolean canLoad(String filePath, String fileType){
         //パスのファイルが存在するか？
         if(filePath.startsWith("/")){

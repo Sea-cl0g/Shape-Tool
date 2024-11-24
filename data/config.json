@@ -1,6 +1,6 @@
 {
     "current_theme": "data/themes/default",
-    "DEFAULT_THEME_PATH": "data/themes/default",
+    "DEFAULT_THEME_DIR": "data/themes/default",
     "ERROR_SVG_PATH": "data/themes/default/assets/images/ERROR_ICON.svg",
 
     "assets_path": {

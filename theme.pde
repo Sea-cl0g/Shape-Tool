@@ -31,38 +31,40 @@ class Theme{
                 
                 break;	
                 case "button" :
-                EasyJSONArray styleList = element.safeGetEasyJSONArray("style");
-                StyleData normal;
-                StyleData touched;
-                StyleData clicked;
-                StyleData selected;
-                for(int i = 0; i < styleList.size(); i++){
-                    EasyJSONObject style = styleList.safeGetEasyJSONObject(i);
-                    Object predicateObj = style.get("predicate");
-                    JSONArray query = new JSONArray();
-                    if(predicateObj instanceof String){
-                        String predicate_tmp = (String) predicateObj;
-                        query.append(predicate_tmp);
-                    }else{
-                        query = (JSONArray) predicateObj;
-                    }
-                    for(int q = 0; q < query.size(); q++){
-                        switch (query.getString(q)) {
-                            case "normal" :
-                                normal = new StyleData(style);
+                    EasyJSONArray styleList = element.safeGetEasyJSONArray("style");
+                    StyleData normal;
+                    StyleData touched;
+                    StyleData clicked;
+                    StyleData selected;
+                    for(int i = 0; i < styleList.size(); i++){
+                        EasyJSONObject style = styleList.safeGetEasyJSONObject(i);
+                        Object predicateObj = style.get("predicate");
+                        JSONArray query = new JSONArray();
+                        if(predicateObj instanceof String){
+                            String predicate_tmp = (String) predicateObj;
+                            query.append(predicate_tmp);
+                        }else{
+                            query = (JSONArray) predicateObj;
+                        }
+                        for(int q = 0; q < query.size(); q++){
+                            switch (query.getString(q)) {
+                                case "normal" :
+                                    normal = new StyleData(style);
                                 break;
-                            case "touched" :
-                                touched = new StyleData(style);
+                                case "touched" :
+                                    touched = new StyleData(style);
                                 break;	
-                            case "clicked" :
-                                clicked = new StyleData(style);
+                                case "clicked" :
+                                    clicked = new StyleData(style);
                                 break;	
-                            case "selected" :
-                                selected = new StyleData(style);
+                                case "selected" :
+                                    selected = new StyleData(style);
                                 break;	
+                            }
                         }
                     }
-                }
+                    
+                break;
             }
         }
     }
