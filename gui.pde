@@ -145,37 +145,43 @@ class Dialog extends Block{
 
 //--------------------------------------------------
 class TriggerButton extends ButtonTemplate{
+    DrawMode drawMode;
     StyleData normal, touched, clicked;
     Runnable onClick;
     
-    TriggerButton(int splitW, int splitH, StyleData normal, StyleData touched, StyleData clicked){
+    TriggerButton(int splitW, int splitH, DrawMode drawMode, StyleData normal, StyleData touched, StyleData clicked){
         super(splitW, splitH);
         this.normal = normal;
+        this.drawMode = drawMode;
         this.touched = touched;
         this.clicked = clicked;
     }
 
-    void display(float mouseX, float mouseY){
+    void drawButton(float mouseX, float mouseY){
         //とりあえず、ボタンの当たり判定はnormalのものを使用する
         LayoutData normalLayout = normal.layoutData;
         boolean isTouched = isPointInBox(normalLayout.x_point, normalLayout.y_point, normalLayout.width_point, normalLayout.height_point, mouseX, mouseY);
         if(isTouched && isMouseClicking){
             isMouseClicking = false;
-            drawButton(clicked);
+            display(clicked);
         }else if(isTouched){
-            drawButton(touched);
+            display(touched);
         }else{
-            drawButton(normal);
+            display(normal);
         }
     }
 
-    void drawButton(StyleData style) {
+    void display(StyleData style) {
         String buttonType = style.buttonType;
         color fillCol = style.fillCol;
         LayoutData layoutData = style.layoutData;
         StrokeData strokeData = style.strokeData;
         IconData iconData = style.iconData;
         ShadowData shadowData = style.shadowData;
+
+        setContainerAnker(drawMode.containerAnker);
+        setBlockMode(drawMode.blockMode);
+        setBlockAnker(drawMode.blockAnker);
 
         setFillCol(fillCol);
         setShadowCol(shadowData.shadowCol);
@@ -216,6 +222,8 @@ class TriggerButton extends ButtonTemplate{
             break;	
         }
 
+        println(layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
+            iconData.size, iconData.icon);
         icon(
             layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
             iconData.size, iconData.icon

@@ -1,8 +1,17 @@
 class Theme{
     ArrayList<TriggerButton> triggerButtonList = new ArrayList<TriggerButton>();
+    String currThemeDir;
+
+    Theme(){
+        this.currThemeDir = config.getString("current_theme");
+    }
 
     void drawMenu(){
         for(TriggerButton triggerButton : triggerButtonList){
+            StyleData style = triggerButton.normal;
+            IconData iconData = style.iconData;
+            fill(0);
+            shape(iconData.icon, 400, 400, 100, 100);
             triggerButton.drawButton(mouseX, mouseY);
         }
     }
@@ -12,7 +21,7 @@ class Theme{
         for(Object keyObj : assetsPath.keys()){
             String key = (String) keyObj;
             JSONObject asset = assetsPath.getJSONObject(key);
-            EasyJSONObject design = new EasyJSONObject(safeLoad.assetLoad(asset.getString("path")));
+            EasyJSONObject design = new EasyJSONObject(safeLoad.assetLoad(currThemeDir, asset.getString("path")));
             readDesign(asset, design);
         }
     }
@@ -157,7 +166,7 @@ class IconData{
     IconData(EasyJSONObject iconEJSON){
         this.size = iconEJSON.safeGetFloat("size");
         color iconCol = iconEJSON.safeGetColor("color");
-        this.icon = safeLoad.iconLoad(iconEJSON.safeGetString("path"));
+        this.icon = safeLoad.svgLoad(iconEJSON.safeGetString("path"));
         //changeIconColor(icon, iconCol);
     }
 

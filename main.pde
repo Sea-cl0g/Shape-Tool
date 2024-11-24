@@ -1,10 +1,6 @@
 SafeLoad safeLoad;
 Theme theme;
 
-Block block;
-Dialog dialog;
-ButtonTemplate buttonTemp;
-
 boolean isMouseClicking;
 boolean isKeyPressing;
 
@@ -17,17 +13,13 @@ void setup(){
   surface.setResizable(true);
   
   softPrepare();
-
-  block = new Block(16, 16);
-  dialog = new Dialog(16, 16);
-  buttonTemp = new ButtonTemplate(16, 16);
-
   theme.loadTheme();
 }
 
 void draw() {
     background(255, 255, 255);
     //checkBlocks(5, 5, "vertical", "CORNER");
+    theme.drawMenu();
 }
 
 //--------------------------------------------------
