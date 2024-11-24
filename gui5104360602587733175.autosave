@@ -93,11 +93,10 @@ class Dialog extends Block{
     }
 
     //layer_box
-    /*
     void drawLayerBox(float x, float y, float w, float h){
         //背景
         noStroke();
-        outlineBox(x, y, w, h, backgroundCol, 0.1, color(217, 217, 217));
+        outlineBox(x, y, w, h, color(0, 0, 0), 0.1, color(217, 217, 217));
 
         //ボタン
         bt.setContainerAnker(this.containerAnker);
@@ -110,7 +109,6 @@ class Dialog extends Block{
         }
         
     }
-    */
 
     //outlineBox
     void outlineBox(float x, float y, float w, float h, color fillCol, float lineWeight, color lineCol){
@@ -177,7 +175,7 @@ class TriggerButton extends ButtonTemplate{
         IconData iconData = style.iconData;
         ShadowData shadowData = style.shadowData;
 
-        setFillCol(fillCol);
+        setMainCol(fillCol);
         setShadowCol(shadowData.shadowCol);
         setStrokeCol(strokeData.strokeCol);
         setStrokeWeight(strokeData.strokeWeight);
@@ -226,7 +224,7 @@ class TriggerButton extends ButtonTemplate{
 //--------------------------------------------------
 class ButtonTemplate extends Block{
     PShape add_rectangle;
-    color fillCol = color(0);
+    color mainCol = color(0);
     color shadowCol = color(0);
     color strokeCol = color(0);
     float strokeWeight = 1.0;
@@ -235,8 +233,8 @@ class ButtonTemplate extends Block{
         super(splitW, splitH);
     }
 
-    void setFillCol(color col){
-        this.fillCol = col;
+    void setMainCol(color col){
+        this.mainCol = col;
     }
 
     void setShadowCol(color col){
@@ -274,7 +272,7 @@ class ButtonTemplate extends Block{
             box(x, y, w, h);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 255 || strokeWeight == 0.0){
+        if(strokeCol.a == 255 || strokeWeight == 0.0){
             noStroke();
         }else{
             strokeWeight(strokeWeight);
@@ -292,7 +290,7 @@ class ButtonTemplate extends Block{
             box(x, y, w, h, r);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 255 || strokeWeight == 0.0){
+        if(strokeCol.a == 255 || strokeWeight == 0.0){
             noStroke();
         }else{
             strokeWeight(strokeWeight);
@@ -310,7 +308,7 @@ class ButtonTemplate extends Block{
             box(x, y, w, h, tl, tr, br, bl);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 255 || strokeWeight == 0.0){
+        if(strokeCol.a == 255 || strokeWeight == 0.0){
             noStroke();
         }else{
             strokeWeight(strokeWeight);
@@ -329,7 +327,7 @@ class ButtonTemplate extends Block{
             box(x, y, w, h);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 255 || strokeWeight == 0.0){
+        if(strokeCol.a == 255 || strokeWeight == 0.0){
             noStroke();
         }else{
             strokeWeight(strokeWeight);
@@ -347,7 +345,7 @@ class ButtonTemplate extends Block{
             box(x, y, w, h);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 255 || strokeWeight == 0.0){
+        if(strokeCol.a == 255 || strokeWeight == 0.0){
             noStroke();
         }else{
             strokeWeight(strokeWeight);

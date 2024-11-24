@@ -27,7 +27,6 @@ void setup(){
 
 void draw() {
     background(255, 255, 255);
-    menu();
     //checkBlocks(5, 5, "vertical", "CORNER");
 }
 
@@ -70,40 +69,6 @@ void keyReleased(){
 }
 
 //--------------------------------------------------
-
-// ↓消す
-color backgroundCol = color(67, 67, 67);
-void menu(){
-  // side bar
-  noStroke();
-  fill(backgroundCol);
-  block.setContainerAnker("topLeft");
-  block.box(0, 0, 7, 16);
-  block.setContainerAnker("topRight");
-  block.box(0, 0, 7, 16);
-  // shape_button
-    buttonTemp.setContainerAnker("topLeft");
-    buttonTemp.setBlockMode("vertical");
-    buttonTemp.setBlockAnker("CENTER");
-    //add_rectangle
-    buttonTemp.test_button(3.5, 3, 2.5, 2.5);
-    //add_ellipse
-    buttonTemp.test_button(3.5, 6, 2.5, 2.5);
-  
-  // layer_box
-    dialog.setContainerAnker("bottomLeft");
-    dialog.setBlockMode("vertical");
-    dialog.setBlockAnker("CENTER");
-    dialog.drawLayerBox(3.5, 4, 6, 7);
-  // other_button
-    buttonTemp.setContainerAnker("bottomRight");
-    buttonTemp.setBlockMode("vertical");
-    buttonTemp.setBlockAnker("CORNER");
-    buttonTemp.test_button(0.5, 6.5, 1.8, 1.8);
-    buttonTemp.test_button(0.5, 4.5, 1.8, 1.8);
-    buttonTemp.test_button(0.5, 2.5, 1.8, 1.8);
-    buttonTemp.test_button(0.5, 0.5, 1.8, 1.8);
-}
 
 void checkBlocks(int wCount, int hCount, String blockMode, String blockAnker){
   Block tmpBlock = new Block(16, 16);

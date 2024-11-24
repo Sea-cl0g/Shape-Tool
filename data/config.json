@@ -11,62 +11,62 @@
 
         "add_rectangle": {
             "path": "button/add_rectangle.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
         "add_ellipse": {
             "path": "button/add_ellipse.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
 
         "edit_layer_name": {
             "path": "button/edit_layer_name.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
         "create_a_layer": {
             "path": "button/create_a_layer.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
         "duplicate_layer": {
             "path": "button/duplicate_layer.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
         "move_layer_up": {
             "path": "button/move_layer_up.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
         "move_layer_down": {
             "path": "button/move_layer_down.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
         "delete_selected_layer": {
             "path": "button/delete_selected_layer.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
 
         "vertex_mode_pointed": {
             "path": "button/vertex_mode_pointed.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "toggleButton"}
         },
         "vertex_mode_curved": {
             "path": "button/vertex_mode_curved.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "toggleButton"}
         },
 
         "save_prj": {
             "path": "button/save_prj.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
         "": {
             "path": "button/export_prj.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
         "import_prj": {
             "path": "button/import_prj.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "triggerButton"}
         },
         "option": {
             "path": "button/option.json",
-            "elements": {"element1": "button"}
+            "elements": {"element1": "toggleButton"}
         }
     }
 }

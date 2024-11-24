@@ -1,6 +1,6 @@
 class Theme{
-    
-    ArrayList<Button> buttons = new ArrayList<Button>();
+    ArrayList<TriggerButton> triggerButtonList = new ArrayList<TriggerButton>();
+
     String currThemeDir;
     Theme(){
         this.currThemeDir = config.getString("current_theme");
@@ -30,43 +30,50 @@ class Theme{
                 case "color" :
                 
                 break;	
-                case "button" :
-                    EasyJSONArray styleList = element.safeGetEasyJSONArray("style");
-                    StyleData normal;
-                    StyleData touched;
-                    StyleData clicked;
-                    StyleData selected;
-                    for(int i = 0; i < styleList.size(); i++){
-                        EasyJSONObject style = styleList.safeGetEasyJSONObject(i);
-                        Object predicateObj = style.get("predicate");
-                        JSONArray query = new JSONArray();
-                        if(predicateObj instanceof String){
-                            String predicate_tmp = (String) predicateObj;
-                            query.append(predicate_tmp);
-                        }else{
-                            query = (JSONArray) predicateObj;
-                        }
-                        for(int q = 0; q < query.size(); q++){
-                            switch (query.getString(q)) {
-                                case "normal" :
-                                    normal = new StyleData(style);
-                                break;
-                                case "touched" :
-                                    touched = new StyleData(style);
-                                break;	
-                                case "clicked" :
-                                    clicked = new StyleData(style);
-                                break;	
-                                case "selected" :
-                                    selected = new StyleData(style);
-                                break;	
-                            }
-                        }
-                    }
-                    
+                case "triggerButton" :
+                    EasyJSONArray styles = element.safeGetEasyJSONArray("style");
+                    triggerButtonList.add(buildTriggerButton(styles));
                 break;
+                case "toggleButton" :
+                    
+                break;	
             }
         }
+    }
+
+    TriggerButton buildTriggerButton(EasyJSONArray styleList){
+        StyleData normal = new StyleData();
+        StyleData touched = new StyleData();
+        StyleData clicked = new StyleData();
+        StyleData selected = new StyleData();
+        for(int i = 0; i < styleList.size(); i++){
+            EasyJSONObject style = styleList.safeGetEasyJSONObject(i);
+            Object predicateObj = style.get("predicate");
+            JSONArray query = new JSONArray();
+            if(predicateObj instanceof String){
+                String predicate_tmp = (String) predicateObj;
+                query.append(predicate_tmp);
+            }else{
+                query = (JSONArray) predicateObj;
+            }
+            for(int q = 0; q < query.size(); q++){
+                switch (query.getString(q)) {
+                    case "normal" :
+                        normal.readData(style);
+                    break;
+                    case "touched" :
+                        touched.readData(style);
+                    break;	
+                    case "clicked" :
+                        clicked.readData(style);
+                    break;	
+                    case "selected" :
+                        selected.readData(style);
+                    break;	
+                }
+            }
+        }
+        return new TriggerButton(16, 16, normal, touched, clicked);
     }
 }
 
@@ -82,16 +89,20 @@ class DrawMode{
 }
 
 class StyleData{
-    String button_type;
+    String buttonType;
+    color fillCol;
     LayoutData layoutData;
     StrokeData strokeData;
     IconData iconData;
     ShadowData shadowData;
 
-    StyleData(EasyJSONObject styleEJSON){
-        button_type = styleEJSON.safeGetString("button_type");
-        println(button_type);
+    void readData(EasyJSONObject styleEJSON){
+        buttonType = styleEJSON.safeGetString("button_type");
+        println(buttonType);
 
+        fillCol = styleEJSON.safeGetColor("color");
+        println(fillCol);
+        
         EasyJSONObject layoutEJSON = styleEJSON.safeGetEasyJSONObject("layout");
         layoutData = new LayoutData(layoutEJSON);
         
