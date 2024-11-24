@@ -109,9 +109,13 @@ void readDesign(JSONObject asset, JSONObject design){
 class EasyJSONObject{
 
   JSONObject jsonObj;
+  EasyJSONObject(){
+    this.jsonObj = new JSONObject();
+  }
   EasyJSONObject(JSONObject jsonObj){
     this.jsonObj = jsonObj;
   }
+
 
   String safeGetString(String key){
     return safeGetString(key, "ERR");
@@ -153,11 +157,13 @@ class EasyJSONObject{
 
   // JSONObjectクラス関数のラップ
   EasyJSONObject getEasyJSONObject(String key){
-    return new EasyJSONObject(jsonObj.getJSONObject(key));
+    JSONObject childJsonObj = jsonObj.getJSONObject(key);
+    return childJsonObj == null ? new EasyJSONObject() : new EasyJSONObject(childJsonObj);
   }
 
   EasyJSONArray getEasyJSONArray(String key){
-    return new EasyJSONArray(jsonObj.getJSONArray(key));
+    JSONArray childJsonArray = jsonObj.getJSONArray(key);
+    return childJsonArray == null ? new EasyJSONArray() : new EasyJSONArray(childJsonArray);
   }
 
   boolean isNull(String key){
@@ -170,6 +176,9 @@ class EasyJSONArray extends JSONArray{
   JSONArray jsonArray;
   EasyJSONArray(JSONArray jsonArray){
     this.jsonArray = jsonArray;
+  }
+  EasyJSONArray(){
+    this.jsonArray = new JSONArray();
   }
 
   float safeGetFloat(int index){

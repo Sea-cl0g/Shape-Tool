@@ -117,28 +117,20 @@ class StyleData{
         button_type = styleEJSON.safeGetString("button_type");
         println(button_type);
 
+    //getEasyJSONObject -> ファイルがなかったら空のjsonを返す。 -> 各要素は存在しなくなるので各クラス内で各要素を確認しても代わりの値が出る。 -> 例えば、strokWeightが0で指定されたときの処理を特別に書く必要がなくなる。なぜならその要素が空だった時に代わりに与えられる値も０にしておけば二つの問題を一度に克服できるから！！！！
         EasyJSONObject layoutEJSON = styleEJSON.getEasyJSONObject("layout");
-        if(layoutEJSON.getNormalJSONObject() != null){
-            layoutData = new LayoutData(layoutEJSON);
-        }
-        println(layoutData);
+        layoutData = new LayoutData(layoutEJSON);
         
         EasyJSONObject strokeEJSON = styleEJSON.getEasyJSONObject("stroke");
-        if(strokeEJSON.getNormalJSONObject() != null){
-            strokeData = new StrokeData(strokeEJSON);
-        }
+        strokeData = new StrokeData(strokeEJSON);
         println(strokeData);
 
         EasyJSONObject iconEJSON = styleEJSON.getEasyJSONObject("icon");
-        if(iconEJSON.getNormalJSONObject() != null){
-            iconData = new IconData(iconEJSON);
-        }
+        iconData = new IconData(iconEJSON);
         println(iconData);
 
         EasyJSONObject shadowEJSON = styleEJSON.getEasyJSONObject("shadow");
-        if(shadowEJSON.getNormalJSONObject() != null){
-            shadowData = new ShadowData(shadowEJSON);
-        }
+        shadowData = new ShadowData(shadowEJSON);
         println(shadowData);
     }
 }
