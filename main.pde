@@ -1,4 +1,5 @@
 SafeLoad safeLoad;
+Theme theme;
 
 Block block;
 Dialog dialog;
@@ -7,19 +8,21 @@ ButtonTemplate buttonTemp;
 boolean isMouseClicking;
 boolean isKeyPressing;
 
+String configPath = "data/config.json";
 JSONObject config;
 
 //--------------------------------------------------
 void setup(){
   size(800, 450);
   surface.setResizable(true);
+  
+  softPrepare();
 
-  safeLoad = new SafeLoad();
   block = new Block(16, 16);
   dialog = new Dialog(16, 16);
   buttonTemp = new ButtonTemplate(16, 16);
 
-  loadTheme();
+  theme.loadTheme();
 }
 
 void draw() {
@@ -29,168 +32,13 @@ void draw() {
 }
 
 //--------------------------------------------------
-ArrayList<Button> buttons = new ArrayList<Button>();
-void loadTheme(){
-  println("Theme Loading...");
-  config = safeLoad.configLoad();
-  String currThemeDir = config.getString("current_theme");
-
-  JSONObject assetsPath = config.getJSONObject("assets_path");
-  //config.json内のassets_pathを回す
-  for(Object keyObj : assetsPath.keys()){
-    println();
-    String key = (String) keyObj;
-    JSONObject asset = assetsPath.getJSONObject(key);
-    String assetPaht = asset.getString("path");
-    if(safeLoad.canLoad(safeLoad.connectThemePathAndDesignFilePath(currThemeDir, assetPaht), ".json")){
-      JSONObject design = safeLoad.assetLoad(currThemeDir, assetPaht);
-      readDesign(asset, design);
-    }
-  }
+void softPrepare(){
+  config = loadJSONObject(configPath);
+  safeLoad = new SafeLoad();
+  theme = new Theme();
 }
 
-void readDesign(JSONObject asset, JSONObject design){
-  DrawMode drawMode = new DrawMode(design);
-  if(drawMode.containerAnker != null){
-    JSONObject elements = asset.getJSONObject("elements");
-    for(Object elementObj : elements.keys()){
-      String elementID = (String) elementObj;
-      JSONObject element = design.getJSONObject(elementID);
-      //println(design);//easyjsonにしてnullを回避すべき
-      switch (element.getString("type")) {
-        case "base" :
-          
-        break;	
-        case "color" :
-          
-        break;	
-        case "button" :
-          JSONArray styleList = element.getJSONArray("style");
-          StyleData normal;
-          StyleData touched;
-          StyleData clicked;
-          StyleData selected;
-          for(int i = 0; i < styleList.size(); i++){
-            JSONObject style = styleList.getJSONObject(i);
-            //predicateに応じて関数を初期化
-            Object predicateObj = style.get("predicate");
-            JSONArray query = new JSONArray();
-            if(predicateObj instanceof String){
-              String predicate_tmp = (String) predicateObj;
-              query.append(predicate_tmp);
-            }else{
-              query = (JSONArray) predicateObj;
-            }
-            for(int q = 0; q < query.size(); q++){
-              switch (query.getString(q)) {
-                case "normal" :
-                  normal = new StyleData(style);
-                break;
-                case "touched" :
-                  touched = new StyleData(style);
-                break;	
-                case "clicked" :
-                  clicked = new StyleData(style);
-                break;	
-                case "selected" :
-                  selected = new StyleData(style);
-                break;	
-              }
-            }
-          }
-        break;	
-      }
-    }
-  }
-}
-
-
-
-class EasyJSONObject{
-
-  JSONObject jsonObj;
-  EasyJSONObject(){
-    this.jsonObj = new JSONObject();
-  }
-  EasyJSONObject(JSONObject jsonObj){
-    this.jsonObj = jsonObj;
-  }
-
-
-  String safeGetString(String key){
-    return safeGetString(key, "ERR");
-  }
-  String safeGetString(String key, String ifNull){
-    return jsonObj.isNull(key) ? ifNull : jsonObj.getString(key);
-  }
-
-  float safeGetFloat(String key){
-    return safeGetFloat(key, 0.0);
-  }
-  float safeGetFloat(String key, float ifNull){
-    return jsonObj.isNull(key) ? ifNull : jsonObj.getFloat(key);
-  }
-
-  color safeGetColor(String key){
-    return safeGetColor(key, color(255, 0, 255));
-  }
-  color safeGetColor(String key, color ifNull){
-    Object colorObj = jsonObj.get(key);
-    if(colorObj instanceof String){
-      String colorHex = (String) colorObj;
-      return hexToColor(colorHex);
-    }else if(colorObj instanceof JSONArray){
-      JSONArray colorArrayTmp = (JSONArray) colorObj;
-      EasyJSONArray colorArray = new EasyJSONArray(colorArrayTmp);
-      if(colorArray.size() == 3){
-        return color(colorArray.safeGetFloat(0), colorArray.safeGetFloat(1), colorArray.safeGetFloat(2));
-      }else if(colorArray.size() == 4){
-        return color(colorArray.safeGetFloat(0), colorArray.safeGetFloat(1), colorArray.safeGetFloat(2), colorArray.safeGetFloat(3));
-      }
-    }
-    return ifNull;
-  }
-  
-  JSONObject getNormalJSONObject(){
-    return jsonObj;
-  }
-
-  // JSONObjectクラス関数のラップ
-  EasyJSONObject getEasyJSONObject(String key){
-    JSONObject childJsonObj = jsonObj.getJSONObject(key);
-    return childJsonObj == null ? new EasyJSONObject() : new EasyJSONObject(childJsonObj);
-  }
-
-  EasyJSONArray getEasyJSONArray(String key){
-    JSONArray childJsonArray = jsonObj.getJSONArray(key);
-    return childJsonArray == null ? new EasyJSONArray() : new EasyJSONArray(childJsonArray);
-  }
-
-  boolean isNull(String key){
-    return jsonObj.isNull(key);
-  }
-}
-
-
-class EasyJSONArray extends JSONArray{
-  JSONArray jsonArray;
-  EasyJSONArray(JSONArray jsonArray){
-    this.jsonArray = jsonArray;
-  }
-  EasyJSONArray(){
-    this.jsonArray = new JSONArray();
-  }
-
-  float safeGetFloat(int index){
-    return !jsonArray.isNull(index) ? 0.0 : jsonArray.getFloat(index);
-  }
-
-  // JSONObjectクラス関数のオーバーライド
-  boolean isNull(int index){
-    return jsonArray.isNull(index);
-  }
-}
-
+//--------------------------------------------------
 color hexToColor(String hex){
         if (hex.startsWith("#")) {
             hex = hex.substring(1);
@@ -202,7 +50,7 @@ color hexToColor(String hex){
         int a = hex.length() == 8 ? unhex(hex.substring(6, 8)) : 255;
         
         return color(r, g, b, a);
-    }
+}
 
 //--------------------------------------------------
 void mousePressed() {
