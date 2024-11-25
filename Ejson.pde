@@ -64,7 +64,20 @@ class EasyJSONObject{
   Object keys(){
     return jsonObj.keys();
   }
+
+  // 
+  void override(EasyJSONObject source){
+    override(source.getNormalJSONObject());
+  }
+  void override(JSONObject source){
+    for(Object key : source.keys()){
+      String keyStr = (String) key;
+      println("key: ", keyStr);
+    }
+    exit();
+  }
 }
+
 
 //--------------------------------------------------
 
