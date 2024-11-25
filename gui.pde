@@ -158,7 +158,6 @@ class TriggerButton extends ButtonTemplate{
     }
 
     void drawButton(float mouseX, float mouseY){
-        //とりあえず、ボタンの当たり判定はnormalのものを使用する
         LayoutData normalLayout = normal.layoutData;
         boolean isTouched = isPointInBox(normalLayout.x_point, normalLayout.y_point, normalLayout.width_point, normalLayout.height_point, mouseX, mouseY);
         if(isTouched && isMouseClicking){
@@ -222,8 +221,6 @@ class TriggerButton extends ButtonTemplate{
             break;	
         }
 
-        println(layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-            iconData.size, iconData.icon);
         icon(
             layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
             iconData.size, iconData.icon
