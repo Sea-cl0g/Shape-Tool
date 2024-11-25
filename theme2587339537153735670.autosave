@@ -80,10 +80,6 @@ class Theme{
         return new TriggerButton(16, 16, drawMode, normal, touched, clicked);
     }
 
-    void readVariableJSON(){
-
-    }
-
     void buildVariableJSON(JSONObject design){
         for(Object keyObj : design.keys()){
                 String key = (String) keyObj;
@@ -124,32 +120,11 @@ class StyleData{
         }
         println(buttonType);
 
-        Object colorObj = styleEJSON.get("color");
-        if(colorObj instanceof String){
-            String colorStr = (String) colorObj;
-            if(colorStr.startsWith("$")){
-                String variableName = colorStr.substring(1);
-                EasyJSONObject variable = new EasyJSONObject(variableJSON.getJSONObject("colors"));
-                println(variable, variableName);
-                fillCol = variable.safeGetColor(variableName);
-            }
-        }else{
-            fillCol = styleEJSON.safeGetColor("color");
-        }
+        fillCol = styleEJSON.safeGetColor("color");
         println(fillCol);
         
         EasyJSONObject layoutEJSON = styleEJSON.safeGetEasyJSONObject("layout");
-        Object layoutObj = styleEJSON.get("layout");
-        if(layoutObj instanceof String){
-            String layoutStr = (String) layoutObj;
-            if(layoutStr.startsWith("$")){
-                String variableName = layoutStr.substring(1);
-                EasyJSONObject variable = new EasyJSONObject(variableJSON.getJSONObject("layouts"));
-                layoutEJSON = variable.safeGetEasyJSONObject(variableName);
-            }
-        }
         layoutData = new LayoutData(layoutEJSON);
-        println(layoutEJSON);
         
         EasyJSONObject strokeEJSON = styleEJSON.safeGetEasyJSONObject("stroke");
         strokeData = new StrokeData(strokeEJSON);
@@ -162,10 +137,6 @@ class StyleData{
         EasyJSONObject shadowEJSON = styleEJSON.safeGetEasyJSONObject("shadow");
         shadowData = new ShadowData(shadowEJSON);
         println(shadowData);
-    }
-
-    void getEachData(){
-
     }
 }
 
@@ -207,7 +178,7 @@ class IconData{
         this.size = iconEJSON.safeGetFloat("size");
         color iconCol = iconEJSON.safeGetColor("color");
         this.icon = safeLoad.iconLoad(iconEJSON.safeGetString("path"));
-        //changeIconColor(icon, iconCol); //iconが空でない場合。
+        //changeIconColor(icon, iconCol);
     }
 
     void changeIconColor(PShape shape, color overrideCol){
