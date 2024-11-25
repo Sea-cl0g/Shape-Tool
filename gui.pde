@@ -1,87 +1,3 @@
-class Container {
-    String containerAnker;
-    String blockMode;
-    int splitW;
-    int splitH;
-
-    Container(int splitW, int splitH) {
-        this.splitW = splitW;
-        this.splitH = splitH;
-        setContainerAnker("DEFAULT");
-        setBlockMode("DEFAULT");
-    }
-
-    //containerAnker関係
-    void setContainerAnker(String containerAnker){
-        if(is_containerAnkerType(containerAnker)){
-          this.containerAnker = containerAnker;
-        }else if(!(is_containerAnkerType(this.containerAnker))){
-          this.containerAnker = "topLeft";
-        }
-    }
-    boolean is_containerAnkerType(String containerAnker){
-        return containerAnker == "topLeft" 
-        || containerAnker == "topRight"
-        || containerAnker == "bottomLeft"
-        || containerAnker == "bottomRight"
-        || containerAnker == "center";
-    }
-
-    //blockMode関係
-    void setBlockMode(String blockMode){
-        if(is_blockModeType(blockMode)){
-          this.blockMode = blockMode;
-        }else if(!(is_blockModeType(this.blockMode))){
-          this.blockMode = "vertical";
-        }
-    }
-    boolean is_blockModeType(String blockMode){
-        return blockMode == "vertical" 
-        || blockMode == "horizontal" 
-        || blockMode == "both";
-    }
-    
-    PVector getContainerBlockSize(float w, float h) {
-        switch (blockMode) {
-            case "vertical":
-                return new PVector(getContainerBlockHeight(w), getContainerBlockHeight(h));
-            case "horizontal":
-                return new PVector(getContainerBlockWidth(w), getContainerBlockWidth(h));
-            case "both":
-                return new PVector(getContainerBlockWidth(w), getContainerBlockHeight(h));
-            default:
-                return new PVector(getContainerBlockWidth(w), getContainerBlockHeight(h));
-        }
-    }
-
-    PVector getContainerPos(float x, float y, PVector size) {
-        PVector g_pos = getContainerBlockSize(x, y);
-        switch (containerAnker) {
-            case "topLeft":
-                return new PVector(g_pos.x, g_pos.y);
-            case "topRight":
-                return new PVector(width - size.x - g_pos.x, g_pos.y);
-            case "bottomLeft":
-                return new PVector(g_pos.x, height - size.y - g_pos.y);
-            case "bottomRight":
-                return new PVector(width - size.x - g_pos.x, height - size.y - g_pos.y);
-            case "center":
-                return new PVector(width / 2 - size.x / 2 + g_pos.x, height / 2 - size.y / 2 + g_pos.y);
-            default:
-                return new PVector(g_pos.x, g_pos.y);
-        }
-    }
-
-    float getContainerBlockWidth(float w) {
-        return width * w / splitW;
-    }
-
-    float getContainerBlockHeight(float h) {
-        return height * h / splitH;
-    }
-}
-
-//--------------------------------------------------
 class Dialog extends Block{
     ButtonTemplate bt;
 
@@ -225,6 +141,25 @@ class TriggerButton extends ButtonTemplate{
             layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
             iconData.size, iconData.icon
         );
+    }
+}
+
+//--------------------------------------------------
+class Base extends Block{
+    DrawMode drawMode;
+    LayoutData layoutData;
+
+    Base(int splitW, int splitH, LayoutData layoutData){
+        super(splitW, splitH);
+        this.layoutData = layoutData;
+    }
+
+    void drawBase(){
+        setContainerAnker(drawMode.containerAnker);
+        setBlockMode(drawMode.blockMode);
+        setBlockAnker(drawMode.blockAnker);
+
+        box(layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point);
     }
 }
 
@@ -480,5 +415,88 @@ class Block extends Container{
                 box(q, i, 1, 1);
             }
         }
+    }
+}
+
+class Container {
+    String containerAnker;
+    String blockMode;
+    int splitW;
+    int splitH;
+
+    Container(int splitW, int splitH) {
+        this.splitW = splitW;
+        this.splitH = splitH;
+        setContainerAnker("DEFAULT");
+        setBlockMode("DEFAULT");
+    }
+
+    //containerAnker関係
+    void setContainerAnker(String containerAnker){
+        if(is_containerAnkerType(containerAnker)){
+          this.containerAnker = containerAnker;
+        }else if(!(is_containerAnkerType(this.containerAnker))){
+          this.containerAnker = "topLeft";
+        }
+    }
+    boolean is_containerAnkerType(String containerAnker){
+        return containerAnker == "topLeft" 
+        || containerAnker == "topRight"
+        || containerAnker == "bottomLeft"
+        || containerAnker == "bottomRight"
+        || containerAnker == "center";
+    }
+
+    //blockMode関係
+    void setBlockMode(String blockMode){
+        if(is_blockModeType(blockMode)){
+          this.blockMode = blockMode;
+        }else if(!(is_blockModeType(this.blockMode))){
+          this.blockMode = "vertical";
+        }
+    }
+    boolean is_blockModeType(String blockMode){
+        return blockMode == "vertical" 
+        || blockMode == "horizontal" 
+        || blockMode == "both";
+    }
+    
+    PVector getContainerBlockSize(float w, float h) {
+        switch (blockMode) {
+            case "vertical":
+                return new PVector(getContainerBlockHeight(w), getContainerBlockHeight(h));
+            case "horizontal":
+                return new PVector(getContainerBlockWidth(w), getContainerBlockWidth(h));
+            case "both":
+                return new PVector(getContainerBlockWidth(w), getContainerBlockHeight(h));
+            default:
+                return new PVector(getContainerBlockWidth(w), getContainerBlockHeight(h));
+        }
+    }
+
+    PVector getContainerPos(float x, float y, PVector size) {
+        PVector g_pos = getContainerBlockSize(x, y);
+        switch (containerAnker) {
+            case "topLeft":
+                return new PVector(g_pos.x, g_pos.y);
+            case "topRight":
+                return new PVector(width - size.x - g_pos.x, g_pos.y);
+            case "bottomLeft":
+                return new PVector(g_pos.x, height - size.y - g_pos.y);
+            case "bottomRight":
+                return new PVector(width - size.x - g_pos.x, height - size.y - g_pos.y);
+            case "center":
+                return new PVector(width / 2 - size.x / 2 + g_pos.x, height / 2 - size.y / 2 + g_pos.y);
+            default:
+                return new PVector(g_pos.x, g_pos.y);
+        }
+    }
+
+    float getContainerBlockWidth(float w) {
+        return width * w / splitW;
+    }
+
+    float getContainerBlockHeight(float h) {
+        return height * h / splitH;
     }
 }

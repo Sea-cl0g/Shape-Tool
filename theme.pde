@@ -1,6 +1,7 @@
 class Theme{
     JSONObject variableJSON = new JSONObject();
 
+    ArrayList<Base> baseList = new ArrayList<Base>();
     ArrayList<TriggerButton> triggerButtonList = new ArrayList<TriggerButton>();
 
     void drawMenu(){
@@ -21,21 +22,21 @@ class Theme{
 
     void readDesign(JSONObject asset, EasyJSONObject design){
         buildVariableJSON(design.getNormalJSONObject());
-
         JSONObject elements = asset.getJSONObject("elements");
+        DrawMode drawMode = new DrawMode(design);
         for(Object elementObj : elements.keys()){
             String elementID = (String) elementObj;
             EasyJSONObject element = design.safeGetEasyJSONObject(elementID);
             switch (element.safeGetString("type")) {
                 case "base" :
-                
+                    LayoutData layout = new LayoutData(element.safeGetEasyJSONArray("style"));
+                    baseList.add(new Base(16, 16, layout));
                 break;	
                 case "color" :
                 
                 break;	
                 case "triggerButton" :
-                    DrawMode drawMode = new DrawMode(design);
-                    EasyJSONArray styles = element.safeGetEasyJSONArray("style");
+                    EasyJSONArray styles = element.safeGetEasyJSONObject("layout");
                     triggerButtonList.add(buildTriggerButton(styles, drawMode));
                 break;
                 case "toggleButton" :
@@ -80,10 +81,6 @@ class Theme{
         return new TriggerButton(16, 16, drawMode, normal, touched, clicked);
     }
 
-    void readVariableJSON(){
-
-    }
-
     void buildVariableJSON(JSONObject design){
         for(Object keyObj : design.keys()){
                 String key = (String) keyObj;
@@ -124,8 +121,6 @@ class StyleData{
         }else{
             buttonType = styleEJSON.safeGetString("button_type");
         }
-        println("buttonType", buttonType);
-        
 
         String fillStr = styleEJSON.safeGetString("fill");
         if(fillStr.startsWith("$")){
@@ -136,7 +131,6 @@ class StyleData{
             fillCol = styleEJSON.safeGetColor("fill");
         }
         
-
         Object layoutObj = styleEJSON.get("layout");
         EasyJSONObject layoutEJSON = new EasyJSONObject();
         if(layoutObj instanceof String){
@@ -150,9 +144,7 @@ class StyleData{
             layoutEJSON = styleEJSON.safeGetEasyJSONObject("layout");
         }
         layoutData = new LayoutData(layoutEJSON);
-        println(layoutData);
         
-
         Object strokeObj = styleEJSON.get("stroke");
         EasyJSONObject strokeEJSON = new EasyJSONObject();
         if(strokeObj instanceof String){
@@ -166,8 +158,6 @@ class StyleData{
             strokeEJSON = styleEJSON.safeGetEasyJSONObject("stroke");
         }
         strokeData = new StrokeData(strokeEJSON);
-        println(strokeData);
-
 
         Object iconObj = styleEJSON.get("icon");
         EasyJSONObject iconEJSON = new EasyJSONObject();
@@ -182,8 +172,6 @@ class StyleData{
             iconEJSON = styleEJSON.safeGetEasyJSONObject("icon");
         }
         iconData = new IconData(iconEJSON);
-        println(iconData);
-
 
         Object shadowObj = styleEJSON.get("shadow");
         EasyJSONObject shadowEJSON = new EasyJSONObject();
@@ -198,7 +186,6 @@ class StyleData{
             shadowEJSON = styleEJSON.safeGetEasyJSONObject("shadow");
         }
         shadowData = new ShadowData(shadowEJSON);
-        println(shadowData);
     }
 }
 
