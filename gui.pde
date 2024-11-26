@@ -161,8 +161,8 @@ class Base extends Block{
         setBlockMode(drawMode.blockMode);
         setBlockAnker(drawMode.blockAnker);
 
-        printMeta();
         fill(fillCol);
+        noStroke();
         box(layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point);
     }
 }
@@ -218,7 +218,7 @@ class ButtonTemplate extends Block{
             box(x, y, w, h);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 255 || strokeWeight == 0.0){
+        if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
             noStroke();
         }else{
             strokeWeight(strokeWeight);
@@ -236,7 +236,8 @@ class ButtonTemplate extends Block{
             box(x, y, w, h, r);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 255 || strokeWeight == 0.0){
+        println(strokeWeight);
+        if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
             noStroke();
         }else{
             strokeWeight(strokeWeight);
@@ -254,7 +255,7 @@ class ButtonTemplate extends Block{
             box(x, y, w, h, tl, tr, br, bl);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 255 || strokeWeight == 0.0){
+        if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
             noStroke();
         }else{
             strokeWeight(strokeWeight);
@@ -273,7 +274,7 @@ class ButtonTemplate extends Block{
             box(x, y, w, h);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 255 || strokeWeight == 0.0){
+        if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
             noStroke();
         }else{
             strokeWeight(strokeWeight);
@@ -291,7 +292,7 @@ class ButtonTemplate extends Block{
             box(x, y, w, h);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 255 || strokeWeight == 0.0){
+        if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
             noStroke();
         }else{
             strokeWeight(strokeWeight);
@@ -435,10 +436,6 @@ class Container {
         setBlockMode("DEFAULT");
     }
 
-    void printMeta(){
-        //println(this.containerAnker, this.blockMode);
-    }
-
     //containerAnker関係
     void setContainerAnker(String containerAnker){
         if(this.containerAnker != null || is_containerAnkerType(containerAnker)){
@@ -448,7 +445,6 @@ class Container {
         }
     }
     boolean is_containerAnkerType(String containerAnker){
-        println(containerAnker);
         return containerAnker.equals("topLeft")
         || containerAnker.equals("topRight")
         || containerAnker.equals("bottomLeft")
@@ -465,7 +461,6 @@ class Container {
         }
     }
     boolean is_blockModeType(String blockMode){
-        println(blockMode);
         return blockMode.equals("vertical") 
         || blockMode.equals("horizontal")
         || blockMode.equals("both");

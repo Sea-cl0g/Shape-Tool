@@ -221,7 +221,7 @@ class StrokeData{
 
     StrokeData(EasyJSONObject strokeEJSON){
         this.strokeWeight = strokeEJSON.safeGetFloat("strokeWeight");
-        this.strokeCol = strokeEJSON.safeGetColor("color");
+        this.strokeCol = strokeEJSON.safeGetColor("color", color(255, 0, 255, 255));
     }
 }
 
