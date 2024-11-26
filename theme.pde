@@ -216,11 +216,11 @@ class LayoutData{
 }
 
 class StrokeData{
-    float strokeWeight;
+    float stroke_point;
     color strokeCol;
 
     StrokeData(EasyJSONObject strokeEJSON){
-        this.strokeWeight = strokeEJSON.safeGetFloat("strokeWeight");
+        this.stroke_point = strokeEJSON.safeGetFloat("stroke_point");
         this.strokeCol = strokeEJSON.safeGetColor("color", color(255, 0, 255, 255));
     }
 }

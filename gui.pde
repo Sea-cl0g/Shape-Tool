@@ -101,7 +101,7 @@ class TriggerButton extends ButtonTemplate{
         setFillCol(fillCol);
         setShadowCol(shadowData.shadowCol);
         setStrokeCol(strokeData.strokeCol);
-        setStrokeWeight(strokeData.strokeWeight);
+        setStrokePoint(strokeData.stroke_point);
         switch (buttonType) {
             case "squareButton" :
                 drawSquareButton(
@@ -173,7 +173,7 @@ class ButtonTemplate extends Block{
     color fillCol = color(0);
     color shadowCol = color(0);
     color strokeCol = color(0);
-    float strokeWeight = 1.0;
+    float stroke_point = 1.0;
 
     ButtonTemplate(int splitW, int splitH){
         super(splitW, splitH);
@@ -190,12 +190,12 @@ class ButtonTemplate extends Block{
     void setStrokeCol(color col){
         this.strokeCol = col;
     }
-    void setStrokeWeight(float num){
-        this.strokeWeight = num;
+    void setStrokePoint(float num){
+        this.stroke_point = num;
     }
     void setNoStroke(){
         this.strokeCol = color(0, 0, 0, 255);
-        this.strokeWeight = 1.0;
+        this.stroke_point = 1.0;
     }
 
     // アイコン
@@ -218,10 +218,10 @@ class ButtonTemplate extends Block{
             box(x, y, w, h);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
+        if(alpha(strokeCol) == 0.0 || stroke_point == 0.0){
             noStroke();
         }else{
-            strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
+            strokeWeight(getContainerBlockSize(stroke_point, stroke_point).x);
             stroke(strokeCol);
         }
         box(x, y, w, h);
@@ -236,11 +236,10 @@ class ButtonTemplate extends Block{
             box(x, y, w, h, r);
         }
         fill(fillCol);
-        println(strokeWeight);
-        if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
+        if(alpha(strokeCol) == 0.0 || stroke_point == 0.0){
             noStroke();
         }else{
-            strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
+            strokeWeight(getContainerBlockSize(stroke_point, stroke_point).x);
             stroke(strokeCol);
         }
         box(x, y, w, h, r);
@@ -255,10 +254,10 @@ class ButtonTemplate extends Block{
             box(x, y, w, h, tl, tr, br, bl);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
+        if(alpha(strokeCol) == 0.0 || stroke_point == 0.0){
             noStroke();
         }else{
-            strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
+            strokeWeight(getContainerBlockSize(stroke_point, stroke_point).x);
             stroke(strokeCol);
         }
         box(x, y, w, h, tl, tr, br, bl);
@@ -274,10 +273,10 @@ class ButtonTemplate extends Block{
             box(x, y, w, h);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
+        if(alpha(strokeCol) == 0.0 || stroke_point == 0.0){
             noStroke();
         }else{
-            strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
+            strokeWeight(getContainerBlockSize(stroke_point, stroke_point).x);
             stroke(strokeCol);
         }
         box(x, y, w, h, y / 2);
@@ -292,10 +291,10 @@ class ButtonTemplate extends Block{
             box(x, y, w, h);
         }
         fill(fillCol);
-        if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
+        if(alpha(strokeCol) == 0.0 || stroke_point == 0.0){
             noStroke();
         }else{
-            strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
+            strokeWeight(getContainerBlockSize(stroke_point, stroke_point).x);
             stroke(strokeCol);
         }
         box(x, y, w, h, x / 2);
