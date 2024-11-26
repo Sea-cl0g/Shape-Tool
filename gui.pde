@@ -221,7 +221,7 @@ class ButtonTemplate extends Block{
         if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
             noStroke();
         }else{
-            strokeWeight(strokeWeight);
+            strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
             stroke(strokeCol);
         }
         box(x, y, w, h);
@@ -240,7 +240,7 @@ class ButtonTemplate extends Block{
         if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
             noStroke();
         }else{
-            strokeWeight(strokeWeight);
+            strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
             stroke(strokeCol);
         }
         box(x, y, w, h, r);
@@ -258,7 +258,7 @@ class ButtonTemplate extends Block{
         if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
             noStroke();
         }else{
-            strokeWeight(strokeWeight);
+            strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
             stroke(strokeCol);
         }
         box(x, y, w, h, tl, tr, br, bl);
@@ -277,7 +277,7 @@ class ButtonTemplate extends Block{
         if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
             noStroke();
         }else{
-            strokeWeight(strokeWeight);
+            strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
             stroke(strokeCol);
         }
         box(x, y, w, h, y / 2);
@@ -295,7 +295,7 @@ class ButtonTemplate extends Block{
         if(alpha(strokeCol) == 0.0 || strokeWeight == 0.0){
             noStroke();
         }else{
-            strokeWeight(strokeWeight);
+            strokeWeight(getContainerBlockSize(strokeWeight, strokeWeight).x);
             stroke(strokeCol);
         }
         box(x, y, w, h, x / 2);

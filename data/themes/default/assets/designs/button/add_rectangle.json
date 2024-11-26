@@ -58,7 +58,7 @@
                 "layout": "$default",
                 "fill": "$defaultCol",
                 "stroke":{
-                    "strokeWeight": 10,
+                    "strokeWeight": 0.1,
                     "color": "#FF0000"
                 },
                 "icon":"$main",
