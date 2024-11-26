@@ -30,7 +30,7 @@ class Dialog extends Block{
 
     //outlineBox
     void outlineBox(float x, float y, float w, float h, color fillCol, float lineWeight, color lineCol){
-        if(blockAnker == "CORNER"){
+        if(blockAnker.equals("CORNER")){
             fill(lineCol);
             drawBox(x - lineWeight, y - lineWeight, w + lineWeight * 2, h + lineWeight * 2, 0, 0, 0, 0);
             fill(fillCol);
@@ -45,7 +45,7 @@ class Dialog extends Block{
 
     //inlineBox
     void inlineBox(float x, float y, float w, float h, color fillCol, float lineWeight, color lineCol){
-        if(blockAnker == "CORNER"){
+        if(blockAnker.equals("CORNER")){
             fill(lineCol);
             drawBox(x, y, w, h, 0, 0, 0, 0);
             fill(fillCol);
@@ -340,7 +340,7 @@ class ButtonTemplate extends Block{
 
     //boxの左上角の座標を取得
     PVector getBoxCorner(float x, float y, float w, float h){
-        if(blockAnker == "CENTER"){
+        if(blockAnker.equals("CENTER")){
             return new PVector(x, y);
         }else{
             return new PVector(x - w / 2, y - h / 2);
@@ -371,15 +371,15 @@ class Block extends Container{
 
     //blockAnker関係
     void setBlockAnker(String blockAnker){
-        if(is_blockAnkerType(blockAnker)){
+        if(this.blockAnker != null || is_blockAnkerType(blockAnker)){
           this.blockAnker = blockAnker;
-        }else if(!(is_blockAnkerType(this.blockAnker))){
+        }else if(this.blockAnker == null || !(is_blockAnkerType(this.blockAnker))){
           this.blockAnker = "CORNER";
         }
     }
     boolean is_blockAnkerType(String blockAnker){
-        return blockAnker == "CORNER" 
-        || blockAnker == "CENTER";
+        return blockAnker.equals("CORNER") 
+        || blockAnker.equals("CENTER");
     }
 
     PVector getObjectPos(float x, float y, float w, float h, PVector size, String blockAnker){
@@ -441,34 +441,34 @@ class Container {
 
     //containerAnker関係
     void setContainerAnker(String containerAnker){
-        println(containerAnker, is_containerAnkerType(containerAnker));
-        if(is_containerAnkerType(containerAnker)){
+        if(this.containerAnker != null || is_containerAnkerType(containerAnker)){
             this.containerAnker = containerAnker;
-        }else if(!(is_containerAnkerType(this.containerAnker))){
+        }else if(this.containerAnker == null || !(is_containerAnkerType(this.containerAnker))){
           this.containerAnker = "topLeft";
         }
     }
     boolean is_containerAnkerType(String containerAnker){
-        println()
-        return containerAnker == "topLeft" 
-        || containerAnker == "topRight"
-        || containerAnker == "bottomLeft"
-        || containerAnker == "bottomRight"
-        || containerAnker == "center";
+        println(containerAnker);
+        return containerAnker.equals("topLeft")
+        || containerAnker.equals("topRight")
+        || containerAnker.equals("bottomLeft")
+        || containerAnker.equals("bottomRight")
+        || containerAnker.equals("center");
     }
 
     //blockMode関係
     void setBlockMode(String blockMode){
-        if(is_blockModeType(blockMode)){
+        if(this.blockMode != null || is_blockModeType(blockMode)){
           this.blockMode = blockMode;
-        }else if(!(is_blockModeType(this.blockMode))){
+        }else if(this.blockMode == null || !(is_blockModeType(this.blockMode))){
           this.blockMode = "vertical";
         }
     }
     boolean is_blockModeType(String blockMode){
-        return blockMode == "vertical" 
-        || blockMode == "horizontal" 
-        || blockMode == "both";
+        println(blockMode);
+        return blockMode.equals("vertical") 
+        || blockMode.equals("horizontal")
+        || blockMode.equals("both");
     }
     
     PVector getContainerBlockSize(float w, float h) {
