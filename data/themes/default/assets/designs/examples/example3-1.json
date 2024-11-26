@@ -39,7 +39,7 @@
                 },
                 "color": "#7d7d7d",
                 "stroke": {
-                    "strokeWeight": 10,
+                    "stroke_point": 10,
                     "color": "#42c8ed"
                 },
                 "icon": {

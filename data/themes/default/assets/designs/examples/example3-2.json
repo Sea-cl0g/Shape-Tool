@@ -1,86 +1,83 @@
 {
-    "description" : "Example of describing a button class theme when using references",
-    "author" : "boo_manKnow",
-    
+    "description": "Example of describing a button class theme when using references",
+    "author": "boo_manKnow",
     "containerAnker": "topLeft",
     "blockMode": "vertical",
-    "blockAnker":"CORNER",
-
-    "colors":{
+    "blockAnker": "CORNER",
+    "colors": {
         "main": "#7d7d7d",
         "icon": "#ffffff",
         "sub": "#42c8ed",
         "accent": "#42c8ed"
     },
-    "layouts":{
+    "layouts": {
         "default": {
-            "x_point": 10, 
-            "y_point": 10, 
-            "width_point": 10, 
+            "x_point": 10,
+            "y_point": 10,
+            "width_point": 10,
             "height_point": 10
         },
         "smaller": {
-            "x_point": 10, 
-            "y_point": 10, 
-            "width_point": 8, 
+            "x_point": 10,
+            "y_point": 10,
+            "width_point": 8,
             "height_point": 8
         }
     },
-    "icons":{
-        "main":{
+    "icons": {
+        "main": {
             "size": 0.8,
             "path": "icon/ERROR_ICON.svg",
             "color": "$icon"
         }
     },
-    "shadows":{
-        "main":{
+    "shadows": {
+        "main": {
             "shadowMode": "BOTTOMRIGHT",
             "shadowDistPoint": 0.1,
             "color": "$accent"
         }
     },
-    "button_types":{
-        "standard":"squareButton"
+    "button_types": {
+        "standard": "squareButton"
     },
-
     "element1": {
         "type": "triggerButton",
-        "style":[
+        "style": [
             {
-                "predicate": "normal", 
+                "predicate": "normal",
                 "button_type": "$standard",
                 "layout": "$default",
                 "color": "$main",
-                "icon":"$main",
+                "icon": "$main",
                 "shadow": "$main"
             },
             {
                 "predicate": "touched",
-                "button_type": "$standard", 
+                "button_type": "$standard",
                 "layout": "$default",
                 "color": "$main",
-                "stroke":{
-                    "strokeWeight": 10,
+                "stroke": {
+                    "stroke_point": 10,
                     "color": "$sub"
                 },
-                "icon":"$main",
+                "icon": "$main",
                 "shadow": "$main"
             },
             {
-                "predicate": "clicked", 
+                "predicate": "clicked",
                 "button_type": "$standard",
                 "layout": "$smaller",
                 "color": "$main",
-                "icon":"$main",
+                "icon": "$main",
                 "shadow": "$main"
             },
             {
-                "predicate": "selected", 
+                "predicate": "selected",
                 "button_type": "$standard",
                 "layout": "$default",
                 "color": "$main * 2.0",
-                "icon":"$main",
+                "icon": "$main",
                 "shadow": "$main"
             }
         ]

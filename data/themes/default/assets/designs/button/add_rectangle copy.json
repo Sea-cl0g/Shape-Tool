@@ -1,33 +1,34 @@
 {
-    "description" : "Most basic and easy-to-see color theme",
-    "author" : "boo_manKnow",
-    
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
     "containerAnker": "topLeft",
     "blockMode": "vertical",
-    "blockAnker":"CORNER",
-    
-    "button_types":{
-        "standard":"squareButton"
+    "blockAnker": "CORNER",
+    "button_types": {
+        "standard": "squareButton"
     },
-    "colors":{
+    "colors": {
         "main": "#4a7083ff",
         "shadow": "#000000"
     },
-
     "element1": {
         "type": "triggerButton",
-        "style":[
+        "style": [
             {
-                "predicate": "normal", 
+                "predicate": "normal",
                 "button_type": "$standard",
                 "layout": {
-                    "x_point": 0, 
-                    "y_point": 0, 
-                    "width_point": 1, 
+                    "x_point": 0,
+                    "y_point": 0,
+                    "width_point": 1,
                     "height_point": 1
                 },
-                "color": [255, 0, 0],
-                "icon":{
+                "color": [
+                    255,
+                    0,
+                    0
+                ],
+                "icon": {
                     "size": 0.8,
                     "path": "icon/ERROR_ICON.svg",
                     "color": "#ffffff"
@@ -39,20 +40,20 @@
                 }
             },
             {
-                "predicate": "touched", 
+                "predicate": "touched",
                 "button_type": "squareButton",
                 "layout": {
-                    "x_point": 10, 
-                    "y_point": 10, 
-                    "width_point": 10, 
+                    "x_point": 10,
+                    "y_point": 10,
+                    "width_point": 10,
                     "height_point": 10
                 },
                 "color": "#7d7d7d",
-                "stroke":{
-                    "strokeWeight": 10,
+                "stroke": {
+                    "stroke_point": 10,
                     "color": "#42c8ed"
                 },
-                "icon":{
+                "icon": {
                     "size": 0.8,
                     "path": "icon/ERROR_ICON.svg",
                     "color": "#ffffff"
@@ -64,16 +65,16 @@
                 }
             },
             {
-                "predicate": "clicked", 
+                "predicate": "clicked",
                 "button_type": "squareButton",
                 "layout": {
-                    "x_point": 10, 
-                    "y_point": 10, 
-                    "width_point": 8, 
+                    "x_point": 10,
+                    "y_point": 10,
+                    "width_point": 8,
                     "height_point": 8
                 },
                 "color": "#7d7d7d",
-                "icon":{
+                "icon": {
                     "size": 0.8,
                     "path": "icon/ERROR_ICON.svg",
                     "color": "#ffffff"
@@ -86,15 +87,15 @@
             },
             {
                 "predicate": "selected",
-                "button_type": "squareButton", 
+                "button_type": "squareButton",
                 "layout": {
-                    "x_point": 10, 
-                    "y_point": 10, 
-                    "width_point": 10, 
+                    "x_point": 10,
+                    "y_point": 10,
+                    "width_point": 10,
                     "height_point": 10
                 },
                 "color": "#7d7d7d * 2.0",
-                "icon":{
+                "icon": {
                     "size": 0.8,
                     "path": "icon/ERROR_ICON.svg",
                     "color": "#ffffff"
