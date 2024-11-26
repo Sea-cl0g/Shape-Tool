@@ -147,10 +147,12 @@ class TriggerButton extends ButtonTemplate{
 //--------------------------------------------------
 class Base extends Block{
     DrawMode drawMode;
+    color fillCol;
     LayoutData layoutData;
 
-    Base(int splitW, int splitH, LayoutData layoutData){
+    Base(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, color fillCol){
         super(splitW, splitH);
+        this.drawMode = drawMode;
         this.layoutData = layoutData;
     }
 
@@ -159,6 +161,8 @@ class Base extends Block{
         setBlockMode(drawMode.blockMode);
         setBlockAnker(drawMode.blockAnker);
 
+        printMeta();
+        fill(fillCol);
         box(layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point);
     }
 }
@@ -431,15 +435,21 @@ class Container {
         setBlockMode("DEFAULT");
     }
 
+    void printMeta(){
+        //println(this.containerAnker, this.blockMode);
+    }
+
     //containerAnker関係
     void setContainerAnker(String containerAnker){
+        println(containerAnker, is_containerAnkerType(containerAnker));
         if(is_containerAnkerType(containerAnker)){
-          this.containerAnker = containerAnker;
+            this.containerAnker = containerAnker;
         }else if(!(is_containerAnkerType(this.containerAnker))){
           this.containerAnker = "topLeft";
         }
     }
     boolean is_containerAnkerType(String containerAnker){
+        println()
         return containerAnker == "topLeft" 
         || containerAnker == "topRight"
         || containerAnker == "bottomLeft"

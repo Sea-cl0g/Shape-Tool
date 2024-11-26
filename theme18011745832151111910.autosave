@@ -5,9 +5,6 @@ class Theme{
     ArrayList<TriggerButton> triggerButtonList = new ArrayList<TriggerButton>();
 
     void drawMenu(){
-        for(Base base : baseList){
-            base.drawBase();
-        }
         for(TriggerButton triggerButton : triggerButtonList){
             triggerButton.drawButton(mouseX, mouseY);
         }
@@ -20,8 +17,6 @@ class Theme{
             String assetName = (String) assetNameObj;
             JSONObject asset = assetsPath.getJSONObject(assetName);
             EasyJSONObject design = new EasyJSONObject(safeLoad.assetLoad(asset.getString("path")));
-            
-            println();
             readDesign(asset, design);
         }
     }
@@ -35,10 +30,10 @@ class Theme{
             EasyJSONObject element = design.safeGetEasyJSONObject(elementID);
             switch (element.safeGetString("type")) {
                 case "base" :
+                    println(element.getNormalJSONObject());
                     LayoutData layout = new LayoutData(element.safeGetEasyJSONObject("layout"));
-                    color fillCol = element.safeGetColor("fillCol");
-                    baseList.add(new Base(16, 16, drawMode, layout, fillCol));
-                break;
+                    baseList.add(new Base(16, 16, layout));
+                break;	
                 case "color" :
                 
                 break;	

@@ -4,8 +4,12 @@
     "ERROR_SVG_PATH": "data/themes/default/assets/images/ERROR_ICON.svg",
 
     "assets_path": {
-        "sideBar": {
-            "path": "base/sideBar.json",
+        "sideBarLeft": {
+            "path": "base/sideBarLeft.json",
+            "elements": {"element1": "base"}
+        },
+        "sideBarRight": {
+            "path": "base/sideBarRight.json",
             "elements": {"element1": "base"}
         },
 

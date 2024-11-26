@@ -30,7 +30,7 @@ class SafeLoad{
             println("File type mismatch. Expected: " + fileType);
             return false;
         }
-        println("File can be loaded.");
+        println(filePath + "(" + fileType + ")" + " can be loaded.");
         return true;
     }
 
