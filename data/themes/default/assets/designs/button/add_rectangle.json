@@ -22,7 +22,7 @@
     "icons": {
         "main": {
             "size": 0.8,
-            "path": "icon/ERROR_ICON.svg"
+            "path": "icon/TMP_ICON1.svg"
         }
     },
     "shadows": {
@@ -55,7 +55,7 @@
                 "fill": "$defaultCol",
                 "stroke": {
                     "stroke_point": 0.1,
-                    "color": "#FF0000"
+                    "color": "#ffffff"
                 },
                 "icon": "$main",
                 "shadow": "$main"

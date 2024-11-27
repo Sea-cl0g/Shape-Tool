@@ -1,26 +1,18 @@
 {
-    "description" : "Most basic and easy-to-see color theme",
-    "author" : "boo_manKnow",
-    
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
     "containerAnker": "topLeft",
     "blockMode": "vertical",
-    "blockAnker":"CORNER",
-    
-    "fills":{
-        "defaultCol": "#ff0000"
-    },
-    "layouts":{
-        "default": {
-        }
-    },
+    "blockAnker": "CORNER",
 
     "element1": {
         "type": "base",
         "layout": {
-            "x_point": 0, 
-            "y_point": 0, 
-            "width_point": 8, 
+            "x_point": 0,
+            "y_point": 0,
+            "width_point": 8,
             "height_point": 16
-        }
+        },
+        "fillCol": "#113850ff"
     }
 }

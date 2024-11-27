@@ -153,6 +153,7 @@ class Base extends Block{
     Base(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, color fillCol){
         super(splitW, splitH);
         this.drawMode = drawMode;
+        this.fillCol = fillCol; 
         this.layoutData = layoutData;
     }
 
