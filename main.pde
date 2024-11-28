@@ -17,9 +17,10 @@ void setup(){
 }
 
 void draw() {
-    //background(255, 255, 255);
-    //checkBlocks(5, 5, "vertical", "CORNER");
+    background(255, 255, 255);
+
     theme.drawMenu();
+    //checkBlocks(5, 5, "vertical", "CORNER");
 }
 
 //--------------------------------------------------

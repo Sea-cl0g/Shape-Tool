@@ -28,8 +28,8 @@
     "shadows": {
         "main": {
             "shadowMode": "BOTTOMRIGHT",
-            "shadowDistPoint": 0.1,
-            "color": "#ff1100"
+            "shadowDistPoint": 0.2,
+            "color": "#222222"
         }
     },
     "stroke": {
@@ -46,7 +46,8 @@
                 "button_type": "$maru",
                 "layout": "$default",
                 "fill": "$defaultCol",
-                "icon": "$main"
+                "icon": "$main",
+                "shadow": "$main"
             },
             {
                 "predicate": "touched",
@@ -65,7 +66,8 @@
                 "button_type": "$maru",
                 "layout": "$default",
                 "fill": "$defaultCol",
-                "icon": "$main"
+                "icon": "$main",
+                "shadow": "$main"
             }
         ]
     }

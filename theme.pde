@@ -27,7 +27,7 @@ class Theme{
     }
 
     void readDesign(JSONObject asset, EasyJSONObject design){
-        buildVariableJSON(design.getNormalJSONObject());
+        buildVariableJSON(design.jsonObj);
         JSONObject elements = asset.getJSONObject("elements");
         DrawMode drawMode = new DrawMode(design);
         for(Object elementObj : elements.keys()){
@@ -192,7 +192,9 @@ class StyleData{
         }else{
             shadowEJSON = styleEJSON.safeGetEasyJSONObject("shadow");
         }
+        println(shadowEJSON.jsonObj);
         shadowData = new ShadowData(shadowEJSON);
+        println(shadowData.shadowMode, shadowData.shadowDistPoint, shadowData.shadowCol);
     }
 }
 

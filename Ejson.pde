@@ -51,11 +51,6 @@ class EasyJSONObject{
     return childJsonArray == null ? new EasyJSONArray() : new EasyJSONArray(childJsonArray);
   }
 
-  //JSONObjectへの型変換
-  JSONObject getNormalJSONObject(){
-    return jsonObj;
-  }
-
   // JSONObjectクラス関数のオーバーライド
   Object get(String key){
     return jsonObj.get(key);
@@ -67,7 +62,7 @@ class EasyJSONObject{
 
   // 
   void override(EasyJSONObject source){
-    override(source.getNormalJSONObject());
+    override(source.jsonObj);
   }
   void override(JSONObject source){
     for(Object key : source.keys()){

@@ -216,7 +216,7 @@ class ButtonTemplate extends Block{
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
             fill(shadowCol);
             noStroke();
-            box(x, y, w, h);
+            box(shadowPos.x, shadowPos.y, w, h);
         }
         fill(fillCol);
         if(alpha(strokeCol) == 0.0 || stroke_point == 0.0){
@@ -234,7 +234,7 @@ class ButtonTemplate extends Block{
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
             fill(shadowCol);
             noStroke();
-            box(x, y, w, h, r);
+            box(shadowPos.x, shadowPos.y, w, h, r);
         }
         fill(fillCol);
         if(alpha(strokeCol) == 0.0 || stroke_point == 0.0){
@@ -252,7 +252,7 @@ class ButtonTemplate extends Block{
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
             fill(shadowCol);
             noStroke();
-            box(x, y, w, h, tl, tr, br, bl);
+            box(shadowPos.x, shadowPos.y, w, h, tl, tr, br, bl);
         }
         fill(fillCol);
         if(alpha(strokeCol) == 0.0 || stroke_point == 0.0){
@@ -271,7 +271,7 @@ class ButtonTemplate extends Block{
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
             fill(shadowCol);
             noStroke();
-            box(x, y, w, h);
+            box(shadowPos.x, shadowPos.y, w, h);
         }
         fill(fillCol);
         if(alpha(strokeCol) == 0.0 || stroke_point == 0.0){
@@ -289,7 +289,7 @@ class ButtonTemplate extends Block{
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
             fill(shadowCol);
             noStroke();
-            box(x, y, w, h);
+            box(shadowPos.x, shadowPos.y, w, h);
         }
         fill(fillCol);
         if(alpha(strokeCol) == 0.0 || stroke_point == 0.0){
