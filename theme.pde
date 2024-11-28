@@ -119,15 +119,43 @@ class StyleData{
     IconData iconData;
     ShadowData shadowData;
 
-    void readData(EasyJSONObject styleEJSON, JSONObject variableJSON){
-        String buttonTypeStr = styleEJSON.safeGetString("button_type");
-        if(buttonTypeStr.startsWith("$")){
-            buttonTypeStr = buttonTypeStr.substring(1);
-            String variable = variableJSON.getJSONObject("button_types").getString(buttonTypeStr);
-            buttonType = variable;
-        }else{
-            buttonType = styleEJSON.safeGetString("button_type");
+    String readButtonType(String buttonTypeData, JSONObject variableJSON){
+        if(buttonTypeData.startsWith("$")){
+            String variableName = buttonTypeData.substring(1);
+            return variableJSON.getJSONObject("button_types").getString(variableName);
+
         }
+        return buttonTypeData;
+    }
+
+    void readData(EasyJSONObject styleEJSON, JSONObject variableJSON){
+        buttonType = readButtonType(styleEJSON.safeGetString("button_type"), variableJSON);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         String fillStr = styleEJSON.safeGetString("fill");
         if(fillStr.startsWith("$")){
