@@ -22,6 +22,7 @@ class EasyJSONObject{
     return jsonObj.isNull(key) ? ifNull : jsonObj.getFloat(key);
   }
 
+//廃止。
   color safeGetColor(String key){
     return safeGetColor(key, color(255, 0, 255));
   }

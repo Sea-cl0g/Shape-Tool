@@ -7,7 +7,7 @@
     "button_types": {
         "maru": "roundedSquareButton"
     },
-    "fills": {
+    "colors": {
         "defaultCol": "#4a7083ff"
     },
     "layouts": {

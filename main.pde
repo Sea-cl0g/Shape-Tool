@@ -30,19 +30,6 @@ void softPrepare(){
   theme = new Theme();
 }
 
-//--------------------------------------------------
-color hexToColor(String hex){
-        if (hex.startsWith("#")) {
-            hex = hex.substring(1);
-        }
-        
-        int r = unhex(hex.substring(0, 2));
-        int g = unhex(hex.substring(2, 4));
-        int b = unhex(hex.substring(4, 6));
-        int a = hex.length() == 8 ? unhex(hex.substring(6, 8)) : 255;
-        
-        return color(r, g, b, a);
-}
 
 //--------------------------------------------------
 void mousePressed() {

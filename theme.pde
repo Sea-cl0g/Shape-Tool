@@ -1,3 +1,6 @@
+//エラーを解析、判断→無理
+//厳格名読み込み
+
 class Theme{
     JSONObject variableJSON = new JSONObject();
 
@@ -35,7 +38,7 @@ class Theme{
             EasyJSONObject element = design.safeGetEasyJSONObject(elementID);
             switch (element.safeGetString("type")) {
                 case "base" :
-                    LayoutData layout = new LayoutData(element.safeGetEasyJSONObject("layout"));
+                    LayoutData layout = new LayoutData(element.get("layout"), variableJSON);
                     color fillCol = element.safeGetColor("fillCol");
                     baseList.add(new Base(16, 16, drawMode, layout, fillCol));
                 break;
@@ -111,6 +114,7 @@ class DrawMode{
     }
 }
 
+//--------------------------------------------------
 class StyleData{
     String buttonType;
     color fillCol;
@@ -128,57 +132,13 @@ class StyleData{
         return buttonTypeData;
     }
 
+
     void readData(EasyJSONObject styleEJSON, JSONObject variableJSON){
         buttonType = readButtonType(styleEJSON.safeGetString("button_type"), variableJSON);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        String fillStr = styleEJSON.safeGetString("fill");
-        if(fillStr.startsWith("$")){
-            fillStr = fillStr.substring(1);
-            String variable = variableJSON.getJSONObject("fills").getString(fillStr);
-            fillCol = hexToColor(variable);
-        }else{
-            fillCol = styleEJSON.safeGetColor("fill");
-        }
+        fillCol = readColor(styleEJSON.safeGetString("fill"), variableJSON);
         
-        Object layoutObj = styleEJSON.get("layout");
-        EasyJSONObject layoutEJSON = new EasyJSONObject();
-        if(layoutObj instanceof String){
-            String variableName = (String) layoutObj;
-            if(variableName.startsWith("$")){
-                variableName = variableName.substring(1);
-                JSONObject variable = variableJSON.getJSONObject("layouts").getJSONObject(variableName);
-                layoutEJSON = new EasyJSONObject(variable);
-            }
-        }else{
-            layoutEJSON = styleEJSON.safeGetEasyJSONObject("layout");
-        }
-        layoutData = new LayoutData(layoutEJSON);
+        layoutData = new LayoutData(styleEJSON.get("layout"), variableJSON);
         
         Object strokeObj = styleEJSON.get("stroke");
         EasyJSONObject strokeEJSON = new EasyJSONObject();
@@ -226,11 +186,26 @@ class StyleData{
     }
 }
 
+//--------------------------------------------------
 class LayoutData{
     float x_point, y_point, width_point, height_point;
     float r_point, tl_point, tr_point, br_point, bl_point;
 
-    LayoutData(EasyJSONObject layoutEJSON){
+    LayoutData(Object layoutObj, JSONObject variableJSON){
+        EasyJSONObject layoutEJSON = new EasyJSONObject();
+        if(layoutObj instanceof String){
+            String layoutStr = (String) layoutObj;
+            if(layoutStr.startsWith("$")){
+                String variableName = layoutStr.substring(1);
+                layoutEJSON = new EasyJSONObject(variableJSON.getJSONObject("layouts").getJSONObject(variableName));
+            }
+        }else if(layoutObj instanceof JSONObject){
+            JSONObject layoutJSON = (JSONObject) layoutObj;
+            layoutEJSON = new EasyJSONObject(layoutJSON);
+        }else{
+            layoutEJSON = (EasyJSONObject) layoutObj;
+        }
+        println(layoutEJSON.jsonObj);
         this.x_point = layoutEJSON.safeGetFloat("x_point");
         this.y_point = layoutEJSON.safeGetFloat("y_point");
         this.width_point = layoutEJSON.safeGetFloat("width_point");
@@ -245,6 +220,7 @@ class LayoutData{
     }
 }
 
+//--------------------------------------------------
 class StrokeData{
     float stroke_point;
     color strokeCol;
@@ -255,6 +231,7 @@ class StrokeData{
     }
 }
 
+//--------------------------------------------------
 class IconData{
     float size;
     PShape icon;
@@ -277,6 +254,7 @@ class IconData{
     }
 }
 
+//--------------------------------------------------
 class ShadowData{
     String shadowMode;
     float shadowDistPoint;
@@ -287,4 +265,26 @@ class ShadowData{
         this.shadowDistPoint = shadowEJSON.safeGetFloat("shadowDistPoint");
         this.shadowCol = shadowEJSON.safeGetColor("color");
     }
+}
+
+//--------------------------------------------------
+color hexToColor(String hex){
+        if (hex.startsWith("#")) {
+            hex = hex.substring(1);
+        }
+        
+        int r = unhex(hex.substring(0, 2));
+        int g = unhex(hex.substring(2, 4));
+        int b = unhex(hex.substring(4, 6));
+        int a = hex.length() == 8 ? unhex(hex.substring(6, 8)) : 255;
+        println(r, g, b, a);
+        return color(r, g, b, a);
+}
+
+color readColor(String colorData, JSONObject variableJSON){
+    if(colorData.startsWith("$")){
+        String variableName = colorData.substring(1);
+        return hexToColor(variableJSON.getJSONObject("colors").getString(variableName));
+    }
+    return hexToColor(colorData);
 }
