@@ -137,22 +137,9 @@ class StyleData{
         buttonType = readButtonType(styleEJSON.safeGetString("button_type"), variableJSON);
 
         fillCol = readColor(styleEJSON.safeGetString("fill"), variableJSON);
-        
         layoutData = new LayoutData(styleEJSON.get("layout"), variableJSON);
+        strokeData = new StrokeData(styleEJSON.get("stroke"), variableJSON);
         
-        Object strokeObj = styleEJSON.get("stroke");
-        EasyJSONObject strokeEJSON = new EasyJSONObject();
-        if(strokeObj instanceof String){
-            String variableName = (String) strokeObj;
-            if(variableName.startsWith("$")){
-                variableName = variableName.substring(1);
-                JSONObject variable = variableJSON.getJSONObject("strokes").getJSONObject(variableName);
-                strokeEJSON = new EasyJSONObject(variable);
-            }
-        }else{
-            strokeEJSON = styleEJSON.safeGetEasyJSONObject("stroke");
-        }
-        strokeData = new StrokeData(strokeEJSON);
 
         Object iconObj = styleEJSON.get("icon");
         EasyJSONObject iconEJSON = new EasyJSONObject();
@@ -203,9 +190,8 @@ class LayoutData{
             JSONObject layoutJSON = (JSONObject) layoutObj;
             layoutEJSON = new EasyJSONObject(layoutJSON);
         }else{
-            layoutEJSON = (EasyJSONObject) layoutObj;
+            layoutEJSON = new EasyJSONObject();
         }
-        println(layoutEJSON.jsonObj);
         this.x_point = layoutEJSON.safeGetFloat("x_point");
         this.y_point = layoutEJSON.safeGetFloat("y_point");
         this.width_point = layoutEJSON.safeGetFloat("width_point");
@@ -225,7 +211,21 @@ class StrokeData{
     float stroke_point;
     color strokeCol;
 
-    StrokeData(EasyJSONObject strokeEJSON){
+    StrokeData(Object strokeObj, JSONObject variableJSON){
+        EasyJSONObject strokeEJSON = new EasyJSONObject();
+        if(strokeObj instanceof String){
+            String strokeStr = (String) strokeObj;
+            if(strokeStr.startsWith("$")){
+                String variableName = strokeStr.substring(1);
+                strokeEJSON = new EasyJSONObject(variableJSON.getJSONObject("strokes").getJSONObject(variableName));
+            }
+        }else if(strokeObj instanceof JSONObject){
+            JSONObject strokeJSON = (JSONObject) strokeObj;
+            strokeEJSON = new EasyJSONObject(strokeJSON);
+        }else{
+            strokeEJSON = new EasyJSONObject();
+        }
+        println(strokeEJSON);
         this.stroke_point = strokeEJSON.safeGetFloat("stroke_point");
         this.strokeCol = strokeEJSON.safeGetColor("color", color(255, 0, 255, 255));
     }
