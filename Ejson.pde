@@ -22,26 +22,6 @@ class EasyJSONObject{
     return jsonObj.isNull(key) ? ifNull : jsonObj.getFloat(key);
   }
 
-//廃止。
-  color safeGetColor(String key){
-    return safeGetColor(key, color(255, 0, 255));
-  }
-  color safeGetColor(String key, color ifNull){
-    Object colorObj = jsonObj.get(key);
-    if(colorObj instanceof String){
-      String colorHex = (String) colorObj;
-      return hexToColor(colorHex);
-    }else if(colorObj instanceof JSONArray){
-      JSONArray colorArray = (JSONArray) colorObj;
-      if(colorArray.size() == 3){
-        return color(colorArray.getFloat(0), colorArray.getFloat(1), colorArray.getFloat(2));
-      }else if(colorArray.size() == 4){
-        return color(colorArray.getFloat(0), colorArray.getFloat(1), colorArray.getFloat(2), colorArray.getFloat(3));
-      }
-    }
-    return ifNull;
-  }
-
   EasyJSONObject safeGetEasyJSONObject(String key){
     JSONObject childJsonObj = jsonObj.getJSONObject(key);
     return childJsonObj == null ? new EasyJSONObject() : new EasyJSONObject(childJsonObj);

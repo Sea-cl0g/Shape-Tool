@@ -29,7 +29,7 @@
         "main": {
             "shadowMode": "BOTTOMRIGHT",
             "shadowDistPoint": 0.2,
-            "color": "#222222"
+            "color": "$defaultCol"
         }
     },
     "stroke": {

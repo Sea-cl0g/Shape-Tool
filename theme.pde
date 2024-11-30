@@ -39,7 +39,7 @@ class Theme{
             switch (element.safeGetString("type")) {
                 case "base" :
                     LayoutData layout = new LayoutData(element.get("layout"), variableJSON);
-                    color fillCol = element.safeGetColor("fillCol");
+                    color fillCol = readColor(element.safeGetString("fillCol"), variableJSON);
                     baseList.add(new Base(16, 16, drawMode, layout, fillCol));
                 break;
                 case "color" :
@@ -263,7 +263,7 @@ class ShadowData{
             }
             this.shadowMode = shadowEJSON.safeGetString("shadowMode");
             this.shadowDistPoint = shadowEJSON.safeGetFloat("shadowDistPoint");
-            this.shadowCol = shadowEJSON.safeGetColor("color");
+            this.shadowCol = readColor(shadowEJSON.safeGetString("color"), variableJSON);
         }
     }
 }
