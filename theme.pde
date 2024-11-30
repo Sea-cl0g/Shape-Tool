@@ -123,6 +123,16 @@ class StyleData{
     IconData iconData;
     ShadowData shadowData;
 
+    void readData(EasyJSONObject styleEJSON, JSONObject variableJSON){
+        buttonType = readButtonType(styleEJSON.safeGetString("button_type"), variableJSON);
+
+        fillCol = readColor(styleEJSON.safeGetString("fill"), variableJSON);
+        layoutData = new LayoutData(styleEJSON.get("layout"), variableJSON);
+        strokeData = new StrokeData(styleEJSON.get("stroke"), variableJSON);
+        iconData = new IconData(styleEJSON.get("icon"), variableJSON);
+        shadowData = new ShadowData(styleEJSON.get("shadow"), variableJSON);
+    }
+    
     String readButtonType(String buttonTypeData, JSONObject variableJSON){
         if(buttonTypeData.startsWith("$")){
             String variableName = buttonTypeData.substring(1);
@@ -130,46 +140,6 @@ class StyleData{
 
         }
         return buttonTypeData;
-    }
-
-
-    void readData(EasyJSONObject styleEJSON, JSONObject variableJSON){
-        buttonType = readButtonType(styleEJSON.safeGetString("button_type"), variableJSON);
-
-        fillCol = readColor(styleEJSON.safeGetString("fill"), variableJSON);
-        layoutData = new LayoutData(styleEJSON.get("layout"), variableJSON);
-        strokeData = new StrokeData(styleEJSON.get("stroke"), variableJSON);
-        
-
-        Object iconObj = styleEJSON.get("icon");
-        EasyJSONObject iconEJSON = new EasyJSONObject();
-        if(iconObj instanceof String){
-            String variableName = (String) iconObj;
-            if(variableName.startsWith("$")){
-                variableName = variableName.substring(1);
-                JSONObject variable = variableJSON.getJSONObject("icons").getJSONObject(variableName);
-                iconEJSON = new EasyJSONObject(variable);
-            }
-        }else{
-            iconEJSON = styleEJSON.safeGetEasyJSONObject("icon");
-        }
-        iconData = new IconData(iconEJSON);
-
-        Object shadowObj = styleEJSON.get("shadow");
-        EasyJSONObject shadowEJSON = new EasyJSONObject();
-        if(shadowObj instanceof String){
-            String variableName = (String) shadowObj;
-            if(variableName.startsWith("$")){
-                variableName = variableName.substring(1);
-                JSONObject variable = variableJSON.getJSONObject("shadows").getJSONObject(variableName);
-                shadowEJSON = new EasyJSONObject(variable);
-            }
-        }else{
-            shadowEJSON = styleEJSON.safeGetEasyJSONObject("shadow");
-        }
-        println(shadowEJSON.jsonObj);
-        shadowData = new ShadowData(shadowEJSON);
-        println(shadowData.shadowMode, shadowData.shadowDistPoint, shadowData.shadowCol);
     }
 }
 
@@ -179,30 +149,30 @@ class LayoutData{
     float r_point, tl_point, tr_point, br_point, bl_point;
 
     LayoutData(Object layoutObj, JSONObject variableJSON){
-        EasyJSONObject layoutEJSON = new EasyJSONObject();
-        if(layoutObj instanceof String){
-            String layoutStr = (String) layoutObj;
-            if(layoutStr.startsWith("$")){
-                String variableName = layoutStr.substring(1);
-                layoutEJSON = new EasyJSONObject(variableJSON.getJSONObject("layouts").getJSONObject(variableName));
+        if(layoutObj != null){
+            EasyJSONObject layoutEJSON = new EasyJSONObject();
+            if(layoutObj instanceof String){
+                String layoutStr = (String) layoutObj;
+                if(layoutStr.startsWith("$")){
+                    String variableName = layoutStr.substring(1);
+                    layoutEJSON = new EasyJSONObject(variableJSON.getJSONObject("layouts").getJSONObject(variableName));
+                }
+            }else if(layoutObj instanceof JSONObject){
+                JSONObject layoutJSON = (JSONObject) layoutObj;
+                layoutEJSON = new EasyJSONObject(layoutJSON);
+            }else{
+                layoutEJSON = new EasyJSONObject();
             }
-        }else if(layoutObj instanceof JSONObject){
-            JSONObject layoutJSON = (JSONObject) layoutObj;
-            layoutEJSON = new EasyJSONObject(layoutJSON);
-        }else{
-            layoutEJSON = new EasyJSONObject();
+            this.x_point = layoutEJSON.safeGetFloat("x_point");
+            this.y_point = layoutEJSON.safeGetFloat("y_point");
+            this.width_point = layoutEJSON.safeGetFloat("width_point");
+            this.height_point = layoutEJSON.safeGetFloat("height_point");
+            this.r_point = layoutEJSON.safeGetFloat("r_point");
+            this.tl_point = layoutEJSON.safeGetFloat("tl_point");
+            this.tr_point = layoutEJSON.safeGetFloat("tr_point");
+            this.br_point = layoutEJSON.safeGetFloat("br_point");
+            this.bl_point = layoutEJSON.safeGetFloat("bl_point");
         }
-        this.x_point = layoutEJSON.safeGetFloat("x_point");
-        this.y_point = layoutEJSON.safeGetFloat("y_point");
-        this.width_point = layoutEJSON.safeGetFloat("width_point");
-        this.height_point = layoutEJSON.safeGetFloat("height_point");
-
-        this.r_point = layoutEJSON.safeGetFloat("r_point");
-
-        this.tl_point = layoutEJSON.safeGetFloat("tl_point");
-        this.tr_point = layoutEJSON.safeGetFloat("tr_point");
-        this.br_point = layoutEJSON.safeGetFloat("br_point");
-        this.bl_point = layoutEJSON.safeGetFloat("bl_point");
     }
 }
 
@@ -212,22 +182,23 @@ class StrokeData{
     color strokeCol;
 
     StrokeData(Object strokeObj, JSONObject variableJSON){
-        EasyJSONObject strokeEJSON = new EasyJSONObject();
-        if(strokeObj instanceof String){
-            String strokeStr = (String) strokeObj;
-            if(strokeStr.startsWith("$")){
-                String variableName = strokeStr.substring(1);
-                strokeEJSON = new EasyJSONObject(variableJSON.getJSONObject("strokes").getJSONObject(variableName));
+        if(strokeObj != null){
+            EasyJSONObject strokeEJSON = new EasyJSONObject();
+            if(strokeObj instanceof String){
+                String strokeStr = (String) strokeObj;
+                if(strokeStr.startsWith("$")){
+                    String variableName = strokeStr.substring(1);
+                    strokeEJSON = new EasyJSONObject(variableJSON.getJSONObject("strokes").getJSONObject(variableName));
+                }
+            }else if(strokeObj instanceof JSONObject){
+                JSONObject strokeJSON = (JSONObject) strokeObj;
+                strokeEJSON = new EasyJSONObject(strokeJSON);
+            }else{
+                strokeEJSON = new EasyJSONObject();
             }
-        }else if(strokeObj instanceof JSONObject){
-            JSONObject strokeJSON = (JSONObject) strokeObj;
-            strokeEJSON = new EasyJSONObject(strokeJSON);
-        }else{
-            strokeEJSON = new EasyJSONObject();
+            this.stroke_point = strokeEJSON.safeGetFloat("stroke_point");
+            this.strokeCol = readColor(strokeEJSON.safeGetString("color"), variableJSON);
         }
-        println(strokeEJSON);
-        this.stroke_point = strokeEJSON.safeGetFloat("stroke_point");
-        this.strokeCol = strokeEJSON.safeGetColor("color", color(255, 0, 255, 255));
     }
 }
 
@@ -236,11 +207,26 @@ class IconData{
     float size;
     PShape icon;
 
-    IconData(EasyJSONObject iconEJSON){
-        this.size = iconEJSON.safeGetFloat("size");
-        color iconCol = iconEJSON.safeGetColor("color");
-        this.icon = safeLoad.iconLoad(iconEJSON.safeGetString("path"));
+    IconData(Object iconObj, JSONObject variableJSON){
+        if(iconObj != null){
+            EasyJSONObject iconEJSON = new EasyJSONObject();
+            if(iconObj instanceof String){
+                String iconStr = (String) iconObj;
+                if(iconStr.startsWith("$")){
+                    String variableName = iconStr.substring(1);
+                    iconEJSON = new EasyJSONObject(variableJSON.getJSONObject("icons").getJSONObject(variableName));
+                }
+            }else if(iconObj instanceof JSONObject){
+                JSONObject iconJSON = (JSONObject) iconObj;
+                iconEJSON = new EasyJSONObject(iconJSON);
+            }else{
+                iconEJSON = new EasyJSONObject();
+            }
+            this.size = iconEJSON.safeGetFloat("size");
+            //color iconCol = iconEJSON.safeGetColor("color");
+            this.icon = safeLoad.iconLoad(iconEJSON.safeGetString("path"));
         //changeIconColor(icon, iconCol); //iconが空でない場合。
+        }
     }
 
     void changeIconColor(PShape shape, color overrideCol){
@@ -260,10 +246,25 @@ class ShadowData{
     float shadowDistPoint;
     color shadowCol;
     
-    ShadowData(EasyJSONObject shadowEJSON){
-        this.shadowMode = shadowEJSON.safeGetString("shadowMode");
-        this.shadowDistPoint = shadowEJSON.safeGetFloat("shadowDistPoint");
-        this.shadowCol = shadowEJSON.safeGetColor("color");
+    ShadowData(Object shadowObj, JSONObject variableJSON){
+        if(shadowObj != null){
+            EasyJSONObject shadowEJSON = new EasyJSONObject();
+            if(shadowObj instanceof String){
+                String shadowStr = (String) shadowObj;
+                if(shadowStr.startsWith("$")){
+                    String variableName = shadowStr.substring(1);
+                    shadowEJSON = new EasyJSONObject(variableJSON.getJSONObject("shadows").getJSONObject(variableName));
+                }
+            }else if(shadowObj instanceof JSONObject){
+                JSONObject shadowJSON = (JSONObject) shadowObj;
+                shadowEJSON = new EasyJSONObject(shadowJSON);
+            }else{
+                shadowEJSON = new EasyJSONObject();
+            }
+            this.shadowMode = shadowEJSON.safeGetString("shadowMode");
+            this.shadowDistPoint = shadowEJSON.safeGetFloat("shadowDistPoint");
+            this.shadowCol = shadowEJSON.safeGetColor("color");
+        }
     }
 }
 
