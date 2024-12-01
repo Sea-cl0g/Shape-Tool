@@ -4,6 +4,7 @@
     "containerAnker": "topLeft",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
+
     "button_types": {
         "maru": "roundedSquareButton"
     },
@@ -29,7 +30,7 @@
         "main": {
             "shadowMode": "BOTTOMRIGHT",
             "shadowDistPoint": 0.2,
-            "color": "$defaultCol"
+            "color": "#222222"
         }
     },
     "stroke": {
@@ -38,37 +39,40 @@
             "color": "#42c8ed"
         }
     },
-    "element1": {
-        "type": "triggerButton",
-        "style": [
-            {
-                "predicate": "normal",
-                "button_type": "$maru",
-                "layout": "$default",
-                "fill": "$defaultCol",
-                "icon": "$main",
-                "shadow": "$main"
-            },
-            {
-                "predicate": "touched",
-                "button_type": "$maru",
-                "layout": "$default",
-                "fill": "$defaultCol",
-                "stroke": {
-                    "stroke_point": 0.1,
-                    "color": "#ffffff"
+
+    "elements": {
+        "element1": {
+            "type": "triggerButton",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "button_type": "$maru",
+                    "layout": "$default",
+                    "fill": "$defaultCol",
+                    "icon": "$main",
+                    "shadow": "$main"
                 },
-                "icon": "$main",
-                "shadow": "$main"
-            },
-            {
-                "predicate": "clicked",
-                "button_type": "$maru",
-                "layout": "$default",
-                "fill": "$defaultCol",
-                "icon": "$main",
-                "shadow": "$main"
-            }
-        ]
+                {
+                    "predicate": "touched",
+                    "button_type": "$maru",
+                    "layout": "$default",
+                    "fill": "$defaultCol",
+                    "stroke": {
+                        "stroke_point": 0.1,
+                        "color": "#ffffff"
+                    },
+                    "icon": "$main",
+                    "shadow": "$main"
+                },
+                {
+                    "predicate": "clicked",
+                    "button_type": "$maru",
+                    "layout": "$default",
+                    "fill": "$defaultCol",
+                    "icon": "$main",
+                    "shadow": "$main"
+                }
+            ]
+        }
     }
 }

@@ -3,74 +3,60 @@
     "DEFAULT_THEME_DIR": "data/themes/default",
     "ERROR_SVG_PATH": "data/themes/default/assets/images/ERROR_ICON.svg",
 
-    "assets_path": {
+    "assets": {
         "sideBarLeft": {
-            "path": "base/sideBarLeft.json",
-            "elements": {"element1": "base"}
+            "path": "base/sideBarLeft.json"
         },
         "sideBarRight": {
-            "path": "base/sideBarRight.json",
-            "elements": {"element1": "base"}
+            "path": "base/sideBarRight.json"
         },
 
         "add_rectangle": {
             "path": "button/add_rectangle.json",
-            "elements": {"element1": "triggerButton"}
+            "queries": [{"Name": "element1", "Query": "FANC_ADD_RECTANGLE"}]
         },
         "add_ellipse": {
             "path": "button/add_ellipse.json",
-            "elements": {"element1": "triggerButton"}
+            "queries": [{"Name": "triggerButton", "Query": "FANC_ADD_ELLIPSE"}]
         },
 
         "edit_layer_name": {
-            "path": "button/edit_layer_name.json",
-            "elements": {"element1": "triggerButton"}
+            "path": "button/edit_layer_name.json"
         },
         "create_a_layer": {
-            "path": "button/create_a_layer.json",
-            "elements": {"element1": "triggerButton"}
+            "path": "button/create_a_layer.json"
         },
         "duplicate_layer": {
-            "path": "button/duplicate_layer.json",
-            "elements": {"element1": "triggerButton"}
+            "path": "button/duplicate_layer.json"
         },
         "move_layer_up": {
-            "path": "button/move_layer_up.json",
-            "elements": {"element1": "triggerButton"}
+            "path": "button/move_layer_up.json"
         },
         "move_layer_down": {
-            "path": "button/move_layer_down.json",
-            "elements": {"element1": "triggerButton"}
+            "path": "button/move_layer_down.json"
         },
         "delete_selected_layer": {
-            "path": "button/delete_selected_layer.json",
-            "elements": {"element1": "triggerButton"}
+            "path": "button/delete_selected_layer.json"
         },
 
         "vertex_mode_pointed": {
-            "path": "button/vertex_mode_pointed.json",
-            "elements": {"element1": "toggleButton"}
+            "path": "button/vertex_mode_pointed.json"
         },
         "vertex_mode_curved": {
-            "path": "button/vertex_mode_curved.json",
-            "elements": {"element1": "toggleButton"}
+            "path": "button/vertex_mode_curved.json"
         },
 
         "save_prj": {
-            "path": "button/save_prj.json",
-            "elements": {"element1": "triggerButton"}
+            "path": "button/save_prj.json"
         },
-        "": {
-            "path": "button/export_prj.json",
-            "elements": {"element1": "triggerButton"}
+        "export_prj": {
+            "path": "button/export_prj.json"
         },
         "import_prj": {
-            "path": "button/import_prj.json",
-            "elements": {"element1": "triggerButton"}
+            "path": "button/import_prj.json"
         },
         "option": {
-            "path": "button/option.json",
-            "elements": {"element1": "toggleButton"}
+            "path": "button/option.json"
         }
     }
 }

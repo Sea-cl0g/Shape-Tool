@@ -37,28 +37,25 @@ class EasyJSONObject{
     return jsonObj.get(key);
   }
 
+  JSONObject getJSONObject(String key){
+    return jsonObj.getJSONObject(key);
+  }
+
+  JSONArray getJSONArray(String key){
+    return jsonObj.getJSONArray(key);
+  }
+
+  //廃止 今後はjson.jsonObj.keys()を実行すること
   Object keys(){
     return jsonObj.keys();
   }
-
-  // 
-  void override(EasyJSONObject source){
-    override(source.jsonObj);
-  }
-  void override(JSONObject source){
-    for(Object key : source.keys()){
-      String keyStr = (String) key;
-      println("key: ", keyStr);
-    }
-    exit();
-  }
 }
-
 
 //--------------------------------------------------
 
 class EasyJSONArray extends JSONArray{
   JSONArray jsonArray;
+
   EasyJSONArray(JSONArray jsonArray){
     this.jsonArray = jsonArray;
   }

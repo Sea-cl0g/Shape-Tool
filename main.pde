@@ -1,5 +1,7 @@
+//マジック変数16を修正する
 SafeLoad safeLoad;
 Theme theme;
+Canvas canvas;
 
 boolean isMouseClicking;
 boolean isKeyPressing;
@@ -28,6 +30,7 @@ void softPrepare(){
   config = loadJSONObject(configPath);
   safeLoad = new SafeLoad();
   theme = new Theme();
+  canvas = new Canvas();
 }
 
 
@@ -50,6 +53,8 @@ void keyReleased(){
 
 //--------------------------------------------------
 
+
+//--------------------------------------------------
 void checkBlocks(int wCount, int hCount, String blockMode, String blockAnker){
   Block tmpBlock = new Block(16, 16);
   tmpBlock.setBlockMode(blockMode);

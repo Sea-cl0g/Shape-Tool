@@ -18,36 +18,53 @@ class Theme{
 
     void loadTheme(){
         println("Theme Loading...");
-        JSONObject assetsPath = config.getJSONObject("assets_path");
-        for(Object assetNameObj : assetsPath.keys()){
+        JSONObject assets = config.getJSONObject("assets");
+        for(Object assetNameObj : assets.keys()){
             String assetName = (String) assetNameObj;
-            JSONObject asset = assetsPath.getJSONObject(assetName);
-            EasyJSONObject design = new EasyJSONObject(safeLoad.assetLoad(asset.getString("path")));
-            
-            println();
-            readDesign(asset, design);
+            JSONObject asset = assets.getJSONObject(assetName);
+            JSONObject designJSON = safeLoad.assetLoad(asset.getString("path"));
+            if(designJSON.keys().size() != 0){
+                readDesign(asset, designJSON);
+            }
         }
     }
 
-    void readDesign(JSONObject asset, EasyJSONObject design){
-        buildVariableJSON(design.jsonObj);
-        JSONObject elements = asset.getJSONObject("elements");
-        DrawMode drawMode = new DrawMode(design);
-        for(Object elementObj : elements.keys()){
-            String elementID = (String) elementObj;
-            EasyJSONObject element = design.safeGetEasyJSONObject(elementID);
-            switch (element.safeGetString("type")) {
+    void readDesign(JSONObject asset, JSONObject designJSON){
+        buildVariableJSON(designJSON);
+        JSONObject elements = designJSON.getJSONObject("elements");
+        JSONArray configQuery = asset.getJSONArray("queries");
+        DrawMode drawMode = new DrawMode(designJSON);
+        for(Object elementNameObj : elements.keys()){
+            String elementNameStr = (String) elementNameObj;
+            boolean isElementQuery = false;
+            String queryType = null;
+            if(configQuery != null){
+                for(int i = 0; i < configQuery.size(); i++){
+                    if(configQuery.getJSONObject(i).getString("Name").equals(elementNameStr)){
+                        isElementQuery = true;
+                        queryType = configQuery.getJSONObject(i).getString("Query");
+                    }
+                }
+            }
+            println(isElementQuery, queryType);
+            //if(asset)//configで定義された特別な要素かを調べる
+            EasyJSONObject elementEJSON = new EasyJSONObject(elements.getJSONObject(elementNameStr));
+            switch (elementEJSON.safeGetString("type")) {
                 case "base" :
-                    LayoutData layout = new LayoutData(element.get("layout"), variableJSON);
-                    color fillCol = readColor(element.safeGetString("fillCol"), variableJSON);
+                    LayoutData layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
+                    color fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     baseList.add(new Base(16, 16, drawMode, layout, fillCol));
                 break;
                 case "color" :
                 
                 break;	
                 case "triggerButton" :
-                    EasyJSONArray styles = element.safeGetEasyJSONArray("style");
-                    triggerButtonList.add(buildTriggerButton(styles, drawMode));
+                    Runnable function = null;
+                    if(isElementQuery){
+                        function = getButtonFanction(queryType);
+                    }
+                    EasyJSONArray styles = elementEJSON.safeGetEasyJSONArray("style");
+                    triggerButtonList.add(buildTriggerButton(drawMode, styles, function));
                 break;
                 case "toggleButton" :
                     
@@ -56,7 +73,24 @@ class Theme{
         }
     }
 
-    TriggerButton buildTriggerButton(EasyJSONArray styleList, DrawMode drawMode){
+    Runnable getButtonFanction(String query){
+        Runnable function;
+        switch (query) {
+            case "FANC_ADD_RECTANGLE" :
+                println("test");
+                function = () -> canvas.add_rectangle();
+            break;
+            case "FANC_ADD_ELLIPSE" :
+                function = () -> canvas.add_rectangle();
+            break;
+            default:
+                function = null;
+            break;
+        }
+        return function;
+    }
+
+    TriggerButton buildTriggerButton(DrawMode drawMode, EasyJSONArray styleList, Runnable function){
         StyleData normal = new StyleData();
         StyleData touched = new StyleData();
         StyleData clicked = new StyleData();
@@ -88,17 +122,17 @@ class Theme{
                 }
             }
         }
-        return new TriggerButton(16, 16, drawMode, normal, touched, clicked);
+        return new TriggerButton(16, 16, drawMode, normal, touched, clicked, function);
     }
 
     void buildVariableJSON(JSONObject design){
         for(Object keyObj : design.keys()){
-                String key = (String) keyObj;
-                Object valueObj = design.get(key);
-                if(valueObj instanceof JSONObject){
-                    JSONObject value = (JSONObject) valueObj;
-                    variableJSON.setJSONObject(key, value);
-                }
+            String key = (String) keyObj;
+            Object valueObj = design.get(key);
+            if(valueObj instanceof JSONObject){
+                JSONObject value = (JSONObject) valueObj;
+                variableJSON.setJSONObject(key, value);
+            }
         }
     }
 }
@@ -107,7 +141,8 @@ class Theme{
 class DrawMode{
     String containerAnker, blockMode, blockAnker;
 
-    DrawMode(EasyJSONObject drawModeEJSON){
+    DrawMode(JSONObject drawModeJSON){
+        EasyJSONObject drawModeEJSON = new EasyJSONObject(drawModeJSON);
         this.containerAnker = drawModeEJSON.safeGetString("containerAnker", "topLeft");
         this.blockMode = drawModeEJSON.safeGetString("blockMode", "vertical");
         this.blockAnker = drawModeEJSON.safeGetString("blockAnker", "CORNER");
@@ -225,7 +260,7 @@ class IconData{
             this.size = iconEJSON.safeGetFloat("size");
             //color iconCol = iconEJSON.safeGetColor("color");
             this.icon = safeLoad.iconLoad(iconEJSON.safeGetString("path"));
-        //changeIconColor(icon, iconCol); //iconが空でない場合。
+            //changeIconColor(icon, iconCol); //iconが空でない場合。
         }
     }
 
@@ -270,16 +305,15 @@ class ShadowData{
 
 //--------------------------------------------------
 color hexToColor(String hex){
-        if (hex.startsWith("#")) {
-            hex = hex.substring(1);
-        }
-        
-        int r = unhex(hex.substring(0, 2));
-        int g = unhex(hex.substring(2, 4));
-        int b = unhex(hex.substring(4, 6));
-        int a = hex.length() == 8 ? unhex(hex.substring(6, 8)) : 255;
-        println(r, g, b, a);
-        return color(r, g, b, a);
+    if (hex.startsWith("#")) {
+        hex = hex.substring(1);
+    }
+    
+    int r = unhex(hex.substring(0, 2));
+    int g = unhex(hex.substring(2, 4));
+    int b = unhex(hex.substring(4, 6));
+    int a = hex.length() == 8 ? unhex(hex.substring(6, 8)) : 255;
+    return color(r, g, b, a);
 }
 
 color readColor(String colorData, JSONObject variableJSON){
