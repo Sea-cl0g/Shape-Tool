@@ -4,6 +4,7 @@ Theme theme;
 Canvas canvas;
 
 boolean isMouseClicking;
+boolean hasMouseTouched;
 boolean isKeyPressing;
 
 String configPath = "data/config.json";
@@ -19,6 +20,7 @@ void setup(){
 }
 
 void draw() {
+    hasMouseTouched = false;
     background(255, 255, 255);
 
     theme.drawMenu();

@@ -64,6 +64,7 @@ class TriggerButton extends ButtonTemplate{
     DrawMode drawMode;
     StyleData normal, touched, clicked;
     Runnable onClick;
+    int status = 0;
     
     TriggerButton(int splitW, int splitH, DrawMode drawMode, StyleData normal, StyleData touched, StyleData clicked, Runnable onClick){
         super(splitW, splitH);
@@ -74,16 +75,29 @@ class TriggerButton extends ButtonTemplate{
         this.onClick = onClick;
     }
 
-    void drawButton(float mouseX, float mouseY){
+    void checkStatus(float mouseX, float mouseY){
         LayoutData normalLayout = normal.layoutData;
         boolean isTouched = isPointInBox(normalLayout.x_point, normalLayout.y_point, normalLayout.width_point, normalLayout.height_point, mouseX, mouseY);
-        if(isTouched && isMouseClicking){
-            if (onClick != null) {
-                onClick.run();
+        if(!hasMouseTouched && isTouched){
+            if(isMouseClicking){
+                status = 2;
+                if(onClick != null){
+                    onClick.run();
+                }
+                isMouseClicking = false;
+            }else{
+                status = 1;
             }
-            isMouseClicking = false;
+            hasMouseTouched = true;
+        }else{
+            status = 0;
+        }
+    }
+
+    void drawButton(){
+        if(status == 2){
             display(clicked);
-        }else if(isTouched){
+        }else if(status == 1){
             display(touched);
         }else{
             display(normal);

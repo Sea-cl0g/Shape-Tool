@@ -13,11 +13,11 @@
 
         "add_rectangle": {
             "path": "button/add_rectangle.json",
-            "queries": [{"Name": "element1", "Query": "FANC_ADD_RECTANGLE"}]
+            "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_RECTANGLE"}]
         },
         "add_ellipse": {
             "path": "button/add_ellipse.json",
-            "queries": [{"Name": "triggerButton", "Query": "FANC_ADD_ELLIPSE"}]
+            "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_ELLIPSE"}]
         },
 
         "edit_layer_name": {

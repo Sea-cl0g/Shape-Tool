@@ -22,40 +22,26 @@ class SafeLoad{
         }
         Path apath = Paths.get(filePath);
         if(!Files.exists(apath)){
-            println("File does not exist: " + filePath);
             return false;
         }
         //ファイルの型が想定通りか？
         if (!filePath.endsWith(fileType)) {
-            println("File type mismatch. Expected: " + fileType);
             return false;
         }
-        println(filePath + "(" + fileType + ")" + " can be loaded.");
         return true;
-    }
-
-    PShape svgLoad(String filePath){
-        if(canLoad(filePath, ".svg")){
-            return loadShape(filePath);
-        }else if(canLoad(ERROR_SVG_PATH, ".svg")){
-            return loadShape(ERROR_SVG_PATH);
-        }
-        println("ERROR: " + ERROR_SVG_PATH + " not found");
-        return new PShape();
     }
 
     JSONObject assetLoad(String assetPath){
         String currThemeAsset = currThemeDir + "/assets/designs/" + assetPath;
         String defaultThemeAsset = DEFAULT_THEME_DIR + "/assets/designs/" + assetPath;
         if(canLoad(currThemeAsset, ".json")){
-            println("Log: " + currThemeAsset + " has loaded!!");
+            println("assetLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadJSONObject(currThemeAsset);
         }else if(canLoad(defaultThemeAsset, ".json")){
-            println("ERROR: " + currThemeAsset + " not found");
-            println("Log: " + defaultThemeAsset + " has loaded!!");
+            println("assetLoad-INSTEAD: " + defaultThemeAsset + " has loaded!!");
             return loadJSONObject(currThemeAsset);
         }
-        println("ERROR: " + defaultThemeAsset + " not found");
+        println("assetLoad-ERROR: " + defaultThemeAsset + " not found");
         return new JSONObject();
     }
 
@@ -63,20 +49,26 @@ class SafeLoad{
         String currThemeAsset = currThemeDir + "/assets/images/" + iconPath;
         String defaultThemeAsset = DEFAULT_THEME_DIR + "/assets/images/" + iconPath;
         if(canLoad(currThemeAsset, ".svg")){
-            println("Log: " + currThemeAsset + " has loaded!!");
+            println("iconLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadShape(currThemeAsset);
         }else if(canLoad(defaultThemeAsset, ".svg")){
-            println("ERROR: " + currThemeAsset + " not found");
-            println("Log: " + defaultThemeAsset + " has loaded!!");
+            println("iconLoad-INSTEAD: " + defaultThemeAsset + " has loaded!!");
             return loadShape(currThemeAsset);
         }else if(canLoad(ERROR_SVG_PATH, ".svg")){
-            println("atffawf");
-            println("ERROR: " + ERROR_SVG_PATH + " not found");
-            println("ERROR: " + defaultThemeAsset + " not found");
-            println("Log: " + ERROR_SVG_PATH + " has loaded!!");
+            println("iconLoad-ERROR: " + ERROR_SVG_PATH + " has loaded!");
             return loadShape(ERROR_SVG_PATH);
         }
-        println("ERROR: " + defaultThemeAsset + " not found");
+        println("iconLoad-ERROR: Could not load any files!");
         return new PShape();
     }
+}
+
+String[] getReverseSortedStringArrayFromJSONObject(JSONObject json){
+    String[] array = new String[json.keys().size()];
+    int i = 0;
+    for(Object jsonObj : json.keys()){
+        array[i] = (String) jsonObj;
+        i++;
+    }
+    return reverse(sort(array));
 }

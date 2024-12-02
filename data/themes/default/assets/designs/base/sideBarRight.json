@@ -4,9 +4,10 @@
     "containerAnker": "topRight",
     "blockMode": "vertical",
     "blockAnker": "CORNER",
+    "layer": 0,
 
     "elements": {
-        "element1": {
+        "e1": {
             "type": "base",
             "layout": {
                 "x_point": 0,

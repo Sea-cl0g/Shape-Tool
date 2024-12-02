@@ -11,10 +11,8 @@ class Theme{
         for(Base base : baseList){
             base.drawBase();
         }
-        int triggerButtonListSize = triggerButtonList.size();
-        for(int i = 0; i < triggerButtonListSize; i++){
-            triggerButtonList.get(triggerButtonListSize - 1 - i).checkStatus(mouseX, mouseY);
-            triggerButtonList.get(i).drawButton();
+        for(TriggerButton triggerButton : triggerButtonList){
+            triggerButton.drawButton(mouseX, mouseY);
         }
     }
 
@@ -22,7 +20,6 @@ class Theme{
         println("Theme Loading...");
         JSONObject assets = config.getJSONObject("assets");
         for(Object assetNameObj : assets.keys()){
-            println();
             String assetName = (String) assetNameObj;
             JSONObject asset = assets.getJSONObject(assetName);
             JSONObject designJSON = safeLoad.assetLoad(asset.getString("path"));
@@ -33,28 +30,25 @@ class Theme{
     }
 
     void readDesign(JSONObject asset, JSONObject designJSON){
+        println();
         buildVariableJSON(designJSON);
         JSONObject elements = designJSON.getJSONObject("elements");
         JSONArray configQuery = asset.getJSONArray("queries");
         DrawMode drawMode = new DrawMode(designJSON);
-        
-        String[] elementNameList = getReverseSortedStringArrayFromJSONObject(elements);
-        println("↓ elementNameList ↓");
-        println(elementNameList);
-
-        for(String elementName : elementNameList){
+        for(Object elementNameObj : elements.keys()){
+            String elementNameStr = (String) elementNameObj;
             boolean isElementQuery = false;
             String queryType = null;
             if(configQuery != null){
                 for(int i = 0; i < configQuery.size(); i++){
-                    if(configQuery.getJSONObject(i).getString("Name").equals(elementName)){
+                    if(configQuery.getJSONObject(i).getString("Name").equals(elementNameStr)){
                         isElementQuery = true;
                         queryType = configQuery.getJSONObject(i).getString("Query");
                     }
                 }
             }
             //if(asset)//configで定義された特別な要素かを調べる
-            EasyJSONObject elementEJSON = new EasyJSONObject(elements.getJSONObject(elementName));
+            EasyJSONObject elementEJSON = new EasyJSONObject(elements.getJSONObject(elementNameStr));
             switch (elementEJSON.safeGetString("type")) {
                 case "base" :
                     LayoutData layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
