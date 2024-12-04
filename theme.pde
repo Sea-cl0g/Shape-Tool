@@ -6,6 +6,26 @@ class Theme{
 
     ArrayList<Base> baseList = new ArrayList<Base>();
     ArrayList<TriggerButton> triggerButtonList = new ArrayList<TriggerButton>();
+    ArrayList<ArrayList<Object>> layers = new ArrayList<ArrayList<Object>>();
+
+    void set_layer(int index){
+        ArrayList<Object> newLayer = new ArrayList<Object>();
+        newLayer.add(index);
+        if(layers.size() > 0){
+            int i = 0;
+            while(i < layers.size()){
+                int cmpIndex = (int) layers.get(i).get(0);
+                if(index < cmpIndex){
+                    break;
+                }
+                i++;
+            }
+            layers.add(i, newLayer);
+        }else{
+            layers.add(newLayer);
+        }
+    }
+    //====================================================================================================
 
     void drawMenu(){
         for(Base base : baseList){
@@ -17,6 +37,8 @@ class Theme{
             triggerButtonList.get(i).drawButton();
         }
     }
+
+    //====================================================================================================
 
     void loadTheme(){
         println("Theme Loading...");
@@ -37,10 +59,9 @@ class Theme{
         JSONObject elements = designJSON.getJSONObject("elements");
         JSONArray configQuery = asset.getJSONArray("queries");
         DrawMode drawMode = new DrawMode(designJSON);
-        
+        set_layer(designJSON.isNull("layer") ? 0 : designJSON.getInt("layer"));
+
         String[] elementNameList = getReverseSortedStringArrayFromJSONObject(elements);
-        println("↓ elementNameList ↓");
-        println(elementNameList);
 
         for(String elementName : elementNameList){
             boolean isElementQuery = false;

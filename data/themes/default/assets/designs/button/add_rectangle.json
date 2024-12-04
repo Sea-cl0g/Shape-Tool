@@ -74,63 +74,6 @@
                     "shadow": "$main"
                 }
             ]
-        },
-        "e1": {
-            "type": "triggerButton",
-            "style": [
-                {
-                    "predicate": "normal",
-                    "button_type": "$maru",
-                    "layout": {
-                        "x_point": 3,
-                        "y_point": 3,
-                        "width_point": 2,
-                        "height_point": 2,
-                        "r_point": 0.3
-                    },
-                    "fill": "$defaultCol",
-                    "icon": "$main",
-                    "shadow": "$main"
-                },
-                {
-                    "predicate": "touched",
-                    "button_type": "$maru",
-                    "layout": {
-                        "x_point": 3,
-                        "y_point": 3,
-                        "width_point": 2,
-                        "height_point": 2,
-                        "r_point": 0.3
-                    },
-                    "fill": "$defaultCol",
-                    "stroke": {
-                        "stroke_point": 0.1,
-                        "color": "#ffffff"
-                    },
-                    "icon": "$main",
-                    "shadow": "$main"
-                },
-                {
-                    "predicate": "clicked",
-                    "button_type": "$maru",
-                    "layout": {
-                        "x_point": 3,
-                        "y_point": 3,
-                        "width_point": 2,
-                        "height_point": 2,
-                        "r_point": 0.3
-                    },
-                    "fill": "$defaultCol",
-                    "icon": "$main",
-                    "shadow": "$main"
-                }
-            ]
-        },
-        "e2":{
-
-        },
-        "null":{
-
         }
     }
 }
