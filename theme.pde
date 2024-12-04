@@ -8,7 +8,7 @@ class Theme{
     ArrayList<TriggerButton> triggerButtonList = new ArrayList<TriggerButton>();
     ArrayList<ArrayList<Object>> layers = new ArrayList<ArrayList<Object>>();
 
-    void set_layer(int index){
+    int setLayerAtPosition(int index){
         ArrayList<Object> newLayer = new ArrayList<Object>();
         newLayer.add(index);
         if(layers.size() > 0){
@@ -17,24 +17,43 @@ class Theme{
                 int cmpIndex = (int) layers.get(i).get(0);
                 if(index < cmpIndex){
                     break;
+                }else if(index == cmpIndex){
+                    return i;
                 }
                 i++;
             }
             layers.add(i, newLayer);
+            return i;
         }else{
             layers.add(newLayer);
+            return 0;
         }
     }
     //====================================================================================================
 
     void drawMenu(){
-        for(Base base : baseList){
-            base.drawBase();
+
+        for(int i = layers.size() - 1; 0 <= i; i--){
+            ArrayList<Object> eachLayer = layers.get(i);
+            for(int q = eachLayer.size() - 1; 0 <= q; q--){
+                Object guiObj = eachLayer.get(q);
+                if(guiObj instanceof TriggerButton){
+                    TriggerButton button = (TriggerButton) guiObj;
+                    button.checkStatus(mouseX, mouseY);
+                }
+            }
         }
-        int triggerButtonListSize = triggerButtonList.size();
-        for(int i = 0; i < triggerButtonListSize; i++){
-            triggerButtonList.get(triggerButtonListSize - 1 - i).checkStatus(mouseX, mouseY);
-            triggerButtonList.get(i).drawButton();
+
+        for(ArrayList<Object> eachLayer : layers){
+            for(Object guiObj : eachLayer){
+                if(guiObj instanceof Base){
+                    Base base = (Base) guiObj;
+                    base.drawBase();
+                }else if(guiObj instanceof TriggerButton){
+                    TriggerButton button = (TriggerButton) guiObj;
+                    button.drawButton();
+                }
+            }
         }
     }
 
@@ -52,6 +71,7 @@ class Theme{
                 readDesign(asset, designJSON);
             }
         }
+        println(layers);
     }
 
     void readDesign(JSONObject asset, JSONObject designJSON){
@@ -59,7 +79,8 @@ class Theme{
         JSONObject elements = designJSON.getJSONObject("elements");
         JSONArray configQuery = asset.getJSONArray("queries");
         DrawMode drawMode = new DrawMode(designJSON);
-        set_layer(designJSON.isNull("layer") ? 0 : designJSON.getInt("layer"));
+
+        int layerPos = setLayerAtPosition(designJSON.isNull("layer") ? 0 : designJSON.getInt("layer"));
 
         String[] elementNameList = getReverseSortedStringArrayFromJSONObject(elements);
 
@@ -80,7 +101,7 @@ class Theme{
                 case "base" :
                     LayoutData layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     color fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
-                    baseList.add(new Base(16, 16, drawMode, layout, fillCol));
+                    layers.get(layerPos).add(new Base(16, 16, drawMode, layout, fillCol));
                 break;
                 case "color" :
                 
@@ -91,7 +112,7 @@ class Theme{
                         function = getButtonFanction(queryType);
                     }
                     EasyJSONArray styles = elementEJSON.safeGetEasyJSONArray("style");
-                    triggerButtonList.add(buildTriggerButton(drawMode, styles, function));
+                    layers.get(layerPos).add(buildTriggerButton(drawMode, styles, function));
                 break;
                 case "toggleButton" :
                     

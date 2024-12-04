@@ -4,7 +4,7 @@
     "containerAnker": "topLeft",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
-    "layer": 0,
+    "layer": 1,
 
     "button_types": {
         "maru": "roundedSquareButton"

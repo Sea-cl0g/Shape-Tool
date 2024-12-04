@@ -4,7 +4,7 @@
     "containerAnker": "topLeft",
     "blockMode": "vertical",
     "blockAnker": "CORNER",
-    "layer": 2,
+    "layer": 0,
 
     "elements": {
         "e1": {
