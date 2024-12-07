@@ -3,7 +3,9 @@ SafeLoad safeLoad;
 Theme theme;
 Canvas canvas;
 
-boolean isMouseClicking;
+boolean isMouseLeftClicking;
+boolean isMouseRightClicking;
+boolean isMouseCenterClicking;
 boolean hasMouseTouched;
 boolean isKeyPressing;
 
@@ -38,11 +40,27 @@ void softPrepare(){
 
 //--------------------------------------------------
 void mousePressed() {
-  isMouseClicking = true;
+  if(mouseButton == LEFT){
+    isMouseLeftClicking = true;
+  }
+  if(mouseButton == RIGHT){
+    isMouseRightClicking = true;
+  }
+  if(mouseButton == CENTER){
+    isMouseCenterClicking = true;
+  }
 }
 
 void mouseReleased() {
-  isMouseClicking = false;
+  if(mouseButton == LEFT){
+    isMouseLeftClicking = false;
+  }
+  if(mouseButton == RIGHT){
+    isMouseRightClicking = false;
+  }
+  if(mouseButton == CENTER){
+    isMouseCenterClicking = false;
+  }
 }
 
 void keyPressed(){

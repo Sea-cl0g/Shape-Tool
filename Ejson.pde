@@ -44,11 +44,6 @@ class EasyJSONObject{
   JSONArray getJSONArray(String key){
     return jsonObj.getJSONArray(key);
   }
-
-  //廃止 今後はjson.jsonObj.keys()を実行すること
-  Object keys(){
-    return jsonObj.keys();
-  }
 }
 
 //--------------------------------------------------

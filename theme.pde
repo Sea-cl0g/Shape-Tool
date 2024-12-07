@@ -4,8 +4,6 @@
 class Theme{
     JSONObject variableJSON = new JSONObject();
 
-    ArrayList<Base> baseList = new ArrayList<Base>();
-    ArrayList<TriggerButton> triggerButtonList = new ArrayList<TriggerButton>();
     ArrayList<ArrayList<Object>> layers = new ArrayList<ArrayList<Object>>();
 
     int setLayerAtPosition(int index){
@@ -30,9 +28,8 @@ class Theme{
         }
     }
     //====================================================================================================
-
     void drawMenu(){
-
+        //ボタンの当たり判定を行う
         for(int i = layers.size() - 1; 0 <= i; i--){
             ArrayList<Object> eachLayer = layers.get(i);
             for(int q = eachLayer.size() - 1; 0 <= q; q--){
@@ -40,15 +37,25 @@ class Theme{
                 if(guiObj instanceof TriggerButton){
                     TriggerButton button = (TriggerButton) guiObj;
                     button.checkStatus(mouseX, mouseY);
+                }else if(guiObj instanceof CanvasBlock){
+                    CanvasBlock cavasBlock = (CanvasBlock) guiObj;
+                    cavasBlock.checkStatus(mouseX, mouseY);
                 }
             }
         }
 
+        //レイヤーの描画を行う
         for(ArrayList<Object> eachLayer : layers){
             for(Object guiObj : eachLayer){
                 if(guiObj instanceof Base){
                     Base base = (Base) guiObj;
                     base.drawBase();
+                }else if(guiObj instanceof CanvasBlock){
+                    CanvasBlock cavasBlock = (CanvasBlock) guiObj;
+                    cavasBlock.drawEasel();
+                }else if(guiObj instanceof Easel){
+                    Easel easel = (Easel) guiObj;
+                    easel.drawEasel();
                 }else if(guiObj instanceof TriggerButton){
                     TriggerButton button = (TriggerButton) guiObj;
                     button.drawButton();
@@ -97,15 +104,24 @@ class Theme{
             }
             //if(asset)//configで定義された特別な要素かを調べる
             EasyJSONObject elementEJSON = new EasyJSONObject(elements.getJSONObject(elementName));
+            LayoutData layout;
+            color fillCol;
             switch (elementEJSON.safeGetString("type")) {
                 case "base" :
-                    LayoutData layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
-                    color fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     layers.get(layerPos).add(new Base(16, 16, drawMode, layout, fillCol));
                 break;
-                case "color" :
-                
+                case "canvas" :
+                    layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    layers.get(layerPos).add(new CanvasBlock(16, 16, drawMode, layout, fillCol));
                 break;	
+                case "easel" :
+                    layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    layers.get(layerPos).add(new Easel(16, 16, drawMode, layout, fillCol));
+                break;
                 case "triggerButton" :
                     Runnable function = null;
                     if(isElementQuery){
@@ -114,7 +130,7 @@ class Theme{
                     EasyJSONArray styles = elementEJSON.safeGetEasyJSONArray("style");
                     layers.get(layerPos).add(buildTriggerButton(drawMode, styles, function));
                 break;
-                case "toggleButton" :
+                case "color" :
                     
                 break;	
             }

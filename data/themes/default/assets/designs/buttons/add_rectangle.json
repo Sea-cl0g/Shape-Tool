@@ -4,7 +4,7 @@
     "containerAnker": "topLeft",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
-    "layer": 1,
+    "layer": 2,
 
     "button_types": {
         "maru": "roundedSquareButton"
@@ -24,7 +24,7 @@
     "icons": {
         "main": {
             "size": 0.8,
-            "path": "icon/TMP_ICON1.svg"
+            "path": "icon/add_rectangle.svg"
         }
     },
     "shadows": {

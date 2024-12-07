@@ -5,58 +5,61 @@
 
     "assets": {
         "sideBarLeft": {
-            "path": "base/sideBarLeft.json"
+            "path": "bases/sideBarLeft.json"
         },
         "sideBarRight": {
-            "path": "base/sideBarRight.json"
+            "path": "bases/sideBarRight.json"
+        },
+        "canvas": {
+            "path": "others/canvas.json"
         },
 
         "add_rectangle": {
-            "path": "button/add_rectangle.json",
+            "path": "buttons/add_rectangle.json",
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_RECTANGLE"}]
         },
         "add_ellipse": {
-            "path": "button/add_ellipse.json",
+            "path": "buttons/add_ellipse.json",
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_ELLIPSE"}]
         },
 
         "edit_layer_name": {
-            "path": "button/edit_layer_name.json"
+            "path": "buttons/edit_layer_name.json"
         },
         "create_a_layer": {
-            "path": "button/create_a_layer.json"
+            "path": "buttons/create_a_layer.json"
         },
         "duplicate_layer": {
-            "path": "button/duplicate_layer.json"
+            "path": "buttons/duplicate_layer.json"
         },
         "move_layer_up": {
-            "path": "button/move_layer_up.json"
+            "path": "buttons/move_layer_up.json"
         },
         "move_layer_down": {
-            "path": "button/move_layer_down.json"
+            "path": "buttons/move_layer_down.json"
         },
         "delete_selected_layer": {
-            "path": "button/delete_selected_layer.json"
+            "path": "buttons/delete_selected_layer.json"
         },
 
         "vertex_mode_pointed": {
-            "path": "button/vertex_mode_pointed.json"
+            "path": "buttons/vertex_mode_pointed.json"
         },
         "vertex_mode_curved": {
-            "path": "button/vertex_mode_curved.json"
+            "path": "buttons/vertex_mode_curved.json"
         },
 
         "save_prj": {
-            "path": "button/save_prj.json"
+            "path": "buttons/save_prj.json"
         },
         "export_prj": {
-            "path": "button/export_prj.json"
+            "path": "buttons/export_prj.json"
         },
         "import_prj": {
-            "path": "button/import_prj.json"
+            "path": "buttons/import_prj.json"
         },
         "option": {
-            "path": "button/option.json"
+            "path": "buttons/option.json"
         }
     }
 }

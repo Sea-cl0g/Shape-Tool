@@ -1,65 +1,4 @@
-class Dialog extends Block{
-    ButtonTemplate bt;
 
-    int LAYER_BOX_BORDER = 10;
-
-    Dialog(int splitW, int splitH) {
-        super(splitW, splitH);
-        bt = new ButtonTemplate(splitW, splitH);
-    }
-
-    //layer_box
-    /*
-    void drawLayerBox(float x, float y, float w, float h){
-        //背景
-        noStroke();
-        outlineBox(x, y, w, h, backgroundCol, 0.1, color(217, 217, 217));
-
-        //ボタン
-        bt.setContainerAnker(this.containerAnker);
-        bt.setBlockMode(this.blockMode);
-        bt.setBlockAnker(this.blockAnker);
-        int buttonNum = 6;
-        float buttonSize = w / buttonNum;
-        for(int i = 0; i < 6; i++){
-            bt.test_button(x - w / 2 + i * w / buttonNum + buttonSize / 2, y + h / 2 - 1.5, buttonSize, buttonSize);
-        }
-        
-    }
-    */
-
-    //outlineBox
-    void outlineBox(float x, float y, float w, float h, color fillCol, float lineWeight, color lineCol){
-        if(blockAnker.equals("CORNER")){
-            fill(lineCol);
-            drawBox(x - lineWeight, y - lineWeight, w + lineWeight * 2, h + lineWeight * 2, 0, 0, 0, 0);
-            fill(fillCol);
-            drawBox(x, y, w, h, 0, 0, 0, 0);
-        }else{
-            fill(lineCol);
-            drawBox(x, y, w + lineWeight * 2, h + lineWeight * 2, 0, 0, 0, 0);
-            fill(fillCol);
-            drawBox(x, y, w, h, 0, 0, 0, 0);
-        }
-    }
-
-    //inlineBox
-    void inlineBox(float x, float y, float w, float h, color fillCol, float lineWeight, color lineCol){
-        if(blockAnker.equals("CORNER")){
-            fill(lineCol);
-            drawBox(x, y, w, h, 0, 0, 0, 0);
-            fill(fillCol);
-            drawBox(x + lineWeight, y + lineWeight, w - lineWeight * 2, h - lineWeight * 2, 0, 0, 0, 0);
-        }else{
-            fill(lineCol);
-            drawBox(x, y, w, h, 0, 0, 0, 0);
-            fill(fillCol);
-            drawBox(x, y, w - lineWeight * 2, h - lineWeight * 2, 0, 0, 0, 0);
-        }
-    }
-}
-
-//--------------------------------------------------
 class TriggerButton extends ButtonTemplate{
     DrawMode drawMode;
     StyleData normal, touched, clicked;
@@ -79,12 +18,12 @@ class TriggerButton extends ButtonTemplate{
         LayoutData normalLayout = normal.layoutData;
         boolean isTouched = isPointInBox(normalLayout.x_point, normalLayout.y_point, normalLayout.width_point, normalLayout.height_point, mouseX, mouseY);
         if(!hasMouseTouched && isTouched){
-            if(isMouseClicking){
+            if(isMouseLeftClicking){
                 status = 2;
                 if(onClick != null){
                     onClick.run();
                 }
-                isMouseClicking = false;
+                isMouseLeftClicking = false;
             }else{
                 status = 1;
             }
@@ -357,25 +296,6 @@ class ButtonTemplate extends Block{
         }
     }
 
-    //boxの左上角の座標を取得
-    PVector getBoxCorner(float x, float y, float w, float h){
-        if(blockAnker.equals("CENTER")){
-            return new PVector(x, y);
-        }else{
-            return new PVector(x - w / 2, y - h / 2);
-        }
-    }
-
-    //ボタンに触れているか？
-    boolean isPointInBox(float x, float y, float w, float h, float pointX, float pointY){
-        PVector cornerPos = getBoxCorner(x, y, w, h);
-        
-        PVector size = getContainerBlockSize(w, h);
-        PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
-        boolean xCheck = pos.x < mouseX && mouseX < pos.x + size.x;
-        boolean yCheck = pos.y < mouseY && mouseY < pos.y + size.y;
-        return xCheck && yCheck;
-    }
 }
 
 
@@ -429,6 +349,26 @@ class Block extends Container{
         br = getContainerBlockSize(br, br).x;
         bl = getContainerBlockSize(bl, bl).x;
         rect(pos.x, pos.y, size.x, size.y, tl, tr, br, bl);
+    }
+    
+    //boxの左上角の座標を取得
+    PVector getBoxCorner(float x, float y, float w, float h){
+        if(blockAnker.equals("CENTER")){
+            return new PVector(x, y);
+        }else{
+            return new PVector(x - w / 2, y - h / 2);
+        }
+    }
+
+    //boxに触れているか？
+    boolean isPointInBox(float x, float y, float w, float h, float pointX, float pointY){
+        PVector cornerPos = getBoxCorner(x, y, w, h);
+        
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
+        boolean xCheck = pos.x < mouseX && mouseX < pos.x + size.x;
+        boolean yCheck = pos.y < mouseY && mouseY < pos.y + size.y;
+        return xCheck && yCheck;
     }
 
     // プリセット
@@ -509,7 +449,7 @@ class Container {
             case "bottomRight":
                 return new PVector(width - size.x - g_pos.x, height - size.y - g_pos.y);
             case "center":
-                return new PVector(width / 2 - size.x / 2 + g_pos.x, height / 2 - size.y / 2 + g_pos.y);
+                return new PVector(width / 2 + g_pos.x, height / 2 + g_pos.y);
             default:
                 return new PVector(g_pos.x, g_pos.y);
         }
@@ -521,5 +461,26 @@ class Container {
 
     float getContainerBlockHeight(float h) {
         return height * h / splitH;
+    }
+
+    PVector getContainerBlockPoint(float w, float h) {
+        switch (blockMode) {
+            case "vertical":
+                return new PVector(getContainerBlockHeightPoint(w), getContainerBlockHeightPoint(h));
+            case "horizontal":
+                return new PVector(getContainerBlockWidthPoint(w), getContainerBlockWidthPoint(h));
+            case "both":
+                return new PVector(getContainerBlockWidthPoint(w), getContainerBlockHeightPoint(h));
+            default:
+                return new PVector(getContainerBlockWidthPoint(w), getContainerBlockHeightPoint(h));
+        }
+    }
+    
+    float getContainerBlockWidthPoint(float blockWidth) {
+        return blockWidth * splitW / width;
+    }
+
+    float getContainerBlockHeightPoint(float blockHeight) {
+        return blockHeight * splitH / height;
     }
 }
