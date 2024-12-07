@@ -3,9 +3,9 @@ SafeLoad safeLoad;
 Theme theme;
 Canvas canvas;
 
-boolean isMouseLeftClicking;
-boolean isMouseRightClicking;
-boolean isMouseCenterClicking;
+boolean isMouseLeftClicked;
+boolean isMouseRightClicked;
+boolean isMouseCenterClicked;
 boolean hasMouseTouched;
 boolean isKeyPressing;
 
@@ -25,8 +25,8 @@ void draw() {
     hasMouseTouched = false;
     background(255, 255, 255);
 
-    theme.drawMenu();
-    //checkBlocks(5, 5, "vertical", "CORNER");
+    theme.drawGUI();
+    canvas.process();
 }
 
 //--------------------------------------------------
@@ -41,25 +41,25 @@ void softPrepare(){
 //--------------------------------------------------
 void mousePressed() {
   if(mouseButton == LEFT){
-    isMouseLeftClicking = true;
+    isMouseLeftClicked = true;
   }
   if(mouseButton == RIGHT){
-    isMouseRightClicking = true;
+    isMouseRightClicked = true;
   }
   if(mouseButton == CENTER){
-    isMouseCenterClicking = true;
+    isMouseCenterClicked = true;
   }
 }
 
 void mouseReleased() {
   if(mouseButton == LEFT){
-    isMouseLeftClicking = false;
+    isMouseLeftClicked = false;
   }
   if(mouseButton == RIGHT){
-    isMouseRightClicking = false;
+    isMouseRightClicked = false;
   }
   if(mouseButton == CENTER){
-    isMouseCenterClicking = false;
+    isMouseCenterClicked = false;
   }
 }
 

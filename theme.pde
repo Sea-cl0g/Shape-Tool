@@ -28,7 +28,7 @@ class Theme{
         }
     }
     //====================================================================================================
-    void drawMenu(){
+    void drawGUI(){
         //ボタンの当たり判定を行う
         for(int i = layers.size() - 1; 0 <= i; i--){
             ArrayList<Object> eachLayer = layers.get(i);
@@ -37,9 +37,9 @@ class Theme{
                 if(guiObj instanceof TriggerButton){
                     TriggerButton button = (TriggerButton) guiObj;
                     button.checkStatus(mouseX, mouseY);
-                }else if(guiObj instanceof CanvasBlock){
-                    CanvasBlock cavasBlock = (CanvasBlock) guiObj;
-                    cavasBlock.checkStatus(mouseX, mouseY);
+                }else if(guiObj instanceof Base){
+                    Base base = (Base) guiObj;
+                    base.checkStatus(mouseX, mouseY);
                 }
             }
         }

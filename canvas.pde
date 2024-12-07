@@ -2,9 +2,28 @@ PVector move;
 float scale;
 
 class Canvas{
+    PVector buffer;
+    boolean dragged;
+
     Canvas(){
         move = new PVector(0, 0);
         scale = 1.0;
+    }
+
+    void process(){
+        if(dragged){
+            if(!mousePressed){ //ボタンの確認はしない
+                dragged = false;
+            }
+            move = new PVector(mouseX - buffer.x, mouseY - buffer.y);
+        }else if(isMouseCenterClicked && !hasMouseTouched){
+            dragged = true;
+            buffer = new PVector(mouseX, mouseY);
+        }
+
+        if(isMouseCenterClicked){
+            isMouseCenterClicked = false;
+        }
     }
 
     void add_rectangle(){
@@ -41,36 +60,16 @@ class Easel extends Block{
         
         fill(fillCol);
         noStroke();
-        box(x + move.x, y + move.y, w * scale, h * scale);
+        PVector move_point = getContainerBlockPoint(move.x, move.y);
+        box(x + move_point.x, y + move_point.y, w * scale, h * scale);
     }
 }
 
 class CanvasBlock extends Easel{
-    boolean dragged;
-    PVector buffer;
-
     CanvasBlock(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, color fillCol){
         super(splitW, splitH, drawMode, layoutData, fillCol);
         this.drawMode = drawMode;
         this.fillCol = fillCol;
-
-        buffer = new PVector(0, 0);
-    }
-
-    void checkStatus(float mouseX, float mouseY){
-        println(dragged);
-        if(dragged){
-            dragged = false;
-            move.add(getContainerBlockPoint(mouseX - buffer.x, mouseY - buffer.y));
-        }
-        boolean isTouched = isPointInBox(x + move.x, y + move.y, w * scale, h * scale, mouseX, mouseY);
-        if(!hasMouseTouched && isTouched){
-            if(isMouseCenterClicking){
-                dragged = true;
-                buffer = new PVector(mouseX, mouseY);
-            }
-            hasMouseTouched = true;
-        }
     }
 
     void drawItems(){
