@@ -398,7 +398,7 @@ class Container {
     int splitH;
     
     Container(int splitW, int splitH) {
-        Container(0.0, 0.0, width, height, splitW, splitH);
+        this(0.0, 0.0, width, height, splitW, splitH);
     }
 
     Container(float anchorX, float anchorY, float sizeW, float sizeH, int splitW, int splitH) {
@@ -458,21 +458,32 @@ class Container {
     }
 
     PVector getContainerPos(float x, float y, PVector size) {
-        PVector g_pos = getContainerBlockSize(x, y);
+        PVector relative_pos = getContainerBlockSize(x, y);
+        PVector global_pos;
+
         switch (containerAnker) {
             case "topLeft":
-                return new PVector(g_pos.x, g_pos.y);
+                global_pos = new PVector(relative_pos.x , relative_pos.y);
+                break;
             case "topRight":
-                return new PVector(sizeW  - size.x - g_pos.x, g_pos.y);
+                global_pos = new PVector(sizeW  - size.x - relative_pos.x, relative_pos.y);
+                break;
             case "bottomLeft":
-                return new PVector(g_pos.x, splitH - size.y - g_pos.y);
+                global_pos = new PVector(relative_pos.x, splitH - size.y - relative_pos.y);
+                break;
             case "bottomRight":
-                return new PVector(sizeW  - size.x - g_pos.x, splitH - size.y - g_pos.y);
+                global_pos = new PVector(sizeW  - size.x - relative_pos.x, splitH - size.y - relative_pos.y);
+                break;
             case "center":
-                return new PVector(sizeW  / 2 + g_pos.x, splitH / 2 + g_pos.y);
+                global_pos = new PVector(sizeW  / 2 + relative_pos.x, splitH / 2 + relative_pos.y);
+                break;
             default:
-                return new PVector(g_pos.x, g_pos.y);
+                global_pos = new PVector(relative_pos.x, relative_pos.y);
+                break;
         }
+
+        global_pos.add(anchorX, anchorY);
+        return global_pos;
     }
 
     float getContainerBlockWidth(float w) {
@@ -480,7 +491,7 @@ class Container {
     }
 
     float getContainerBlockHeight(float h) {
-        return splitH * h / splitH;
+        return sizeH * h / splitH;
     }
 
     PVector getContainerBlockPoint(float w, float h) {
