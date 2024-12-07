@@ -391,10 +391,23 @@ class Block extends Container{
 class Container {
     String containerAnker;
     String blockMode;
+
+    float anchorX, anchorY, sizeW, sizeH;
+
     int splitW;
     int splitH;
-
+    
     Container(int splitW, int splitH) {
+        Container(0.0, 0.0, width, height, splitW, splitH);
+    }
+
+    Container(float anchorX, float anchorY, float sizeW, float sizeH, int splitW, int splitH) {
+        this.anchorX = anchorX; //アンカーの設定。
+        this.anchorY = anchorY;
+
+        this.sizeW = sizeW;
+        this.sizeH = sizeH;
+
         this.splitW = splitW;
         this.splitH = splitH;
         setContainerAnker("DEFAULT");
@@ -450,24 +463,24 @@ class Container {
             case "topLeft":
                 return new PVector(g_pos.x, g_pos.y);
             case "topRight":
-                return new PVector(width - size.x - g_pos.x, g_pos.y);
+                return new PVector(sizeW  - size.x - g_pos.x, g_pos.y);
             case "bottomLeft":
-                return new PVector(g_pos.x, height - size.y - g_pos.y);
+                return new PVector(g_pos.x, splitH - size.y - g_pos.y);
             case "bottomRight":
-                return new PVector(width - size.x - g_pos.x, height - size.y - g_pos.y);
+                return new PVector(sizeW  - size.x - g_pos.x, splitH - size.y - g_pos.y);
             case "center":
-                return new PVector(width / 2 + g_pos.x, height / 2 + g_pos.y);
+                return new PVector(sizeW  / 2 + g_pos.x, splitH / 2 + g_pos.y);
             default:
                 return new PVector(g_pos.x, g_pos.y);
         }
     }
 
     float getContainerBlockWidth(float w) {
-        return width * w / splitW;
+        return sizeW  * w / splitW;
     }
 
     float getContainerBlockHeight(float h) {
-        return height * h / splitH;
+        return splitH * h / splitH;
     }
 
     PVector getContainerBlockPoint(float w, float h) {
@@ -484,10 +497,10 @@ class Container {
     }
     
     float getContainerBlockWidthPoint(float blockWidth) {
-        return blockWidth * splitW / width;
+        return blockWidth * splitW / sizeW ;
     }
 
     float getContainerBlockHeightPoint(float blockHeight) {
-        return blockHeight * splitH / height;
+        return blockHeight * splitH / splitH;
     }
 }
