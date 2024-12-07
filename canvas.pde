@@ -61,7 +61,7 @@ class Easel extends Block{
         fill(fillCol);
         noStroke();
         pos.add(getContainerBlockPoint(move.x, move.y));
-        box(pos.x, pos.y, w * scale, h * scale);
+        box(pos.x, pos.y, w * scale, h * scale, true);
     }
 }
 

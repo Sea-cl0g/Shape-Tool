@@ -341,6 +341,10 @@ class Block extends Container{
     void box(float x, float y, float w, float h) {
         drawBox(x, y, w, h, 0, 0, 0, 0);
     }
+    //debug
+    void box(float x, float y, float w, float h, boolean a) {
+        drawBox(x, y, w, h, 0, 0, 0, 0, a);
+    }
     void box(float x, float y, float w, float h, float r) {
         drawBox(x, y, w, h, r, r, r, r);
     }
@@ -355,6 +359,19 @@ class Block extends Container{
         tr = getContainerBlockSize(tr, tr).x;
         br = getContainerBlockSize(br, br).x;
         bl = getContainerBlockSize(bl, bl).x;
+        rect(pos.x, pos.y, size.x, size.y, tl, tr, br, bl);
+    }
+
+    //debug
+    void drawBox(float x, float y, float w, float h, float tl, float tr, float br, float bl, boolean a){
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
+        tl = getContainerBlockSize(tl, tl).x;
+        tr = getContainerBlockSize(tr, tr).x;
+        br = getContainerBlockSize(br, br).x;
+        bl = getContainerBlockSize(bl, bl).x;
+        println(x, y, w, h);
+        println(pos);
         rect(pos.x, pos.y, size.x, size.y, tl, tr, br, bl);
     }
     
@@ -469,13 +486,13 @@ class Container {
                 global_pos = new PVector(sizeW  - size.x - relative_pos.x, relative_pos.y);
                 break;
             case "bottomLeft":
-                global_pos = new PVector(relative_pos.x, splitH - size.y - relative_pos.y);
+                global_pos = new PVector(relative_pos.x, sizeH - size.y - relative_pos.y);
                 break;
             case "bottomRight":
-                global_pos = new PVector(sizeW  - size.x - relative_pos.x, splitH - size.y - relative_pos.y);
+                global_pos = new PVector(sizeW  - size.x - relative_pos.x, sizeH - size.y - relative_pos.y);
                 break;
             case "center":
-                global_pos = new PVector(sizeW  / 2 + relative_pos.x, splitH / 2 + relative_pos.y);
+                global_pos = new PVector(sizeW  / 2 + relative_pos.x, sizeH / 2 + relative_pos.y);
                 break;
             default:
                 global_pos = new PVector(relative_pos.x, relative_pos.y);
@@ -487,7 +504,7 @@ class Container {
     }
 
     float getContainerBlockWidth(float w) {
-        return sizeW  * w / splitW;
+        return sizeW * w / splitW;
     }
 
     float getContainerBlockHeight(float h) {
@@ -512,6 +529,6 @@ class Container {
     }
 
     float getContainerBlockHeightPoint(float blockHeight) {
-        return blockHeight * splitH / splitH;
+        return blockHeight * splitH / sizeH;
     }
 }
