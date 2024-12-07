@@ -28,18 +28,44 @@ class Theme{
         }
     }
     //====================================================================================================
+    int width_buffer, height_buffer;
     void drawGUI(){
-        //ボタンの当たり判定を行う
+        boolean isWindowSizeChanged = false;
+        if(width != width_buffer || height != height_buffer){
+            isWindowSizeChanged = true;
+            width_buffer = width;
+            height_buffer = height;
+        }
         for(int i = layers.size() - 1; 0 <= i; i--){
             ArrayList<Object> eachLayer = layers.get(i);
             for(int q = eachLayer.size() - 1; 0 <= q; q--){
                 Object guiObj = eachLayer.get(q);
-                if(guiObj instanceof TriggerButton){
-                    TriggerButton button = (TriggerButton) guiObj;
-                    button.checkStatus(mouseX, mouseY);
-                }else if(guiObj instanceof Base){
+                if(guiObj instanceof Base){
                     Base base = (Base) guiObj;
+                    if(isWindowSizeChanged){
+                        base.sizeW = width;
+                        base.sizeH = height;
+                    }
                     base.checkStatus(mouseX, mouseY);
+                }else if(guiObj instanceof CanvasBlock){
+                    CanvasBlock cavasBlock = (CanvasBlock) guiObj;
+                    if(isWindowSizeChanged){
+                        cavasBlock.sizeW = width;
+                        cavasBlock.sizeH = height;
+                    }
+                }else if(guiObj instanceof Easel){
+                    Easel easel = (Easel) guiObj;
+                    if(isWindowSizeChanged){
+                        easel.sizeW = width;
+                        easel.sizeH = height;
+                    }
+                }else if(guiObj instanceof TriggerButton){
+                    TriggerButton button = (TriggerButton) guiObj;
+                    if(isWindowSizeChanged){
+                        button.sizeW = width;
+                        button.sizeH = height;
+                    }
+                    button.checkStatus(mouseX, mouseY);
                 }
             }
         }

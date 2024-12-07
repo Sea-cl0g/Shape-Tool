@@ -370,8 +370,6 @@ class Block extends Container{
         tr = getContainerBlockSize(tr, tr).x;
         br = getContainerBlockSize(br, br).x;
         bl = getContainerBlockSize(bl, bl).x;
-        println(x, y, w, h);
-        println(pos);
         rect(pos.x, pos.y, size.x, size.y, tl, tr, br, bl);
     }
     
