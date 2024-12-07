@@ -2,7 +2,6 @@ PVector move;
 float scale;
 
 class Canvas{
-    PVector buffer;
     boolean dragged;
 
     Canvas(){
@@ -11,16 +10,16 @@ class Canvas{
     }
 
     void process(){
+        move = new PVector(0, 0);
         if(dragged){
             if(!mousePressed){ //ボタンの確認はしない
                 dragged = false;
             }
-            move = new PVector(mouseX - buffer.x, mouseY - buffer.y);
+            move = new PVector(mouseX - pmouseX, mouseY - pmouseY);
         }else if(isMouseCenterClicked && !hasMouseTouched){
             dragged = true;
-            buffer = new PVector(mouseX, mouseY);
         }
-
+        
         if(isMouseCenterClicked){
             isMouseCenterClicked = false;
         }
@@ -40,15 +39,16 @@ class Canvas{
 class Easel extends Block{
     DrawMode drawMode;
     color fillCol;
-    float x, y, w, h;
+    PVector pos = new PVector(); 
+    float w, h;
 
     Easel(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, color fillCol){
         super(splitW, splitH);
         this.drawMode = drawMode;
         this.fillCol = fillCol; 
 
-        x = layoutData.x_point;
-        y = layoutData.y_point;
+        pos.x = layoutData.x_point;
+        pos.y = layoutData.y_point;
         w = layoutData.width_point;
         h = layoutData.height_point;
     }
@@ -60,8 +60,8 @@ class Easel extends Block{
         
         fill(fillCol);
         noStroke();
-        PVector move_point = getContainerBlockPoint(move.x, move.y);
-        box(x + move_point.x, y + move_point.y, w * scale, h * scale);
+        pos.add(getContainerBlockPoint(move.x, move.y));
+        box(pos.x, pos.y, w * scale, h * scale);
     }
 }
 

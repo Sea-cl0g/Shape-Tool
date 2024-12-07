@@ -63,6 +63,25 @@ void mouseReleased() {
   }
 }
 
+void mouseWheel(MouseEvent mouseEvent){
+  float wheel = mouseEvent.getCount();
+  if(wheel < 0){
+    if(scale + 0.1 > 4.0){
+      scale = 4.0; 
+    }else{
+      scale += 0.1;
+    }
+  }
+  else if(wheel > 0){
+    if(scale - 0.1 < 0.1){
+      scale = 0.1;
+    }else{
+      scale -= 0.1;
+    }
+  }
+  println(scale, wheel);
+}
+
 void keyPressed(){
   isKeyPressing = true;
 }
