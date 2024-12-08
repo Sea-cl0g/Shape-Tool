@@ -57,6 +57,7 @@ class Rectangle extends Shape{
     }
 
     void drawShape(){
+        fill(255, 0, 0);
         box(x, y, w, h);
         println(x, y, w, h);
     }
@@ -101,12 +102,15 @@ class CanvasBlock extends Easel{
     }
 
     void drawItems(){
-        //PVector canvasSize = getContainerBlockSize(w, h);
-        //PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
+        PVector canvasSize = getContainerBlockSize(w * canvas.scale, h * canvas.scale);
+        PVector canvasPos = getObjectPos(pos.x, pos.y, w * canvas.scale, h * canvas.scale, canvasSize);
         for(Shape shapeObj : canvas.shapes){
             if(shapeObj instanceof Rectangle){
                 Rectangle shape = (Rectangle) shapeObj;
-                //shape.sizeW = 
+                shape.sizeW = canvasSize.x;
+                shape.sizeH = canvasSize.y;
+                shape.anchorX = canvasPos.x;
+                shape.anchorY = canvasPos.y;
                 shape.drawShape();
             }
         }
