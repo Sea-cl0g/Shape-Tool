@@ -1,9 +1,0 @@
-{
-    "description": "Example of describing a button class theme without using references",
-    "author": "boo_manKnow",
-
-    "element1": {
-        "type": "color",
-        "color": "#7d7d7d"
-    }
-}

@@ -49,11 +49,12 @@ class Theme{
                     }
                     base.checkStatus(mouseX, mouseY);
                 }else if(guiObj instanceof CanvasBlock){
-                    CanvasBlock cavasBlock = (CanvasBlock) guiObj;
+                    CanvasBlock canvasBlock = (CanvasBlock) guiObj;
                     if(isWindowSizeChanged){
-                        cavasBlock.sizeW = width;
-                        cavasBlock.sizeH = height;
+                        canvasBlock.sizeW = width;
+                        canvasBlock.sizeH = height;
                     }
+                    canvasBlock.checkShapesStatus(mouseX, mouseY);
                     canvas.process();
                 }else if(guiObj instanceof Easel){
                     Easel easel = (Easel) guiObj;
@@ -79,9 +80,9 @@ class Theme{
                     Base base = (Base) guiObj;
                     base.drawBase();
                 }else if(guiObj instanceof CanvasBlock){
-                    CanvasBlock cavasBlock = (CanvasBlock) guiObj;
-                    cavasBlock.drawEasel();
-                    cavasBlock.drawItems();
+                    CanvasBlock canvasBlock = (CanvasBlock) guiObj;
+                    canvasBlock.drawEasel();
+                    canvasBlock.drawItems();
                 }else if(guiObj instanceof Easel){
                     Easel easel = (Easel) guiObj;
                     easel.drawEasel();

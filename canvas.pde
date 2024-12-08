@@ -41,8 +41,19 @@ class Canvas{
 
 //--------------------------------------------------
 class Shape extends Block{
+    boolean selected;
+
     Shape(){
         super(0, 0, 1000, 1000, 100, 100); //適当な数で初期化
+    }
+
+    void selectLine(float x, float y, float w, float h){
+        if(selected){
+            noFill();
+            stroke(0, 0, 255);
+            strokeWeight(1);
+            box(x, y, w, h);
+        }
     }
 }
 
@@ -56,10 +67,30 @@ class Rectangle extends Shape{
         this.h = h;
     }
 
-    void drawShape(){
+    void checkStatus(float mouseX, float mouseY){
+        boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
+        if(!hasMouseTouched && isTouched){
+            if(isMouseLeftClicked){
+                isMouseLeftClicked = false;
+                selected = true;
+            }
+            hasMouseTouched = true;
+        }else if(!isTouched && isMouseLeftClicked){
+                isMouseLeftClicked = false;
+                selected = false;
+        }
+    }
+
+    void drawRectangle(){
         fill(255, 0, 0);
+        stroke(200, 200, 200);
+        strokeWeight(4);
         box(x, y, w, h);
-        println(x, y, w, h);
+    }
+
+    void drawShape(){
+        drawRectangle();
+        selectLine(x, y, w, h);
     }
 }
 
@@ -73,8 +104,7 @@ class Easel extends Block{
     Easel(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, color fillCol){
         super(splitW, splitH);
         this.drawMode = drawMode;
-        this.fillCol = fillCol; 
-
+        this.fillCol = fillCol;
         pos.x = layoutData.x_point;
         pos.y = layoutData.y_point;
         w = layoutData.width_point;
@@ -101,19 +131,28 @@ class CanvasBlock extends Easel{
         this.fillCol = fillCol;
     }
 
-    void drawItems(){
+    void checkShapesStatus(float pointX, float pointY){
         PVector canvasSize = getContainerBlockSize(w * canvas.scale, h * canvas.scale);
         PVector canvasPos = getObjectPos(pos.x, pos.y, w * canvas.scale, h * canvas.scale, canvasSize);
-        for(Shape shapeObj : canvas.shapes){
+        for(int i = canvas.shapes.size() - 1; 0 <= i; i--){
+            Shape shapeObj = canvas.shapes.get(i);
             if(shapeObj instanceof Rectangle){
                 Rectangle shape = (Rectangle) shapeObj;
                 shape.sizeW = canvasSize.x;
                 shape.sizeH = canvasSize.y;
                 shape.anchorX = canvasPos.x;
                 shape.anchorY = canvasPos.y;
+                shape.checkStatus(pointX, pointY);
+            }
+        }
+    }
+
+    void drawItems(){
+        for(Shape shapeObj : canvas.shapes){
+            if(shapeObj instanceof Rectangle){
+                Rectangle shape = (Rectangle) shapeObj;
                 shape.drawShape();
             }
         }
-
     }
 }
