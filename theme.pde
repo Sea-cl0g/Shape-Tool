@@ -68,6 +68,8 @@ class Theme{
                         button.sizeW = width;
                         button.sizeH = height;
                     }
+                    println();
+                    println("checkButton");
                     button.checkStatus(mouseX, mouseY);
                 }
             }

@@ -19,12 +19,12 @@ class Canvas{
                 dragged = false;
             }
             move = new PVector(mouseX - pmouseX, mouseY - pmouseY);
-        }else if(isMouseCenterClicked && !hasMouseTouched){
+        }else if(isMouseCenterClicking && !hasMouseTouched){
             dragged = true;
         }
         
-        if(isMouseCenterClicked){
-            isMouseCenterClicked = false;
+        if(isMouseCenterClicking){
+            isMouseCenterClicking = false;
         }
     }
 
@@ -55,29 +55,57 @@ class Shape extends Block{
             box(x, y, w, h);
         }
     }
+
+    boolean isNearTarget(float targetX, float targetY, float pointX, float pointY, float th){
+        return dist(targetX, targetY, pointX, pointY) < th;
+    }
 }
 
 class Rectangle extends Shape{
-    float x, y, w, h;
+    float x, y, w, h, tl, tr, br, bl;
+    boolean isTouched;
+    boolean[] isTouchedList = new boolean[5];
 
     Rectangle(float x, float y, float w, float h){
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
+
+        this.tl = 0.0;
+        this.tr = 0.0;
+        this.br = 0.0;
+        this.bl = 0.0;
+
+        this.isTouched = false;
     }
 
+    
+
+
     void checkStatus(float mouseX, float mouseY){
-        boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
+        
+
+        isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
+        println(isTouched, hasMouseLeftClicked, isMouseLeftClicking, selected);
+
+        //選択しているか否かを見る関数として切り出して、ポイントの当たり判定でも再利用する
         if(!hasMouseTouched && isTouched){
-            if(isMouseLeftClicked){
-                isMouseLeftClicked = false;
+            if(isMouseLeftClicking && !selected){
+                isMouseLeftClicking = false;
                 selected = true;
             }
             hasMouseTouched = true;
-        }else if(!isTouched && isMouseLeftClicked){
-                isMouseLeftClicked = false;
-                selected = false;
+        }else if(!isTouched && isMouseLeftClicking){
+            selected = false;
+        }
+
+        if(selected){
+            if(mousePressed && mouseButton == LEFT){
+                PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
+                x += mouseMove.x;
+                y += mouseMove.y;
+            }
         }
     }
 
@@ -142,6 +170,7 @@ class CanvasBlock extends Easel{
                 shape.sizeH = canvasSize.y;
                 shape.anchorX = canvasPos.x;
                 shape.anchorY = canvasPos.y;
+                
                 shape.checkStatus(pointX, pointY);
             }
         }

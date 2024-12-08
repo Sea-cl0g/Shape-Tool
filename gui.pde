@@ -18,15 +18,16 @@ class TriggerButton extends ButtonTemplate{
         LayoutData normalLayout = normal.layoutData;
         boolean isTouched = isPointInBox(normalLayout.x_point, normalLayout.y_point, normalLayout.width_point, normalLayout.height_point, mouseX, mouseY);
         if(!hasMouseTouched && isTouched){
-            if(isMouseLeftClicked){
+            if(isMouseLeftClicking){
                 status = 2;
                 if(onClick != null){
                     onClick.run();
                 }
-                isMouseLeftClicked = false;
+                isMouseLeftClicking = false;
             }else{
                 status = 1;
             }
+            println("mouseTouched!!!!!!");
             hasMouseTouched = true;
         }else{
             status = 0;
