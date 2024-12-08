@@ -5,7 +5,7 @@
     "containerAnker": "center",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
-    "layer": 0,
+    "layer": 10,
 
     "elements": {
         "e1": {

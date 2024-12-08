@@ -1,8 +1,11 @@
-PVector move;
-float scale;
+
 
 class Canvas{
+    ArrayList<Shape> shapes = new ArrayList<Shape>();
     boolean dragged;
+
+    PVector move;
+    float scale;
 
     Canvas(){
         move = new PVector(0, 0);
@@ -27,6 +30,8 @@ class Canvas{
 
     void add_rectangle(){
         println("rect_added");
+        Rectangle rect = new Rectangle(0, 0, 10, 10);
+        shapes.add(rect);
     }
 
     void add_ellipse(){
@@ -35,7 +40,29 @@ class Canvas{
 }
 
 //--------------------------------------------------
+class Shape extends Block{
+    Shape(){
+        super(0, 0, 1000, 1000, 100, 100); //適当な数で初期化
+    }
+}
 
+class Rectangle extends Shape{
+    float x, y, w, h;
+
+    Rectangle(float x, float y, float w, float h){
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+    }
+
+    void drawShape(){
+        box(x, y, w, h);
+        println(x, y, w, h);
+    }
+}
+
+//--------------------------------------------------
 class Easel extends Block{
     DrawMode drawMode;
     color fillCol;
@@ -60,11 +87,12 @@ class Easel extends Block{
         
         fill(fillCol);
         noStroke();
-        pos.add(getContainerBlockPoint(move.x, move.y));
-        box(pos.x, pos.y, w * scale, h * scale, true);
+        pos.add(getContainerBlockPoint(canvas.move.x, canvas.move.y));
+        box(pos.x, pos.y, w * canvas.scale, h * canvas.scale);
     }
 }
 
+//--------------------------------------------------
 class CanvasBlock extends Easel{
     CanvasBlock(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, color fillCol){
         super(splitW, splitH, drawMode, layoutData, fillCol);
@@ -73,6 +101,15 @@ class CanvasBlock extends Easel{
     }
 
     void drawItems(){
-        println("items");
+        //PVector canvasSize = getContainerBlockSize(w, h);
+        //PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
+        for(Shape shapeObj : canvas.shapes){
+            if(shapeObj instanceof Rectangle){
+                Rectangle shape = (Rectangle) shapeObj;
+                //shape.sizeW = 
+                shape.drawShape();
+            }
+        }
+
     }
 }

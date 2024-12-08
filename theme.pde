@@ -27,6 +27,7 @@ class Theme{
             return 0;
         }
     }
+
     //====================================================================================================
     int width_buffer, height_buffer;
     void drawGUI(){
@@ -53,6 +54,7 @@ class Theme{
                         cavasBlock.sizeW = width;
                         cavasBlock.sizeH = height;
                     }
+                    canvas.process();
                 }else if(guiObj instanceof Easel){
                     Easel easel = (Easel) guiObj;
                     if(isWindowSizeChanged){
@@ -79,6 +81,7 @@ class Theme{
                 }else if(guiObj instanceof CanvasBlock){
                     CanvasBlock cavasBlock = (CanvasBlock) guiObj;
                     cavasBlock.drawEasel();
+                    cavasBlock.drawItems();
                 }else if(guiObj instanceof Easel){
                     Easel easel = (Easel) guiObj;
                     easel.drawEasel();
@@ -89,7 +92,6 @@ class Theme{
             }
         }
     }
-
     //====================================================================================================
 
     void loadTheme(){

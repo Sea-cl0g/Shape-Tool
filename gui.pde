@@ -166,7 +166,7 @@ class ButtonTemplate extends Block{
     // アイコン
     void icon(float x, float y, float w, float h, float scale, PShape icon){
         PVector size = getContainerBlockSize(w, h);
-        PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
+        PVector pos = getObjectPos(x, y, w, h, size);
 
         PVector iconSize = getContainerBlockSize(w * scale, h * scale);
         PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
@@ -314,6 +314,10 @@ class Block extends Container{
         super(splitW, splitH);
         setBlockAnker("DEFAULT");
     }
+    Block(float anchorX, float anchorY, float sizeW, float sizeH, int splitW, int splitH) {
+        super(anchorX, anchorY, sizeW, sizeH, splitW, splitH);
+        setBlockAnker("DEFAULT");
+    }
 
     //blockAnker関係
     void setBlockAnker(String blockAnker){
@@ -328,7 +332,7 @@ class Block extends Container{
         || blockAnker.equals("CENTER");
     }
 
-    PVector getObjectPos(float x, float y, float w, float h, PVector size, String blockAnker){
+    PVector getObjectPos(float x, float y, float w, float h, PVector size){
         switch (blockAnker) {
             case "CENTER" :
                 return getContainerPos(x - w / 2, y - h / 2, size);
@@ -341,10 +345,6 @@ class Block extends Container{
     void box(float x, float y, float w, float h) {
         drawBox(x, y, w, h, 0, 0, 0, 0);
     }
-    //debug
-    void box(float x, float y, float w, float h, boolean a) {
-        drawBox(x, y, w, h, 0, 0, 0, 0, a);
-    }
     void box(float x, float y, float w, float h, float r) {
         drawBox(x, y, w, h, r, r, r, r);
     }
@@ -354,40 +354,19 @@ class Block extends Container{
 
     void drawBox(float x, float y, float w, float h, float tl, float tr, float br, float bl){
         PVector size = getContainerBlockSize(w, h);
-        PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
+        PVector pos = getObjectPos(x, y, w, h, size);
         tl = getContainerBlockSize(tl, tl).x;
         tr = getContainerBlockSize(tr, tr).x;
         br = getContainerBlockSize(br, br).x;
         bl = getContainerBlockSize(bl, bl).x;
         rect(pos.x, pos.y, size.x, size.y, tl, tr, br, bl);
-    }
-
-    //debug
-    void drawBox(float x, float y, float w, float h, float tl, float tr, float br, float bl, boolean a){
-        PVector size = getContainerBlockSize(w, h);
-        PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
-        tl = getContainerBlockSize(tl, tl).x;
-        tr = getContainerBlockSize(tr, tr).x;
-        br = getContainerBlockSize(br, br).x;
-        bl = getContainerBlockSize(bl, bl).x;
-        rect(pos.x, pos.y, size.x, size.y, tl, tr, br, bl);
-    }
-    
-    //boxの左上角の座標を取得
-    PVector getBoxCorner(float x, float y, float w, float h){
-        if(blockAnker.equals("CENTER")){
-            return new PVector(x, y);
-        }else{
-            return new PVector(x - w / 2, y - h / 2);
-        }
     }
 
     //boxに触れているか？
     boolean isPointInBox(float x, float y, float w, float h, float pointX, float pointY){
-        PVector cornerPos = getBoxCorner(x, y, w, h);
-        
         PVector size = getContainerBlockSize(w, h);
-        PVector pos = getObjectPos(x, y, w, h, size, blockAnker);
+        PVector pos = getObjectPos(x, y, w, h, size);
+
         boolean xCheck = pos.x < mouseX && mouseX < pos.x + size.x;
         boolean yCheck = pos.y < mouseY && mouseY < pos.y + size.y;
         return xCheck && yCheck;
@@ -415,7 +394,6 @@ class Container {
     Container(int splitW, int splitH) {
         this(0.0, 0.0, width, height, splitW, splitH);
     }
-
     Container(float anchorX, float anchorY, float sizeW, float sizeH, int splitW, int splitH) {
         this.anchorX = anchorX; //アンカーの設定。
         this.anchorY = anchorY;
