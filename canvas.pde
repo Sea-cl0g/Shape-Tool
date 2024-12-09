@@ -40,15 +40,15 @@ class Canvas{
 }
 
 //--------------------------------------------------
-class Shape extends Block{
-    boolean isShapeSelected;
+class Shape extends Block {
+    boolean[] states = new boolean[5]; // 他の状態も追加できる汎用配列
 
-    Shape(){
-        super(0, 0, 1000, 1000, 100, 100); //適当な数で初期化
+    Shape() {
+        super(0, 0, 1000, 1000, 100, 100); // 初期化
     }
 
-    void drawSelectLine(float x, float y, float w, float h){
-        if(isShapeSelected){
+    void drawSelectLine(float x, float y, float w, float h) {
+        if (states[1]) {
             noFill();
             stroke(0, 0, 255);
             strokeWeight(1);
@@ -56,8 +56,8 @@ class Shape extends Block{
         }
     }
 
-    void drawPoint(float x, float y, float w, float h, float boxW, boolean isSelected){
-        if(isSelected){
+    void drawPoint(float x, float y, float w, float h, float boxW, boolean isSelected) {
+        if (isSelected) {
             PVector rectSize = getContainerBlockSize(w, h);
             PVector rectPos = getObjectPos(x, y, w, h, rectSize);
             fill(0, 0, 255);
@@ -65,16 +65,32 @@ class Shape extends Block{
         }
     }
 
-    boolean isNearTarget(float targetX, float targetY, float pointX, float pointY, float th){
+    boolean isNearTarget(float targetX, float targetY, float pointX, float pointY, float th) {
+        ellipse(targetX, targetY, th * 2, th * 2);
         return dist(targetX, targetY, pointX, pointY) < th;
+    }
+
+    void resetStatesExcept(int activeStateIndex) {
+        for (int i = 0; i < states.length; i++) {
+            if (i != activeStateIndex) {
+                states[i] = false;
+            }
+        }
+    }
+
+    boolean isAnyStateActive() {
+        for (boolean state : states) {
+            if (state) return true;
+        }
+        return false;
     }
 }
 
-class Rectangle extends Shape{
+//--------------------------------------------------
+class Rectangle extends Shape {
     float x, y, w, h, tl, tr, br, bl;
-    boolean isCornerSelected;
 
-    Rectangle(float x, float y, float w, float h){
+    Rectangle(float x, float y, float w, float h) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -86,60 +102,66 @@ class Rectangle extends Shape{
         this.bl = 0.0;
     }
 
-    void checkStatus(){
-        //corner
+    void checkCornerStatus() {
         PVector rectSize = getContainerBlockSize(w, h);
         PVector rectPos = getObjectPos(x, y, w, h, rectSize);
-        boolean isCornerTouched = isNearTarget(rectPos.x + rectSize.x, rectPos.y + rectSize.y, mouseX, mouseY, 40);
-        if(!hasMouseTouched && isCornerTouched){
-            if(isMouseLeftClicking && !isCornerSelected){
+        boolean isCornerTouched = isNearTarget(rectPos.x + rectSize.x, rectPos.y + rectSize.y, mouseX, mouseY, 5);
+
+        if (!hasMouseTouched && isCornerTouched) {
+            if (isMouseLeftClicking && !states[0]) {
                 isMouseLeftClicking = false;
-                isCornerSelected = true;
+                states[0] = true; // コーナー選択
+                resetStatesExcept(0); // 他の状態をリセット
             }
             hasMouseTouched = true;
-        }else if(!isCornerTouched && isMouseLeftClicking && !hasMouseTouched){
-            isCornerSelected = false;
-        }
-        if(isCornerSelected){
-            if(mousePressed && mouseButton == LEFT){
-                PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
-                w += mouseMove.x;
-                h += mouseMove.y;
-            }
+        } else if (!isCornerTouched && isMouseLeftClicking && !hasMouseTouched) {
+            states[0] = false;
         }
 
-        //shape
-        boolean isShapeTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
-        if(!hasMouseTouched && isShapeTouched){
-            if(isMouseLeftClicking && !isShapeSelected){
-                isMouseLeftClicking = false;
-                isShapeSelected = true;
-            }
-            hasMouseTouched = true;
-        }else if(!isShapeTouched && isMouseLeftClicking && !hasMouseTouched){
-            isShapeSelected = false;
-        }
-        if(isShapeSelected){
-            if(mousePressed && mouseButton == LEFT){
-                PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
-                x += mouseMove.x;
-                y += mouseMove.y;
-            }
+        if (states[0] && mousePressed && mouseButton == LEFT) {
+            PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
+            w += mouseMove.x;
+            h += mouseMove.y;
         }
     }
 
+    void checkShapeStatus() {
+        boolean isShapeTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
 
-    void drawRectangle(){
-        fill(255, 0, 0, 50);
-        stroke(200, 200, 200, 50);
+        if (!hasMouseTouched && isShapeTouched) {
+            if (isMouseLeftClicking && !states[1]) {
+                isMouseLeftClicking = false;
+                states[1] = true; // シェイプ選択
+                resetStatesExcept(1); // 他の状態をリセット
+            }
+            hasMouseTouched = true;
+        } else if (!isShapeTouched && isMouseLeftClicking && !hasMouseTouched) {
+            states[1] = false;
+        }
+
+        if (states[1] && mousePressed && mouseButton == LEFT) {
+            PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
+            x += mouseMove.x;
+            y += mouseMove.y;
+        }
+    }
+
+    void checkStatus() {
+        checkCornerStatus();
+        checkShapeStatus();
+    }
+
+    void drawRectangle() {
+        fill(255, 0, 0);
+        stroke(200, 200, 200);
         strokeWeight(4);
         box(x, y, w, h);
     }
 
-    void drawShape(){
+    void drawShape() {
         drawRectangle();
         drawSelectLine(x, y, w, h);
-        drawPoint(x, y, w, h, 10, isCornerSelected);
+        drawPoint(x, y, w, h, 10, states[0]);
     }
 }
 

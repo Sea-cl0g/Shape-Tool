@@ -27,7 +27,6 @@ class TriggerButton extends ButtonTemplate{
             }else{
                 status = 1;
             }
-            println("mouseTouched!!!!!!");
             hasMouseTouched = true;
         }else{
             status = 0;
