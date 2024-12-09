@@ -54,7 +54,7 @@ class Theme{
                         canvasBlock.sizeW = width;
                         canvasBlock.sizeH = height;
                     }
-                    canvasBlock.checkShapesStatus(mouseX, mouseY);
+                    canvasBlock.checkShapesStatus();
                     canvas.process();
                 }else if(guiObj instanceof Easel){
                     Easel easel = (Easel) guiObj;

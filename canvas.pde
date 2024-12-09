@@ -41,18 +41,27 @@ class Canvas{
 
 //--------------------------------------------------
 class Shape extends Block{
-    boolean selected;
+    boolean isShapeSelected;
 
     Shape(){
         super(0, 0, 1000, 1000, 100, 100); //適当な数で初期化
     }
 
-    void selectLine(float x, float y, float w, float h){
-        if(selected){
+    void drawSelectLine(float x, float y, float w, float h){
+        if(isShapeSelected){
             noFill();
             stroke(0, 0, 255);
             strokeWeight(1);
             box(x, y, w, h);
+        }
+    }
+
+    void drawPoint(float x, float y, float w, float h, float boxW, boolean isSelected){
+        if(isSelected){
+            PVector rectSize = getContainerBlockSize(w, h);
+            PVector rectPos = getObjectPos(x, y, w, h, rectSize);
+            fill(0, 0, 255);
+            rect(rectPos.x + rectSize.x - boxW / 2, rectPos.y + rectSize.y - boxW / 2, boxW, boxW);
         }
     }
 
@@ -63,8 +72,7 @@ class Shape extends Block{
 
 class Rectangle extends Shape{
     float x, y, w, h, tl, tr, br, bl;
-    boolean isTouched;
-    boolean[] isTouchedList = new boolean[5];
+    boolean isCornerSelected;
 
     Rectangle(float x, float y, float w, float h){
         this.x = x;
@@ -76,31 +84,42 @@ class Rectangle extends Shape{
         this.tr = 0.0;
         this.br = 0.0;
         this.bl = 0.0;
-
-        this.isTouched = false;
     }
 
-    
-
-
-    void checkStatus(float mouseX, float mouseY){
-        
-
-        isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
-        println(isTouched, hasMouseLeftClicked, isMouseLeftClicking, selected);
-
-        //選択しているか否かを見る関数として切り出して、ポイントの当たり判定でも再利用する
-        if(!hasMouseTouched && isTouched){
-            if(isMouseLeftClicking && !selected){
+    void checkStatus(){
+        //corner
+        PVector rectSize = getContainerBlockSize(w, h);
+        PVector rectPos = getObjectPos(x, y, w, h, rectSize);
+        boolean isCornerTouched = isNearTarget(rectPos.x + rectSize.x, rectPos.y + rectSize.y, mouseX, mouseY, 40);
+        if(!hasMouseTouched && isCornerTouched){
+            if(isMouseLeftClicking && !isCornerSelected){
                 isMouseLeftClicking = false;
-                selected = true;
+                isCornerSelected = true;
             }
             hasMouseTouched = true;
-        }else if(!isTouched && isMouseLeftClicking){
-            selected = false;
+        }else if(!isCornerTouched && isMouseLeftClicking && !hasMouseTouched){
+            isCornerSelected = false;
+        }
+        if(isCornerSelected){
+            if(mousePressed && mouseButton == LEFT){
+                PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
+                w += mouseMove.x;
+                h += mouseMove.y;
+            }
         }
 
-        if(selected){
+        //shape
+        boolean isShapeTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
+        if(!hasMouseTouched && isShapeTouched){
+            if(isMouseLeftClicking && !isShapeSelected){
+                isMouseLeftClicking = false;
+                isShapeSelected = true;
+            }
+            hasMouseTouched = true;
+        }else if(!isShapeTouched && isMouseLeftClicking && !hasMouseTouched){
+            isShapeSelected = false;
+        }
+        if(isShapeSelected){
             if(mousePressed && mouseButton == LEFT){
                 PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
                 x += mouseMove.x;
@@ -109,16 +128,18 @@ class Rectangle extends Shape{
         }
     }
 
+
     void drawRectangle(){
-        fill(255, 0, 0);
-        stroke(200, 200, 200);
+        fill(255, 0, 0, 50);
+        stroke(200, 200, 200, 50);
         strokeWeight(4);
         box(x, y, w, h);
     }
 
     void drawShape(){
         drawRectangle();
-        selectLine(x, y, w, h);
+        drawSelectLine(x, y, w, h);
+        drawPoint(x, y, w, h, 10, isCornerSelected);
     }
 }
 
@@ -159,7 +180,7 @@ class CanvasBlock extends Easel{
         this.fillCol = fillCol;
     }
 
-    void checkShapesStatus(float pointX, float pointY){
+    void checkShapesStatus(){
         PVector canvasSize = getContainerBlockSize(w * canvas.scale, h * canvas.scale);
         PVector canvasPos = getObjectPos(pos.x, pos.y, w * canvas.scale, h * canvas.scale, canvasSize);
         for(int i = canvas.shapes.size() - 1; 0 <= i; i--){
@@ -171,7 +192,7 @@ class CanvasBlock extends Easel{
                 shape.anchorX = canvasPos.x;
                 shape.anchorY = canvasPos.y;
                 
-                shape.checkStatus(pointX, pointY);
+                shape.checkStatus();
             }
         }
     }
