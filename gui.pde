@@ -367,8 +367,8 @@ class Block extends Container{
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
 
-        boolean xCheck = pos.x < mouseX && mouseX < pos.x + size.x;
-        boolean yCheck = pos.y < mouseY && mouseY < pos.y + size.y;
+        boolean xCheck = pos.x < pointX && pointX < pos.x + size.x;
+        boolean yCheck = pos.y < pointY && pointY < pos.y + size.y;
         return xCheck && yCheck;
     }
 

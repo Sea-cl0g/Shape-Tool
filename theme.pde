@@ -31,6 +31,7 @@ class Theme{
     //====================================================================================================
     int width_buffer, height_buffer;
     void drawGUI(){
+        rectMode(CORNER);
         boolean isWindowSizeChanged = false;
         if(width != width_buffer || height != height_buffer){
             isWindowSizeChanged = true;
