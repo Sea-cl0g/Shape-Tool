@@ -22,44 +22,14 @@
             "path": "buttons/add_ellipse.json",
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_ELLIPSE"}]
         },
-
-        "edit_layer_name": {
-            "path": "buttons/edit_layer_name.json"
-        },
-        "create_a_layer": {
-            "path": "buttons/create_a_layer.json"
-        },
-        "duplicate_layer": {
-            "path": "buttons/duplicate_layer.json"
-        },
-        "move_layer_up": {
-            "path": "buttons/move_layer_up.json"
-        },
-        "move_layer_down": {
-            "path": "buttons/move_layer_down.json"
-        },
-        "delete_selected_layer": {
-            "path": "buttons/delete_selected_layer.json"
+        "add_triangle": {
+            "path": "buttons/add_ellipse.json",
+            "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_TRIANGLE"}]
         },
 
-        "vertex_mode_pointed": {
-            "path": "buttons/vertex_mode_pointed.json"
-        },
-        "vertex_mode_curved": {
-            "path": "buttons/vertex_mode_curved.json"
-        },
-
-        "save_prj": {
-            "path": "buttons/save_prj.json"
-        },
-        "export_prj": {
-            "path": "buttons/export_prj.json"
-        },
-        "import_prj": {
-            "path": "buttons/import_prj.json"
-        },
-        "option": {
-            "path": "buttons/option.json"
+        "duplicate": {
+            "path": "buttons/add_ellipse.json",
+            "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_DUPRICATE_SHAPE"}]
         }
     }
 }

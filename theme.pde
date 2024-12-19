@@ -100,7 +100,6 @@ class Theme{
         println("Theme Loading...");
         JSONObject assets = config.getJSONObject("assets");
         for(Object assetNameObj : assets.keys()){
-            println();
             String assetName = (String) assetNameObj;
             JSONObject asset = assets.getJSONObject(assetName);
             JSONObject designJSON = safeLoad.assetLoad(asset.getString("path"));

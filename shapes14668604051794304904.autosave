@@ -27,16 +27,8 @@ class Shape extends Block {
         }
     }
 
-    PVector getRotatedGPos(PVector centerGPos, PVector pointPosFromCenter){
-        PVector rotatedGPos = new PVector();
-        rotatedGPos.x = cos(radian) * pointPosFromCenter.x - sin(radian) * pointPosFromCenter.y + centerGPos.x; 
-        rotatedGPos.y = sin(radian) * pointPosFromCenter.x + cos(radian) * pointPosFromCenter.y + centerGPos.y; 
-        return rotatedGPos;
-    }
-    
-    void drawSelectLine(float x1, float y1, float x2, float y2) {
-        PVector gPos1 = getContainerBlockSize(x1, y1);
-        PVector gPos2 = getContainerBlockSize(x2, y2);
+    void drawSelectLine(float x, float y, float w, float h) {
+        PVector size = getContainerBlockSize(w, h);
         if(isAnyStateActive){
             noFill();
             strokeWeight(1);
@@ -45,10 +37,18 @@ class Shape extends Block {
             }else{
                 stroke(unselectedLineCol);
             }
-            line(gPos1.x, gPos1.y, gPos2.x, gPos2.y);
+            rect(0, 0, size.x, size.y);
         }
     }
-    void drawSelectPoint(int stateIndex, float x, float y, float boxW, boolean isEllipse) {
+
+    PVector getRotatedGPos(PVector centerGPos, PVector pointPosFromCenter){
+        PVector rotatedGPos = new PVector();
+        rotatedGPos.x = cos(radian) * pointPosFromCenter.x - sin(radian) * pointPosFromCenter.y + centerGPos.x; 
+        rotatedGPos.y = sin(radian) * pointPosFromCenter.x + cos(radian) * pointPosFromCenter.y + centerGPos.y; 
+        return rotatedGPos;
+    }
+
+    void drawPoint(int stateIndex, float x, float y, float boxW, boolean isEllipse) {
         PVector size = getContainerBlockSize(x, y);
         if(isAnyStateActive){
             stroke(255);
@@ -225,12 +225,10 @@ class Rectangle extends Shape {
         if(moveVector.x != 0 || moveVector.y != 0){
             PVector mouseGPosFromRectCenter = new PVector(mouseX, mouseY).sub(rectGCenter);
             PVector pmouseGPisFromRectCenter = new PVector(pmouseX, pmouseY).sub(rectGCenter);
-            float cross = mouseGPosFromRectCenter.x * pmouseGPisFromRectCenter.y - mouseGPosFromRectCenter.y * pmouseGPisFromRectCenter.x;
-            if (cross > 0) {
-                radian -= PVector.angleBetween(mouseGPosFromRectCenter,pmouseGPisFromRectCenter);
-            } else if (cross < 0) {
-                radian += PVector.angleBetween(mouseGPosFromRectCenter,pmouseGPisFromRectCenter);
-            }
+            float mag1 = mag();
+            float mag2 = mag(mouseGPosFromRectCenter);
+            float dot = dot(mouseGPosFromRectCenter, pmouseGPisFromRectCenter);
+            radian += acos(dot / (mag1 * mag2));
         }
     }
     
@@ -263,25 +261,11 @@ class Rectangle extends Shape {
         }
     }
 
-    void drawSelectRect(float w, float h) {
-        PVector size = getContainerBlockSize(w, h);
-        if(isAnyStateActive){
-            noFill();
-            strokeWeight(1);
-            if (status[0]) {
-                stroke(selectLineCol);
-            }else{
-                stroke(unselectedLineCol);
-            }
-            rect(0, 0, size.x, size.y);
-        }
-    }
-
     //tl -> tr -> br -> bl -> scalemove
     void checkStatus() {
-        PVector rectSize = getContainerBlockSize(w, h);
-        PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
-        translate(rectGCenter.x, rectGCenter.y);
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size);
+        translate(pos.x, pos.y);
         rotate(radian);
 
         changeTopLeftTh();
@@ -294,21 +278,20 @@ class Rectangle extends Shape {
     }
 
     void drawShapeWithGUI() {
-        PVector rectSize = getContainerBlockSize(w, h);
-        PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
-        translate(rectGCenter.x, rectGCenter.y);
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size);
+        translate(pos.x, pos.y);
         rotate(radian);
-        isAnyStateActive = isAnyStateActive();
 
-        drawSelectLine(0, 0, 0, -1 * h / 2 - 4);
         drawRectangle();
-        drawSelectRect(w, h);
-        drawSelectPoint(6, 0, -1 * h / 2 - 4, 10, true); //rotate
-        drawSelectPoint(1, w / 2, h / 2, 10, false); //scale
-        drawSelectPoint(2, -1 * w / 2 + tl, -1 * h / 2, 10, true); //tl
-        drawSelectPoint(3, w / 2 - tr, -1 * h / 2, 10, true); //tr
-        drawSelectPoint(4, w / 2 - br, h / 2, 10, true); //br
-        drawSelectPoint(5, -1 * w / 2 + bl, h / 2, 10, true); //bl
+        isAnyStateActive = isAnyStateActive();
+        drawSelectLine(x, y, w, h);
+        drawPoint(6, 0, -1 * h / 2 - 4, 10, true); //rotate
+        drawPoint(1, w / 2, h / 2, 10, false); //scale
+        drawPoint(2, -1 * w / 2 + tl, -1 * h / 2, 10, true); //tl
+        drawPoint(3, w / 2 - tr, -1 * h / 2, 10, true); //tr
+        drawPoint(4, w / 2 - br, h / 2, 10, true); //br
+        drawPoint(5, -1 * w / 2 + bl, h / 2, 10, true); //bl
     }
 
     void drawRectangle() {

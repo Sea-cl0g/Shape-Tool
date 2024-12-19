@@ -1,4 +1,4 @@
-//マジック変数16を修正する
+//マジックナンバー16を修正する
 SafeLoad safeLoad;
 Theme theme;
 Canvas canvas;
@@ -79,7 +79,6 @@ void mouseWheel(MouseEvent mouseEvent){
       canvas.scale -= 0.1;
     }
   }
-  println(canvas.scale, wheel);
 }
 
 void keyPressed(){
