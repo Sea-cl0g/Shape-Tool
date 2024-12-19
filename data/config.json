@@ -23,12 +23,12 @@
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_ELLIPSE"}]
         },
         "add_triangle": {
-            "path": "buttons/add_ellipse.json",
+            "path": "buttons/add_triangle.json",
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_TRIANGLE"}]
         },
 
         "duplicate": {
-            "path": "buttons/add_ellipse.json",
+            "path": "buttons/duplicate.json",
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_DUPRICATE_SHAPE"}]
         }
     }

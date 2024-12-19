@@ -168,12 +168,13 @@ class Theme{
 
     Runnable getButtonFanction(String query){
         Runnable function;
+        println(query);
         switch (query) {
             case "FANC_ADD_RECTANGLE" :
                 function = () -> canvas.add_rectangle();
             break;
             case "FANC_ADD_ELLIPSE" :
-                function = () -> canvas.add_rectangle();
+                function = () -> canvas.add_ellipse();
             break;
             default:
                 function = null;
@@ -214,6 +215,7 @@ class Theme{
                 }
             }
         }
+        println("test");
         return new TriggerButton(16, 16, drawMode, normal, touched, clicked, function);
     }
 

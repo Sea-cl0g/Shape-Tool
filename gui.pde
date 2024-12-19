@@ -12,6 +12,7 @@ class TriggerButton extends ButtonTemplate{
         this.touched = touched;
         this.clicked = clicked;
         this.onClick = onClick;
+        println(this.onClick);
     }
 
     void checkStatus(float mouseX, float mouseY){
@@ -22,6 +23,8 @@ class TriggerButton extends ButtonTemplate{
                 status = 2;
                 if(onClick != null){
                     onClick.run();
+                }else{
+                    println(this.onClick);
                 }
                 isMouseLeftClicking = false;
             }else{

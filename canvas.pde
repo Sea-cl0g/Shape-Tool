@@ -32,6 +32,8 @@ class Canvas{
 
     void add_ellipse(){
         println("ellipse_added");
+        Ellipse ellipse = new Ellipse(0, 0, 10, 10);
+        shapes.add(ellipse);
     }
 }
 
@@ -86,6 +88,13 @@ class CanvasBlock extends Easel{
                 shape.anchorX = canvasPos.x;
                 shape.anchorY = canvasPos.y;
                 shape.checkStatus();
+            }else if(shapeObj instanceof Ellipse){
+                Ellipse shape = (Ellipse) shapeObj;
+                shape.sizeW = canvasSize.x;
+                shape.sizeH = canvasSize.y;
+                shape.anchorX = canvasPos.x;
+                shape.anchorY = canvasPos.y;
+                shape.checkStatus();
             }
             popMatrix();
         }
@@ -98,6 +107,9 @@ class CanvasBlock extends Easel{
             pushMatrix(); 
             if(shapeObj instanceof Rectangle){
                 Rectangle shape = (Rectangle) shapeObj;
+                shape.drawShapeWithGUI();
+            }else if(shapeObj instanceof Ellipse){
+                Ellipse shape = (Ellipse) shapeObj;
                 shape.drawShapeWithGUI();
             }
             popMatrix();
