@@ -14,6 +14,7 @@
             "path": "others/canvas.json"
         },
 
+        
         "add_rectangle": {
             "path": "buttons/add_rectangle.json",
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_RECTANGLE"}]
@@ -32,6 +33,15 @@
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_DUPLICATE_SHAPE"}]
         },
         
+
+        "fill_color_button": {
+            "path": "buttons/add_rectangle.json",
+            "queries": [
+                {"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_RECTANGLE"},
+                {"Name": "@FILL_COLOR", "Query": ""}
+            ]
+        },
+
 
         "raise_layer": {
             "path": "buttons/raise_layer.json",

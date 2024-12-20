@@ -63,8 +63,8 @@ class Theme{
                         easel.sizeW = width;
                         easel.sizeH = height;
                     }
-                }else if(guiObj instanceof TriggerButton){
-                    TriggerButton button = (TriggerButton) guiObj;
+                }else if(guiObj instanceof Button){
+                    Button button = (Button) guiObj;
                     if(isWindowSizeChanged){
                         button.sizeW = width;
                         button.sizeH = height;
@@ -87,8 +87,8 @@ class Theme{
                 }else if(guiObj instanceof Easel){
                     Easel easel = (Easel) guiObj;
                     easel.drawEasel();
-                }else if(guiObj instanceof TriggerButton){
-                    TriggerButton button = (TriggerButton) guiObj;
+                }else if(guiObj instanceof Button){
+                    Button button = (Button) guiObj;
                     button.drawButton();
                 }
             }
@@ -151,13 +151,13 @@ class Theme{
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     layers.get(layerPos).add(new Easel(16, 16, drawMode, layout, fillCol));
                 break;
-                case "triggerButton" :
+                case "button" :
                     Runnable function = null;
                     if(isElementQuery){
                         function = getButtonFanction(queryType);
                     }
                     EasyJSONArray styles = elementEJSON.safeGetEasyJSONArray("style");
-                    layers.get(layerPos).add(buildTriggerButton(drawMode, styles, function));
+                    layers.get(layerPos).add(buildButton(drawMode, styles, function));
                 break;
                 case "color" :
                     
@@ -183,7 +183,7 @@ class Theme{
         return function;
     }
 
-    TriggerButton buildTriggerButton(DrawMode drawMode, EasyJSONArray styleList, Runnable function){
+    Button buildButton(DrawMode drawMode, EasyJSONArray styleList, Runnable function){
         StyleData normal = new StyleData();
         StyleData touched = new StyleData();
         StyleData clicked = new StyleData();
@@ -216,7 +216,7 @@ class Theme{
             }
         }
         println("test");
-        return new TriggerButton(16, 16, drawMode, normal, touched, clicked, function);
+        return new Button(16, 16, drawMode, normal, touched, clicked, function);
     }
 
     void buildVariableJSON(JSONObject design){

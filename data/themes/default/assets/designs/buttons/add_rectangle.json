@@ -5,7 +5,6 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
-
     "button_types": {
         "maru": "roundedSquareButton"
     },
@@ -40,10 +39,9 @@
             "color": "#42c8ed"
         }
     },
-
     "elements": {
         "@MAIN_BUTTON": {
-            "type": "triggerButton",
+            "type": "button",
             "style": [
                 {
                     "predicate": "normal",

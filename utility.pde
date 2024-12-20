@@ -41,7 +41,7 @@ class SafeLoad{
             println("assetLoad-INSTEAD: " + defaultThemeAsset + " has loaded!!");
             return loadJSONObject(currThemeAsset);
         }
-        println("assetLoad-ERROR: " + defaultThemeAsset + " not found");
+        println("assetLoad-ERROR: " + defaultThemeAsset + " does not exist.");
         return new JSONObject();
     }
 

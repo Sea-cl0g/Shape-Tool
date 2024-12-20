@@ -35,6 +35,22 @@ class Canvas{
         Ellipse ellipse = new Ellipse(0, 0, 10, 10);
         shapes.add(ellipse);
     }
+
+    //キャンバス関係のボタン
+    void zoom_in(){
+        if(canvas.scale + 0.1 > 4.0){
+            canvas.scale = 4.0; 
+        }else{
+            canvas.scale += 0.1;
+        }
+    }
+    void zoom_out(){
+        if(canvas.scale - 0.1 < 0.1){
+           canvas.scale = 0.1;
+        }else{
+          canvas.scale -= 0.1;
+        }
+    }
 }
 
 //--------------------------------------------------

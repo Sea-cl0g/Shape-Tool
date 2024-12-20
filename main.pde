@@ -66,18 +66,10 @@ void mouseReleased() {
 void mouseWheel(MouseEvent mouseEvent){
   float wheel = mouseEvent.getCount();
   if(wheel < 0){
-    if(canvas.scale + 0.1 > 4.0){
-      canvas.scale = 4.0; 
-    }else{
-      canvas.scale += 0.1;
-    }
+    canvas.zoom_in();
   }
   else if(wheel > 0){
-    if(canvas.scale - 0.1 < 0.1){
-      canvas.scale = 0.1;
-    }else{
-      canvas.scale -= 0.1;
-    }
+    canvas.zoom_out();
   }
 }
 
