@@ -15,6 +15,7 @@
         },
         "color_pallet": {
             "path": "others/color_pallet.json",
+            "layerMode": "colorPallet",
             "queries": [
                 {"Name": "@FILL_HSB_H", "Query": "NULL"},
                 {"Name": "@FILL_HSB_S", "Query": "NULL"},

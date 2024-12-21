@@ -4,9 +4,13 @@
 class Theme{
     JSONObject variableJSON = new JSONObject();
 
-    ArrayList<ArrayList<Object>> layers = new ArrayList<ArrayList<Object>>();
+    ArrayList<ArrayList<Object>> main = new ArrayList<ArrayList<Object>>();
+    ArrayList<ArrayList<Object>> colorPallet = new ArrayList<ArrayList<Object>>();
+    ArrayList<ArrayList<Object>> option = new ArrayList<ArrayList<Object>>();
+    ArrayList<ArrayList<Object>> export = new ArrayList<ArrayList<Object>>();
+    ArrayList<ArrayList<Object>> save = new ArrayList<ArrayList<Object>>();
 
-    int setLayerAtPosition(int index){
+    int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index){
         ArrayList<Object> newLayer = new ArrayList<Object>();
         newLayer.add(index);
         if(layers.size() > 0){
@@ -30,14 +34,24 @@ class Theme{
 
     //====================================================================================================
     int width_buffer, height_buffer;
+    boolean isWindowSizeChanged;
     void drawGUI(){
         rectMode(CORNER);
-        boolean isWindowSizeChanged = false;
+        isWindowSizeChanged = false;
         if(width != width_buffer || height != height_buffer){
             isWindowSizeChanged = true;
             width_buffer = width;
             height_buffer = height;
         }
+        
+        //ステータスを調べる
+        drawLayer(main);
+
+        //レイヤーの描画を行う
+        checkLayerStatus(main);
+    }
+
+    void drawLayer(ArrayList<ArrayList<Object>> layers){
         for(int i = layers.size() - 1; 0 <= i; i--){
             ArrayList<Object> eachLayer = layers.get(i);
             for(int q = eachLayer.size() - 1; 0 <= q; q--){
@@ -80,8 +94,9 @@ class Theme{
                 }
             }
         }
+    }
 
-        //レイヤーの描画を行う
+    void checkLayerStatus(ArrayList<ArrayList<Object>> layers){
         for(ArrayList<Object> eachLayer : layers){
             for(Object guiObj : eachLayer){
                 if(guiObj instanceof Base){
@@ -113,19 +128,40 @@ class Theme{
             JSONObject asset = assets.getJSONObject(assetName);
             JSONObject designJSON = safeLoad.assetLoad(asset.getString("path"));
             if(designJSON.keys().size() != 0){
-                readDesign(asset, designJSON);
+                String layerName = asset.getString("layerMode") != null ? asset.getString("layerMode") : "main";
+                switch (layerName) {
+                    case "colorPallet" :
+                        readDesign(colorPallet, asset, designJSON);
+                    break;	
+                    case "option" :
+                        readDesign(option, asset, designJSON);
+                    break;	
+                    case "export" :
+                        readDesign(export, asset, designJSON);
+                    break;	
+                    case "save" :
+                        readDesign(save, asset, designJSON);
+                    break;	
+                    default :
+                        readDesign(main, asset, designJSON);
+                    break;	
+                }
             }
         }
-        println(layers);
+        println(main);
+        println(colorPallet);
+        println(option);
+        println(export);
+        println(save);
     }
 
-    void readDesign(JSONObject asset, JSONObject designJSON){
+    void readDesign(ArrayList<ArrayList<Object>> layers, JSONObject asset, JSONObject designJSON){
         buildVariableJSON(designJSON);
         JSONObject elements = designJSON.getJSONObject("elements");
         JSONArray configQuery = asset.getJSONArray("queries");
         DrawMode drawMode = new DrawMode(designJSON);
 
-        int layerPos = setLayerAtPosition(designJSON.isNull("layer") ? 0 : designJSON.getInt("layer"));
+        int layerPos = setLayerAtPosition(layers, designJSON.isNull("layer") ? 0 : designJSON.getInt("layer"));
 
         String[] elementNameList = getReverseSortedStringArrayFromJSONObject(elements);
 
