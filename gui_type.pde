@@ -1,59 +1,143 @@
 class ColorPicker extends Block{
     DrawMode drawMode;
-    LayoutData layoutData;
+    float x, y, w, h;
+    float r, tl, tr, br, bl;
     int colorPalletIndex;
     String pickerMode;
+    int colorMax = 255;
+    float pickNum = 125;
 
     ColorPicker(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, int colorPalletIndex, String pickerMode){
         super(splitW, splitH);
-        this.drawMode = drawMode;
-        this.layoutData = layoutData;
-        this.pickerMode = pickerMode;
-    }
-
-    void drawColPicker(){
         setContainerAnker(drawMode.containerAnker);
         setBlockMode(drawMode.blockMode);
         setBlockAnker(drawMode.blockAnker);
+        this.drawMode = drawMode;
+        this.pickerMode = pickerMode;
+        this.x = layoutData.x_point;
+        this.y = layoutData.y_point;
+        this.w = layoutData.width_point;
+        this.h = layoutData.height_point;
+        this.r = layoutData.r_point;
+        this.tl = layoutData.tl_point;
+        this.tr = layoutData.tr_point;
+        this.br = layoutData.br_point;
+        this.bl = layoutData.bl_point;
+        if(pickerMode.endsWith("HSB_H")){
+            pickNum = hue(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("HSB_S")){
+            pickNum = saturation(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("HSB_B")){
+            pickNum = brightness(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("RGB_R")){
+            pickNum = red(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("RGB_G")){
+            pickNum = green(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("RGB_B")){
+            pickNum = blue(canvas.colorPallet[colorPalletIndex]);
+        }
+    }
 
+    void drawColPicker(){
         noStroke();
-        drawGradation(255);
-        println(colorPalletIndex, pickerMode, "test");
+        drawGradation(colorMax);
+        drawPickPoint();
     }
 
     void checkStatus(float mouseX, float mouseY){
-        boolean isTouched = isPointInBox(layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, mouseX, mouseY);
+        boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
         if(!hasMouseTouched && isTouched){
+            if(mousePressed){
+                PVector size = getContainerBlockSize(w, h);
+                PVector pos = getObjectPos(x, y, w, h, size);
+                pickNum = map(mouseX, pos.x, pos.x + size.x, 0, colorMax + 1);
+                canvas.colorPallet[colorPalletIndex] = getPickedColor();
+                isMouseLeftClicking = false;
+            }
             hasMouseTouched = true;
         }
     }
 
-    void drawGradation(int max){
-        setBlockAnker("CORNER");
-        float w = layoutData.width_point / max;
+    color getPickedColor(){
+        float colElement1;
+        float colElement2;
+        float colElement3;
         if(pickerMode.startsWith("HSB")){
-            colorMode(HSB);
+            colElement1 = hue(canvas.colorPallet[colorPalletIndex]);
+            colElement2 = saturation(canvas.colorPallet[colorPalletIndex]);
+            colElement3 = brightness(canvas.colorPallet[colorPalletIndex]);
+            colorMode(HSB, 255, 255, 255);
         }else{
-            colorMode(RGB);
+            colElement1 = red(canvas.colorPallet[colorPalletIndex]);
+            colElement2 = green(canvas.colorPallet[colorPalletIndex]);
+            colElement3 = blue(canvas.colorPallet[colorPalletIndex]);
+            colorMode(RGB, 255, 255, 255);
         }
+        color returnCol = color(0, 0, 0);
+        if(pickerMode.endsWith("H") || pickerMode.endsWith("R")){
+            returnCol = color(pickNum, colElement2, colElement3);
+        }else if(pickerMode.endsWith("S") || pickerMode.endsWith("G")){
+            returnCol = color(colElement1, pickNum, colElement3);
+        }else if(pickerMode.endsWith("B")){
+            returnCol = color(colElement1, colElement2, pickNum);
+        }
+        colorMode(RGB, 255, 255, 255);
+        return returnCol;
+    }
+
+    void drawGradation(int max){
+        float eachWidth = w / max;
+        float colElement1;
+        float colElement2;
+        float colElement3;
+        noStroke();
+        if(pickerMode.startsWith("HSB")){
+            colElement1 = hue(canvas.colorPallet[colorPalletIndex]);
+            colElement2 = saturation(canvas.colorPallet[colorPalletIndex]);
+            colElement3 = brightness(canvas.colorPallet[colorPalletIndex]);
+            colorMode(HSB, 255, 255, 255);
+        }else{
+            colElement1 = red(canvas.colorPallet[colorPalletIndex]);
+            colElement2 = green(canvas.colorPallet[colorPalletIndex]);
+            colElement3 = blue(canvas.colorPallet[colorPalletIndex]);
+            colorMode(RGB, 255, 255, 255);
+        }
+        setBlockAnker("CORNER");
         for(int i = 0; i < max; i++){
             if(pickerMode.endsWith("HSB_H")){
                 fill(i, 255, 255);
             }else if(pickerMode.endsWith("HSB_S")){
-                fill(hue(canvas.colorPallet[colorPalletIndex]), i, brightness(canvas.colorPallet[colorPalletIndex]));
+                fill(colElement1, i, colElement3);
             }else if(pickerMode.endsWith("HSB_B")){
                 fill(0, 0, i);
             }else if(pickerMode.endsWith("RGB_R")){
-                fill(red(canvas.colorPallet[colorPalletIndex]), i, blue(canvas.colorPallet[colorPalletIndex]));
+                fill(i, colElement2, colElement3);
             }else if(pickerMode.endsWith("RGB_G")){
-                fill(red(canvas.colorPallet[colorPalletIndex]), green(canvas.colorPallet[colorPalletIndex]), i);
+                fill(colElement1, i, colElement2);
             }else if(pickerMode.endsWith("RGB_B")){
-                fill(red(canvas.colorPallet[colorPalletIndex]), i, blue(canvas.colorPallet[colorPalletIndex]));
+                fill(colElement1, colElement2, i);
             }
-            box(layoutData.x_point - layoutData.width_point / 2 + w * i, layoutData.y_point, layoutData.width_point - w * i, layoutData.height_point);
+            
+            if(drawMode.blockAnker.equals("CORNER")){
+                box(x, y, w - eachWidth * i, h);
+            }else{
+                box(x - w / 2, y - h / 2, w - eachWidth * i, h);
+            }
         }
+        colorMode(RGB, 255, 255, 255);
         setBlockAnker(drawMode.blockAnker);
-        colorMode(RGB);
+    }
+
+    void drawPickPoint(){
+        PVector colorPickerSize = getContainerBlockSize(w, h);
+        PVector colorPickerPos = getObjectPos(x, y, w, h, colorPickerSize);
+        float pointX = map(pickNum, 0, colorMax, colorPickerPos.x, colorPickerPos.x + colorPickerSize.x);
+        fill(255);
+        stroke(0);
+        strokeWeight(1);
+        int pointW = 5;
+        rect(pointX - pointW / 2, colorPickerPos.y, pointW, pointW);
+        rect(pointX - pointW / 2, colorPickerPos.y + colorPickerSize.y - pointW, pointW, pointW);
     }
 }
 
@@ -108,8 +192,9 @@ class Button extends ButtonTemplate{
     void display(StyleData style) {
         String buttonType = style.buttonType;
         color fillCol;
-        if(0 <= colorIndex && colorIndex < canvas.colorPallet.length){
-            fillCol = canvas.colorPallet[colorIndex];
+        color[] canvasPallet = canvas.colorPallet;
+        if(0 <= colorIndex && colorIndex < canvasPallet.length){
+            fillCol = canvasPallet[colorIndex];
         }else{
             fillCol = style.fillCol;
         }
@@ -172,44 +257,45 @@ class Button extends ButtonTemplate{
 class Base extends Block{
     DrawMode drawMode;
     color fillCol;
-    LayoutData layoutData;
+    float x, y, w, h;
+    float r, tl, tr, br, bl;
 
-    Base(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, color fillCol){
+    Base(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, StrokeData strokeData, color fillCol){
         super(splitW, splitH);
-        this.drawMode = drawMode;
-        this.fillCol = fillCol; 
-        this.layoutData = layoutData;
-    }
-
-    void drawBase(){
         setContainerAnker(drawMode.containerAnker);
         setBlockMode(drawMode.blockMode);
         setBlockAnker(drawMode.blockAnker);
+        this.drawMode = drawMode;
+        this.fillCol = fillCol; 
+        this.x = layoutData.x_point;
+        this.y = layoutData.y_point;
+        this.w = layoutData.width_point;
+        this.h = layoutData.height_point;
+        this.r = layoutData.r_point;
+        this.tl = layoutData.tl_point;
+        this.tr = layoutData.tr_point;
+        this.br = layoutData.br_point;
+        this.bl = layoutData.bl_point;
+    }
 
+    void drawBase(){
         fill(fillCol);
         noStroke();
-        float tl = 0;
-        if(layoutData.r_point != 0.0){
-            tl = layoutData.tl_point == 0.0 ? layoutData.r_point : layoutData.tl_point;  
+        float loTl = 0;
+        float loTr = 0;
+        float loBr = 0;
+        float loBl = 0;
+        if(r != 0.0){
+            loTl = tl != 0.0 ? tl : r;
+            loTr = tr != 0.0 ? tr : r;
+            loBr = br != 0.0 ? br : r;
+            loBl = bl != 0.0 ? bl : r;
         }
-        float tr = 0;
-        if(layoutData.r_point != 0.0){
-            tr = layoutData.tr_point == 0.0 ? layoutData.r_point : layoutData.tr_point;  
-        }
-        float br = 0;
-        if(layoutData.r_point != 0.0){
-            br = layoutData.br_point == 0.0 ? layoutData.r_point : layoutData.br_point;  
-        }
-        float bl = 0;
-        if(layoutData.r_point != 0.0){
-            bl = layoutData.bl_point == 0.0 ? layoutData.r_point : layoutData.bl_point;  
-        }
-
-        box(layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, tl, tr, br, bl);
+        box(x, y, w, h, loTl, loTr, loBr, loBl);
     }
 
     void checkStatus(float mouseX, float mouseY){
-        boolean isTouched = isPointInBox(layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, mouseX, mouseY);
+        boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
         if(!hasMouseTouched && isTouched){
             hasMouseTouched = true;
         }

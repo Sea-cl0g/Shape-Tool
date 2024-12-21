@@ -8,6 +8,8 @@ class Canvas{
     Canvas(){
         move = new PVector(0, 0);
         scale = 1.0;
+        colorPallet[0] = color(#9966FF);
+        colorPallet[1] = color(50, 50, 50);
     }
 
     void process(){
@@ -23,8 +25,6 @@ class Canvas{
         if(isMouseCenterClicking){
             isMouseCenterClicking = false;
         }
-        colorPallet[0] = color(50, 50, 50);
-        colorPallet[1] = color(50, 50, 50);
     }
 
     void add_rectangle(){

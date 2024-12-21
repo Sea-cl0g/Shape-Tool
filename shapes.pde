@@ -182,7 +182,6 @@ class Ellipse extends Shape {
     
     boolean isPointInEllipse(float x, float y, float w, float h, float pointX, float pointY){boolean xCheck = x < pointX && pointX < x + w;
         float th = pow(pointX - x, 2) / pow(w / 2, 2) + pow(pointY - y, 2) / pow(h / 2, 2) - 1;
-        println(th);
         return th < 0;
     }
 

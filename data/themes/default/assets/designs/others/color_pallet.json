@@ -11,18 +11,18 @@
             "type": "color_picker",
             "layout": {
                 "x_point": 7,
-                "y_point": 7,
+                "y_point": 8,
                 "width_point": 6,
-                "height_point": 1
+                "height_point": 0.8
             }
         },
         "@FILL_HSB_S": {
             "type": "color_picker",
             "layout": {
                 "x_point": 7,
-                "y_point": 8.5,
+                "y_point": 9,
                 "width_point": 6,
-                "height_point": 1
+                "height_point": 0.8
             }
         },
         "@FILL_HSB_B": {
@@ -31,7 +31,7 @@
                 "x_point": 7,
                 "y_point": 10,
                 "width_point": 6,
-                "height_point": 1
+                "height_point": 0.8
             }
         },
         "e1": {
@@ -39,11 +39,11 @@
             "layout": {
                 "x_point": 7,
                 "y_point": 9,
-                "width_point": 8,
-                "height_point": 6,
-                "r_point": 1
+                "width_point": 7,
+                "height_point": 4,
+                "r_point": 0.4
             },
-            "fillCol": "#AAAAAA"
+            "fillCol": "#d4dde1"
         }
     }
 }

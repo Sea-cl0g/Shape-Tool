@@ -143,12 +143,14 @@ class Theme{
             //if(asset)//configで定義された特別な要素かを調べる
             EasyJSONObject elementEJSON = new EasyJSONObject(elements.getJSONObject(elementName));
             LayoutData layout;
+            StrokeData stroke;
             color fillCol;
             switch (elementEJSON.safeGetString("type")) {
                 case "base" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
-                    layers.get(layerPos).add(new Base(16, 16, drawMode, layout, fillCol));
+                    stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
+                    layers.get(layerPos).add(new Base(16, 16, drawMode, layout, stroke, fillCol));
                 break;
                 case "color_picker" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
