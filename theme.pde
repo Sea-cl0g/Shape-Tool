@@ -49,6 +49,13 @@ class Theme{
                         base.sizeH = height;
                     }
                     base.checkStatus(mouseX, mouseY);
+                }else if(guiObj instanceof ColorPicker){
+                    ColorPicker colorPicker = (ColorPicker) guiObj;
+                    if(isWindowSizeChanged){
+                        colorPicker.sizeW = width;
+                        colorPicker.sizeH = height;
+                    }
+                    colorPicker.checkStatus(mouseX, mouseY);
                 }else if(guiObj instanceof CanvasBlock){
                     CanvasBlock canvasBlock = (CanvasBlock) guiObj;
                     if(isWindowSizeChanged){
@@ -80,6 +87,9 @@ class Theme{
                 if(guiObj instanceof Base){
                     Base base = (Base) guiObj;
                     base.drawBase();
+                }else if(guiObj instanceof ColorPicker){
+                    ColorPicker colorPicker = (ColorPicker) guiObj;
+                    colorPicker.drawColPicker();
                 }else if(guiObj instanceof CanvasBlock){
                     CanvasBlock canvasBlock = (CanvasBlock) guiObj;
                     canvasBlock.drawEasel();
@@ -95,7 +105,6 @@ class Theme{
         }
     }
     //====================================================================================================
-
     void loadTheme(){
         println("Theme Loading...");
         JSONObject assets = config.getJSONObject("assets");
@@ -141,6 +150,20 @@ class Theme{
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     layers.get(layerPos).add(new Base(16, 16, drawMode, layout, fillCol));
                 break;
+                case "color_picker" :
+                    layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
+                    int colorPalletIndex = -1;
+                    String pickerMode = "";
+                    if(isElementQuery){
+                        if(elementName.startsWith("@FILL_")){
+                            colorPalletIndex = 0;
+                        }else if(elementName.startsWith("@STROKE_")){
+                            colorPalletIndex = 1;
+                        }
+                        pickerMode = getPickerMode(elementName);
+                    }
+                    layers.get(layerPos).add(new ColorPicker(16, 16, drawMode, layout, colorPalletIndex, pickerMode));
+                break;
                 case "canvas" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
@@ -153,22 +176,50 @@ class Theme{
                 break;
                 case "button" :
                     Runnable function = null;
+                    int colorIndex = -1;
                     if(isElementQuery){
-                        function = getButtonFanction(queryType);
+                        if(elementName.equals("@MAIN_BUTTON")){
+                            function = buttonFanctionPrepare(queryType);
+                        }else if(elementName.equals("@FILL_BUTTON_COLOR")){
+                            if(queryType.equals("CALL_COLOR_PICKER_FOR_FILL")){
+                                function = () -> canvas.add_rectangle();
+                                colorIndex = 0;
+                            }else if(queryType.equals("CALL_COLOR_PICKER_FOR_STROKE")){
+                                function = () -> canvas.add_rectangle();
+                                colorIndex = 1;
+                            }
+                        }
                     }
                     EasyJSONArray styles = elementEJSON.safeGetEasyJSONArray("style");
+                    Button button = buildButton(drawMode, styles, function);
+                    if(colorIndex != -1){
+                        button.colorIndex = colorIndex;
+                    }
                     layers.get(layerPos).add(buildButton(drawMode, styles, function));
                 break;
-                case "color" :
-                    
-                break;	
             }
         }
     }
 
-    Runnable getButtonFanction(String query){
+    String getPickerMode(String elementName){
+        if(elementName.endsWith("_HSB_H")){
+            return "HSB_H";
+        }else if(elementName.endsWith("_HSB_S")){
+            return "HSB_S";
+        }else if(elementName.endsWith("_HSB_B")){
+            return "HSB_B";
+        }else if(elementName.endsWith("_RGB_R")){
+            return "HSB_R";
+        }else if(elementName.endsWith("_RGB_G")){
+            return "HSB_G";
+        }else if(elementName.endsWith("_RGB_B")){
+            return "HSB_B";
+        }
+        return "";
+    }
+
+    Runnable buttonFanctionPrepare(String query){
         Runnable function;
-        println(query);
         switch (query) {
             case "FANC_ADD_RECTANGLE" :
                 function = () -> canvas.add_rectangle();
@@ -215,7 +266,6 @@ class Theme{
                 }
             }
         }
-        println("test");
         return new Button(16, 16, drawMode, normal, touched, clicked, function);
     }
 

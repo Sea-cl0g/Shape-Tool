@@ -5,6 +5,7 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
+    
     "button_types": {
         "maru": "roundedSquareButton"
     },

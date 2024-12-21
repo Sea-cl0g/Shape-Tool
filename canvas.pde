@@ -1,5 +1,6 @@
 class Canvas{
     ArrayList<Shape> shapes = new ArrayList<Shape>();
+    color[] colorPallet = new color[2];
     boolean dragged;
     PVector move;
     float scale;
@@ -22,6 +23,8 @@ class Canvas{
         if(isMouseCenterClicking){
             isMouseCenterClicking = false;
         }
+        colorPallet[0] = color(50, 50, 50);
+        colorPallet[1] = color(50, 50, 50);
     }
 
     void add_rectangle(){
@@ -38,17 +41,17 @@ class Canvas{
 
     //キャンバス関係のボタン
     void zoom_in(){
-        if(canvas.scale + 0.1 > 4.0){
-            canvas.scale = 4.0; 
+        if(scale + 0.1 > 4.0){
+            scale = 4.0; 
         }else{
-            canvas.scale += 0.1;
+            scale += 0.1;
         }
     }
     void zoom_out(){
-        if(canvas.scale - 0.1 < 0.1){
-           canvas.scale = 0.1;
+        if(scale - 0.1 < 0.1){
+           scale = 0.1;
         }else{
-          canvas.scale -= 0.1;
+          scale -= 0.1;
         }
     }
 }

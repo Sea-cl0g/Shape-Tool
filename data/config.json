@@ -13,6 +13,17 @@
         "canvas": {
             "path": "others/canvas.json"
         },
+        "color_pallet": {
+            "path": "others/color_pallet.json",
+            "queries": [
+                {"Name": "@FILL_HSB_H", "Query": "NULL"},
+                {"Name": "@FILL_HSB_S", "Query": "NULL"},
+                {"Name": "@FILL_HSB_B", "Query": "NULL"},
+                {"Name": "@FILL_RGB_R", "Query": "NULL"},
+                {"Name": "@FILL_RGB_G", "Query": "NULL"},
+                {"Name": "@FILL_RGB_B", "Query": "NULL"}
+            ]
+        },
 
         
         "add_rectangle": {
@@ -27,22 +38,26 @@
             "path": "buttons/add_triangle.json",
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_TRIANGLE"}]
         },
+        
 
+        "fill_color_button": {
+            "path": "buttons/fill_color_button.json",
+            "queries": [
+                {"Name": "@FILL_BUTTON_COLOR", "Query": "CALL_COLOR_PICKER_FOR_FILL"}
+            ]
+        },
+        "stroke_color_button": {
+            "path": "buttons/stroke_color_button.json",
+            "queries": [
+                {"Name": "@FILL_BUTTON_COLOR", "Query": "CALL_COLOR_PICKER_FOR_STROKE"}
+            ]
+        },
+
+        
         "duplicate": {
             "path": "buttons/duplicate_layer.json",
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_DUPLICATE_SHAPE"}]
         },
-        
-
-        "fill_color_button": {
-            "path": "buttons/add_rectangle.json",
-            "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_RECTANGLE"},
-                {"Name": "@FILL_COLOR", "Query": ""}
-            ]
-        },
-
-
         "raise_layer": {
             "path": "buttons/raise_layer.json",
             "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_RAISE_LAYER" }]

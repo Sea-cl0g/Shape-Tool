@@ -1,0 +1,49 @@
+{
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
+    "containerAnker": "topRight",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 10,
+
+    "elements": {
+        "@FILL_HSB_H": {
+            "type": "color_picker",
+            "layout": {
+                "x_point": 7,
+                "y_point": 7,
+                "width_point": 6,
+                "height_point": 1
+            }
+        },
+        "@FILL_HSB_S": {
+            "type": "color_picker",
+            "layout": {
+                "x_point": 7,
+                "y_point": 8.5,
+                "width_point": 6,
+                "height_point": 1
+            }
+        },
+        "@FILL_HSB_B": {
+            "type": "color_picker",
+            "layout": {
+                "x_point": 7,
+                "y_point": 10,
+                "width_point": 6,
+                "height_point": 1
+            }
+        },
+        "e1": {
+            "type": "base",
+            "layout": {
+                "x_point": 7,
+                "y_point": 9,
+                "width_point": 8,
+                "height_point": 6,
+                "r_point": 1
+            },
+            "fillCol": "#AAAAAA"
+        }
+    }
+}
