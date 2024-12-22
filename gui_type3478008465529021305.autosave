@@ -161,21 +161,20 @@ class TextBlock extends Base{
         drawBase();
         switch (textAlign) {
             case "CENTER" :
-                textAlign(CENTER, CENTER);
+                textAlign(CENTER);
             break;	
             case "RIGHT" :
-                textAlign(RIGHT, CENTER);
+                textAlign(RIGHT);
             break;	
             default :
-                textAlign(LEFT, CENTER);
+                textAlign(LEFT);
             break;	
         }
-        float textGSize = getContainerBlockSize(textSize, textSize).y;
-        textSize(textGSize);
+        float size = getContainerBlockSize(textSize, textSize).y;
+        textSize(size);
         fill(textColor);
-        PVector size = getContainerBlockSize(w, h);
-        PVector pos = getObjectPos(x, y, w, h, size);
-        text(text, pos.x + size.x / 2, pos.y + size.y / 2);
+        text(text, x, y);
+        println("a");
     }
 }
 
@@ -317,21 +316,19 @@ class Base extends Block{
     }
 
     void drawBase(){
-        if(alpha(fillCol) != 0.0){
-            fill(fillCol);
-            noStroke();
-            float loTl = 0;
-            float loTr = 0;
-            float loBr = 0;
-            float loBl = 0;
-            if(r != 0.0){
-                loTl = tl != 0.0 ? tl : r;
-                loTr = tr != 0.0 ? tr : r;
-                loBr = br != 0.0 ? br : r;
-                loBl = bl != 0.0 ? bl : r;
-            }
-            box(x, y, w, h, loTl, loTr, loBr, loBl);
+        fill(fillCol);
+        noStroke();
+        float loTl = 0;
+        float loTr = 0;
+        float loBr = 0;
+        float loBl = 0;
+        if(r != 0.0){
+            loTl = tl != 0.0 ? tl : r;
+            loTr = tr != 0.0 ? tr : r;
+            loBr = br != 0.0 ? br : r;
+            loBl = bl != 0.0 ? bl : r;
         }
+        box(x, y, w, h, loTl, loTr, loBr, loBl);
     }
 
     void checkStatus(float mouseX, float mouseY){

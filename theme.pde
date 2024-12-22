@@ -9,6 +9,7 @@ class Theme{
     ArrayList<ArrayList<Object>> option = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> export = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> save = new ArrayList<ArrayList<Object>>();
+    
 
     int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index){
         ArrayList<Object> newLayer = new ArrayList<Object>();
@@ -63,6 +64,13 @@ class Theme{
                         base.sizeH = height;
                     }
                     base.checkStatus(mouseX, mouseY);
+                }else if(guiObj instanceof TextBlock){
+                    TextBlock textBlock = (TextBlock) guiObj;
+                    if(isWindowSizeChanged){
+                        textBlock.sizeW = width;
+                        textBlock.sizeH = height;
+                    }
+                    textBlock.checkStatus(mouseX, mouseY);
                 }else if(guiObj instanceof ColorPicker){
                     ColorPicker colorPicker = (ColorPicker) guiObj;
                     if(isWindowSizeChanged){
@@ -102,6 +110,9 @@ class Theme{
                 if(guiObj instanceof Base){
                     Base base = (Base) guiObj;
                     base.drawBase();
+                }if(guiObj instanceof TextBlock){
+                    TextBlock textBlock = (TextBlock) guiObj;
+                    textBlock.drawTextBlock();
                 }else if(guiObj instanceof ColorPicker){
                     ColorPicker colorPicker = (ColorPicker) guiObj;
                     colorPicker.drawColPicker();
@@ -179,14 +190,22 @@ class Theme{
             //if(asset)//configで定義された特別な要素かを調べる
             EasyJSONObject elementEJSON = new EasyJSONObject(elements.getJSONObject(elementName));
             LayoutData layout;
-            StrokeData stroke;
+            TextData textData;
             color fillCol;
+            StrokeData stroke;
             switch (elementEJSON.safeGetString("type")) {
                 case "base" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
                     layers.get(layerPos).add(new Base(16, 16, drawMode, layout, stroke, fillCol));
+                break;
+                case "text_block" :
+                    layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
+                    textData = new TextData(elementEJSON.get("text"), variableJSON);
+                    stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    layers.get(layerPos).add(new TextBlock(16, 16, drawMode, layout, textData, stroke, fillCol));
                 break;
                 case "color_picker" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
@@ -481,6 +500,36 @@ class ShadowData{
             this.shadowMode = shadowEJSON.safeGetString("shadowMode");
             this.shadowDistPoint = shadowEJSON.safeGetFloat("shadowDistPoint");
             this.shadowCol = readColor(shadowEJSON.safeGetString("color"), variableJSON);
+        }
+    }
+}
+
+//--------------------------------------------------
+class TextData{
+    String text;
+    String textAlign;
+    float textSize;
+    color textColor;
+    
+    TextData(Object textObj, JSONObject variableJSON){
+        if(textObj != null){
+            EasyJSONObject textEJSON = new EasyJSONObject();
+            if(textObj instanceof String){
+                String textStr = (String) textObj;
+                if(textStr.startsWith("$")){
+                    String variableName = textStr.substring(1);
+                    textEJSON = new EasyJSONObject(variableJSON.getJSONObject("texts").getJSONObject(variableName));
+                }
+            }else if(textObj instanceof JSONObject){
+                JSONObject textJSON = (JSONObject) textObj;
+                textEJSON = new EasyJSONObject(textJSON);
+            }else{
+                textEJSON = new EasyJSONObject();
+            }
+            this.text = textEJSON.safeGetString("text");
+            this.textAlign = textEJSON.safeGetString("text_align");
+            this.textSize = textEJSON.safeGetFloat("text_size");
+            this.textColor = readColor(textEJSON.safeGetString("text_col"), variableJSON);
         }
     }
 }
