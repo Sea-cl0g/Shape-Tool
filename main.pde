@@ -23,7 +23,9 @@ void setup(){
 void draw() {
   hasMouseTouched = false;
   background(255, 255, 255);
-  theme.drawGUI();
+  //theme.drawGUI();
+
+  checkBlocks(1, 1, "vertical", "CORNER");
 }
 
 //--------------------------------------------------
@@ -90,20 +92,16 @@ void checkBlocks(int wCount, int hCount, String blockMode, String blockAnker){
   tmpBlock.setBlockAnker(blockAnker);
   
   noFill();
-  /*
   stroke(255, 0, 0);
   tmpBlock.setContainerAnker("topLeft");
   tmpBlock.debugGrid(wCount, hCount);
-  */
   stroke(0, 255, 0);
   tmpBlock.setContainerAnker("topRight");
   tmpBlock.debugGrid(wCount, hCount);
-  /*
   stroke(0, 0, 255);
   tmpBlock.setContainerAnker("bottomLeft");
   tmpBlock.debugGrid(wCount, hCount);
   stroke(255, 0, 255);
   tmpBlock.setContainerAnker("bottomRight");
   tmpBlock.debugGrid(wCount, hCount);
-  */
 }

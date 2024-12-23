@@ -9,6 +9,7 @@ class Theme{
     ArrayList<ArrayList<Object>> option = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> export = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> save = new ArrayList<ArrayList<Object>>();
+    ArrayList<ArrayList<Object>> load = new ArrayList<ArrayList<Object>>();
     
 
     int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index){
@@ -153,6 +154,9 @@ class Theme{
                     case "save" :
                         readDesign(save, asset, designJSON);
                     break;	
+                    case "load" :
+                        readDesign(load, asset, designJSON);
+                    break;	
                     default :
                         readDesign(main, asset, designJSON);
                     break;	
@@ -164,6 +168,7 @@ class Theme{
         println(option);
         println(export);
         println(save);
+        println(load);
     }
 
     void readDesign(ArrayList<ArrayList<Object>> layers, JSONObject asset, JSONObject designJSON){

@@ -34,7 +34,7 @@
             "color": "#222222"
         }
     },
-    "stroke": {
+    "strokes": {
         "main": {
             "stroke_point": 0,
             "color": "#42c8ed"

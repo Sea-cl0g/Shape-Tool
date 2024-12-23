@@ -4,26 +4,34 @@
     "ERROR_SVG_PATH": "data/ERROR_ICON.svg",
 
     "assets": {
-        "sideBarLeft": {
-            "path": "bases/sideBarLeft.json"
+        "main1": {
+            "path": "bases/main1.json"
         },
-        "sideBarRight": {
-            "path": "bases/sideBarRight.json"
+        "main2": {
+            "path": "bases/main2.json"
         },
+        "main3": {
+            "path": "bases/main3.json"
+        },
+        "main4": {
+            "path": "bases/main4.json"
+        },
+        "main5": {
+            "path": "bases/main5.json"
+        },
+        "main6": {
+            "path": "bases/main6.json"
+        },
+        "main7": {
+            "path": "bases/main7.json"
+        },
+        "main8": {
+            "path": "bases/main8.json"
+        },
+
+
         "canvas": {
             "path": "others/canvas.json"
-        },
-        "color_pallet": {
-            "path": "others/color_pallet.json",
-            "layerMode": "coloarPallet",
-            "queries": [
-                {"Name": "@FILL_HSB_H", "Query": "NULL"},
-                {"Name": "@FILL_HSB_S", "Query": "NULL"},
-                {"Name": "@FILL_HSB_B", "Query": "NULL"},
-                {"Name": "@FILL_RGB_R", "Query": "NULL"},
-                {"Name": "@FILL_RGB_G", "Query": "NULL"},
-                {"Name": "@FILL_RGB_B", "Query": "NULL"}
-            ]
         },
 
         
@@ -166,6 +174,184 @@
         "settings_button": {
             "path": "buttons/settings_button.json",
             "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SETTINGS_BUTTON" }]
+        },
+
+
+
+
+
+
+        "color_pallet1":{
+            "path": "others/color_pallet1.json",
+            "layerMode": "coloarPallet"
+        },
+        "color_pallet2":{
+            "path": "others/color_pallet2.json",
+            "layerMode": "coloarPallet"
+        },
+        "color_pallet3":{
+            "path": "others/color_pallet3.json",
+            "layerMode": "coloarPallet"
+        },
+        "color_pallet4":{
+            "path": "others/color_pallet4.json",
+            "layerMode": "coloarPallet"
+        },
+
+        
+        "color_pickers1": {
+            "path": "others/color_pickers1.json",
+            "layerMode": "colorPallet",
+            "queries": [
+                {"Name": "@FILL_HSB_H", "Query": "NULL"},
+                {"Name": "@FILL_HSB_S", "Query": "NULL"},
+                {"Name": "@FILL_HSB_B", "Query": "NULL"},
+                {"Name": "@FILL_RGB_R", "Query": "NULL"},
+                {"Name": "@FILL_RGB_G", "Query": "NULL"},
+                {"Name": "@FILL_RGB_B", "Query": "NULL"},
+                
+                {"Name": "@STROKE_HSB_H", "Query": "NULL"},
+                {"Name": "@STROKE_HSB_S", "Query": "NULL"},
+                {"Name": "@STROKE_HSB_B", "Query": "NULL"},
+                {"Name": "@STROKE_RGB_R", "Query": "NULL"},
+                {"Name": "@STROKE_RGB_G", "Query": "NULL"},
+                {"Name": "@STROKE_RGB_B", "Query": "NULL"}
+            ]
+        },
+        "color_pickers2": {
+            "path": "others/color_pickers1.json",
+            "layerMode": "colorPallet",
+            "queries": [
+                {"Name": "@FILL_HSB_H", "Query": "NULL"},
+                {"Name": "@FILL_HSB_S", "Query": "NULL"},
+                {"Name": "@FILL_HSB_B", "Query": "NULL"},
+                {"Name": "@FILL_RGB_R", "Query": "NULL"},
+                {"Name": "@FILL_RGB_G", "Query": "NULL"},
+                {"Name": "@FILL_RGB_B", "Query": "NULL"},
+                
+                {"Name": "@STROKE_HSB_H", "Query": "NULL"},
+                {"Name": "@STROKE_HSB_S", "Query": "NULL"},
+                {"Name": "@STROKE_HSB_B", "Query": "NULL"},
+                {"Name": "@STROKE_RGB_R", "Query": "NULL"},
+                {"Name": "@STROKE_RGB_G", "Query": "NULL"},
+                {"Name": "@STROKE_RGB_B", "Query": "NULL"}
+            ]
+        },
+
+
+
+
+
+
+        "option1":{
+            "path": "others/option1.json",
+            "layerMode": "option"
+        },
+        "option2":{
+            "path": "others/option2.json",
+            "layerMode": "option"
+        },
+        "option3":{
+            "path": "others/option2.json",
+            "layerMode": "option"
+        },
+        "option4":{
+            "path": "others/option2.json",
+            "layerMode": "option"
+        },
+
+        
+        "theme_path_dialog":{
+            "path": "others/theme_path_dialog.json",
+            "layerMode": "option",
+            "Queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "THEME_PATH" }]
+        },
+
+
+
+
+
+
+        "export1":{
+            "path": "others/export1.json",
+            "layerMode": "export"
+        },
+        "export2":{
+            "path": "others/export2.json",
+            "layerMode": "export"
+        },
+        "export3":{
+            "path": "others/export3.json",
+            "layerMode": "export"
+        },
+        "export4":{
+            "path": "others/export4.json",
+            "layerMode": "export"
+        },
+
+        
+        "export_preview":{
+            "path": "others/export_preview.json",
+            "layerMode": "export",
+            "Queries": [{ "Name": "@MAIN_TEXT_BLOCK", "Query": "CODE_PREVIEW" }]
+        },
+
+
+
+
+
+
+        "save1":{
+            "path": "others/save1.json",
+            "layerMode": "save"
+        },
+        "save2":{
+            "path": "others/save2.json",
+            "layerMode": "save"
+        },
+        "save3":{
+            "path": "others/save3.json",
+            "layerMode": "save"
+        },
+        "save4":{
+            "path": "others/save4.json",
+            "layerMode": "save"
+        },
+
+        
+        "save_path_dialog":{
+            "path": "others/save_path_dialog.json",
+            "layerMode": "option",
+            "Queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "SAVE_PATH" }]
+        },
+
+
+
+
+
+
+        "load1":{
+            "path": "others/load1.json",
+            "layerMode": "load"
+        },
+        "load2":{
+            "path": "others/load2.json",
+            "layerMode": "load"
+        },
+        "load3":{
+            "path": "others/load3.json",
+            "layerMode": "load"
+        },
+        "load4":{
+            "path": "others/load4.json",
+            "layerMode": "load"
+        },
+
+        
+        "load_path_dialog":{
+            "path": "others/load_path_dialog.json",
+            "layerMode": "option",
+            "Queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "LOAD_PATH" }]
         }
     }
 }
