@@ -58,7 +58,7 @@
         "stroke_color_button": {
             "path": "buttons/stroke_color_button.json",
             "queries": [
-                {"Name": "@FILL_BUTTON_COLOR", "Query": "CALL_COLOR_PICKER_FOR_STROKE"}
+                {"Name": "@STROKE_BUTTON_COLOR", "Query": "CALL_COLOR_PICKER_FOR_STROKE"}
             ]
         },
 
@@ -181,54 +181,63 @@
 
 
 
-        "color_pallet1":{
-            "path": "others/color_pallet1.json",
-            "layerMode": "coloarPallet"
+        "fill_pallet1":{
+            "path": "others/fill_pallet1.json",
+            "layerMode": "fillPallet"
         },
-        "color_pallet2":{
-            "path": "others/color_pallet2.json",
-            "layerMode": "coloarPallet"
+        "fill_pallet2":{
+            "path": "others/fill_pallet2.json",
+            "layerMode": "fillPallet"
         },
-        "color_pallet3":{
-            "path": "others/color_pallet3.json",
-            "layerMode": "coloarPallet"
+        "fill_pallet3":{
+            "path": "others/fill_pallet3.json",
+            "layerMode": "fillPallet"
         },
-        "color_pallet4":{
-            "path": "others/color_pallet4.json",
-            "layerMode": "coloarPallet"
+        "fill_pallet4":{
+            "path": "others/fill_pallet4.json",
+            "layerMode": "fillPallet"
         },
 
         
-        "color_pickers1": {
-            "path": "others/color_pickers1.json",
-            "layerMode": "colorPallet",
+        "fill_pickers": {
+            "path": "others/fill_pickers.json",
+            "layerMode": "fillPallet",
             "queries": [
                 {"Name": "@FILL_HSB_H", "Query": "NULL"},
                 {"Name": "@FILL_HSB_S", "Query": "NULL"},
                 {"Name": "@FILL_HSB_B", "Query": "NULL"},
                 {"Name": "@FILL_RGB_R", "Query": "NULL"},
                 {"Name": "@FILL_RGB_G", "Query": "NULL"},
-                {"Name": "@FILL_RGB_B", "Query": "NULL"},
-                
-                {"Name": "@STROKE_HSB_H", "Query": "NULL"},
-                {"Name": "@STROKE_HSB_S", "Query": "NULL"},
-                {"Name": "@STROKE_HSB_B", "Query": "NULL"},
-                {"Name": "@STROKE_RGB_R", "Query": "NULL"},
-                {"Name": "@STROKE_RGB_G", "Query": "NULL"},
-                {"Name": "@STROKE_RGB_B", "Query": "NULL"}
+                {"Name": "@FILL_RGB_B", "Query": "NULL"}
             ]
         },
-        "color_pickers2": {
-            "path": "others/color_pickers1.json",
-            "layerMode": "colorPallet",
+
+
+
+
+
+
+        "stroke_pallet1":{
+            "path": "others/stroke_pallet1.json",
+            "layerMode": "coloarPallet"
+        },
+        "stroke_pallet2":{
+            "path": "others/stroke_pallet2.json",
+            "layerMode": "coloarPallet"
+        },
+        "stroke_pallet3":{
+            "path": "others/stroke_pallet3.json",
+            "layerMode": "coloarPallet"
+        },
+        "stroke_pallet4":{
+            "path": "others/stroke_pallet4.json",
+            "layerMode": "coloarPallet"
+        },
+
+        "stroke_pickers": {
+            "path": "others/stroke_pickers.json",
+            "layerMode": "strokePallet",
             "queries": [
-                {"Name": "@FILL_HSB_H", "Query": "NULL"},
-                {"Name": "@FILL_HSB_S", "Query": "NULL"},
-                {"Name": "@FILL_HSB_B", "Query": "NULL"},
-                {"Name": "@FILL_RGB_R", "Query": "NULL"},
-                {"Name": "@FILL_RGB_G", "Query": "NULL"},
-                {"Name": "@FILL_RGB_B", "Query": "NULL"},
-                
                 {"Name": "@STROKE_HSB_H", "Query": "NULL"},
                 {"Name": "@STROKE_HSB_S", "Query": "NULL"},
                 {"Name": "@STROKE_HSB_B", "Query": "NULL"},

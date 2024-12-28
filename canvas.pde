@@ -5,7 +5,6 @@ class Canvas{
     PVector move;
     float scale;
     
-    boolean isFillMode, isStrokeMode;
 
     Canvas(){
         move = new PVector(0, 0);
@@ -40,6 +39,17 @@ class Canvas{
         Ellipse ellipse = new Ellipse(0, 0, 10, 10);
         shapes.add(ellipse);
     }
+
+    void tgl_fillPallet(){
+        theme.isFillMode = !theme.isFillMode;
+        println(theme.isFillMode);
+    }
+
+    void tgl_strokePallet(){
+        theme.isStrokeMode = !theme.isFillMode;
+        println(theme.isStrokeMode);
+    }
+
 
     //キャンバス関係のボタン
     void zoom_in(){

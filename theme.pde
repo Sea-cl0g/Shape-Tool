@@ -5,11 +5,14 @@ class Theme{
     JSONObject variableJSON = new JSONObject();
 
     ArrayList<ArrayList<Object>> main = new ArrayList<ArrayList<Object>>();
-    ArrayList<ArrayList<Object>> colorPallet = new ArrayList<ArrayList<Object>>();
+    ArrayList<ArrayList<Object>> fillPallet = new ArrayList<ArrayList<Object>>();
+    ArrayList<ArrayList<Object>> strokePallet = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> option = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> export = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> save = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> load = new ArrayList<ArrayList<Object>>();
+
+    boolean isFillMode, isStrokeMode;
 
     int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index){
         ArrayList<Object> newLayer = new ArrayList<Object>();
@@ -50,12 +53,25 @@ class Theme{
         checkLayerStatus(save);
         checkLayerStatus(export);
         checkLayerStatus(option);
-        checkLayerStatus(colorPallet);
+        if(isFillMode){
+            checkLayerStatus(fillPallet);
+        }
+        if(isStrokeMode){
+            checkLayerStatus(strokePallet);
+        }
+        
         checkLayerStatus(main);
 
         //レイヤーの描画を行う
         drawLayer(main);
-        drawLayer(colorPallet);
+        if(isFillMode){
+            println("fillPallet", fillPallet);
+            drawLayer(fillPallet);
+        }
+        if(isStrokeMode){
+            println("strokePallet", strokePallet);
+            drawLayer(strokePallet);
+        }
         drawLayer(option);
         drawLayer(export);
         drawLayer(save);
@@ -151,8 +167,11 @@ class Theme{
             if(designJSON.keys().size() != 0){
                 String layerName = asset.getString("layerMode") != null ? asset.getString("layerMode") : "main";
                 switch (layerName) {
-                    case "colorPallet" :
-                        readDesign(colorPallet, asset, designJSON);
+                    case "fillPallet" :
+                        readDesign(fillPallet, asset, designJSON);
+                    break;	
+                    case "strokePallet" :
+                        readDesign(strokePallet, asset, designJSON);
                     break;	
                     case "option" :
                         readDesign(option, asset, designJSON);
@@ -172,11 +191,19 @@ class Theme{
                 }
             }
         }
+        println("main");
         println(main);
-        println(colorPallet);
+        println("fillPallet");
+        println(fillPallet);
+        println("strokePallet");
+        println(strokePallet);
+        println("option");
         println(option);
+        println("export");
         println(export);
+        println("save");
         println(save);
+        println("load");
         println(load);
     }
 
@@ -189,7 +216,7 @@ class Theme{
         int layerPos = setLayerAtPosition(layers, designJSON.isNull("layer") ? 0 : designJSON.getInt("layer"));
 
         String[] elementNameList = getReverseSortedStringArrayFromJSONObject(elements);
-
+        
         for(String elementName : elementNameList){
             boolean isElementQuery = false;
             String queryType = null;
@@ -253,10 +280,10 @@ class Theme{
                             function = buttonFanctionPrepare(queryType);
                         }else if(elementName.equals("@FILL_BUTTON_COLOR")){
                             if(queryType.equals("CALL_COLOR_PICKER_FOR_FILL")){
-                                function = () -> canvas.add_rectangle();
+                                function = () -> canvas.tgl_fillPallet();
                                 colorIndex = 0;
                             }else if(queryType.equals("CALL_COLOR_PICKER_FOR_STROKE")){
-                                function = () -> canvas.add_rectangle();
+                                function = () -> canvas.tgl_strokePallet();
                                 colorIndex = 1;
                             }
                         }
@@ -266,7 +293,8 @@ class Theme{
                     if(colorIndex != -1){
                         button.colorIndex = colorIndex;
                     }
-                    layers.get(layerPos).add(buildButton(drawMode, styles, function));
+                    println(button.colorIndex, colorIndex);
+                    layers.get(layerPos).add(button);
                 break;
             }
         }
@@ -343,10 +371,12 @@ class Theme{
     void buildVariableJSON(JSONObject design){
         for(Object keyObj : design.keys()){
             String key = (String) keyObj;
-            Object valueObj = design.get(key);
-            if(valueObj instanceof JSONObject){
-                JSONObject value = (JSONObject) valueObj;
-                variableJSON.setJSONObject(key, value);
+            if(!key.equals("elements")){
+                Object valueObj = design.get(key);
+                if(valueObj instanceof JSONObject){
+                    JSONObject value = (JSONObject) valueObj;
+                    variableJSON.setJSONObject(key, value);
+                }
             }
         }
     }

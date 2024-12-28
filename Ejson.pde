@@ -19,7 +19,21 @@ class EasyJSONObject{
     return safeGetFloat(key, 0.0);
   }
   float safeGetFloat(String key, float ifNull){
-    return jsonObj.isNull(key) ? ifNull : jsonObj.getFloat(key);
+    if(jsonObj.isNull(key)){
+      return ifNull;
+    }else{
+      Object obj = jsonObj.get(key);
+      if(obj instanceof String){
+        String str = (String) obj;
+        try{
+          return calculateExpression(str);
+        }catch(Exception e){
+          println(key + "': " + e.getMessage());
+          return ifNull;
+        }
+      }
+      return jsonObj.getFloat(key);
+    }
   }
 
   EasyJSONObject safeGetEasyJSONObject(String key){
@@ -44,6 +58,35 @@ class EasyJSONObject{
   JSONArray getJSONArray(String key){
     return jsonObj.getJSONArray(key);
   }
+}
+
+float calculateExpression(String expression){
+  String[] tokens = expression.split(" ");
+  float result = Float.parseFloat(tokens[0]);
+
+  for(int i = 1; i < tokens.length; i += 2){
+    String operator = tokens[i];
+    float operand = Float.parseFloat(tokens[i + 1]);
+
+    switch (operator){
+      case "+":
+        result += operand;
+        break;
+      case "-":
+        result -= operand;
+        break;
+      case "*":
+        result *= operand;
+        break;
+      case "/":
+        result /= operand;
+        break;
+      default:
+        throw new IllegalArgumentException("Unsupported operator: " + operator);
+    }
+  }
+
+  return result;
 }
 
 //--------------------------------------------------

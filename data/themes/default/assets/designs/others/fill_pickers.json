@@ -5,18 +5,15 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 10,
-
-    
     "colors": {
         "noFill": "#FFFFFF00"
     },
-
     "elements": {
         "@FILL_HSB_H": {
             "type": "color_picker",
             "layout": {
-                "x_point": 7,
-                "y_point": 8,
+                "x_point": 9,
+                "y_point": 3,
                 "width_point": 6,
                 "height_point": 0.8
             }
@@ -24,8 +21,8 @@
         "@FILL_HSB_S": {
             "type": "color_picker",
             "layout": {
-                "x_point": 7,
-                "y_point": 9,
+                "x_point": 9,
+                "y_point": 4,
                 "width_point": 6,
                 "height_point": 0.8
             }
@@ -33,8 +30,8 @@
         "@FILL_HSB_B": {
             "type": "color_picker",
             "layout": {
-                "x_point": 7,
-                "y_point": 10,
+                "x_point": 9,
+                "y_point": 5,
                 "width_point": 6,
                 "height_point": 0.8
             }
@@ -42,8 +39,8 @@
         "e1": {
             "type": "text_block",
             "layout": {
-                "x_point": 7,
-                "y_point": 6.8,
+                "x_point": 9,
+                "y_point": 1.8,
                 "width_point": 7,
                 "height_point": 1
             },
@@ -58,8 +55,8 @@
         "e2": {
             "type": "base",
             "layout": {
-                "x_point": 7,
-                "y_point": 9,
+                "x_point": 9,
+                "y_point": 4,
                 "width_point": 7,
                 "height_point": 6,
                 "r_point": 0.4
