@@ -23,9 +23,9 @@ void setup(){
 void draw() {
   hasMouseTouched = false;
   background(255, 255, 255);
-  //theme.drawGUI();
+  theme.drawGUI();
 
-  checkBlocks(1, 1, "vertical", "CORNER");
+  //checkBlocks(1, 1, "vertical", "CORNER");
 }
 
 //--------------------------------------------------

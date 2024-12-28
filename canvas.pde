@@ -4,6 +4,8 @@ class Canvas{
     boolean dragged;
     PVector move;
     float scale;
+    
+    boolean isFillMode, isStrokeMode;
 
     Canvas(){
         move = new PVector(0, 0);

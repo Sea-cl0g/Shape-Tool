@@ -336,7 +336,7 @@ class Base extends Block{
 
     void checkStatus(float mouseX, float mouseY){
         boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
-        if(!hasMouseTouched && isTouched){
+        if(!hasMouseTouched && isTouched && alpha(fillCol) != 0.0){
             hasMouseTouched = true;
         }
     }

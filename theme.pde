@@ -10,7 +10,6 @@ class Theme{
     ArrayList<ArrayList<Object>> export = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> save = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> load = new ArrayList<ArrayList<Object>>();
-    
 
     int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index){
         ArrayList<Object> newLayer = new ArrayList<Object>();
@@ -47,13 +46,23 @@ class Theme{
         }
         
         //ステータスを調べる
-        drawLayer(main);
+        checkLayerStatus(load);
+        checkLayerStatus(save);
+        checkLayerStatus(export);
+        checkLayerStatus(option);
+        checkLayerStatus(colorPallet);
+        checkLayerStatus(main);
 
         //レイヤーの描画を行う
-        checkLayerStatus(main);
+        drawLayer(main);
+        drawLayer(colorPallet);
+        drawLayer(option);
+        drawLayer(export);
+        drawLayer(save);
+        drawLayer(load);
     }
 
-    void drawLayer(ArrayList<ArrayList<Object>> layers){
+    void checkLayerStatus(ArrayList<ArrayList<Object>> layers){
         for(int i = layers.size() - 1; 0 <= i; i--){
             ArrayList<Object> eachLayer = layers.get(i);
             for(int q = eachLayer.size() - 1; 0 <= q; q--){
@@ -105,7 +114,7 @@ class Theme{
         }
     }
 
-    void checkLayerStatus(ArrayList<ArrayList<Object>> layers){
+    void drawLayer(ArrayList<ArrayList<Object>> layers){
         for(ArrayList<Object> eachLayer : layers){
             for(Object guiObj : eachLayer){
                 if(guiObj instanceof Base){
