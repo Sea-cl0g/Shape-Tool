@@ -23,7 +23,7 @@
     "images": {
         "main": {
             "size": 0.8,
-            "path": "icon/ERROR_ICON.png"
+            "path": "icon/add_rectangle.svg"
         }
     },
     "shadows": {

@@ -223,6 +223,7 @@ class Block extends Container{
 
         PVector imageSize = getContainerBlockSize(w * scale, h * scale);
         PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
+        println(svg, pos.x + speaceSize.x, pos.y + speaceSize.y, imageSize.x, imageSize.y);
         shape(svg, pos.x + speaceSize.x, pos.y + speaceSize.y, imageSize.x, imageSize.y);
     }
 

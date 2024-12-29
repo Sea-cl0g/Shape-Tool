@@ -122,6 +122,15 @@ class Theme{
                         easel.sizeW = width;
                         easel.sizeH = height;
                     }
+                }else if(guiObj instanceof ImageBlock){
+                    ImageBlock imageBlock = (ImageBlock) guiObj;
+                    if(isWindowSizeChanged){
+                        imageBlock.sizeW = width;
+                        imageBlock.sizeH = height;
+                    }
+                    if(!onlySizeCheck){
+                        imageBlock.checkStatus(mouseX, mouseY);
+                    }
                 }else if(guiObj instanceof Button){
                     Button button = (Button) guiObj;
                     if(isWindowSizeChanged){
@@ -155,6 +164,9 @@ class Theme{
                 }else if(guiObj instanceof Easel){
                     Easel easel = (Easel) guiObj;
                     easel.drawEasel();
+                }else if(guiObj instanceof ImageBlock){
+                    ImageBlock imageBlock = (ImageBlock) guiObj;
+                    imageBlock.drawImageBlock();
                 }else if(guiObj instanceof Button){
                     Button button = (Button) guiObj;
                     button.drawButton();
@@ -279,11 +291,10 @@ class Theme{
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     layers.get(layerPos).add(new Easel(16, 16, drawMode, layout, fillCol));
                 break;
-                case "image" :
-                //Imageの実装予定
-                    //layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
-                    //imageData = new ImageData(elementEJSON.get("image"), variableJSON);
-                    //layers.get(layerPos).add(new Image(16, 16, drawMode, layout, fillCol));
+                case "image_block" :
+                    layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
+                    imageData = new ImageData(elementEJSON.get("image"), variableJSON);
+                    layers.get(layerPos).add(new ImageBlock(16, 16, drawMode, layout, imageData));
                 break;
                 case "button" :
                     Runnable function = null;

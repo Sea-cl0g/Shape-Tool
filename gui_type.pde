@@ -180,6 +180,41 @@ class TextBlock extends Base{
 }
 
 //--------------------------------------------------
+class ImageBlock extends Block{
+    DrawMode drawMode;
+    float x, y, w, h;
+    ImageData imageData;
+    ImageBlock(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, ImageData imageData){
+        super(splitW, splitH);
+        setContainerAnker(drawMode.containerAnker);
+        setBlockMode(drawMode.blockMode);
+        setBlockAnker(drawMode.blockAnker);
+        this.x = layoutData.x_point;
+        this.y = layoutData.y_point;
+        this.w = layoutData.width_point;
+        this.h = layoutData.height_point;
+        this.imageData = imageData;
+    }
+    
+    void drawImageBlock(){
+        println("↓imageBlock↓");
+        if(imageData.svgTgl){
+            drawSVG(x, y, w, h, imageData.size, imageData.svg);
+        }else{
+            drawImage(x, y, w, h, imageData.size, imageData.image);
+        }
+        println("↑imageBlock↑");
+    }
+    
+    void checkStatus(float mouseX, float mouseY){
+        boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
+        if(!hasMouseTouched && isTouched){
+            hasMouseTouched = true;
+        }
+    }
+}
+
+//--------------------------------------------------
 class Button extends ButtonTemplate{
     DrawMode drawMode;
     StyleData normal, touched, clicked;
