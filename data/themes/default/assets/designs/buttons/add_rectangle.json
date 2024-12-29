@@ -5,16 +5,12 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
-
-
     "button_types": {
         "maru": "roundedSquareButton"
     },
     "colors": {
         "defaultCol": "#4a7083ff"
     },
-
-    
     "layouts": {
         "default": {
             "x_point": 4,
@@ -24,7 +20,7 @@
             "r_point": 0.3
         }
     },
-    "icons": {
+    "images": {
         "main": {
             "size": 0.8,
             "path": "icon/add_rectangle.svg"
@@ -52,7 +48,7 @@
                     "button_type": "$maru",
                     "layout": "$default",
                     "fill": "$defaultCol",
-                    "icon": "$main",
+                    "image": "$main",
                     "shadow": "$main"
                 },
                 {
@@ -64,7 +60,7 @@
                         "stroke_point": 0.1,
                         "color": "#ffffff"
                     },
-                    "icon": "$main",
+                    "image": "$main",
                     "shadow": "$main"
                 },
                 {
@@ -72,7 +68,7 @@
                     "button_type": "$maru",
                     "layout": "$default",
                     "fill": "$defaultCol",
-                    "icon": "$main",
+                    "image": "$main",
                     "shadow": "$main"
                 }
             ]

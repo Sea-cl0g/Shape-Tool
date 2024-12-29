@@ -29,13 +29,13 @@ class ButtonTemplate extends Block{
     }
 
     // アイコン
-    void icon(float x, float y, float w, float h, float scale, PShape icon){
+    void image(float x, float y, float w, float h, float scale, PShape image){
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
 
-        PVector iconSize = getContainerBlockSize(w * scale, h * scale);
+        PVector imageSize = getContainerBlockSize(w * scale, h * scale);
         PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
-        shape(icon, pos.x + speaceSize.x, pos.y + speaceSize.y, iconSize.x, iconSize.y);
+        shape(image, pos.x + speaceSize.x, pos.y + speaceSize.y, imageSize.x, imageSize.y);
     }
 
     // ボタンテンプレート

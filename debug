@@ -11,22 +11,22 @@ assetLoad-ERROR: data/themes/default/assets/designs/buttons/delete_shape.json do
 assetLoad-ERROR: data/themes/default/assets/designs/others/export_preview.json does not exist.
 assetLoad-Log: data/themes/default/assets/designs/others/canvas.json has loaded!!
 assetLoad-Log: data/themes/default/assets/designs/buttons/add_rectangle.json has loaded!!
-iconLoad-Log: data/themes/default/assets/images/icon/add_rectangle.svg has loaded!!
-iconLoad-Log: data/themes/default/assets/images/icon/add_rectangle.svg has loaded!!
-iconLoad-Log: data/themes/default/assets/images/icon/add_rectangle.svg has loaded!!
+imageLoad-Log: data/themes/default/assets/images/image/add_rectangle.svg has loaded!!
+imageLoad-Log: data/themes/default/assets/images/image/add_rectangle.svg has loaded!!
+imageLoad-Log: data/themes/default/assets/images/image/add_rectangle.svg has loaded!!
 -1 -1
 assetLoad-Log: data/themes/default/assets/designs/buttons/add_ellipse.json has loaded!!
-iconLoad-Log: data/themes/default/assets/images/icon/add_ellipse.svg has loaded!!
-iconLoad-Log: data/themes/default/assets/images/icon/add_ellipse.svg has loaded!!
-iconLoad-Log: data/themes/default/assets/images/icon/add_ellipse.svg has loaded!!
+imageLoad-Log: data/themes/default/assets/images/image/add_ellipse.svg has loaded!!
+imageLoad-Log: data/themes/default/assets/images/image/add_ellipse.svg has loaded!!
+imageLoad-Log: data/themes/default/assets/images/image/add_ellipse.svg has loaded!!
 -1 -1
 assetLoad-ERROR: data/themes/default/assets/designs/buttons/move_down_1px.json does not exist.
 assetLoad-ERROR: data/themes/default/assets/designs/others/load3.json does not exist.
 assetLoad-ERROR: data/themes/default/assets/designs/others/load2.json does not exist.
 assetLoad-Log: data/themes/default/assets/designs/buttons/fill_color_button.json has loaded!!
-iconLoad-Log: data/themes/default/assets/images/icon/TMP_ICON1.svg has loaded!!
-iconLoad-Log: data/themes/default/assets/images/icon/TMP_ICON1.svg has loaded!!
-iconLoad-Log: data/themes/default/assets/images/icon/TMP_ICON1.svg has loaded!!
+imageLoad-Log: data/themes/default/assets/images/image/TMP_ICON1.svg has loaded!!
+imageLoad-Log: data/themes/default/assets/images/image/TMP_ICON1.svg has loaded!!
+imageLoad-Log: data/themes/default/assets/images/image/TMP_ICON1.svg has loaded!!
 0 0
 assetLoad-ERROR: data/themes/default/assets/designs/buttons/duplicate_layer.json does not exist.
 assetLoad-ERROR: data/themes/default/assets/designs/buttons/double_ratio.json does not exist.

@@ -45,20 +45,20 @@ class SafeLoad{
         return new JSONObject();
     }
 
-    PShape iconLoad(String iconPath){
-        String currThemeAsset = currThemeDir + "/assets/images/" + iconPath;
-        String defaultThemeAsset = DEFAULT_THEME_DIR + "/assets/images/" + iconPath;
+    PShape imageLoad(String imagePath){
+        String currThemeAsset = currThemeDir + "/assets/images/" + imagePath;
+        String defaultThemeAsset = DEFAULT_THEME_DIR + "/assets/images/" + imagePath;
         if(canLoad(currThemeAsset, ".svg")){
-            println("iconLoad-Log: " + currThemeAsset + " has loaded!!");
+            println("imageLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadShape(currThemeAsset);
         }else if(canLoad(defaultThemeAsset, ".svg")){
-            println("iconLoad-INSTEAD: " + defaultThemeAsset + " has loaded!!");
+            println("imageLoad-INSTEAD: " + defaultThemeAsset + " has loaded!!");
             return loadShape(currThemeAsset);
         }else if(canLoad(ERROR_SVG_PATH, ".svg")){
-            println("iconLoad-ERROR: " + ERROR_SVG_PATH + " has loaded!");
+            println("imageLoad-ERROR: " + ERROR_SVG_PATH + " has loaded!");
             return loadShape(ERROR_SVG_PATH);
         }
-        println("iconLoad-ERROR: Could not load any files!");
+        println("imageLoad-ERROR: Could not load any files!");
         return new PShape();
     }
 }

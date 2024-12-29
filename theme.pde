@@ -238,6 +238,7 @@ class Theme{
             EasyJSONObject elementEJSON = new EasyJSONObject(elements.getJSONObject(elementName));
             LayoutData layout;
             TextData textData;
+            ImageData imageData;
             color fillCol;
             StrokeData stroke;
             switch (elementEJSON.safeGetString("type")) {
@@ -277,6 +278,12 @@ class Theme{
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     layers.get(layerPos).add(new Easel(16, 16, drawMode, layout, fillCol));
+                break;
+                case "image" :
+                //Imageの実装予定
+                    //layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
+                    //imageData = new ImageData(elementEJSON.get("image"), variableJSON);
+                    //layers.get(layerPos).add(new Image(16, 16, drawMode, layout, fillCol));
                 break;
                 case "button" :
                     Runnable function = null;
@@ -405,7 +412,7 @@ class StyleData{
     color fillCol;
     LayoutData layoutData;
     StrokeData strokeData;
-    IconData iconData;
+    ImageData imageData;
     ShadowData shadowData;
 
     void readData(EasyJSONObject styleEJSON, JSONObject variableJSON){
@@ -414,7 +421,7 @@ class StyleData{
         fillCol = readColor(styleEJSON.safeGetString("fill"), variableJSON);
         layoutData = new LayoutData(styleEJSON.get("layout"), variableJSON);
         strokeData = new StrokeData(styleEJSON.get("stroke"), variableJSON);
-        iconData = new IconData(styleEJSON.get("icon"), variableJSON);
+        imageData = new ImageData(styleEJSON.get("image"), variableJSON);
         shadowData = new ShadowData(styleEJSON.get("shadow"), variableJSON);
     }
     
@@ -488,36 +495,34 @@ class StrokeData{
 }
 
 //--------------------------------------------------
-class IconData{
+class ImageData{
     float size;
-    PShape icon;
+    PShape image;
 
-    IconData(Object iconObj, JSONObject variableJSON){
-        if(iconObj != null){
-            EasyJSONObject iconEJSON = new EasyJSONObject();
-            if(iconObj instanceof String){
-                String iconStr = (String) iconObj;
-                if(iconStr.startsWith("$")){
-                    String variableName = iconStr.substring(1);
-                    iconEJSON = new EasyJSONObject(variableJSON.getJSONObject("icons").getJSONObject(variableName));
+    ImageData(Object imageObj, JSONObject variableJSON){
+        if(imageObj != null){
+            EasyJSONObject imageEJSON = new EasyJSONObject();
+            if(imageObj instanceof String){
+                String imageStr = (String) imageObj;
+                if(imageStr.startsWith("$")){
+                    String variableName = imageStr.substring(1);
+                    imageEJSON = new EasyJSONObject(variableJSON.getJSONObject("images").getJSONObject(variableName));
                 }
-            }else if(iconObj instanceof JSONObject){
-                JSONObject iconJSON = (JSONObject) iconObj;
-                iconEJSON = new EasyJSONObject(iconJSON);
+            }else if(imageObj instanceof JSONObject){
+                JSONObject imageJSON = (JSONObject) imageObj;
+                imageEJSON = new EasyJSONObject(imageJSON);
             }else{
-                iconEJSON = new EasyJSONObject();
+                imageEJSON = new EasyJSONObject();
             }
-            this.size = readFloat(iconEJSON.get("size"), variableJSON);;
-            //color iconCol = iconEJSON.safeGetColor("color");
-            this.icon = safeLoad.iconLoad(iconEJSON.safeGetString("path"));
-            //changeIconColor(icon, iconCol); //iconが空でない場合。
+            this.size = readFloat(imageEJSON.get("size"), variableJSON);
+            this.image = safeLoad.imageLoad(imageEJSON.safeGetString("path"));
         }
     }
 
-    void changeIconColor(PShape shape, color overrideCol){
+    void changeImageColor(PShape shape, color overrideCol){
         if(0 < shape.getChildCount()){
             for(int i = 0; i < shape.getChildCount(); i++){
-                changeIconColor(shape.getChild(i), overrideCol);
+                changeImageColor(shape.getChild(i), overrideCol);
             }
         }else{
             shape.setFill(overrideCol);

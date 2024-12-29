@@ -238,7 +238,7 @@ class Button extends ButtonTemplate{
         }
         LayoutData layoutData = style.layoutData;
         StrokeData strokeData = style.strokeData;
-        IconData iconData = style.iconData;
+        ImageData imageData = style.imageData;
         ShadowData shadowData = style.shadowData;
 
         setContainerAnker(drawMode.containerAnker);
@@ -284,9 +284,9 @@ class Button extends ButtonTemplate{
             break;	
         }
 
-        icon(
+        image(
             layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-            iconData.size, iconData.icon
+            imageData.size, imageData.image
         );
     }
 }
