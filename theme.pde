@@ -65,11 +65,9 @@ class Theme{
         //レイヤーの描画を行う
         drawLayer(main);
         if(isFillMode){
-            println("fillPallet", fillPallet);
             drawLayer(fillPallet);
         }
         if(isStrokeMode){
-            println("strokePallet", strokePallet);
             drawLayer(strokePallet);
         }
         drawLayer(option);
@@ -293,7 +291,6 @@ class Theme{
                     if(colorIndex != -1){
                         button.colorIndex = colorIndex;
                     }
-                    println(button.colorIndex, colorIndex);
                     layers.get(layerPos).add(button);
                 break;
             }
@@ -443,15 +440,15 @@ class LayoutData{
             }else{
                 layoutEJSON = new EasyJSONObject();
             }
-            this.x_point = layoutEJSON.safeGetFloat("x_point");
-            this.y_point = layoutEJSON.safeGetFloat("y_point");
-            this.width_point = layoutEJSON.safeGetFloat("width_point");
-            this.height_point = layoutEJSON.safeGetFloat("height_point");
-            this.r_point = layoutEJSON.safeGetFloat("r_point");
-            this.tl_point = layoutEJSON.safeGetFloat("tl_point");
-            this.tr_point = layoutEJSON.safeGetFloat("tr_point");
-            this.br_point = layoutEJSON.safeGetFloat("br_point");
-            this.bl_point = layoutEJSON.safeGetFloat("bl_point");
+            this.x_point = readFloat(layoutEJSON.get("x_point"), variableJSON);
+            this.y_point = readFloat(layoutEJSON.get("y_point"), variableJSON);
+            this.width_point = readFloat(layoutEJSON.get("width_point"), variableJSON);
+            this.height_point = readFloat(layoutEJSON.get("height_point"), variableJSON);
+            this.r_point = readFloat(layoutEJSON.get("r_point"), variableJSON);
+            this.tl_point = readFloat(layoutEJSON.get("tl_point"), variableJSON);
+            this.tr_point = readFloat(layoutEJSON.get("tr_point"), variableJSON);
+            this.br_point = readFloat(layoutEJSON.get("br_point"), variableJSON);
+            this.bl_point = readFloat(layoutEJSON.get("bl_point"), variableJSON);
         }
     }
 }
@@ -476,7 +473,7 @@ class StrokeData{
             }else{
                 strokeEJSON = new EasyJSONObject();
             }
-            this.stroke_point = strokeEJSON.safeGetFloat("stroke_point");
+            this.stroke_point = readFloat(strokeEJSON.get("stroke_point"), variableJSON);
             this.strokeCol = readColor(strokeEJSON.safeGetString("color"), variableJSON);
         }
     }
@@ -502,7 +499,7 @@ class IconData{
             }else{
                 iconEJSON = new EasyJSONObject();
             }
-            this.size = iconEJSON.safeGetFloat("size");
+            this.size = readFloat(iconEJSON.get("size"), variableJSON);;
             //color iconCol = iconEJSON.safeGetColor("color");
             this.icon = safeLoad.iconLoad(iconEJSON.safeGetString("path"));
             //changeIconColor(icon, iconCol); //iconが空でない場合。
@@ -542,7 +539,7 @@ class ShadowData{
                 shadowEJSON = new EasyJSONObject();
             }
             this.shadowMode = shadowEJSON.safeGetString("shadowMode");
-            this.shadowDistPoint = shadowEJSON.safeGetFloat("shadowDistPoint");
+            this.shadowDistPoint = readFloat(shadowEJSON.get("shadowDistPoint"), variableJSON);
             this.shadowCol = readColor(shadowEJSON.safeGetString("color"), variableJSON);
         }
     }
@@ -572,7 +569,7 @@ class TextData{
             }
             this.text = textEJSON.safeGetString("text");
             this.textAlign = textEJSON.safeGetString("text_align");
-            this.textSize = textEJSON.safeGetFloat("text_size");
+            this.textSize = readFloat(textEJSON.get("text_size"), variableJSON);
             this.textColor = readColor(textEJSON.safeGetString("text_col"), variableJSON);
         }
     }
@@ -591,10 +588,68 @@ color hexToColor(String hex){
     return color(r, g, b, a);
 }
 
-color readColor(String colorData, JSONObject variableJSON){
-    if(colorData.startsWith("$")){
-        String variableName = colorData.substring(1);
+color readColor(String colorPool, JSONObject variableJSON){
+    if(colorPool.startsWith("$")){
+        String variableName = colorPool.substring(1);
         return hexToColor(variableJSON.getJSONObject("colors").getString(variableName));
     }
-    return hexToColor(colorData);
+    return hexToColor(colorPool);
+}
+
+float readFloat(Object objPool, JSONObject variableJSON){if(objPool != null){
+        if(objPool instanceof Number){
+            return ((Number) objPool).floatValue();
+        }else if(objPool instanceof String){
+            String floatPool = objPool.toString();
+            String[] pool = splitTokens(floatPool);
+            for(int i = 0; i < pool.length; i++){
+                if(pool[i].startsWith("$")){
+                    String variableName = pool[i].substring(1);
+                    float variable = 0.0;
+                    if(!variableJSON.getJSONObject("floats").isNull(variableName)){
+                        variable = variableJSON.getJSONObject("floats").getFloat(variableName);
+                    }
+                    pool[i] = String.valueOf(variable);
+                }
+            }
+            return calculateExpression(pool);
+        }
+    }
+    return 0.0;
+}
+
+float calculateExpression(String[] tokens){
+  println("tokens");
+  printArr(tokens);
+  float result = Float.parseFloat(tokens[0]);
+
+  for(int i = 1; i < tokens.length; i += 2){
+    String operator = tokens[i];
+    float operand = Float.parseFloat(tokens[i + 1]);
+    
+    switch (operator){
+      case "+":
+        result += operand;
+        break;
+      case "-":
+        result -= operand;
+        break;
+      case "*":
+        result *= operand;
+        break;
+      case "/":
+        result /= operand;
+        break;
+      default:
+        throw new IllegalArgumentException("Unsupported operator: " + operator);
+    }
+  }
+  return result;
+}
+
+void printArr(String[] data){
+    for(int i = 0; i < data.length; i++){
+        print(data[i] + ", ");
+    }
+    println();
 }

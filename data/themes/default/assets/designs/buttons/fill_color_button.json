@@ -5,6 +5,8 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
+    
+
     "button_types": {
         "maru": "roundedSquareButton"
     },
@@ -33,12 +35,14 @@
             "color": "#222222"
         }
     },
-    "stroke": {
+    "strokes": {
         "main": {
             "stroke_point": 0,
             "color": "#42c8ed"
         }
     },
+
+
     "elements": {
         "@FILL_BUTTON_COLOR": {
             "type": "button",
