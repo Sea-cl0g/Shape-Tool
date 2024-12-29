@@ -29,25 +29,21 @@ class Canvas{
     }
 
     void add_rectangle(){
-        println("rect_added");
         Rectangle rect = new Rectangle(0, 0, 10, 10);
         shapes.add(rect);
     }
 
     void add_ellipse(){
-        println("ellipse_added");
         Ellipse ellipse = new Ellipse(0, 0, 10, 10);
         shapes.add(ellipse);
     }
 
     void tgl_fillPallet(){
         theme.isFillMode = !theme.isFillMode;
-        println(theme.isFillMode);
     }
 
     void tgl_strokePallet(){
         theme.isStrokeMode = !theme.isFillMode;
-        println(theme.isStrokeMode);
     }
 
 

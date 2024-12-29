@@ -53,13 +53,8 @@ class Theme{
         checkLayerStatus(save);
         checkLayerStatus(export);
         checkLayerStatus(option);
-        if(isFillMode){
-            checkLayerStatus(fillPallet);
-        }
-        if(isStrokeMode){
-            checkLayerStatus(strokePallet);
-        }
-        
+        checkLayerStatus(fillPallet, !isFillMode);
+        checkLayerStatus(strokePallet, !isStrokeMode);
         checkLayerStatus(main);
 
         //レイヤーの描画を行う
@@ -77,6 +72,9 @@ class Theme{
     }
 
     void checkLayerStatus(ArrayList<ArrayList<Object>> layers){
+        checkLayerStatus(layers, false);
+    }
+    void checkLayerStatus(ArrayList<ArrayList<Object>> layers, boolean onlySizeCheck){
         for(int i = layers.size() - 1; 0 <= i; i--){
             ArrayList<Object> eachLayer = layers.get(i);
             for(int q = eachLayer.size() - 1; 0 <= q; q--){
@@ -87,29 +85,37 @@ class Theme{
                         base.sizeW = width;
                         base.sizeH = height;
                     }
-                    base.checkStatus(mouseX, mouseY);
+                    if(!onlySizeCheck){
+                        base.checkStatus(mouseX, mouseY);
+                    }
                 }else if(guiObj instanceof TextBlock){
                     TextBlock textBlock = (TextBlock) guiObj;
                     if(isWindowSizeChanged){
                         textBlock.sizeW = width;
                         textBlock.sizeH = height;
                     }
-                    textBlock.checkStatus(mouseX, mouseY);
+                    if(!onlySizeCheck){
+                        textBlock.checkStatus(mouseX, mouseY);
+                    }
                 }else if(guiObj instanceof ColorPicker){
                     ColorPicker colorPicker = (ColorPicker) guiObj;
                     if(isWindowSizeChanged){
                         colorPicker.sizeW = width;
                         colorPicker.sizeH = height;
                     }
-                    colorPicker.checkStatus(mouseX, mouseY);
+                    if(!onlySizeCheck){
+                        colorPicker.checkStatus(mouseX, mouseY);
+                    }
                 }else if(guiObj instanceof CanvasBlock){
                     CanvasBlock canvasBlock = (CanvasBlock) guiObj;
                     if(isWindowSizeChanged){
                         canvasBlock.sizeW = width;
                         canvasBlock.sizeH = height;
                     }
-                    canvasBlock.checkShapesStatus();
-                    canvas.process();
+                    if(!onlySizeCheck){
+                        canvasBlock.checkShapesStatus();
+                        canvas.process();
+                    }
                 }else if(guiObj instanceof Easel){
                     Easel easel = (Easel) guiObj;
                     if(isWindowSizeChanged){
@@ -122,7 +128,9 @@ class Theme{
                         button.sizeW = width;
                         button.sizeH = height;
                     }
-                    button.checkStatus(mouseX, mouseY);
+                    if(!onlySizeCheck){
+                        button.checkStatus(mouseX, mouseY);
+                    }
                 }
             }
         }
@@ -619,8 +627,6 @@ float readFloat(Object objPool, JSONObject variableJSON){if(objPool != null){
 }
 
 float calculateExpression(String[] tokens){
-  println("tokens");
-  printArr(tokens);
   float result = Float.parseFloat(tokens[0]);
 
   for(int i = 1; i < tokens.length; i += 2){
@@ -645,11 +651,4 @@ float calculateExpression(String[] tokens){
     }
   }
   return result;
-}
-
-void printArr(String[] data){
-    for(int i = 0; i < data.length; i++){
-        print(data[i] + ", ");
-    }
-    println();
 }
