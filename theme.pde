@@ -497,7 +497,9 @@ class StrokeData{
 //--------------------------------------------------
 class ImageData{
     float size;
-    PShape image;
+    PShape svg;
+    PImage image;
+    boolean svgTgl;
 
     ImageData(Object imageObj, JSONObject variableJSON){
         if(imageObj != null){
@@ -515,7 +517,14 @@ class ImageData{
                 imageEJSON = new EasyJSONObject();
             }
             this.size = readFloat(imageEJSON.get("size"), variableJSON);
-            this.image = safeLoad.svgLoad(imageEJSON.safeGetString("path"));
+            String path = imageEJSON.safeGetString("path");
+            svgTgl = false;
+            if(path.endsWith(".svg")){
+                this.svg = safeLoad.svgLoad(path);
+                svgTgl = true;
+            }else{
+                this.image = safeLoad.imageLoad(path);
+            }
         }
     }
 

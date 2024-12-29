@@ -284,10 +284,18 @@ class Button extends ButtonTemplate{
             break;	
         }
 
-        image(
-            layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-            imageData.size, imageData.image
-        );
+        if(imageData.svgTgl){
+            drawSVG(
+                layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
+                imageData.size, imageData.svg
+            );
+        }else{
+            drawImage(
+                layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
+                imageData.size, imageData.image
+            );
+        }
+        
     }
 }
 

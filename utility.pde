@@ -3,10 +3,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 class SafeLoad{
-    String ERROR_SVG_PATH, DEFAULT_THEME_DIR, currThemeDir;
+    String ERROR_SVG_PATH, ERROR_IMAGE_PATH, DEFAULT_THEME_DIR, currThemeDir;
 
     SafeLoad(){
         ERROR_SVG_PATH = config.getString("ERROR_SVG_PATH");
+        ERROR_IMAGE_PATH = config.getString("ERROR_IMAGE_PATH");
         DEFAULT_THEME_DIR = config.getString("DEFAULT_THEME_DIR");
         currThemeDir = config.getString("current_theme");
     }
@@ -59,18 +60,24 @@ class SafeLoad{
         return new PShape();
     }
 
-    PShape imageLoad(String imagePath){
+    PImage imageLoad(String imagePath){
         String currThemeAsset = currThemeDir + "/assets/images/" + imagePath;
         String defaultThemeAsset = DEFAULT_THEME_DIR + "/assets/images/" + imagePath;
         if(canLoad(currThemeAsset, ".png")){
-            println("svgLoad-Log: " + currThemeAsset + " has loaded!!");
-            return loadShape(currThemeAsset);
-        }else if(canLoad(ERROR_SVG_PATH, ".svg")){
-            println("svgLoad-ERROR: " + ERROR_SVG_PATH + " has loaded!");
-            return loadShape(ERROR_SVG_PATH);
+            println("imageLoad-Log: " + currThemeAsset + " has loaded!!");
+            return loadImage(currThemeAsset);
+        }else if(canLoad(currThemeAsset, ".gif")){
+            println("imageLoad-Log: " + currThemeAsset + " has loaded!!");
+            return loadImage(currThemeAsset);
+        }else if(canLoad(currThemeAsset, ".jpeg") || canLoad(currThemeAsset, ".jpg")){
+            println("imageLoad-Log: " + currThemeAsset + " has loaded!!");
+            return loadImage(currThemeAsset);
+        }else if(canLoad(ERROR_IMAGE_PATH, ".png")){
+            println("imageLoad-ERROR: " + ERROR_IMAGE_PATH + " has loaded!");
+            return loadImage(ERROR_IMAGE_PATH);
         }
-        println("svgLoad-ERROR: Could not load any files!");
-        return new PShape();
+        println("imageLoad-ERROR: Could not load any files!");
+        return new PImage();
     }
 }
 

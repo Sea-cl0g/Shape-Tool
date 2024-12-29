@@ -28,16 +28,6 @@ class ButtonTemplate extends Block{
         this.stroke_point = 1.0;
     }
 
-    // アイコン
-    void image(float x, float y, float w, float h, float scale, PShape image){
-        PVector size = getContainerBlockSize(w, h);
-        PVector pos = getObjectPos(x, y, w, h, size);
-
-        PVector imageSize = getContainerBlockSize(w * scale, h * scale);
-        PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
-        shape(image, pos.x + speaceSize.x, pos.y + speaceSize.y, imageSize.x, imageSize.y);
-    }
-
     // ボタンテンプレート
     //四角いボタン
     void drawSquareButton(float x, float y, float w, float h, String shadowMode, float shadowDist){
@@ -225,6 +215,26 @@ class Block extends Container{
         bl = getContainerBlockSize(bl, bl).x;
         rect(pos.x, pos.y, size.x, size.y, tl, tr, br, bl);
     }
+
+    // 画像の表示
+    void drawSVG(float x, float y, float w, float h, float scale, PShape svg){
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size);
+
+        PVector imageSize = getContainerBlockSize(w * scale, h * scale);
+        PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
+        shape(svg, pos.x + speaceSize.x, pos.y + speaceSize.y, imageSize.x, imageSize.y);
+    }
+
+    void drawImage(float x, float y, float w, float h, float scale, PImage image){
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size);
+
+        PVector imageSize = getContainerBlockSize(w * scale, h * scale);
+        PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
+        image(image, pos.x + speaceSize.x, pos.y + speaceSize.y, imageSize.x, imageSize.y);
+    }
+
 
     //boxに触れているか？
     boolean isPointInBox(float x, float y, float w, float h, float pointX, float pointY){
