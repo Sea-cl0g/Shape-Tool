@@ -2,6 +2,7 @@
     "current_theme": "data/themes/default",
     "DEFAULT_THEME_DIR": "data/themes/default",
     "ERROR_SVG_PATH": "data/ERROR_ICON.svg",
+    "ERROR_IMAGE_PATH": "data/ERROR_ICON.png",
 
     "assets": {
         "main1": {

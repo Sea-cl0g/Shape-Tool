@@ -45,20 +45,31 @@ class SafeLoad{
         return new JSONObject();
     }
 
-    PShape imageLoad(String imagePath){
+    PShape svgLoad(String imagePath){
         String currThemeAsset = currThemeDir + "/assets/images/" + imagePath;
         String defaultThemeAsset = DEFAULT_THEME_DIR + "/assets/images/" + imagePath;
         if(canLoad(currThemeAsset, ".svg")){
-            println("imageLoad-Log: " + currThemeAsset + " has loaded!!");
-            return loadShape(currThemeAsset);
-        }else if(canLoad(defaultThemeAsset, ".svg")){
-            println("imageLoad-INSTEAD: " + defaultThemeAsset + " has loaded!!");
+            println("svgLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadShape(currThemeAsset);
         }else if(canLoad(ERROR_SVG_PATH, ".svg")){
-            println("imageLoad-ERROR: " + ERROR_SVG_PATH + " has loaded!");
+            println("svgLoad-ERROR: " + ERROR_SVG_PATH + " has loaded!");
             return loadShape(ERROR_SVG_PATH);
         }
-        println("imageLoad-ERROR: Could not load any files!");
+        println("svgLoad-ERROR: Could not load any files!");
+        return new PShape();
+    }
+
+    PShape imageLoad(String imagePath){
+        String currThemeAsset = currThemeDir + "/assets/images/" + imagePath;
+        String defaultThemeAsset = DEFAULT_THEME_DIR + "/assets/images/" + imagePath;
+        if(canLoad(currThemeAsset, ".png")){
+            println("svgLoad-Log: " + currThemeAsset + " has loaded!!");
+            return loadShape(currThemeAsset);
+        }else if(canLoad(ERROR_SVG_PATH, ".svg")){
+            println("svgLoad-ERROR: " + ERROR_SVG_PATH + " has loaded!");
+            return loadShape(ERROR_SVG_PATH);
+        }
+        println("svgLoad-ERROR: Could not load any files!");
         return new PShape();
     }
 }

@@ -515,7 +515,7 @@ class ImageData{
                 imageEJSON = new EasyJSONObject();
             }
             this.size = readFloat(imageEJSON.get("size"), variableJSON);
-            this.image = safeLoad.imageLoad(imageEJSON.safeGetString("path"));
+            this.image = safeLoad.svgLoad(imageEJSON.safeGetString("path"));
         }
     }
 
