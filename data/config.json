@@ -53,12 +53,14 @@
         "fill_color_button": {
             "path": "buttons/fill_color_button.json",
             "queries": [
-                {"Name": "@FILL_BUTTON_COLOR", "Query": "CALL_COLOR_PICKER_FOR_FILL"}
+                {"Name": "@MAIN_BUTTON", "Query": "CALL_COLOR_PICKER_FOR_FILL"},
+                {"Name": "@FILL_BUTTON", "Query": "CALL_COLOR_PICKER_FOR_FILL"}
             ]
         },
         "stroke_color_button": {
             "path": "buttons/stroke_color_button.json",
             "queries": [
+                {"Name": "@MAIN_BUTTON", "Query": "CALL_COLOR_PICKER_FOR_STROKE"},
                 {"Name": "@STROKE_BUTTON_COLOR", "Query": "CALL_COLOR_PICKER_FOR_STROKE"}
             ]
         },

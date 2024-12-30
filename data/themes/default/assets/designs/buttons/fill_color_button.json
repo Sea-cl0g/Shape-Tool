@@ -40,7 +40,7 @@
         }
     },
     "elements": {
-        "@FILL_BUTTON_COLOR": {
+        "@FILL_BUTTON": {
             "type": "button",
             "style": [
                 {

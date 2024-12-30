@@ -1,0 +1,84 @@
+{
+    "description": "This is an example of a Theme file",
+    "author": "boo_manKnow",
+    
+    "containerAnker": "topLeft",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+    
+    "elements": {
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "button_type": "roundedSquareButton",
+                    "layout": {
+	                    "x_point": 4,
+                        "y_point": 7,
+                        "width_point": 2,
+                        "height_point": 2,
+                        "r_point": 0.3
+                    },
+                    "fill": "#4a7083ff",
+                    "image": {
+                        "size": 0.8,
+                        "path": "icon/add_ellipse.svg"
+                    },
+                    "shadow": {
+                        "shadowMode": "BOTTOMRIGHT",
+                        "shadowDistPoint": 0.2,
+                        "color": "#222222"
+                    }
+                },
+                {
+                    "predicate": "touched",
+                    "button_type": "roundedSquareButton",
+                    "layout": {
+	                    "x_point": 4,
+                        "y_point": 7,
+                        "width_point": 2,
+                        "height_point": 2,
+                        "r_point": 0.3
+                    },
+                    "fill": "#4a7083ff",
+                    "stroke": {
+                        "stroke_point": 0.1,
+                        "color": "#ffffff"
+                    },
+                    "image": {
+                        "size": 0.8,
+                        "path": "icon/add_ellipse.svg"
+                    },
+                    "shadow": {
+                        "shadowMode": "BOTTOMRIGHT",
+                        "shadowDistPoint": 0.2,
+                        "color": "#222222"
+                    }
+                },
+                {
+                    "predicate": "clicked",
+                    "button_type": "roundedSquareButton",
+                    "layout": {
+	                    "x_point": 4,
+                        "y_point": 7,
+                        "width_point": 2,
+                        "height_point": 2,
+                        "r_point": 0.3
+                    },
+                    "fill": "#4a7083ff",
+                    "image": {
+                        "size": 0.8,
+                        "path": "icon/add_ellipse.svg"
+                    },
+                    "shadow": {
+                        "shadowMode": "BOTTOMRIGHT",
+                        "shadowDistPoint": 0.2,
+                        "color": "#222222"
+                    }
+                }
+            ]
+        }
+    }
+}

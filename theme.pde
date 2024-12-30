@@ -302,12 +302,11 @@ class Theme{
                     if(isElementQuery){
                         if(elementName.equals("@MAIN_BUTTON")){
                             function = buttonFanctionPrepare(queryType);
-                        }else if(elementName.equals("@FILL_BUTTON_COLOR")){
+                        }else if(elementName.equals("@FILL_BUTTON")){
+                            function = buttonFanctionPrepare(queryType);
                             if(queryType.equals("CALL_COLOR_PICKER_FOR_FILL")){
-                                function = () -> canvas.tgl_fillPallet();
                                 colorIndex = 0;
                             }else if(queryType.equals("CALL_COLOR_PICKER_FOR_STROKE")){
-                                function = () -> canvas.tgl_strokePallet();
                                 colorIndex = 1;
                             }
                         }
@@ -349,6 +348,12 @@ class Theme{
             case "FANC_ADD_ELLIPSE" :
                 function = () -> canvas.add_ellipse();
             break;
+            case "CALL_COLOR_PICKER_FOR_FILL" :
+                function = () -> canvas.tgl_fillPallet();
+            break;	
+            case "CALL_COLOR_PICKER_FOR_STROKE" :
+                function = () -> canvas.tgl_strokePallet();
+            break;	
             default:
                 function = null;
             break;

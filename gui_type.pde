@@ -197,13 +197,11 @@ class ImageBlock extends Block{
     }
     
     void drawImageBlock(){
-        println("↓imageBlock↓");
         if(imageData.svgTgl){
             drawSVG(x, y, w, h, imageData.size, imageData.svg);
         }else{
             drawImage(x, y, w, h, imageData.size, imageData.image);
         }
-        println("↑imageBlock↑");
     }
     
     void checkStatus(float mouseX, float mouseY){
