@@ -48,7 +48,7 @@ class ColorPicker extends Block{
     void checkStatus(float mouseX, float mouseY){
         boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
         if(!hasMouseTouched && isTouched){
-            if(mousePressed){
+            if(mousePressed && mouseButton == LEFT){
                 PVector size = getContainerBlockSize(w, h);
                 PVector pos = getObjectPos(x, y, w, h, size);
                 pickNum = map(mouseX, pos.x, pos.x + size.x, 0, colorMax + 1);

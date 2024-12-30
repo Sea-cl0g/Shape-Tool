@@ -53,8 +53,8 @@ class Theme{
         checkLayerStatus(save);
         checkLayerStatus(export);
         checkLayerStatus(option);
-        checkLayerStatus(fillPallet, !isFillMode);
         checkLayerStatus(strokePallet, !isStrokeMode);
+        checkLayerStatus(fillPallet, !isFillMode);
         checkLayerStatus(main);
 
         //レイヤーの描画を行う

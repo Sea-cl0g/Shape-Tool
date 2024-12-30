@@ -18,6 +18,7 @@ class Shape extends Block {
     }
 
     void updateState(int stateIndex, boolean isTouched) {
+        println(hasMouseTouched, isTouched);
         if (!hasMouseTouched && isTouched) {
             if (isMouseLeftClicking && !status[stateIndex]) {
                 isMouseLeftClicking = false;
@@ -102,7 +103,7 @@ class Shape extends Block {
             pointTh
         );
         updateState(index, isTouched);
-        if (status[index] && mousePressed && mouseButton == LEFT) {
+        if (status[index] && mousePressed && mouseButton == LEFT && !hasMouseTouched) {
             return getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
         }
         return new PVector(0, 0);
@@ -160,10 +161,11 @@ class Ellipse extends Shape {
             cos(radian) * (mouseY - ellipsePos.y) - sin(radian) * (mouseX - ellipsePos.x) + ellipsePos.y
         );//programmed by rin
         updateState(0, isTouched);
-        if (status[0] && mousePressed && mouseButton == LEFT) {
+        if (status[0] && mousePressed && mouseButton == LEFT && !isMouseLeftClicking && !hasMouseTouched) {
             PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
             x += mouseMove.x;
             y += mouseMove.y;
+            isMouseLeftClicking = false;
         }
     }
 
@@ -270,10 +272,11 @@ class Rectangle extends Shape {
             cos(radian) * (mouseY - rectPos.y) - sin(radian) * (mouseX - rectPos.x) + rectPos.y
         );//programmed by rin
         updateState(0, isTouched);
-        if (status[0] && mousePressed && mouseButton == LEFT) {
+        if (status[0] && mousePressed && mouseButton == LEFT && !isMouseLeftClicking && !hasMouseTouched) {
             PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
             x += mouseMove.x;
             y += mouseMove.y;
+            isMouseLeftClicking = false;
         }
     }
 
