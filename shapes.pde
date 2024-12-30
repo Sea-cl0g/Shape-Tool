@@ -1,8 +1,6 @@
+
+
 class Shape extends Block {
-    color selectLineCol = color(#5894f5);
-    color unselectedLineCol = color(#b348fa);
-    color shapeDefaultFillCol = color(#9966FF);
-    color shapeDefaultStrokeCol = color(#000000);
     color fillCol, strokeCol;
     float strokeWeight;
     boolean[] status;
@@ -400,6 +398,7 @@ class Rectangle extends Shape {
         changeScale();
         rotateShape(w, h);
         moveRectangle();
+        //fill col
     }
 
     void drawShapeWithGUI() {

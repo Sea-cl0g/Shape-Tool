@@ -3,6 +3,8 @@ SafeLoad safeLoad;
 Theme theme;
 Canvas canvas;
 
+color selectLineCol, unselectedLineCol, shapeDefaultFillCol, shapeDefaultStrokeCol;
+
 boolean isMouseLeftClicking, isMouseRightClicking, isMouseCenterClicking;
 boolean hasMouseLeftClicked;
 boolean hasMouseTouched;
@@ -15,6 +17,11 @@ JSONObject config;
 void setup(){
   size(800, 450);
   surface.setResizable(true);
+
+  selectLineCol = color(#5894f5);
+  unselectedLineCol = color(#b348fa);
+  shapeDefaultFillCol = color(#9966FF);
+  shapeDefaultStrokeCol = color(#000000);
   
   softPrepare();
   theme.loadTheme();
