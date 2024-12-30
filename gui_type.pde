@@ -53,6 +53,11 @@ class ColorPicker extends Block{
                 PVector pos = getObjectPos(x, y, w, h, size);
                 pickNum = map(mouseX, pos.x, pos.x + size.x, 0, colorMax + 1);
                 canvas.colorPallet[colorPalletIndex] = getPickedColor();
+                if(colorPalletIndex == 0){
+                    fillColorJustChanged = true;
+                }else if(colorPalletIndex == 1){
+                    strokeColorJustChanged = true;
+                }
                 isMouseLeftClicking = false;
             }
             hasMouseTouched = true;

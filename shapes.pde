@@ -16,7 +16,6 @@ class Shape extends Block {
     }
 
     void updateState(int stateIndex, boolean isTouched) {
-        println(hasMouseTouched, isTouched);
         if (!hasMouseTouched && isTouched) {
             if (isMouseLeftClicking && !status[stateIndex]) {
                 isMouseLeftClicking = false;
@@ -122,6 +121,17 @@ class Shape extends Block {
         return false;
     }
 
+    void setFillCol(){
+        if(status[0] && fillColorJustChanged){
+            fillCol = canvas.colorPallet[0];
+        }
+    }
+
+    void setStrokeCol(){
+        if(status[0] && strokeColorJustChanged){
+            strokeCol = canvas.colorPallet[1];
+        }
+    }
     
 }
 
@@ -159,7 +169,7 @@ class Ellipse extends Shape {
             cos(radian) * (mouseY - ellipsePos.y) - sin(radian) * (mouseX - ellipsePos.x) + ellipsePos.y
         );//programmed by rin
         updateState(0, isTouched);
-        if (status[0] && mousePressed && mouseButton == LEFT && !isMouseLeftClicking && !hasMouseTouched) {
+        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched) {
             PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
             x += mouseMove.x;
             y += mouseMove.y;
@@ -208,6 +218,9 @@ class Ellipse extends Shape {
         changeScale();
         rotateShape(w, h);
         moveEllipseangle();
+
+        setFillCol();
+        setStrokeCol();
     }
 
     void drawShapeWithGUI() {
@@ -270,7 +283,7 @@ class Rectangle extends Shape {
             cos(radian) * (mouseY - rectPos.y) - sin(radian) * (mouseX - rectPos.x) + rectPos.y
         );//programmed by rin
         updateState(0, isTouched);
-        if (status[0] && mousePressed && mouseButton == LEFT && !isMouseLeftClicking && !hasMouseTouched) {
+        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched) {
             PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
             x += mouseMove.x;
             y += mouseMove.y;
@@ -398,7 +411,9 @@ class Rectangle extends Shape {
         changeScale();
         rotateShape(w, h);
         moveRectangle();
-        //fill col
+
+        setFillCol();
+        setStrokeCol();
     }
 
     void drawShapeWithGUI() {

@@ -4,7 +4,7 @@ Theme theme;
 Canvas canvas;
 
 color selectLineCol, unselectedLineCol, shapeDefaultFillCol, shapeDefaultStrokeCol;
-
+boolean fillColorJustChanged, strokeColorJustChanged;
 boolean isMouseLeftClicking, isMouseRightClicking, isMouseCenterClicking;
 boolean hasMouseLeftClicked;
 boolean hasMouseTouched;
@@ -28,10 +28,11 @@ void setup(){
 }
 
 void draw() {
+  fillColorJustChanged = false;
+  strokeColorJustChanged = false;
   hasMouseTouched = false;
   background(255, 255, 255);
   theme.drawGUI();
-
   //checkBlocks(1, 1, "vertical", "CORNER");
 }
 
