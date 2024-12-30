@@ -11,13 +11,13 @@
         "noFill": "#FFFFFF00"
     },
     "floats":{
-        "x_pos": 8.5,
-        "y_pos": 5
+        "x_pos": 9,
+        "y_pos": 8
     },
 
     
     "elements": {
-        "@FILL_HSB_H": {
+        "@STROKE_HSB_H": {
             "type": "color_picker",
             "layout": {
                 "x_point": "$x_pos",
@@ -26,7 +26,7 @@
                 "height_point": 0.8
             }
         },
-        "@FILL_HSB_S": {
+        "@STROKE_HSB_S": {
             "type": "color_picker",
             "layout": {
                 "x_point": "$x_pos",
@@ -35,7 +35,7 @@
                 "height_point": 0.8
             }
         },
-        "@FILL_HSB_B": {
+        "@STROKE_HSB_B": {
             "type": "color_picker",
             "layout": {
                 "x_point": "$x_pos",
@@ -53,7 +53,7 @@
                 "height_point": 1
             },
             "text": {
-                "text": "Fill Color",
+                "text": "Stroke Color",
                 "text_align": "CENTER",
                 "text_size": 0.6,
                 "text_col": "#000000"

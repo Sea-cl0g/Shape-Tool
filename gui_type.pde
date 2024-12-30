@@ -23,6 +23,7 @@ class ColorPicker extends Block{
         this.tr = layoutData.tr_point;
         this.br = layoutData.br_point;
         this.bl = layoutData.bl_point;
+        this.colorPalletIndex = colorPalletIndex;
         if(pickerMode.endsWith("HSB_H")){
             pickNum = hue(canvas.colorPallet[colorPalletIndex]);
         }else if(pickerMode.endsWith("HSB_S")){
@@ -135,9 +136,10 @@ class ColorPicker extends Block{
         fill(255);
         stroke(0);
         strokeWeight(1);
-        int pointW = 5;
-        rect(pointX - pointW / 2, colorPickerPos.y, pointW, pointW);
-        rect(pointX - pointW / 2, colorPickerPos.y + colorPickerSize.y - pointW, pointW, pointW);
+        float pointW = 0.1;
+        float pointGW = getContainerBlockSize(pointW, pointW).x;
+        rect(pointX - pointGW / 2, colorPickerPos.y, pointGW, pointGW);
+        rect(pointX - pointGW / 2, colorPickerPos.y + colorPickerSize.y - pointGW, pointGW, pointGW);
     }
 }
 

@@ -275,6 +275,7 @@ class Theme{
                         if(elementName.startsWith("@FILL_")){
                             colorPalletIndex = 0;
                         }else if(elementName.startsWith("@STROKE_")){
+                            println("ta");
                             colorPalletIndex = 1;
                         }
                         pickerMode = getPickerMode(elementName);

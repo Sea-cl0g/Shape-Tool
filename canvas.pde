@@ -43,7 +43,7 @@ class Canvas{
     }
 
     void tgl_strokePallet(){
-        theme.isStrokeMode = !theme.isFillMode;
+        theme.isStrokeMode = !theme.isStrokeMode;
     }
 
 
