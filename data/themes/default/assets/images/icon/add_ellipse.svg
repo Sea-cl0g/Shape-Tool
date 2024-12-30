@@ -1,1 +1,20 @@
-<svg width="105" height="70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" overflow="hidden"><g transform="translate(-477 57)"><path d="M578.517-22C578.517-4.49226 556.73 9.72652 529.76 9.8195 502.791 9.91247 480.772-4.15529 480.486-21.662 480.199-39.1687 501.753-53.5369 528.719-53.8158 555.685-54.0947 577.933-40.1796 578.506-22.6758Z" stroke="#FFFFFF" stroke-width="6.36007" stroke-linejoin="bevel" stroke-miterlimit="6" fill="none"/></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="105"
+   height="70"
+   xml:space="preserve"
+   overflow="hidden"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><g
+     transform="translate(-477,57)"
+     id="g1"><path
+       d="m 578.517,-22 c 0,17.50774 -21.787,31.72652 -48.757,31.8195 -26.969,0.09297 -48.988,-13.97479 -49.274,-31.4815 -0.287,-17.5067 21.267,-31.8749 48.233,-32.1538 26.966,-0.2789 49.214,13.6362 49.787,31.14 z"
+       stroke="#ffffff"
+       stroke-width="6.36007"
+       stroke-linejoin="bevel"
+       stroke-miterlimit="6"
+       fill="none"
+       id="path1" /></g></svg>

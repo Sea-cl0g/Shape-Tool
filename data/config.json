@@ -72,111 +72,111 @@
         },
         "raise_layer": {
             "path": "buttons/raise_layer.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_RAISE_LAYER" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_RAISE_LAYER" }]
         },
         "lower_layer": {
             "path": "buttons/lower_layer.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_LOWER_LAYER" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_LOWER_LAYER" }]
         },
         "delete_shape": {
             "path": "buttons/delete_shape.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DELETE_SHAPE" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DELETE_SHAPE" }]
         },
         "bring_to_front": {
             "path": "buttons/bring_to_front.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_BRING_TO_FRONT" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_BRING_TO_FRONT" }]
         },
         "send_to_back": {
             "path": "buttons/send_to_back.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SEND_TO_BACK" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SEND_TO_BACK" }]
         },
         "move_up_1px": {
             "path": "buttons/move_up_1px.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_UP_1PX" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_UP_1PX" }]
         },
         "move_down_1px": {
             "path": "buttons/move_down_1px.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_DOWN_1PX" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_DOWN_1PX" }]
         },
         "move_right_1px": {
             "path": "buttons/move_right_1px.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_RIGHT_1PX" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_RIGHT_1PX" }]
         },
         "move_left_1px": {
             "path": "buttons/move_left_1px.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_LEFT_1PX" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_LEFT_1PX" }]
         },
         "rotate_left_90": {
             "path": "buttons/rotate_left_90.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ROTATE_LEFT_90" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ROTATE_LEFT_90" }]
         },
         "rotate_right_90": {
             "path": "buttons/rotate_right_90.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ROTATE_RIGHT_90" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ROTATE_RIGHT_90" }]
         },
         "flip_y_axis": {
             "path": "buttons/flip_y_axis.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_FLIP_Y_AXIS" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_FLIP_Y_AXIS" }]
         },
         "flip_x_axis": {
             "path": "buttons/flip_x_axis.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_FLIP_X_AXIS" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_FLIP_X_AXIS" }]
         },
         "double_width": {
             "path": "buttons/double_width.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DOUBLE_WIDTH" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DOUBLE_WIDTH" }]
         },
         "double_height": {
             "path": "buttons/double_height.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DOUBLE_HEIGHT" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DOUBLE_HEIGHT" }]
         },
         "double_ratio": {
             "path": "buttons/double_ratio.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DOUBLE_RATIO" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DOUBLE_RATIO" }]
         },
         "half_width": {
             "path": "buttons/half_width.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_HALF_WIDTH" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_HALF_WIDTH" }]
         },
         "half_height": {
             "path": "buttons/half_height.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_HALF_HEIGHT" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_HALF_HEIGHT" }]
         },
         "half_ratio": {
             "path": "buttons/half_ratio.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_HALF_RATIO" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_HALF_RATIO" }]
         },
 
 
         "zoom_in": {
             "path": "buttons/zoom_in.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ZOOM_IN" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ZOOM_IN" }]
         },
         "zoom_out": {
             "path": "buttons/zoom_out.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ZOOM_OUT" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ZOOM_OUT" }]
         },
         "reset_zoom": {
             "path": "buttons/reset_zoom.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_RESET_ZOOM" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_RESET_ZOOM" }]
         },
 
 
         "save_project": {
             "path": "buttons/save_project.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SAVE_PROJECT" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SAVE_PROJECT" }]
         },
         "open_file": {
             "path": "buttons/open_file.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_OPEN_FILE" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_OPEN_FILE" }]
         },
         "export_to_processing": {
             "path": "buttons/export_to_processing.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_EXPORT_TO_PROCESSING" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_EXPORT_TO_PROCESSING" }]
         },
         "settings_button": {
             "path": "buttons/settings_button.json",
-            "Queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SETTINGS_BUTTON" }]
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SETTINGS_BUTTON" }]
         },
 
 
@@ -276,7 +276,7 @@
         "theme_path_dialog":{
             "path": "others/theme_path_dialog.json",
             "layerMode": "option",
-            "Queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "THEME_PATH" }]
+            "queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "THEME_PATH" }]
         },
 
 
@@ -305,7 +305,7 @@
         "export_preview":{
             "path": "others/export_preview.json",
             "layerMode": "export",
-            "Queries": [{ "Name": "@MAIN_TEXT_BLOCK", "Query": "CODE_PREVIEW" }]
+            "queries": [{ "Name": "@MAIN_TEXT_BLOCK", "Query": "CODE_PREVIEW" }]
         },
 
 
@@ -334,7 +334,7 @@
         "save_path_dialog":{
             "path": "others/save_path_dialog.json",
             "layerMode": "option",
-            "Queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "SAVE_PATH" }]
+            "queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "SAVE_PATH" }]
         },
 
 
@@ -363,7 +363,7 @@
         "load_path_dialog":{
             "path": "others/load_path_dialog.json",
             "layerMode": "option",
-            "Queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "LOAD_PATH" }]
+            "queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "LOAD_PATH" }]
         }
     }
 }

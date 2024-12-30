@@ -342,6 +342,7 @@ class Theme{
 
     Runnable buttonFanctionPrepare(String query){
         Runnable function;
+        println(query);
         switch (query) {
             case "FANC_ADD_RECTANGLE" :
                 function = () -> canvas.add_rectangle();
@@ -354,6 +355,9 @@ class Theme{
             break;	
             case "CALL_COLOR_PICKER_FOR_STROKE" :
                 function = () -> canvas.tgl_strokePallet();
+            break;	
+            case "FANC_EXPORT_TO_PROCESSING" :
+                function = () -> canvas.export_to_processing();
             break;	
             default:
                 function = null;

@@ -45,7 +45,14 @@ class Canvas{
     void tgl_strokePallet(){
         theme.isStrokeMode = !theme.isStrokeMode;
     }
-
+    
+    //コードを出力する
+    void export_to_processing(){
+        println("shapes print: ");
+        for(int i = 0; i < shapes.size(); i++){
+            println(shapes.get(i));
+        }
+    }
 
     //キャンバス関係のボタン
     void zoom_in(){
