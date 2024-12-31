@@ -25,7 +25,15 @@ class ConvertCode extends Block{
                 println("translate(" + rectGCenter.x + ", " + rectGCenter.y + ");");
                 println("rotate(" + shapeRect.radian + ");");
                 println("rectMode(CENTER);");
-                println("rect(0, 0, " + rectSize.x + ", " + rectSize.y + ");");
+                if(tl != 0.0 || tr != 0.0 || br != 0.0 || bl != 0.0){
+                    float gTl = getContainerBlockSize(tl, tl).x;
+                    float gTr = getContainerBlockSize(tr, tr).x;
+                    float gBr = getContainerBlockSize(br, br).x;
+                    float gBl = getContainerBlockSize(bl, bl).x;
+                    println("rect(0, 0, " + rectSize.x + ", " + rectSize.y + ", " + gTl + ", " + gTr + ", " + gBr + ", " + gBl + ");");
+                }else{
+                    println("rect(0, 0, " + rectSize.x + ", " + rectSize.y + ");");
+                }
                 println("rectMode(CORNER);");
             }else if (shapeObj instanceof Ellipse) {
                 Ellipse shapeEllipse = (Ellipse) shapeObj;
