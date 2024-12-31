@@ -357,7 +357,7 @@ class Theme{
                 function = () -> canvas.tgl_strokePallet();
             break;	
             case "FANC_EXPORT_TO_PROCESSING" :
-                function = () -> canvas.export_to_processing();
+                function = () -> canvas.convert_code();
             break;	
             default:
                 function = null;
