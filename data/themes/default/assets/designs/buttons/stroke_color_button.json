@@ -5,19 +5,24 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
-
+    
     "button_types": {
         "maru": "roundedSquareButton"
     },
     "colors": {
         "defaultCol": "#4a7083ff"
     },
+    "floats":{
+        "x_pos": 4,
+        "y_pos": 6,
+        "b_size": 1.7
+    },
     "layouts": {
         "default": {
-            "x_point": 4,
-            "y_point": 6,
-            "width_point": 1.7,
-            "height_point": 1.7
+            "x_point": "$x_pos",
+            "y_point": "$y_pos",
+            "width_point": "$b_size",
+            "height_point": "$b_size"
         }
     },
     "images": {
@@ -72,6 +77,22 @@
                     "image": "$main"
                 }
             ]
+        },
+        "e1": {
+            "type": "text_block",
+            "layout": {
+                "x_point": "$x_pos + $b_size",
+                "y_point": "$y_pos",
+                "width_point": 7,
+                "height_point": 1
+            },
+            "text": {
+                "text": "stroke",
+                "text_align": "RIGHT",
+                "text_size": 0.6,
+                "text_col": "#FFFFFF"
+            },
+            "fillCol": "#FFFFFF00"
         }
     }
 }
