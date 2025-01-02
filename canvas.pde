@@ -51,8 +51,6 @@ class Canvas{
         coc.export_to_processing();
     }
     
-    
-
     //キャンバス関係のボタン
     void zoom_in(){
         if(scale + 0.1 > 4.0){
@@ -114,14 +112,14 @@ class CanvasBlock extends Easel{
         for(int i = canvas.shapes.size() - 1; 0 <= i; i--){
             pushMatrix();
             Shape shapeObj = canvas.shapes.get(i);
-            if(shapeObj instanceof Rectangle){
+            if(shapeObj.getClass() == Rectangle.class){
                 Rectangle shape = (Rectangle) shapeObj;
                 shape.sizeW = canvasSize.x;
                 shape.sizeH = canvasSize.y;
                 shape.anchorX = canvasPos.x;
                 shape.anchorY = canvasPos.y;
                 shape.checkStatus();
-            }else if(shapeObj instanceof Ellipse){
+            }else if(shapeObj.getClass() == Ellipse.class){
                 Ellipse shape = (Ellipse) shapeObj;
                 shape.sizeW = canvasSize.x;
                 shape.sizeH = canvasSize.y;
@@ -138,10 +136,10 @@ class CanvasBlock extends Easel{
         rectMode(CENTER);
         for(Shape shapeObj : canvas.shapes){
             pushMatrix(); 
-            if(shapeObj instanceof Rectangle){
+            if(shapeObj.getClass() == Rectangle.class){
                 Rectangle shape = (Rectangle) shapeObj;
                 shape.drawShapeWithGUI();
-            }else if(shapeObj instanceof Ellipse){
+            }else if(shapeObj.getClass() == Ellipse.class){
                 Ellipse shape = (Ellipse) shapeObj;
                 shape.drawShapeWithGUI();
             }

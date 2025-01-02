@@ -36,6 +36,8 @@ class ColorPicker extends Block{
             pickNum = green(canvas.colorPallet[colorPalletIndex]);
         }else if(pickerMode.endsWith("RGB_B")){
             pickNum = blue(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("ALPHA")){
+            pickNum = alpha(canvas.colorPallet[colorPalletIndex]);
         }
     }
 
@@ -68,24 +70,29 @@ class ColorPicker extends Block{
         float colElement1;
         float colElement2;
         float colElement3;
+        float colElement4;
         if(pickerMode.startsWith("HSB")){
             colElement1 = hue(canvas.colorPallet[colorPalletIndex]);
             colElement2 = saturation(canvas.colorPallet[colorPalletIndex]);
             colElement3 = brightness(canvas.colorPallet[colorPalletIndex]);
+            colElement4 = alpha(canvas.colorPallet[colorPalletIndex]);
             colorMode(HSB, 255, 255, 255);
         }else{
             colElement1 = red(canvas.colorPallet[colorPalletIndex]);
             colElement2 = green(canvas.colorPallet[colorPalletIndex]);
             colElement3 = blue(canvas.colorPallet[colorPalletIndex]);
+            colElement4 = alpha(canvas.colorPallet[colorPalletIndex]);
             colorMode(RGB, 255, 255, 255);
         }
         color returnCol = color(0, 0, 0);
         if(pickerMode.endsWith("H") || pickerMode.endsWith("R")){
-            returnCol = color(pickNum, colElement2, colElement3);
+            returnCol = color(pickNum, colElement2, colElement3, colElement4);
         }else if(pickerMode.endsWith("S") || pickerMode.endsWith("G")){
-            returnCol = color(colElement1, pickNum, colElement3);
+            returnCol = color(colElement1, pickNum, colElement3, colElement4);
         }else if(pickerMode.endsWith("B")){
-            returnCol = color(colElement1, colElement2, pickNum);
+            returnCol = color(colElement1, colElement2, pickNum, colElement4);
+        }else if(pickerMode.endsWith("ALPHA")){
+            returnCol = color(colElement1, colElement2, colElement3, pickNum);
         }
         colorMode(RGB, 255, 255, 255);
         return returnCol;
@@ -96,32 +103,37 @@ class ColorPicker extends Block{
         float colElement1;
         float colElement2;
         float colElement3;
+        float colElement4;
         noStroke();
         if(pickerMode.startsWith("HSB")){
             colElement1 = hue(canvas.colorPallet[colorPalletIndex]);
             colElement2 = saturation(canvas.colorPallet[colorPalletIndex]);
             colElement3 = brightness(canvas.colorPallet[colorPalletIndex]);
+            colElement4 = alpha(canvas.colorPallet[colorPalletIndex]);
             colorMode(HSB, 255, 255, 255);
         }else{
             colElement1 = red(canvas.colorPallet[colorPalletIndex]);
             colElement2 = green(canvas.colorPallet[colorPalletIndex]);
             colElement3 = blue(canvas.colorPallet[colorPalletIndex]);
+            colElement4 = alpha(canvas.colorPallet[colorPalletIndex]);
             colorMode(RGB, 255, 255, 255);
         }
         setBlockAnker("CORNER");
         for(int i = 0; i < max; i++){
             if(pickerMode.endsWith("HSB_H")){
-                fill(i, 255, 255);
+                fill(i, 255, 255, colElement4);
             }else if(pickerMode.endsWith("HSB_S")){
-                fill(colElement1, i, colElement3);
+                fill(colElement1, i, colElement3, colElement4);
             }else if(pickerMode.endsWith("HSB_B")){
-                fill(0, 0, i);
+                fill(0, 0, i, colElement4);
             }else if(pickerMode.endsWith("RGB_R")){
-                fill(i, colElement2, colElement3);
+                fill(i, colElement2, colElement3, colElement4);
             }else if(pickerMode.endsWith("RGB_G")){
-                fill(colElement1, i, colElement2);
+                fill(colElement1, i, colElement2, colElement4);
             }else if(pickerMode.endsWith("RGB_B")){
-                fill(colElement1, colElement2, i);
+                fill(colElement1, colElement2, i, colElement4);
+            }else if(pickerMode.endsWith("ALPHA")){
+                fill(colElement1, colElement2, colElement3, i);
             }
             
             if(drawMode.blockAnker.equals("CORNER")){
@@ -166,6 +178,7 @@ class TextBlock extends Base{
 
     void drawTextBlock(){
         drawBase();
+        println("text:", text);
         switch (textAlign) {
             case "CENTER" :
                 textAlign(CENTER, CENTER);
@@ -183,6 +196,31 @@ class TextBlock extends Base{
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
         text(text, pos.x + size.x / 2, pos.y + size.y / 2);
+    }
+}
+
+//--------------------------------------------------
+class TextEditor extends TextBlock{
+    boolean isSelected = false;
+
+    TextEditor(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, TextData textData, StrokeData strokeData, color fillCol){
+        super(splitW, splitH, drawMode, layoutData, textData, strokeData, fillCol);
+    }
+
+    void checkStatus(float mouseX, float mouseY){
+        boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
+        if(!hasMouseTouched && isTouched && alpha(fillCol) != 0.0){
+            if(isMouseLeftClicking){
+                isSelected = true;
+                isMouseLeftClicking = false;
+            }
+            hasMouseTouched = true;
+        }else{
+            if(isMouseLeftClicking){
+                isSelected = false;
+                isMouseLeftClicking = false;
+            }
+        }
     }
 }
 

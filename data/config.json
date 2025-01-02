@@ -211,7 +211,8 @@
                 {"Name": "@FILL_HSB_B", "Query": "NULL"},
                 {"Name": "@FILL_RGB_R", "Query": "NULL"},
                 {"Name": "@FILL_RGB_G", "Query": "NULL"},
-                {"Name": "@FILL_RGB_B", "Query": "NULL"}
+                {"Name": "@FILL_RGB_B", "Query": "NULL"},
+                {"Name": "@FILL_ALPHA", "Query": "NULL"}
             ]
         },
 
@@ -246,7 +247,9 @@
                 {"Name": "@STROKE_HSB_B", "Query": "NULL"},
                 {"Name": "@STROKE_RGB_R", "Query": "NULL"},
                 {"Name": "@STROKE_RGB_G", "Query": "NULL"},
-                {"Name": "@STROKE_RGB_B", "Query": "NULL"}
+                {"Name": "@STROKE_RGB_B", "Query": "NULL"},
+                {"Name": "@STROKE_ALPHA", "Query": "NULL"},
+                {"Name": "@STROKE_WEIGHT", "Query": "NULL"}
             ]
         },
 

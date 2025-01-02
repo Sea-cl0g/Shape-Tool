@@ -44,6 +44,15 @@
                 "height_point": 0.8
             }
         },
+        "@STROKE_ALPHA": {
+            "type": "color_picker",
+            "layout": {
+                "x_point": "$x_pos",
+                "y_point": "$y_pos + 2",
+                "width_point": 6,
+                "height_point": 0.8
+            }
+        },
         "e1": {
             "type": "text_block",
             "layout": {

@@ -8,7 +8,7 @@ class ConvertCode extends Block{
         for(int i = 0; i < canvas.shapes.size(); i++){
             println("  pushMatrix();");
             Object shapeObj = canvas.shapes.get(i);
-            if(shapeObj instanceof Rectangle){
+            if(shapeObj.getClass() == Rectangle.class){
                 Rectangle shapeRect = (Rectangle) shapeObj;
                 println("  fill(" + getSplitedColor(shapeRect.fillCol) + ");");
                 
@@ -36,7 +36,7 @@ class ConvertCode extends Block{
                     println("  rect(0, 0, " + rectSize.x + ", " + rectSize.y + ");");
                 }
                 println("  rectMode(CORNER);");
-            }else if (shapeObj instanceof Ellipse) {
+            }else if (shapeObj.getClass() == Ellipse.class) {
                 Ellipse shapeEllipse = (Ellipse) shapeObj;
                 println("  fill(" + getSplitedColor(shapeEllipse.fillCol) + ");");
                 

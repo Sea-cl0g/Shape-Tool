@@ -15,7 +15,7 @@
     "layouts": {
         "default": {
             "x_point": 0.5,
-            "y_point": 3,
+            "y_point": 1,
             "width_point": 1.6,
             "height_point": 1.6,
             "r_point": 0.3

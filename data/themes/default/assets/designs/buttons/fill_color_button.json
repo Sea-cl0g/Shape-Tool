@@ -16,9 +16,8 @@
         "default": {
             "x_point": 4,
             "y_point": 4,
-            "width_point": 2,
-            "height_point": 2,
-            "r_point": 0.3
+            "width_point": 1.7,
+            "height_point": 1.7
         }
     },
     "images": {
@@ -36,8 +35,8 @@
     },
     "strokes": {
         "main": {
-            "stroke_point": 0,
-            "color": "#42c8ed"
+            "stroke_point": 0.1,
+            "color": "#4a7083ff"
         }
     },
 
@@ -50,8 +49,8 @@
                     "button_type": "$maru",
                     "layout": "$default",
                     "fill": "$defaultCol",
-                    "image": "$main",
-                    "shadow": "$main"
+                    "stroke": "$main",
+                    "image": "$main"
                 },
                 {
                     "predicate": "touched",
@@ -62,16 +61,15 @@
                         "stroke_point": 0.1,
                         "color": "#ffffff"
                     },
-                    "image": "$main",
-                    "shadow": "$main"
+                    "image": "$main"
                 },
                 {
                     "predicate": "clicked",
                     "button_type": "$maru",
                     "layout": "$default",
                     "fill": "$defaultCol",
-                    "image": "$main",
-                    "shadow": "$main"
+                    "stroke": "$main",
+                    "image": "$main"
                 }
             ]
         }

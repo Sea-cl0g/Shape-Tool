@@ -79,7 +79,7 @@ class Theme{
             ArrayList<Object> eachLayer = layers.get(i);
             for(int q = eachLayer.size() - 1; 0 <= q; q--){
                 Object guiObj = eachLayer.get(q);
-                if(guiObj instanceof Base){
+                if(guiObj.getClass() == Base.class){
                     Base base = (Base) guiObj;
                     if(isWindowSizeChanged){
                         base.sizeW = width;
@@ -88,7 +88,7 @@ class Theme{
                     if(!onlySizeCheck){
                         base.checkStatus(mouseX, mouseY);
                     }
-                }else if(guiObj instanceof TextBlock){
+                }else if(guiObj.getClass() == TextBlock.class){
                     TextBlock textBlock = (TextBlock) guiObj;
                     if(isWindowSizeChanged){
                         textBlock.sizeW = width;
@@ -97,7 +97,16 @@ class Theme{
                     if(!onlySizeCheck){
                         textBlock.checkStatus(mouseX, mouseY);
                     }
-                }else if(guiObj instanceof ColorPicker){
+                }else if(guiObj.getClass() == TextEditor.class){
+                    TextEditor textEditor = (TextEditor) guiObj;
+                    if(isWindowSizeChanged){
+                        textEditor.sizeW = width;
+                        textEditor.sizeH = height;
+                    }
+                    if(!onlySizeCheck){
+                        textEditor.checkStatus(mouseX, mouseY);
+                    }
+                }else if(guiObj.getClass() == ColorPicker.class){
                     ColorPicker colorPicker = (ColorPicker) guiObj;
                     if(isWindowSizeChanged){
                         colorPicker.sizeW = width;
@@ -106,7 +115,7 @@ class Theme{
                     if(!onlySizeCheck){
                         colorPicker.checkStatus(mouseX, mouseY);
                     }
-                }else if(guiObj instanceof CanvasBlock){
+                }else if(guiObj.getClass() == CanvasBlock.class){
                     CanvasBlock canvasBlock = (CanvasBlock) guiObj;
                     if(isWindowSizeChanged){
                         canvasBlock.sizeW = width;
@@ -116,13 +125,13 @@ class Theme{
                         canvasBlock.checkShapesStatus();
                         canvas.process();
                     }
-                }else if(guiObj instanceof Easel){
+                }else if(guiObj.getClass() == Easel.class){
                     Easel easel = (Easel) guiObj;
                     if(isWindowSizeChanged){
                         easel.sizeW = width;
                         easel.sizeH = height;
                     }
-                }else if(guiObj instanceof ImageBlock){
+                }else if(guiObj.getClass() == ImageBlock.class){
                     ImageBlock imageBlock = (ImageBlock) guiObj;
                     if(isWindowSizeChanged){
                         imageBlock.sizeW = width;
@@ -131,7 +140,7 @@ class Theme{
                     if(!onlySizeCheck){
                         imageBlock.checkStatus(mouseX, mouseY);
                     }
-                }else if(guiObj instanceof Button){
+                }else if(guiObj.getClass() == Easel.classButton.class){
                     Button button = (Button) guiObj;
                     if(isWindowSizeChanged){
                         button.sizeW = width;
@@ -148,26 +157,31 @@ class Theme{
     void drawLayer(ArrayList<ArrayList<Object>> layers){
         for(ArrayList<Object> eachLayer : layers){
             for(Object guiObj : eachLayer){
-                if(guiObj instanceof Base){
+                println(guiObj.getClass() == Block.class);
+                if(guiObj.getClass() == Base.class){
                     Base base = (Base) guiObj;
                     base.drawBase();
-                }if(guiObj instanceof TextBlock){
+                }else if(guiObj.getClass() == TextBlock.class){
                     TextBlock textBlock = (TextBlock) guiObj;
+                    println("textBlock");
                     textBlock.drawTextBlock();
-                }else if(guiObj instanceof ColorPicker){
+                }else if(guiObj.getClass() == TextEditor.class){
+                    TextEditor textEditor = (TextEditor) guiObj;
+                    textEditor.drawTextBlock();
+                }else if(guiObj.getClass() == ColorPicker.class){
                     ColorPicker colorPicker = (ColorPicker) guiObj;
                     colorPicker.drawColPicker();
-                }else if(guiObj instanceof CanvasBlock){
+                }else if(guiObj.getClass() == CanvasBlock.class){
                     CanvasBlock canvasBlock = (CanvasBlock) guiObj;
                     canvasBlock.drawEasel();
                     canvasBlock.drawItems();
-                }else if(guiObj instanceof Easel){
+                }else if(guiObj.getClass() == Easel.class){
                     Easel easel = (Easel) guiObj;
                     easel.drawEasel();
-                }else if(guiObj instanceof ImageBlock){
+                }else if(guiObj.getClass() == ImageBlock.class){
                     ImageBlock imageBlock = (ImageBlock) guiObj;
                     imageBlock.drawImageBlock();
-                }else if(guiObj instanceof Button){
+                }else if(guiObj.getClass() == Button.class){
                     Button button = (Button) guiObj;
                     button.drawButton();
                 }
@@ -336,6 +350,10 @@ class Theme{
             return "HSB_G";
         }else if(elementName.endsWith("_RGB_B")){
             return "HSB_B";
+        }else if(elementName.endsWith("_ALPHA")){
+            return "ALPHA";
+        }else if(elementName.endsWith("STROKE_WEIGHT")){
+            return "STROKE_WEIGHT";
         }
         return "";
     }
@@ -375,7 +393,7 @@ class Theme{
             EasyJSONObject style = styleList.safeGetEasyJSONObject(i);
             Object predicateObj = style.get("predicate");
             JSONArray query = new JSONArray();
-            if(predicateObj instanceof String){
+            if(predicateObj.getClass() == String.class){
                 String predicate_tmp = (String) predicateObj;
                 query.append(predicate_tmp);
             }else{
@@ -406,7 +424,7 @@ class Theme{
             String key = (String) keyObj;
             if(!key.equals("elements")){
                 Object valueObj = design.get(key);
-                if(valueObj instanceof JSONObject){
+                if(valueObj.getClass() == JSONObject.class){
                     JSONObject value = (JSONObject) valueObj;
                     variableJSON.setJSONObject(key, value);
                 }
@@ -464,13 +482,13 @@ class LayoutData{
     LayoutData(Object layoutObj, JSONObject variableJSON){
         if(layoutObj != null){
             EasyJSONObject layoutEJSON = new EasyJSONObject();
-            if(layoutObj instanceof String){
+            if(layoutObj.getClass() == String.class){
                 String layoutStr = (String) layoutObj;
                 if(layoutStr.startsWith("$")){
                     String variableName = layoutStr.substring(1);
                     layoutEJSON = new EasyJSONObject(variableJSON.getJSONObject("layouts").getJSONObject(variableName));
                 }
-            }else if(layoutObj instanceof JSONObject){
+            }else if(layoutObj.getClass() == JSONObject.class){
                 JSONObject layoutJSON = (JSONObject) layoutObj;
                 layoutEJSON = new EasyJSONObject(layoutJSON);
             }else{
@@ -497,13 +515,13 @@ class StrokeData{
     StrokeData(Object strokeObj, JSONObject variableJSON){
         if(strokeObj != null){
             EasyJSONObject strokeEJSON = new EasyJSONObject();
-            if(strokeObj instanceof String){
+            if(strokeObj.getClass() == String.class){
                 String strokeStr = (String) strokeObj;
                 if(strokeStr.startsWith("$")){
                     String variableName = strokeStr.substring(1);
                     strokeEJSON = new EasyJSONObject(variableJSON.getJSONObject("strokes").getJSONObject(variableName));
                 }
-            }else if(strokeObj instanceof JSONObject){
+            }else if(strokeObj.getClass() == JSONObject.class){
                 JSONObject strokeJSON = (JSONObject) strokeObj;
                 strokeEJSON = new EasyJSONObject(strokeJSON);
             }else{
@@ -525,13 +543,13 @@ class ImageData{
     ImageData(Object imageObj, JSONObject variableJSON){
         if(imageObj != null){
             EasyJSONObject imageEJSON = new EasyJSONObject();
-            if(imageObj instanceof String){
+            if(imageObj.getClass() == String.class){
                 String imageStr = (String) imageObj;
                 if(imageStr.startsWith("$")){
                     String variableName = imageStr.substring(1);
                     imageEJSON = new EasyJSONObject(variableJSON.getJSONObject("images").getJSONObject(variableName));
                 }
-            }else if(imageObj instanceof JSONObject){
+            }else if(imageObj.getClass() == JSONObject.class){
                 JSONObject imageJSON = (JSONObject) imageObj;
                 imageEJSON = new EasyJSONObject(imageJSON);
             }else{
@@ -569,13 +587,13 @@ class ShadowData{
     ShadowData(Object shadowObj, JSONObject variableJSON){
         if(shadowObj != null){
             EasyJSONObject shadowEJSON = new EasyJSONObject();
-            if(shadowObj instanceof String){
+            if(shadowObj.getClass() == String.class){
                 String shadowStr = (String) shadowObj;
                 if(shadowStr.startsWith("$")){
                     String variableName = shadowStr.substring(1);
                     shadowEJSON = new EasyJSONObject(variableJSON.getJSONObject("shadows").getJSONObject(variableName));
                 }
-            }else if(shadowObj instanceof JSONObject){
+            }else if(shadowObj.getClass() == JSONObject.class){
                 JSONObject shadowJSON = (JSONObject) shadowObj;
                 shadowEJSON = new EasyJSONObject(shadowJSON);
             }else{
@@ -598,13 +616,13 @@ class TextData{
     TextData(Object textObj, JSONObject variableJSON){
         if(textObj != null){
             EasyJSONObject textEJSON = new EasyJSONObject();
-            if(textObj instanceof String){
+            if(textObj.getClass() == String.class){
                 String textStr = (String) textObj;
                 if(textStr.startsWith("$")){
                     String variableName = textStr.substring(1);
                     textEJSON = new EasyJSONObject(variableJSON.getJSONObject("texts").getJSONObject(variableName));
                 }
-            }else if(textObj instanceof JSONObject){
+            }else if(textObj.getClass() == JSONObject.class){
                 JSONObject textJSON = (JSONObject) textObj;
                 textEJSON = new EasyJSONObject(textJSON);
             }else{
@@ -640,9 +658,9 @@ color readColor(String colorPool, JSONObject variableJSON){
 }
 
 float readFloat(Object objPool, JSONObject variableJSON){if(objPool != null){
-        if(objPool instanceof Number){
+        if(objPool.getClass() == Number){
             return ((Number) objPool).floatValue();
-        }else if(objPool instanceof String){
+        }else if(objPool.getClass() == String.class){
             String floatPool = objPool.toString();
             String[] pool = splitTokens(floatPool);
             for(int i = 0; i < pool.length; i++){
