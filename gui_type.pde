@@ -178,23 +178,25 @@ class TextBlock extends Base{
 
     void drawTextBlock(){
         drawBase();
-        switch (textAlign){
-            case "CENTER" :
-                textAlign(CENTER, CENTER);
-            break;	
-            case "RIGHT" :
-                textAlign(RIGHT, CENTER);
-            break;	
-            default :
-                textAlign(LEFT, CENTER);
-            break;	
-        }
         float textGSize = getContainerBlockSize(textSize, textSize).y;
         textSize(textGSize);
         fill(textColor);
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
-        text(text, pos.x + size.x / 2, pos.y + size.y / 2);
+        switch (textAlign){
+            case "CENTER" :
+                textAlign(CENTER, CENTER);
+                text(text, pos.x + size.x / 2, pos.y + size.y / 2);
+            break;	
+            case "RIGHT" :
+                textAlign(RIGHT, CENTER);
+                text(text, pos.x + size.x, pos.y + size.y / 2);
+            break;	
+            default :
+                textAlign(LEFT, CENTER);
+                text(text, pos.x, pos.y + size.y / 2);
+            break;	
+        }
     }
 }
 
