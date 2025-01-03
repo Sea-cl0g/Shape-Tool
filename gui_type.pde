@@ -261,7 +261,7 @@ class TextEditor extends TextBlock{
           cursor = textSplit.size() - 1;
         }else if(key == BACKSPACE && 0 <= cursor){
             textSplit.remove(cursor);
-cursor--;
+            cursor--;
         }else if(key == DELETE && cursor == textSplit.size() && 0 <= cursor){
             textSplit.remove(cursor + 1);
         }
@@ -504,9 +504,10 @@ class Button extends ButtonTemplate{
 //--------------------------------------------------
 class Base extends Block{
     DrawMode drawMode;
-    color fillCol;
+    color fillCol, strokeCol;
     float x, y, w, h;
     float r, tl, tr, br, bl;
+    float strokeW;
 
     Base(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, StrokeData strokeData, color fillCol){
         super(splitW, splitH);
@@ -524,12 +525,20 @@ class Base extends Block{
         this.tr = layoutData.tr_point;
         this.br = layoutData.br_point;
         this.bl = layoutData.bl_point;
+        this.strokeCol = strokeData.strokeCol;
+        this.strokeW = strokeData.stroke_point;
     }
 
     void drawBase(){
         if(alpha(fillCol) != 0.0){
             fill(fillCol);
-            noStroke();
+            if(alpha(fillCol) == 0.0){
+                noStroke();
+            }else{
+                stroke(strokeCol);
+                float strokeGW = getContainerBlockSize(strokeW, strokeW).y;
+                strokeWeight(strokeGW);
+            }
             float loTl = 0;
             float loTr = 0;
             float loBr = 0;

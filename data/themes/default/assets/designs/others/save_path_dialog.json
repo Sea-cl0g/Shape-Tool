@@ -11,7 +11,8 @@
         "w": 10,
         "h": 0.6,
         "label_x": 0,
-        "label_y": -0.8
+        "label_y": -0.8,
+        "label_shadow_pos": 0.02
     },
     "colors":{
         "text_box_back_col": "#FFFFFF"
@@ -38,7 +39,7 @@
             "type": "text_block",
             "layout": {
                 "x_point": "$label_x",
-                "y_point": "$label_y + 0.01",
+                "y_point": "$label_y + $label_shadow_pos",
                 "width_point": 10,
                 "height_point": 1
             },
@@ -68,6 +69,10 @@
         },
         "e4": {
             "type": "base",
+            "stroke": {
+                "stroke_point": 0.08,
+                "color": "#000000"
+            },
             "layout": {
                 "x_point": 0,
                 "y_point": 0,
