@@ -51,14 +51,14 @@
         
 
         "tgl_fill_pallet_mode": {
-            "path": "buttons/fill_color_button.json",
+            "path": "buttons/tgl_fill_pallet_mode.json",
             "queries": [
                 {"Name": "@MAIN_BUTTON", "Query": "TGL_STROKE_PALLET_MODE"},
                 {"Name": "@FILL_BUTTON", "Query": "TGL_STROKE_PALLET_MODE"}
             ]
         },
         "tgl_stroke_pallet_mode": {
-            "path": "buttons/stroke_color_button.json",
+            "path": "buttons/tgl_stroke_pallet_mode.json",
             "queries": [
                 {"Name": "@MAIN_BUTTON", "Query": "TGL_FILL_PALLET_MODE"},
                 {"Name": "@FILL_BUTTON", "Query": "TGL_FILL_PALLET_MODE"}
