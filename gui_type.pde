@@ -309,13 +309,12 @@ class TextEditor extends TextBlock{
         float textWidth = textWidth(text);
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
-        float centerX = pos.x + size.x / 2;
         if(textAlign.equals("CENTER")){
-            return centerX - textWidth / 2;
+            return pos.x + size.x / 2 - textWidth / 2;
         }else if(textAlign.equals("RIGHT")){
-            return centerX - textWidth;
+            return pos.x + size.x - textWidth;
         }else if(textAlign.equals("LEFT")){
-            return centerX;
+            return pos.x;
         }
         return -1;
     }
