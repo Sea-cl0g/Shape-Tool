@@ -327,9 +327,9 @@ class Theme{
                             function = buttonFanctionPrepare(queryType);
                         }else if(elementName.equals("@FILL_BUTTON")){
                             function = buttonFanctionPrepare(queryType);
-                            if(queryType.equals("CALL_COLOR_PICKER_FOR_FILL")){
+                            if(queryType.equals("TGL_FILL_PALLET_MODE")){
                                 colorIndex = 0;
-                            }else if(queryType.equals("CALL_COLOR_PICKER_FOR_STROKE")){
+                            }else if(queryType.equals("TGL_STROKE_PALLET_MODE")){
                                 colorIndex = 1;
                             }
                         }
