@@ -12,7 +12,7 @@ class Theme{
     ArrayList<ArrayList<Object>> save = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> load = new ArrayList<ArrayList<Object>>();
 
-    boolean isFillMode, isStrokeMode;
+    boolean isFillMode, isStrokeMode, isSaveMode, isLoadMode;
 
     int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index){
         ArrayList<Object> newLayer = new ArrayList<Object>();
@@ -49,8 +49,8 @@ class Theme{
         }
         
         //ステータスを調べる
-        checkLayerStatus(load);
-        checkLayerStatus(save);
+        checkLayerStatus(load, !isLoadMode);
+        checkLayerStatus(save, !isSaveMode);
         checkLayerStatus(export);
         checkLayerStatus(option);
         checkLayerStatus(strokePallet, !isStrokeMode);
@@ -67,8 +67,12 @@ class Theme{
         }
         drawLayer(option);
         drawLayer(export);
-        drawLayer(save);
-        drawLayer(load);
+        if(isSaveMode){
+            drawLayer(save);
+        }
+        if(isLoadMode){
+            drawLayer(load);
+        }
     }
 
     void checkLayerStatus(ArrayList<ArrayList<Object>> layers){

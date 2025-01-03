@@ -336,7 +336,7 @@
         
         "save_path_dialog":{
             "path": "others/save_path_dialog.json",
-            "layerMode": "option",
+            "layerMode": "save",
             "queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "SAVE_PATH" }]
         },
 
@@ -365,7 +365,7 @@
         
         "load_path_dialog":{
             "path": "others/load_path_dialog.json",
-            "layerMode": "option",
+            "layerMode": "load",
             "queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "LOAD_PATH" }]
         }
     }
