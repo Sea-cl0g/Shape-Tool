@@ -227,8 +227,7 @@ class TextEditor extends TextBlock{
         }else{
             if(isMouseLeftClicking){
                 isSelected = false;
-                isMouseLeftClicking = false;
-            }
+                            }
         }
         if(isSelected){
             if(isKeyPressing && keyRepeat <= 0){
