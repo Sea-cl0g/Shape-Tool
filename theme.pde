@@ -140,7 +140,7 @@ class Theme{
                     if(!onlySizeCheck){
                         imageBlock.checkStatus(mouseX, mouseY);
                     }
-                }else if(guiObj.getClass() == Easel.classButton.class){
+                }else if(guiObj.getClass() == Button.class){
                     Button button = (Button) guiObj;
                     if(isWindowSizeChanged){
                         button.sizeW = width;
@@ -157,13 +157,11 @@ class Theme{
     void drawLayer(ArrayList<ArrayList<Object>> layers){
         for(ArrayList<Object> eachLayer : layers){
             for(Object guiObj : eachLayer){
-                println(guiObj.getClass() == Block.class);
                 if(guiObj.getClass() == Base.class){
                     Base base = (Base) guiObj;
                     base.drawBase();
                 }else if(guiObj.getClass() == TextBlock.class){
                     TextBlock textBlock = (TextBlock) guiObj;
-                    println("textBlock");
                     textBlock.drawTextBlock();
                 }else if(guiObj.getClass() == TextEditor.class){
                     TextEditor textEditor = (TextEditor) guiObj;
@@ -281,6 +279,13 @@ class Theme{
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     layers.get(layerPos).add(new TextBlock(16, 16, drawMode, layout, textData, stroke, fillCol));
                 break;
+                case "text_editor" :
+                    layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
+                    textData = new TextData(elementEJSON.get("text"), variableJSON);
+                    stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    layers.get(layerPos).add(new TextEditor(16, 16, drawMode, layout, textData, stroke, fillCol));
+                break;
                 case "color_picker" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     int colorPalletIndex = -1;
@@ -289,7 +294,6 @@ class Theme{
                         if(elementName.startsWith("@FILL_")){
                             colorPalletIndex = 0;
                         }else if(elementName.startsWith("@STROKE_")){
-                            println("ta");
                             colorPalletIndex = 1;
                         }
                         pickerMode = getPickerMode(elementName);
@@ -658,7 +662,7 @@ color readColor(String colorPool, JSONObject variableJSON){
 }
 
 float readFloat(Object objPool, JSONObject variableJSON){if(objPool != null){
-        if(objPool.getClass() == Number){
+        if(objPool instanceof Number){
             return ((Number) objPool).floatValue();
         }else if(objPool.getClass() == String.class){
             String floatPool = objPool.toString();

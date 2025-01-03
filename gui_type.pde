@@ -178,7 +178,6 @@ class TextBlock extends Base{
 
     void drawTextBlock(){
         drawBase();
-        println("text:", text);
         switch (textAlign) {
             case "CENTER" :
                 textAlign(CENTER, CENTER);
@@ -202,6 +201,7 @@ class TextBlock extends Base{
 //--------------------------------------------------
 class TextEditor extends TextBlock{
     boolean isSelected = false;
+    int cursor;
 
     TextEditor(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, TextData textData, StrokeData strokeData, color fillCol){
         super(splitW, splitH, drawMode, layoutData, textData, strokeData, fillCol);
@@ -209,7 +209,8 @@ class TextEditor extends TextBlock{
 
     void checkStatus(float mouseX, float mouseY){
         boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
-        if(!hasMouseTouched && isTouched && alpha(fillCol) != 0.0){
+        println(isSelected);
+        if(!hasMouseTouched && isTouched){
             if(isMouseLeftClicking){
                 isSelected = true;
                 isMouseLeftClicking = false;
