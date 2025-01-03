@@ -38,14 +38,24 @@ class Canvas{
         shapes.add(ellipse);
     }
 
-    void tgl_fillPallet(){
+    //tgl mode
+    void tgl_fillPallet_mode(){
         theme.isFillMode = !theme.isFillMode;
     }
 
-    void tgl_strokePallet(){
+    void tgl_strokePallet_mode(){
         theme.isStrokeMode = !theme.isStrokeMode;
     }
 
+    void tgl_save_mode(){
+        theme.isSaveMode = !theme.isSaveMode;
+    }
+
+    void tgl_load_mode(){
+        theme.isLoadMode = !theme.isLoadMode;
+    }
+    
+    //te
     void convert_code(){
         ConvertCode coc = new ConvertCode();
         coc.export_to_processing();

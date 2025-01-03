@@ -1,9 +1,10 @@
 {
     "description": "Most basic and easy-to-see color theme",
     "author": "boo_manKnow",
-    "containerAnker": "topLeft",
+
+    "containerAnker": "center",
     "blockMode": "both",
-    "blockAnker": "CORNER",
+    "blockAnker": "CENTER",
     "layer": 1,
 
     "elements": {
@@ -12,7 +13,7 @@
             "layout": {
                 "x_point": 0,
                 "y_point": 0,
-                "width_point": 16,
+                "width_point": 12,
                 "height_point": 16
             },
             "fillCol": "#505050EE"

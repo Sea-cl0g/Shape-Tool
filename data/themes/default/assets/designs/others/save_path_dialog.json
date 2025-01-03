@@ -1,6 +1,7 @@
 {
     "description": "Most basic and easy-to-see color theme",
     "author": "boo_manKnow",
+    
     "containerAnker": "center",
     "blockMode": "horizontal",
     "blockAnker": "CENTER",

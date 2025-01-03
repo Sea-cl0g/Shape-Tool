@@ -40,7 +40,6 @@ class Theme{
     int width_buffer, height_buffer;
     boolean isWindowSizeChanged;
     void drawGUI(){
-        isSaveMode = true;
         rectMode(CORNER);
         isWindowSizeChanged = false;
         if(width != width_buffer || height != height_buffer){
@@ -377,11 +376,17 @@ class Theme{
             case "FANC_ADD_ELLIPSE" :
                 function = () -> canvas.add_ellipse();
             break;
-            case "CALL_COLOR_PICKER_FOR_FILL" :
-                function = () -> canvas.tgl_fillPallet();
+            case "TGL_STROKE_PALLET_MODE" :
+                function = () -> canvas.tgl_fillPallet_mode();
             break;	
-            case "CALL_COLOR_PICKER_FOR_STROKE" :
-                function = () -> canvas.tgl_strokePallet();
+            case "TGL_FILL_PALLET_MODE" :
+                function = () -> canvas.tgl_strokePallet_mode();
+            break;	
+            case "TGL_SAVE_MODE" :
+                function = () -> canvas.tgl_save_mode();
+            break;	
+            case "TGL_LOAD_MODE" :
+                function = () -> canvas.tgl_load_mode();
             break;	
             case "FANC_EXPORT_TO_PROCESSING" :
                 function = () -> canvas.convert_code();
@@ -390,6 +395,7 @@ class Theme{
                 function = null;
             break;
         }
+        println(function);
         return function;
     }
 

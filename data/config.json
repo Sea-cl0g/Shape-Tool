@@ -50,18 +50,36 @@
         },
         
 
-        "fill_color_button": {
+        "tgl_fill_pallet_mode": {
             "path": "buttons/fill_color_button.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "CALL_COLOR_PICKER_FOR_FILL"},
-                {"Name": "@FILL_BUTTON", "Query": "CALL_COLOR_PICKER_FOR_FILL"}
+                {"Name": "@MAIN_BUTTON", "Query": "TGL_STROKE_PALLET_MODE"},
+                {"Name": "@FILL_BUTTON", "Query": "TGL_STROKE_PALLET_MODE"}
             ]
         },
-        "stroke_color_button": {
+        "tgl_stroke_pallet_mode": {
             "path": "buttons/stroke_color_button.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "CALL_COLOR_PICKER_FOR_STROKE"},
-                {"Name": "@FILL_BUTTON", "Query": "CALL_COLOR_PICKER_FOR_STROKE"}
+                {"Name": "@MAIN_BUTTON", "Query": "TGL_FILL_PALLET_MODE"},
+                {"Name": "@FILL_BUTTON", "Query": "TGL_FILL_PALLET_MODE"}
+            ]
+        },
+        "tgl_save_mode": {
+            "path": "buttons/tgl_save_mode.json",
+            "queries": [
+                {"Name": "@MAIN_BUTTON", "Query": "TGL_SAVE_MODE"}
+            ]
+        },
+        "tgl_load_mode": {
+            "path": "buttons/tgl_load_mode.json",
+            "queries": [
+                {"Name": "@MAIN_BUTTON", "Query": "TGL_LOAD_MODE"}
+            ]
+        },
+        "tgl_export_mode": {
+            "path": "buttons/tgl_export_mode.json",
+            "queries": [
+                {"Name": "@MAIN_BUTTON", "Query": "TGL_EXPORT_MODE"}
             ]
         },
 
