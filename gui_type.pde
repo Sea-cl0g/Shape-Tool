@@ -249,21 +249,21 @@ class TextEditor extends TextBlock{
             textSplit.add(chr);
         }
         if (isPrintableKey()){
-            textSplit.add(cursor, key);
+            textSplit.add(cursor + 1, key);
             cursor++;
-        }else if(key == CODED && keyCode == LEFT && 0 < cursor){
+        }else if(key == CODED && keyCode == LEFT && 0 <= cursor){
           cursor--;
-        }else if(key == CODED && keyCode == UP && 0 <= cursor){
-          cursor = 0;
-        }else if(key == CODED && keyCode == RIGHT && cursor < textSplit.size()){
+        }else if(key == CODED && keyCode == UP && 0 < cursor){
+          cursor = -1;
+        }else if(key == CODED && keyCode == RIGHT && cursor < textSplit.size() - 1){
           cursor++;
-        }else if(key == CODED && keyCode == DOWN && cursor < textSplit.size()){
-          cursor = textSplit.size();
-        }else if(key == BACKSPACE && 0 < cursor){
-            textSplit.remove(cursor - 1);
-            cursor--;
-        }else if(key == DELETE && cursor == textSplit.size() && 0 < cursor){
+        }else if(key == CODED && keyCode == DOWN && cursor <= textSplit.size()){
+          cursor = textSplit.size() - 1;
+        }else if(key == BACKSPACE && 0 <= cursor){
             textSplit.remove(cursor);
+cursor--;
+        }else if(key == DELETE && cursor == textSplit.size() && 0 <= cursor){
+            textSplit.remove(cursor + 1);
         }
         StringBuilder sb = new StringBuilder();
         for (Character c : textSplit) {
