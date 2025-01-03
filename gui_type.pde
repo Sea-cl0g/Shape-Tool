@@ -178,7 +178,7 @@ class TextBlock extends Base{
 
     void drawTextBlock(){
         drawBase();
-        switch (textAlign) {
+        switch (textAlign){
             case "CENTER" :
                 textAlign(CENTER, CENTER);
             break;	
@@ -202,6 +202,12 @@ class TextBlock extends Base{
 class TextEditor extends TextBlock{
     boolean isSelected = false;
     int cursor;
+    int th = 3;
+    int cursorH = 6;
+    int brinkMax = 60;
+    int brinkTimer = 0;
+    int keyRepeatMax = 10;
+    int keyRepeat = 0;
 
     TextEditor(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, TextData textData, StrokeData strokeData, color fillCol){
         super(splitW, splitH, drawMode, layoutData, textData, strokeData, fillCol);
@@ -209,11 +215,11 @@ class TextEditor extends TextBlock{
 
     void checkStatus(float mouseX, float mouseY){
         boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
-        println(isSelected);
         if(!hasMouseTouched && isTouched){
             if(isMouseLeftClicking){
                 isSelected = true;
                 isMouseLeftClicking = false;
+                cursor = getCursor();
             }
             hasMouseTouched = true;
         }else{
@@ -222,6 +228,122 @@ class TextEditor extends TextBlock{
                 isMouseLeftClicking = false;
             }
         }
+        if(isSelected){
+            if(isKeyPressing && keyRepeat <= 0){
+                editText();
+                keyRepeat = keyRepeatMax;
+            }
+            countUpTimer();
+        }
+        if(0 < keyRepeat){
+            keyRepeat--;
+        }
+    }
+
+    void editText(){
+        char[] charArray = text.toCharArray();
+        ArrayList<Character> textSplit = new ArrayList<Character>();
+        for(char chr : charArray){
+            textSplit.add(chr);
+        }
+        if (isPrintableKey()){
+            textSplit.add(cursor, key);
+            cursor++;
+        }else if(key == CODED && keyCode == LEFT && 0 < cursor){
+          cursor--;
+        }else if(key == CODED && keyCode == UP && 0 <= cursor){
+          cursor = 0;
+        }else if(key == CODED && keyCode == RIGHT && cursor < textSplit.size()){
+          cursor++;
+        }else if(key == CODED && keyCode == DOWN && cursor < textSplit.size()){
+          cursor = textSplit.size();
+        }else if(key == BACKSPACE && 0 < cursor){
+            textSplit.remove(cursor - 1);
+            cursor--;
+        }else if(key == DELETE && cursor == textSplit.size() && 0 < cursor){
+            textSplit.remove(cursor);
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Character c : textSplit) {
+            sb.append(c);
+        }
+        text = sb.toString();
+    }
+
+    boolean isPrintableKey(){
+        if(key >= 32 && key <= 126){
+            return true;
+        }
+        if(key >= 160 && key <= 255){
+           return true;
+        }
+        return false;
+    }
+
+    void countUpTimer(){
+        if(brinkTimer < brinkMax){
+            brinkTimer++;
+        }else{
+            brinkTimer = 0;
+        }
+    }
+
+    void drawTextBlock(){
+        super.drawTextBlock();
+        
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size);
+        if(isSelected && brinkTimer < brinkMax / 2){
+            stroke(255, 0, 0);
+            strokeWeight(1);
+            float cursorX = getCursorX();
+            line(cursorX, pos.y + cursorH, cursorX, pos.y + size.y - cursorH);
+        }
+    }
+
+    float getBeginX(){
+        float textGSize = getContainerBlockSize(textSize, textSize).y;
+        textSize(textGSize);
+        float textWidth = textWidth(text);
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size);
+        float centerX = pos.x + size.x / 2;
+        if(textAlign.equals("CENTER")){
+            return centerX - textWidth / 2;
+        }else if(textAlign.equals("RIGHT")){
+            return centerX - textWidth;
+        }else if(textAlign.equals("LEFT")){
+            return centerX;
+        }
+        return -1;
+    }
+
+    int getCursor(){
+        char[] charArray = text.toCharArray();
+        float beginX = getBeginX();
+
+        String buildText = "";
+        for(int i = 0; i < charArray.length; i++){
+            char chr = charArray[i];
+            buildText = buildText + chr;
+            float textCurrX = beginX + textWidth(buildText);
+            if(abs(textCurrX - mouseX) < th){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    float getCursorX(){
+        char[] charArray = text.toCharArray();
+        float beginX = getBeginX();
+
+        String buildText = "";
+        for(int i = 0; i <= cursor; i++){
+            char chr = charArray[i];
+            buildText = buildText + chr;
+        }
+        return beginX + textWidth(buildText);
     }
 }
 
@@ -306,7 +428,7 @@ class Button extends ButtonTemplate{
         }
     }
 
-    void display(StyleData style) {
+    void display(StyleData style){
         String buttonType = style.buttonType;
         color fillCol;
         color[] canvasPallet = canvas.colorPallet;
@@ -328,7 +450,7 @@ class Button extends ButtonTemplate{
         setShadowCol(shadowData.shadowCol);
         setStrokeCol(strokeData.strokeCol);
         setStrokePoint(strokeData.stroke_point);
-        switch (buttonType) {
+        switch (buttonType){
             case "squareButton" :
                 drawSquareButton(
                     layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
