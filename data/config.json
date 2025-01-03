@@ -185,19 +185,19 @@
 
 
         "fill_pallet1":{
-            "path": "others/fill_pallet1.json",
+            "path": "bases/fill_pallet1.json",
             "layerMode": "fillPallet"
         },
         "fill_pallet2":{
-            "path": "others/fill_pallet2.json",
+            "path": "bases/fill_pallet2.json",
             "layerMode": "fillPallet"
         },
         "fill_pallet3":{
-            "path": "others/fill_pallet3.json",
+            "path": "bases/fill_pallet3.json",
             "layerMode": "fillPallet"
         },
         "fill_pallet4":{
-            "path": "others/fill_pallet4.json",
+            "path": "bases/fill_pallet4.json",
             "layerMode": "fillPallet"
         },
 
@@ -222,19 +222,19 @@
 
 
         "stroke_pallet1":{
-            "path": "others/stroke_pallet1.json",
+            "path": "bases/stroke_pallet1.json",
             "layerMode": "coloarPallet"
         },
         "stroke_pallet2":{
-            "path": "others/stroke_pallet2.json",
+            "path": "bases/stroke_pallet2.json",
             "layerMode": "coloarPallet"
         },
         "stroke_pallet3":{
-            "path": "others/stroke_pallet3.json",
+            "path": "bases/stroke_pallet3.json",
             "layerMode": "coloarPallet"
         },
         "stroke_pallet4":{
-            "path": "others/stroke_pallet4.json",
+            "path": "bases/stroke_pallet4.json",
             "layerMode": "coloarPallet"
         },
 
@@ -259,19 +259,19 @@
 
 
         "option1":{
-            "path": "others/option1.json",
+            "path": "bases/option1.json",
             "layerMode": "option"
         },
         "option2":{
-            "path": "others/option2.json",
+            "path": "bases/option2.json",
             "layerMode": "option"
         },
         "option3":{
-            "path": "others/option2.json",
+            "path": "bases/option2.json",
             "layerMode": "option"
         },
         "option4":{
-            "path": "others/option2.json",
+            "path": "bases/option2.json",
             "layerMode": "option"
         },
 
@@ -288,19 +288,19 @@
 
 
         "export1":{
-            "path": "others/export1.json",
+            "path": "bases/export1.json",
             "layerMode": "export"
         },
         "export2":{
-            "path": "others/export2.json",
+            "path": "bases/export2.json",
             "layerMode": "export"
         },
         "export3":{
-            "path": "others/export3.json",
+            "path": "bases/export3.json",
             "layerMode": "export"
         },
         "export4":{
-            "path": "others/export4.json",
+            "path": "bases/export4.json",
             "layerMode": "export"
         },
 
@@ -317,19 +317,19 @@
 
 
         "save1":{
-            "path": "others/save1.json",
+            "path": "bases/save1.json",
             "layerMode": "save"
         },
         "save2":{
-            "path": "others/save2.json",
+            "path": "bases/save2.json",
             "layerMode": "save"
         },
         "save3":{
-            "path": "others/save3.json",
+            "path": "bases/save3.json",
             "layerMode": "save"
         },
         "save4":{
-            "path": "others/save4.json",
+            "path": "bases/save4.json",
             "layerMode": "save"
         },
 
@@ -346,19 +346,19 @@
 
 
         "load1":{
-            "path": "others/load1.json",
+            "path": "bases/load1.json",
             "layerMode": "load"
         },
         "load2":{
-            "path": "others/load2.json",
+            "path": "bases/load2.json",
             "layerMode": "load"
         },
         "load3":{
-            "path": "others/load3.json",
+            "path": "bases/load3.json",
             "layerMode": "load"
         },
         "load4":{
-            "path": "others/load4.json",
+            "path": "bases/load4.json",
             "layerMode": "load"
         },
 
