@@ -21,19 +21,13 @@ class ConvertCode extends Block{
                 float br = shapeRect.br;
                 float bl = shapeRect.bl;
                 
-                PVector rectSize = getContainerBlockSize(w, h);
-                PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
-                println("  translate(" + rectGCenter.x + " + x, " + rectGCenter.y + " + y);");
+                println("  translate(" + x + " + x, " + y + " + y);");
                 println("  rotate(" + shapeRect.radian + ");");
                 println("  rectMode(CENTER);");
                 if(tl != 0.0 || tr != 0.0 || br != 0.0 || bl != 0.0){
-                    float gTl = getContainerBlockSize(tl, tl).x;
-                    float gTr = getContainerBlockSize(tr, tr).x;
-                    float gBr = getContainerBlockSize(br, br).x;
-                    float gBl = getContainerBlockSize(bl, bl).x;
-                    println("  rect(0, 0, " + rectSize.x + ", " + rectSize.y + ", " + gTl + ", " + gTr + ", " + gBr + ", " + gBl + ");");
+                    println("  rect(0, 0, " + w + ", " + h + ", " + tl + ", " + tr + ", " + br + ", " + bl + ");");
                 }else{
-                    println("  rect(0, 0, " + rectSize.x + ", " + rectSize.y + ");");
+                    println("  rect(0, 0, " + w + ", " + h + ");");
                 }
                 println("  rectMode(CORNER);");
             }else if (shapeObj.getClass() == Ellipse.class) {
@@ -47,10 +41,10 @@ class ConvertCode extends Block{
                 
                 PVector rectSize = getContainerBlockSize(w, h);
                 PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
-                println("  translate(" + rectGCenter.x + " + x, " + rectGCenter.y + " + y);");
+                println("  translate(" + x + " + x, " + y + " + y);");
                 println("  rotate(" + shapeEllipse.radian + ");");
 
-                println("  ellipse(0, 0, " + rectSize.x + ", " + rectSize.y + ");");
+                println("  ellipse(0, 0, " + w + ", " + h + ");");
             }
             println("  popMatrix();");
             println("  ");
