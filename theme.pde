@@ -66,6 +66,12 @@ class Theme{
         isLoadMode = !isLoadMode;
     }
 
+    void exceptMode(){
+        isFillMode = false;
+        isStrokeMode = false;
+        isSaveMode = false;
+        isLoadMode = false;
+    }
 
     //====================================================================================================
     int width_buffer, height_buffer;
@@ -102,6 +108,7 @@ class Theme{
             drawLayer(save);
         }
         if(isLoadMode){
+            println("te");
             drawLayer(load);
         }
     }
@@ -408,16 +415,16 @@ class Theme{
                 function = () -> canvas.add_ellipse();
             break;
             case "TGL_STROKE_PALLET_MODE" :
-                function = () -> canvas.tgl_fillPallet_mode();
+                function = () -> tgl_fillPallet_mode();
             break;	
             case "TGL_FILL_PALLET_MODE" :
-                function = () -> canvas.tgl_strokePallet_mode();
+                function = () -> tgl_strokePallet_mode();
             break;	
             case "TGL_SAVE_MODE" :
-                function = () -> canvas.tgl_save_mode();
+                function = () -> tgl_save_mode();
             break;	
             case "TGL_LOAD_MODE" :
-                function = () -> canvas.tgl_load_mode();
+                function = () -> tgl_load_mode();
             break;	
             case "FANC_EXPORT_TO_PROCESSING" :
                 function = () -> canvas.convert_code();
