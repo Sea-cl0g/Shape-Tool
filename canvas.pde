@@ -37,23 +37,6 @@ class Canvas{
         Ellipse ellipse = new Ellipse(0, 0, 10, 10);
         shapes.add(ellipse);
     }
-
-    //tgl mode
-    void tgl_fillPallet_mode(){
-        theme.isFillMode = !theme.isFillMode;
-    }
-
-    void tgl_strokePallet_mode(){
-        theme.isStrokeMode = !theme.isStrokeMode;
-    }
-
-    void tgl_save_mode(){
-        theme.isSaveMode = !theme.isSaveMode;
-    }
-
-    void tgl_load_mode(){
-        theme.isLoadMode = !theme.isLoadMode;
-    }
     
     //te
     void convert_code(){

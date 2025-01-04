@@ -37,6 +37,37 @@ class Theme{
     }
 
     //====================================================================================================
+    //tgl_mode
+    void tgl_fillPallet_mode(){
+        if(!isFillMode){
+            exceptMode();
+        }
+        isFillMode = !isFillMode;
+    }
+
+    void tgl_strokePallet_mode(){
+        if(!isStrokeMode){
+            exceptMode();
+        }
+        isStrokeMode = !isStrokeMode;
+    }
+
+    void tgl_save_mode(){
+        if(!isSaveMode){
+            exceptMode();
+        }
+        isSaveMode = !isSaveMode;
+    }
+
+    void tgl_load_mode(){
+        if(!isLoadMode){
+            exceptMode();
+        }
+        isLoadMode = !isLoadMode;
+    }
+
+
+    //====================================================================================================
     int width_buffer, height_buffer;
     boolean isWindowSizeChanged;
     void drawGUI(){
