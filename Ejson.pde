@@ -37,6 +37,10 @@ class EasyJSONObject{
   JSONArray getJSONArray(String key){
     return jsonObj.getJSONArray(key);
   }
+
+  boolean isNull(String key){
+    return jsonObj.isNull(key);
+  }
 }
 
 //--------------------------------------------------

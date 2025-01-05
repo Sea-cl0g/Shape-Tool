@@ -3,7 +3,6 @@
     "DEFAULT_THEME_DIR": "data/themes/default",
     "ERROR_SVG_PATH": "data/ERROR_ICON.svg",
     "ERROR_IMAGE_PATH": "data/ERROR_ICON.png",
-
     "assets": {
         "main1": {
             "path": "bases/main1.json"
@@ -29,368 +28,539 @@
         "main8": {
             "path": "bases/main8.json"
         },
-
-
         "canvas": {
             "path": "others/canvas.json"
         },
-
-        
         "add_rectangle": {
             "path": "buttons/add_rectangle.json",
-            "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_RECTANGLE"}]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_ADD_RECTANGLE"
+                }
+            ]
         },
         "add_ellipse": {
             "path": "buttons/add_ellipse.json",
-            "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_ELLIPSE"}]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_ADD_ELLIPSE"
+                }
+            ]
         },
         "add_triangle": {
             "path": "buttons/add_triangle.json",
-            "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_ADD_TRIANGLE"}]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_ADD_TRIANGLE"
+                }
+            ]
         },
-        
-
         "tgl_fill_pallet_mode": {
             "path": "buttons/tgl_fill_pallet_mode.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "FANC_TGL_FILL_PALLET_MODE"},
-                {"Name": "@FILL_BUTTON", "Query": "FANC_TGL_FILL_PALLET_MODE"}
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_TGL_FILL_PALLET_MODE"
+                },
+                {
+                    "Name": "@FILL_BUTTON",
+                    "Query": "FANC_TGL_FILL_PALLET_MODE"
+                }
             ]
         },
         "tgl_stroke_pallet_mode": {
             "path": "buttons/tgl_stroke_pallet_mode.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "FANC_TGL_STROKE_PALLET_MODE"},
-                {"Name": "@FILL_BUTTON", "Query": "FANC_TGL_STROKE_PALLET_MODE"}
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_TGL_STROKE_PALLET_MODE"
+                },
+                {
+                    "Name": "@FILL_BUTTON",
+                    "Query": "FANC_TGL_STROKE_PALLET_MODE"
+                }
             ]
         },
         "tgl_option_mode": {
             "path": "buttons/tgl_option_mode.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_TGL_OPTION_MODE" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_TGL_OPTION_MODE"
+                }
+            ]
         },
         "tgl_export_mode": {
             "path": "buttons/tgl_export_mode.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "FANC_TGL_EXPORT_MODE"}
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_TGL_EXPORT_MODE"
+                }
             ]
         },
         "tgl_save_mode": {
             "path": "buttons/tgl_save_mode.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "FANC_TGL_SAVE_MODE"}
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_TGL_SAVE_MODE"
+                }
             ]
         },
         "tgl_load_mode": {
             "path": "buttons/tgl_load_mode.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "FANC_TGL_LOAD_MODE"}
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_TGL_LOAD_MODE"
+                }
             ]
         },
-
-        
         "duplicate_layer": {
             "path": "buttons/duplicate_layer.json",
-            "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_DUPLICATE_SHAPE"}]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_DUPLICATE_SHAPE"
+                }
+            ]
         },
         "raise_layer": {
             "path": "buttons/raise_layer.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_RAISE_LAYER" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_RAISE_LAYER"
+                }
+            ]
         },
         "lower_layer": {
             "path": "buttons/lower_layer.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_LOWER_LAYER" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_LOWER_LAYER"
+                }
+            ]
         },
         "delete_shape": {
             "path": "buttons/delete_shape.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DELETE_SHAPE" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_DELETE_SHAPE"
+                }
+            ]
         },
         "bring_to_front": {
             "path": "buttons/bring_to_front.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_BRING_TO_FRONT" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_BRING_TO_FRONT"
+                }
+            ]
         },
         "send_to_back": {
             "path": "buttons/send_to_back.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SEND_TO_BACK" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_SEND_TO_BACK"
+                }
+            ]
         },
-
-
         "move_up_1px": {
             "path": "buttons/move_up_1px.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_UP_1PX" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_MOVE_UP_1PX"
+                }
+            ]
         },
         "move_down_1px": {
             "path": "buttons/move_down_1px.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_DOWN_1PX" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_MOVE_DOWN_1PX"
+                }
+            ]
         },
         "move_right_1px": {
             "path": "buttons/move_right_1px.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_RIGHT_1PX" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_MOVE_RIGHT_1PX"
+                }
+            ]
         },
         "move_left_1px": {
             "path": "buttons/move_left_1px.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_LEFT_1PX" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_MOVE_LEFT_1PX"
+                }
+            ]
         },
-
-
         "rotate_left_90": {
             "path": "buttons/rotate_left_90.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ROTATE_LEFT_90" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_ROTATE_LEFT_90"
+                }
+            ]
         },
         "rotate_right_90": {
             "path": "buttons/rotate_right_90.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ROTATE_RIGHT_90" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_ROTATE_RIGHT_90"
+                }
+            ]
         },
-
-        
         "flip_y_axis": {
             "path": "buttons/flip_y_axis.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_FLIP_Y_AXIS" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_FLIP_Y_AXIS"
+                }
+            ]
         },
         "flip_x_axis": {
             "path": "buttons/flip_x_axis.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_FLIP_X_AXIS" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_FLIP_X_AXIS"
+                }
+            ]
         },
         "double_width": {
             "path": "buttons/double_width.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DOUBLE_WIDTH" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_DOUBLE_WIDTH"
+                }
+            ]
         },
         "double_height": {
             "path": "buttons/double_height.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DOUBLE_HEIGHT" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_DOUBLE_HEIGHT"
+                }
+            ]
         },
         "double_ratio": {
             "path": "buttons/double_ratio.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_DOUBLE_RATIO" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_DOUBLE_RATIO"
+                }
+            ]
         },
         "half_width": {
             "path": "buttons/half_width.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_HALF_WIDTH" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_HALF_WIDTH"
+                }
+            ]
         },
         "half_height": {
             "path": "buttons/half_height.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_HALF_HEIGHT" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_HALF_HEIGHT"
+                }
+            ]
         },
         "half_ratio": {
             "path": "buttons/half_ratio.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_HALF_RATIO" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_HALF_RATIO"
+                }
+            ]
         },
-
-
         "zoom_in": {
             "path": "buttons/zoom_in.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ZOOM_IN" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_ZOOM_IN"
+                }
+            ]
         },
         "zoom_out": {
             "path": "buttons/zoom_out.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ZOOM_OUT" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_ZOOM_OUT"
+                }
+            ]
         },
         "reset_zoom": {
             "path": "buttons/reset_zoom.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_RESET_ZOOM" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_RESET_ZOOM"
+                }
+            ]
         },
-
-
         "save_project": {
             "path": "buttons/save_project.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SAVE_PROJECT" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_SAVE_PROJECT"
+                }
+            ]
         },
         "open_file": {
             "path": "buttons/open_file.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_OPEN_FILE" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_OPEN_FILE"
+                }
+            ]
         },
         "export_to_processing": {
             "path": "buttons/export_to_processing.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_EXPORT_TO_PROCESSING" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_EXPORT_TO_PROCESSING"
+                }
+            ]
         },
-
-
-
-
-
-
-        "fill_pallet1":{
+        "fill_pallet1": {
             "path": "bases/fill_pallet1.json",
             "layerMode": "fillPallet"
         },
-        "fill_pallet2":{
+        "fill_pallet2": {
             "path": "bases/fill_pallet2.json",
             "layerMode": "fillPallet"
         },
-        "fill_pallet3":{
+        "fill_pallet3": {
             "path": "bases/fill_pallet3.json",
             "layerMode": "fillPallet"
         },
-        "fill_pallet4":{
+        "fill_pallet4": {
             "path": "bases/fill_pallet4.json",
             "layerMode": "fillPallet"
         },
-
-        
         "fill_pickers": {
             "path": "others/fill_pickers.json",
             "layerMode": "fillPallet",
             "queries": [
-                {"Name": "@FILL_HSB_H", "Query": "NULL"},
-                {"Name": "@FILL_HSB_S", "Query": "NULL"},
-                {"Name": "@FILL_HSB_B", "Query": "NULL"},
-                {"Name": "@FILL_RGB_R", "Query": "NULL"},
-                {"Name": "@FILL_RGB_G", "Query": "NULL"},
-                {"Name": "@FILL_RGB_B", "Query": "NULL"},
-                {"Name": "@FILL_ALPHA", "Query": "NULL"}
+                {
+                    "Name": "@FILL_HSB_H",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@FILL_HSB_S",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@FILL_HSB_B",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@FILL_RGB_R",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@FILL_RGB_G",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@FILL_RGB_B",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@FILL_ALPHA",
+                    "Query": "NULL"
+                }
             ]
         },
-
-
-
-
-
-
-        "stroke_pallet1":{
+        "stroke_pallet1": {
             "path": "bases/stroke_pallet1.json",
             "layerMode": "coloarPallet"
         },
-        "stroke_pallet2":{
+        "stroke_pallet2": {
             "path": "bases/stroke_pallet2.json",
             "layerMode": "coloarPallet"
         },
-        "stroke_pallet3":{
+        "stroke_pallet3": {
             "path": "bases/stroke_pallet3.json",
             "layerMode": "coloarPallet"
         },
-        "stroke_pallet4":{
+        "stroke_pallet4": {
             "path": "bases/stroke_pallet4.json",
             "layerMode": "coloarPallet"
         },
-
         "stroke_pickers": {
             "path": "others/stroke_pickers.json",
             "layerMode": "strokePallet",
             "queries": [
-                {"Name": "@STROKE_HSB_H", "Query": "NULL"},
-                {"Name": "@STROKE_HSB_S", "Query": "NULL"},
-                {"Name": "@STROKE_HSB_B", "Query": "NULL"},
-                {"Name": "@STROKE_RGB_R", "Query": "NULL"},
-                {"Name": "@STROKE_RGB_G", "Query": "NULL"},
-                {"Name": "@STROKE_RGB_B", "Query": "NULL"},
-                {"Name": "@STROKE_ALPHA", "Query": "NULL"},
-                {"Name": "@STROKE_WEIGHT", "Query": "NULL"}
+                {
+                    "Name": "@STROKE_HSB_H",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@STROKE_HSB_S",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@STROKE_HSB_B",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@STROKE_RGB_R",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@STROKE_RGB_G",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@STROKE_RGB_B",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@STROKE_ALPHA",
+                    "Query": "NULL"
+                },
+                {
+                    "Name": "@STROKE_WEIGHT",
+                    "Query": "NULL"
+                }
             ]
         },
-
-
-
-
-
-
-        "option1":{
+        "option1": {
             "path": "bases/option1.json",
             "layerMode": "option"
         },
-        "option2":{
+        "option2": {
             "path": "bases/option2.json",
             "layerMode": "option"
         },
-        "option3":{
+        "option3": {
             "path": "bases/option2.json",
             "layerMode": "option"
         },
-        "option4":{
+        "option4": {
             "path": "bases/option2.json",
             "layerMode": "option"
         },
-
-        
-        "theme_path_dialog":{
+        "theme_path_dialog": {
             "path": "others/theme_path_dialog.json",
             "layerMode": "option",
-            "queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "THEME_PATH" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_TEXT_EDITOR",
+                    "Query": "THEME_PATH"
+                }
+            ]
         },
-
-
-
-
-
-
-        "export1":{
+        "export1": {
             "path": "bases/export1.json",
             "layerMode": "export"
         },
-        "export2":{
+        "export2": {
             "path": "bases/export2.json",
             "layerMode": "export"
         },
-        "export3":{
+        "export3": {
             "path": "bases/export3.json",
             "layerMode": "export"
         },
-        "export4":{
+        "export4": {
             "path": "bases/export4.json",
             "layerMode": "export"
         },
-
-        
-        "export_preview":{
+        "export_preview": {
             "path": "others/export_preview.json",
             "layerMode": "export",
-            "queries": [{ "Name": "@MAIN_TEXT_BLOCK", "Query": "CODE_PREVIEW" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_TEXT_BLOCK",
+                    "Query": "CODE_PREVIEW"
+                }
+            ]
         },
-
-
-
-
-
-
-        "save1":{
+        "save1": {
             "path": "bases/save1.json",
             "layerMode": "save"
         },
-        "save2":{
+        "save2": {
             "path": "bases/save2.json",
             "layerMode": "save"
         },
-        "save3":{
+        "save3": {
             "path": "bases/save3.json",
             "layerMode": "save"
         },
-        "save4":{
+        "save4": {
             "path": "bases/save4.json",
             "layerMode": "save"
         },
-
-        
-        "save_path_dialog":{
+        "save_path_dialog": {
             "path": "others/save_path_dialog.json",
             "layerMode": "save",
-            "queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "SAVE_PATH" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_TEXT_EDITOR",
+                    "Query": "SAVE_PATH"
+                }
+            ]
         },
-
-
-
-
-
-
-        "load1":{
+        "load1": {
             "path": "bases/load1.json",
             "layerMode": "load"
         },
-        "load2":{
+        "load2": {
             "path": "bases/load2.json",
             "layerMode": "load"
         },
-        "load3":{
+        "load3": {
             "path": "bases/load3.json",
             "layerMode": "load"
         },
-        "load4":{
+        "load4": {
             "path": "bases/load4.json",
             "layerMode": "load"
         },
-
-        
-        "load_path_dialog":{
+        "load_path_dialog": {
             "path": "others/load_path_dialog.json",
             "layerMode": "load",
-            "queries": [{ "Name": "@MAIN_TEXT_EDITOR", "Query": "LOAD_PATH" }]
+            "queries": [
+                {
+                    "Name": "@MAIN_TEXT_EDITOR",
+                    "Query": "LOAD_PATH"
+                }
+            ]
         }
     }
 }

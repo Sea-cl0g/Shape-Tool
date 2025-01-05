@@ -39,7 +39,6 @@
             "color": "#42c8ed"
         }
     },
-    
     "elements": {
         "@MAIN_BUTTON": {
             "type": "button",

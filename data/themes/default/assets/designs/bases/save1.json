@@ -1,12 +1,10 @@
 {
     "description": "Most basic and easy-to-see color theme",
     "author": "boo_manKnow",
-
     "containerAnker": "center",
     "blockMode": "both",
     "blockAnker": "CENTER",
     "layer": 1,
-
     "elements": {
         "e1": {
             "type": "base",

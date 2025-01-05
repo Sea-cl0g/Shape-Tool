@@ -28,7 +28,7 @@ void setup(){
   theme.loadTheme();
 }
 
-void draw() {
+void draw(){
   fillColorJustChanged = false;
   strokeColorJustChanged = false;
   hasMouseTouched = false;
@@ -48,7 +48,7 @@ void softPrepare(){
 
 
 //--------------------------------------------------
-void mousePressed() {
+void mousePressed(){
   if(mouseButton == LEFT){
     isMouseLeftClicking = true;
     hasMouseLeftClicked = true;
@@ -61,7 +61,7 @@ void mousePressed() {
   }
 }
 
-void mouseReleased() {
+void mouseReleased(){
   if(mouseButton == LEFT){
     isMouseLeftClicking = false;
     hasMouseLeftClicked = false;

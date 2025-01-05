@@ -265,7 +265,7 @@ class TextEditor extends TextBlock{
             textSplit.remove(cursor + 1);
         }
         StringBuilder sb = new StringBuilder();
-        for (Character c : textSplit) {
+        for (Character c : textSplit){
             sb.append(c);
         }
         text = sb.toString();

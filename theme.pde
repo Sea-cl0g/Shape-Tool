@@ -257,7 +257,7 @@ class Theme{
             JSONObject designJSON = safeLoad.assetLoad(asset.getString("path"));
             if(designJSON.keys().size() != 0){
                 String layerName = asset.getString("layerMode") != null ? asset.getString("layerMode") : "main";
-                switch (layerName) {
+                switch (layerName){
                     case "fillPallet" :
                         readDesign(fillPallet, asset, designJSON);
                     break;	
@@ -326,7 +326,7 @@ class Theme{
             ImageData imageData;
             color fillCol;
             StrokeData stroke;
-            switch (elementEJSON.safeGetString("type")) {
+            switch (elementEJSON.safeGetString("type")){
                 case "base" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
@@ -426,7 +426,7 @@ class Theme{
     Runnable buttonFanctionPrepare(String query){
         Runnable function;
         println(query);
-        switch (query) {
+        switch (query){
             case "FANC_ADD_RECTANGLE" :
                 function = () -> canvas.add_rectangle();
             break;
@@ -492,6 +492,25 @@ class Theme{
             break;
 
 
+            case "FANC_ROTATE_LEFT_90" :
+                function = () -> canvas.rotate_left_90();
+            break;
+            case "FANC_ROTATE_RIGHT_90" :
+                function = () -> canvas.rotate_right_90();
+            break;
+
+
+            case "FANC_ZOOM_IN" :
+                function = () -> canvas.zoom_in();
+            break;
+            case "FANC_ZOOM_OUT" :
+                function = () -> canvas.zoom_out();
+            break;
+            case "FANC_RESET_ZOOM" :
+                function = () -> canvas.zoom_reset();
+            break;
+
+
             case "FANC_EXPORT_TO_PROCESSING" :
                 function = () -> canvas.convert_code();
             break;	
@@ -519,7 +538,7 @@ class Theme{
                 query = (JSONArray) predicateObj;
             }
             for(int q = 0; q < query.size(); q++){
-                switch (query.getString(q)) {
+                switch (query.getString(q)){
                     case "normal" :
                         normal.readData(style, variableJSON);
                     break;
@@ -680,6 +699,10 @@ class ImageData{
             if(path.endsWith(".svg")){
                 this.svg = safeLoad.svgLoad(path);
                 svgTgl = true;
+                if(!imageEJSON.isNull("color")){
+                    color overrideCol = readColor(imageEJSON.safeGetString("color"), variableJSON);
+                    changeImageColor(this.svg, overrideCol);
+                }
             }else{
                 this.image = safeLoad.imageLoad(path);
             }
@@ -687,12 +710,14 @@ class ImageData{
     }
 
     void changeImageColor(PShape shape, color overrideCol){
-        if(0 < shape.getChildCount()){
-            for(int i = 0; i < shape.getChildCount(); i++){
+        if(shape == null) return;
+        if(shape.getChildCount() > 0){
+            for (int i = 0; i < shape.getChildCount(); i++){
                 changeImageColor(shape.getChild(i), overrideCol);
             }
         }else{
             shape.setFill(overrideCol);
+            shape.setStroke(overrideCol);
         }
     }
 }
@@ -757,7 +782,7 @@ class TextData{
 
 //--------------------------------------------------
 color hexToColor(String hex){
-    if (hex.startsWith("#")) {
+    if(hex.startsWith("#")){
         hex = hex.substring(1);
     }
     

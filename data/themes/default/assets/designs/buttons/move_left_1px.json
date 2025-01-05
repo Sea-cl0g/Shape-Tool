@@ -10,7 +10,8 @@
     },
     "colors": {
         "defaultCol": "#FFFFFF",
-        "selectedCol": "#d4dde1"
+        "selectedCol": "#e0e9e7",
+        "pointCol": "#857f8e"
     },
     "floats": {
         "x_pos": 10,
@@ -26,14 +27,14 @@
             "y_point": "$y_counter * $b_size + $y_pos",
             "width_point": "$b_size",
             "height_point": "$b_size",
-            "tl_point": "$r_point",
             "bl_point": "$r_point"
         }
     },
     "images": {
         "main": {
             "size": 0.8,
-            "path": "icon/TMP_ICON2.svg"
+            "path": "icon/TMP_ICON2.svg",
+            "color": "$pointCol"
         }
     },
     "shadows": {
@@ -46,7 +47,7 @@
     "strokes": {
         "defaultStroke": {
             "stroke_point": 0.05,
-            "color": "#AAAAAA"
+            "color": "$pointCol"
         }
     },
     "elements": {

@@ -5,7 +5,6 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
-    
     "button_types": {
         "maru": "squareButton"
     },
@@ -44,7 +43,6 @@
             "color": "#4a7083ff"
         }
     },
-
     "elements": {
         "@FILL_BUTTON": {
             "type": "button",

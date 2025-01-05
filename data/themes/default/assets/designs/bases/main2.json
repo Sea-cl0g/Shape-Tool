@@ -5,7 +5,6 @@
     "blockMode": "vertical",
     "blockAnker": "CORNER",
     "layer": 1,
-
     "elements": {
         "e1": {
             "type": "base",

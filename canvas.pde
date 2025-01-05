@@ -52,19 +52,19 @@ class Canvas{
             }
         }
     }
-    void raise_layer() {
-        for (int i = shapes.size() - 1; i >= 0; i--) {
+    void raise_layer(){
+        for (int i = shapes.size() - 1; i >= 0; i--){
             Shape item = shapes.get(i);
-            if (item.status[0] && i < shapes.size() - 1) {
+            if (item.status[0] && i < shapes.size() - 1){
                 shapes.remove(i);
                 shapes.add(i + 1, item);
             }
         }
     }
-    void lower_layer() {
-        for (int i = 0; i < shapes.size(); i++) {
+    void lower_layer(){
+        for (int i = 0; i < shapes.size(); i++){
             Shape item = shapes.get(i);
-            if (item.status[0] && i > 0) {
+            if (item.status[0] && i > 0){
                 shapes.remove(i);
                 shapes.add(i - 1, item);
             }
@@ -114,7 +114,7 @@ class Canvas{
         }
     }
 
-    //layerの移動
+    //図形の移動
     void move_up_1px(){
         for(Shape item : shapes){
             if(item.status[0]){
@@ -144,6 +144,22 @@ class Canvas{
         }
     }
 
+    //図形の回転
+    void rotate_left_90(){
+        for(Shape item : shapes){
+            if(item.status[0]){
+                item.radian -= HALF_PI;
+            }
+        }
+    }
+    void rotate_right_90(){
+        for(Shape item : shapes){
+            if(item.status[0]){
+                item.radian += HALF_PI;
+            }
+        }
+    }
+
     //processing4のコードで出力
     void convert_code(){
         ConvertCode coc = new ConvertCode();
@@ -164,6 +180,10 @@ class Canvas{
         }else{
           scale -= 0.1;
         }
+    }
+    void zoom_reset(){
+        println(scale);
+        scale = 1.0;
     }
 }
 

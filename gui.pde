@@ -31,7 +31,7 @@ class ButtonTemplate extends Block{
     // ボタンテンプレート
     //四角いボタン
     void drawSquareButton(float x, float y, float w, float h, String shadowMode, float shadowDist){
-        if(shadowDist != 0.0) {
+        if(shadowDist != 0.0){
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
             fill(shadowCol);
             noStroke();
@@ -49,7 +49,7 @@ class ButtonTemplate extends Block{
     
     //すべての角が一定の丸みを持つ四角いボタン
     void drawRoundedSquareButton(float x, float y, float w, float h, float r, String shadowMode, float shadowDist){
-        if(shadowDist != 0.0) {
+        if(shadowDist != 0.0){
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
             fill(shadowCol);
             noStroke();
@@ -67,7 +67,7 @@ class ButtonTemplate extends Block{
 
     //角ごとに丸みを指定できるボタン
     void drawEachRoundedButton(float x, float y, float w, float h, float tl, float tr, float br, float bl, String shadowMode, float shadowDist){
-        if(shadowDist != 0.0) {
+        if(shadowDist != 0.0){
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
             fill(shadowCol);
             noStroke();
@@ -86,7 +86,7 @@ class ButtonTemplate extends Block{
 
     //横が丸いボタン
     void drawHorizontallyRoundedButton(float x, float y, float w, float h, String shadowMode, float shadowDist){
-        if(shadowDist != 0.0) {
+        if(shadowDist != 0.0){
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
             fill(shadowCol);
             noStroke();
@@ -104,7 +104,7 @@ class ButtonTemplate extends Block{
 
     //縦が丸いボタン
     void drawVerticallyRoundedButton(float x, float y, float w, float h, String shadowMode, float shadowDist){
-        if(shadowDist != 0.0) {
+        if(shadowDist != 0.0){
             PVector shadowPos = getShadowPos(x, y, shadowMode, shadowDist);
             fill(shadowCol);
             noStroke();
@@ -124,7 +124,7 @@ class ButtonTemplate extends Block{
     PVector getShadowPos(float x, float y, String shadowMode, float shadowDist){
         int calcModeX = 1;
         int calcModeY = 1;
-        switch (containerAnker) {
+        switch (containerAnker){
             case "topRight" :
                 calcModeX = -1;
             break;	
@@ -136,7 +136,7 @@ class ButtonTemplate extends Block{
                 calcModeY = -1;
             break;	
         }
-        switch (shadowMode) {
+        switch (shadowMode){
             case "BOTTOM" :
                 return new PVector(x, y + shadowDist * calcModeY);
             case "TOP" :
@@ -164,11 +164,11 @@ class ButtonTemplate extends Block{
 class Block extends Container{
     String blockAnker;
 
-    Block(int splitW, int splitH) {
+    Block(int splitW, int splitH){
         super(splitW, splitH);
         setBlockAnker("DEFAULT");
     }
-    Block(float anchorX, float anchorY, float sizeW, float sizeH, int splitW, int splitH) {
+    Block(float anchorX, float anchorY, float sizeW, float sizeH, int splitW, int splitH){
         super(anchorX, anchorY, sizeW, sizeH, splitW, splitH);
         setBlockAnker("DEFAULT");
     }
@@ -187,7 +187,7 @@ class Block extends Container{
     }
 
     PVector getObjectPos(float x, float y, float w, float h, PVector size){
-        switch (blockAnker) {
+        switch (blockAnker){
             case "CENTER" :
                 return getContainerPos(x - w / 2, y - h / 2, size);
             default :
@@ -196,13 +196,13 @@ class Block extends Container{
     }
 
     //box
-    void box(float x, float y, float w, float h) {
+    void box(float x, float y, float w, float h){
         drawBox(x, y, w, h, 0, 0, 0, 0);
     }
-    void box(float x, float y, float w, float h, float r) {
+    void box(float x, float y, float w, float h, float r){
         drawBox(x, y, w, h, r, r, r, r);
     }
-    void box(float x, float y, float w, float h, float tl, float tr, float br, float bl) {
+    void box(float x, float y, float w, float h, float tl, float tr, float br, float bl){
         drawBox(x, y, w, h, tl, tr, br, bl);
     }
 
@@ -257,7 +257,7 @@ class Block extends Container{
 }
 
 //--------------------------------------------------
-class Container {
+class Container{
     String containerAnker;
     String blockMode;
 
@@ -266,10 +266,10 @@ class Container {
     int splitW;
     int splitH;
     
-    Container(int splitW, int splitH) {
+    Container(int splitW, int splitH){
         this(0.0, 0.0, width, height, splitW, splitH);
     }
-    Container(float anchorX, float anchorY, float sizeW, float sizeH, int splitW, int splitH) {
+    Container(float anchorX, float anchorY, float sizeW, float sizeH, int splitW, int splitH){
         this.anchorX = anchorX; //アンカーの設定。
         this.anchorY = anchorY;
 
@@ -312,8 +312,8 @@ class Container {
         || blockMode.equals("both");
     }
     
-    PVector getContainerBlockSize(float w, float h) {
-        switch (blockMode) {
+    PVector getContainerBlockSize(float w, float h){
+        switch (blockMode){
             case "vertical":
                 return new PVector(getContainerBlockHeight(w), getContainerBlockHeight(h));
             case "horizontal":
@@ -325,11 +325,11 @@ class Container {
         }
     }
 
-    PVector getContainerPos(float x, float y, PVector size) {
+    PVector getContainerPos(float x, float y, PVector size){
         PVector relative_pos = getContainerBlockSize(x, y);
         PVector global_pos;
 
-        switch (containerAnker) {
+        switch (containerAnker){
             case "topLeft":
                 global_pos = new PVector(relative_pos.x , relative_pos.y);
                 break;
@@ -354,16 +354,16 @@ class Container {
         return global_pos;
     }
 
-    float getContainerBlockWidth(float w) {
+    float getContainerBlockWidth(float w){
         return sizeW * w / splitW;
     }
 
-    float getContainerBlockHeight(float h) {
+    float getContainerBlockHeight(float h){
         return sizeH * h / splitH;
     }
 
-    PVector getContainerBlockPoint(float w, float h) {
-        switch (blockMode) {
+    PVector getContainerBlockPoint(float w, float h){
+        switch (blockMode){
             case "vertical":
                 return new PVector(getContainerBlockHeightPoint(w), getContainerBlockHeightPoint(h));
             case "horizontal":
@@ -375,11 +375,11 @@ class Container {
         }
     }
     
-    float getContainerBlockWidthPoint(float blockWidth) {
+    float getContainerBlockWidthPoint(float blockWidth){
         return blockWidth * splitW / sizeW ;
     }
 
-    float getContainerBlockHeightPoint(float blockHeight) {
+    float getContainerBlockHeightPoint(float blockHeight){
         return blockHeight * splitH / sizeH;
     }
 }

@@ -1,12 +1,12 @@
 {
     "description": "Most basic and easy-to-see color theme",
     "author": "boo_manKnow",
-    "containerAnker": "bottomRight",
+    "containerAnker": "bottomLeft",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
     "button_types": {
-        "maru": "squareButton"
+        "maru": "eachRoundedButton"
     },
     "colors": {
         "defaultCol": "#FFFFFF",
@@ -14,17 +14,20 @@
         "pointCol": "#857f8e"
     },
     "floats": {
-        "x_pos": 9,
-        "y_pos": 1,
+        "x_pos": 10,
+        "y_pos": 2,
         "b_size": 0.8,
-        "counter": 4
+        "r_point": 0.2,
+        "x_counter": -1,
+        "y_counter": 1
     },
     "layouts": {
         "buttonLayout": {
-            "x_point": "$counter * $b_size + $x_pos",
-            "y_point": "$y_pos",
+            "x_point": "$x_counter * $b_size + $x_pos",
+            "y_point": "$y_counter * $b_size + $y_pos",
             "width_point": "$b_size",
-            "height_point": "$b_size"
+            "height_point": "$b_size",
+            "tl_point": "$r_point"
         }
     },
     "images": {

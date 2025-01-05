@@ -1,4 +1,4 @@
-class Shape extends Block {
+class Shape extends Block{
     color fillCol, strokeCol;
     float strokeWeight;
     boolean[] status;
@@ -6,7 +6,7 @@ class Shape extends Block {
     float x, y;
     float radian;
 
-    Shape(float x, float y) {
+    Shape(float x, float y){
         super(0, 0, 1000, 1000, 100, 100); // 適当な値で初期化
         this.x = x;
         this.y = y;
@@ -21,20 +21,20 @@ class Shape extends Block {
         return copy;
     }
 
-    void updateState(int stateIndex, boolean isTouched) {
-        if (!hasShapeTouched && isTouched) {
-            if (isMouseLeftClicking && !status[stateIndex]) {
+    void updateState(int stateIndex, boolean isTouched){
+        if (!hasShapeTouched && isTouched){
+            if (isMouseLeftClicking && !status[stateIndex]){
                 isMouseLeftClicking = false;
                 status[stateIndex] = true; // 該当状態を選択
                 resetStatesExcept(stateIndex); // 他の状態をリセット
             }
             hasShapeTouched = true;
-        } else if (!isTouched && isMouseLeftClicking && !hasShapeTouched) {
+        }else if (!isTouched && isMouseLeftClicking && !hasShapeTouched){
             status[stateIndex] = false;
         }
     }
 
-    void rotateShape(float w, float h) {
+    void rotateShape(float w, float h){
         PVector shapeSize = getContainerBlockSize(w, h);
         PVector shapeGCenter = getObjectPos(x, y, w, h, shapeSize);
         float hand = getContainerBlockSize(4, 4).x;
@@ -46,9 +46,9 @@ class Shape extends Block {
             PVector mouseGPosFromRectCenter = new PVector(mouseX, mouseY).sub(shapeGCenter);
             PVector pmouseGPisFromRectCenter = new PVector(pmouseX, pmouseY).sub(shapeGCenter);
             float cross = mouseGPosFromRectCenter.x * pmouseGPisFromRectCenter.y - mouseGPosFromRectCenter.y * pmouseGPisFromRectCenter.x;
-            if (cross > 0) {
+            if (cross > 0){
                 radian -= PVector.angleBetween(mouseGPosFromRectCenter,pmouseGPisFromRectCenter);
-            } else if (cross < 0) {
+            }else if (cross < 0){
                 radian += PVector.angleBetween(mouseGPosFromRectCenter,pmouseGPisFromRectCenter);
             }
         }
@@ -61,13 +61,13 @@ class Shape extends Block {
         return rotatedGPos;
     }
 
-    void drawSelectLine(float x1, float y1, float x2, float y2) {
+    void drawSelectLine(float x1, float y1, float x2, float y2){
         PVector gPos1 = getContainerBlockSize(x1, y1);
         PVector gPos2 = getContainerBlockSize(x2, y2);
         if(isAnyStateActive){
             noFill();
             strokeWeight(1);
-            if (status[0]) {
+            if (status[0]){
                 stroke(selectLineCol);
             }else{
                 stroke(unselectedLineCol);
@@ -75,12 +75,12 @@ class Shape extends Block {
             line(gPos1.x, gPos1.y, gPos2.x, gPos2.y);
         }
     }
-    void drawSelectPoint(int stateIndex, float x, float y, float boxW, boolean isEllipse) {
+    void drawSelectPoint(int stateIndex, float x, float y, float boxW, boolean isEllipse){
         PVector size = getContainerBlockSize(x, y);
         if(isAnyStateActive){
             stroke(255);
             strokeWeight(1);
-            if (status[stateIndex]) {
+            if (status[stateIndex]){
                 fill(selectLineCol);
             }else{
                 fill(unselectedLineCol);
@@ -93,7 +93,7 @@ class Shape extends Block {
         }
     }
 
-    boolean isNearTarget(float targetX, float targetY, float pointX, float pointY, float th) {
+    boolean isNearTarget(float targetX, float targetY, float pointX, float pointY, float th){
         return dist(targetX, targetY, pointX, pointY) < th;
     }
 
@@ -106,22 +106,22 @@ class Shape extends Block {
             pointTh
         );
         updateState(index, isTouched);
-        if (status[index] && mousePressed && mouseButton == LEFT && !hasShapeTouched && !hasMouseTouched) {
+        if (status[index] && mousePressed && mouseButton == LEFT && !hasShapeTouched && !hasMouseTouched){
             return getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
         }
         return new PVector(0, 0);
     }
 
-    void resetStatesExcept(int activeStateIndex) {
-        for (int i = 0; i < status.length; i++) {
-            if (i != activeStateIndex) {
+    void resetStatesExcept(int activeStateIndex){
+        for (int i = 0; i < status.length; i++){
+            if (i != activeStateIndex){
                 status[i] = false;
             }
         }
     }
 
-    boolean isAnyStateActive() {
-        for (boolean state : status) {
+    boolean isAnyStateActive(){
+        for (boolean state : status){
             if (state) return true;
         }
         return false;
@@ -142,18 +142,18 @@ class Shape extends Block {
 }
 
 //--------------------------------------------------
-class Ellipse extends Shape {
+class Ellipse extends Shape{
     float w, h;
     
-    Ellipse(float x, float y, float w, float h) {
+    Ellipse(float x, float y, float w, float h){
         super(x, y);
         resetEllipse(w, h, shapeDefaultFillCol, shapeDefaultStrokeCol);
     }
-    Ellipse(float x, float y, float w, float h, color fillCol, color strokeCol) {
+    Ellipse(float x, float y, float w, float h, color fillCol, color strokeCol){
         super(x, y);
         resetEllipse(w, h, fillCol, strokeCol);
     }
-    Ellipse(Ellipse item) {
+    Ellipse(Ellipse item){
         super(item.x, item.y);
 
         this.fillCol = item.fillCol;
@@ -178,7 +178,7 @@ class Ellipse extends Shape {
         status = new boolean[3];
     }
     
-    void moveEllipseangle() {
+    void moveEllipseangle(){
         PVector ellipseSize = getContainerBlockSize(w, h);
         PVector ellipsePos = getObjectPos(x, y, w, h, ellipseSize);
         PVector cornerPos = new PVector(ellipseSize.x / 2, ellipseSize.y / 2);
@@ -191,7 +191,7 @@ class Ellipse extends Shape {
             cos(radian) * (mouseY - ellipsePos.y) - sin(radian) * (mouseX - ellipsePos.x) + ellipsePos.y
         );//programmed by rin
         updateState(0, isTouched);
-        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched && !theme.isFillMode && !theme.isStrokeMode) {
+        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched && !theme.isFillMode && !theme.isStrokeMode){
             PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
             x += mouseMove.x;
             y += mouseMove.y;
@@ -199,7 +199,7 @@ class Ellipse extends Shape {
         }
     }
 
-    void changeScale() {
+    void changeScale(){
         PVector ellipseSize = getContainerBlockSize(w, h);
         PVector ellipseGCenter = getObjectPos(x, y, w, h, ellipseSize);
         PVector pointGPosFromEllipseCenter = new PVector(ellipseSize.x / 2, ellipseSize.y / 2);
@@ -217,12 +217,12 @@ class Ellipse extends Shape {
         return th < 0;
     }
 
-    void drawSelectEllipse(float w, float h) {
+    void drawSelectEllipse(float w, float h){
         PVector size = getContainerBlockSize(w, h);
         if(isAnyStateActive){
             noFill();
             strokeWeight(1);
-            if (status[0]) {
+            if (status[0]){
                 stroke(selectLineCol);
             }else{
                 stroke(unselectedLineCol);
@@ -231,7 +231,7 @@ class Ellipse extends Shape {
         }
     }
 
-    void checkStatus() {
+    void checkStatus(){
         PVector ellipseSize = getContainerBlockSize(w, h);
         PVector ellipseGCenter = getObjectPos(x, y, w, h, ellipseSize);
         translate(ellipseGCenter.x, ellipseGCenter.y);
@@ -245,7 +245,7 @@ class Ellipse extends Shape {
         setStrokeCol();
     }
 
-    void drawShapeWithGUI() {
+    void drawShapeWithGUI(){
         PVector ellipseSize = getContainerBlockSize(w, h);
         PVector ellipseGCenter = getObjectPos(x, y, w, h, ellipseSize);
         translate(ellipseGCenter.x, ellipseGCenter.y);
@@ -259,7 +259,7 @@ class Ellipse extends Shape {
         drawSelectPoint(2, 0, -1 * h / 2 - 4, 10, true); //rotate
     }
 
-    void drawEllipseangle() {
+    void drawEllipseangle(){
         PVector size = getContainerBlockSize(w, h);
         fill(fillCol);
         stroke(strokeCol);
@@ -268,18 +268,18 @@ class Ellipse extends Shape {
     }
 }
 //--------------------------------------------------
-class Rectangle extends Shape {
+class Rectangle extends Shape{
     float w, h, tl, tr, br, bl;
     
-    Rectangle(float x, float y, float w, float h) {
+    Rectangle(float x, float y, float w, float h){
         super(x, y);
         resetRectangle(w, h, shapeDefaultFillCol, shapeDefaultStrokeCol);
     }
-    Rectangle(float x, float y, float w, float h, color fillCol, color strokeCol) {
+    Rectangle(float x, float y, float w, float h, color fillCol, color strokeCol){
         super(x, y);
         resetRectangle(w, h, fillCol, strokeCol);
     }
-    Rectangle(Rectangle item) {
+    Rectangle(Rectangle item){
         super(item.x, item.y);
 
         this.fillCol = item.fillCol;
@@ -312,7 +312,7 @@ class Rectangle extends Shape {
         status = new boolean[7];
     }
 
-    void moveRectangle() {
+    void moveRectangle(){
         PVector rectSize = getContainerBlockSize(w, h);
         PVector rectPos = getObjectPos(x, y, w, h, rectSize);
         PVector cornerPos = new PVector(rectSize.x / 2, rectSize.y / 2);
@@ -325,7 +325,7 @@ class Rectangle extends Shape {
             cos(radian) * (mouseY - rectPos.y) - sin(radian) * (mouseX - rectPos.x) + rectPos.y
         );//programmed by rin
         updateState(0, isTouched);
-        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched && !theme.isFillMode && !theme.isStrokeMode) {
+        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched && !theme.isFillMode && !theme.isStrokeMode){
             PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
             x += mouseMove.x;
             y += mouseMove.y;
@@ -333,7 +333,7 @@ class Rectangle extends Shape {
         }
     }
 
-    void changeScale() {
+    void changeScale(){
         PVector rectSize = getContainerBlockSize(w, h);
         PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
         PVector pointGPosFromRectCenter = new PVector(rectSize.x / 2, rectSize.y / 2);
@@ -346,7 +346,7 @@ class Rectangle extends Shape {
         }
     }
     
-    void changeTopLeftTh() {
+    void changeTopLeftTh(){
         PVector rectSize = getContainerBlockSize(w, h);
         PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
         float gTl = getContainerBlockSize(tl, tl).x;
@@ -364,7 +364,7 @@ class Rectangle extends Shape {
             tl = min(w / 2, h / 2);
         }
     }
-    void changeTopRightTh() {
+    void changeTopRightTh(){
         PVector rectSize = getContainerBlockSize(w, h);
         PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
         float gTr = getContainerBlockSize(tr, tr).x;
@@ -382,7 +382,7 @@ class Rectangle extends Shape {
             tr = min(w / 2, h / 2);
         }
     }
-    void changeBottomRightTh() {
+    void changeBottomRightTh(){
         PVector rectSize = getContainerBlockSize(w, h);
         PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
         float gBr = getContainerBlockSize(br, br).x;
@@ -400,7 +400,7 @@ class Rectangle extends Shape {
             br = min(w / 2, h / 2);
         }
     }
-    void changeBottomLeftTh() {
+    void changeBottomLeftTh(){
         PVector rectSize = getContainerBlockSize(w, h);
         PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
         float gBl = getContainerBlockSize(bl, bl).x;
@@ -425,12 +425,12 @@ class Rectangle extends Shape {
         return xCheck && yCheck;
     }
 
-    void drawSelectRect(float w, float h) {
+    void drawSelectRect(float w, float h){
         PVector size = getContainerBlockSize(w, h);
         if(isAnyStateActive){
             noFill();
             strokeWeight(1);
-            if (status[0]) {
+            if (status[0]){
                 stroke(selectLineCol);
             }else{
                 stroke(unselectedLineCol);
@@ -440,7 +440,7 @@ class Rectangle extends Shape {
     }
 
     //tl -> tr -> br -> bl -> scalemove
-    void checkStatus() {
+    void checkStatus(){
         PVector rectSize = getContainerBlockSize(w, h);
         PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
         translate(rectGCenter.x, rectGCenter.y);
@@ -458,7 +458,7 @@ class Rectangle extends Shape {
         setStrokeCol();
     }
 
-    void drawShapeWithGUI() {
+    void drawShapeWithGUI(){
         PVector rectSize = getContainerBlockSize(w, h);
         PVector rectGCenter = getObjectPos(x, y, w, h, rectSize);
         translate(rectGCenter.x, rectGCenter.y);
@@ -476,7 +476,7 @@ class Rectangle extends Shape {
         drawSelectPoint(6, -1 * w / 2 + bl, h / 2, 10, true); //bl
     }
 
-    void drawRectangle() {
+    void drawRectangle(){
         PVector size = getContainerBlockSize(w, h);
         float gTl = getContainerBlockSize(tl, tl).x;
         float gTr = getContainerBlockSize(tr, tr).x;

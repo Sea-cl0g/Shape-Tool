@@ -30,7 +30,7 @@ class ConvertCode extends Block{
                     println("  rect(0, 0, " + w + ", " + h + ");");
                 }
                 println("  rectMode(CORNER);");
-            }else if (shapeObj.getClass() == Ellipse.class) {
+            }else if (shapeObj.getClass() == Ellipse.class){
                 Ellipse shapeEllipse = (Ellipse) shapeObj;
                 println("  fill(" + getSplitedColor(shapeEllipse.fillCol) + ");");
                 

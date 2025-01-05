@@ -5,17 +5,13 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 10,
-
-
     "colors": {
         "noFill": "#FFFFFF00"
     },
-    "floats":{
+    "floats": {
         "x_pos": 8.5,
         "y_pos": 5
     },
-
-    
     "elements": {
         "@FILL_HSB_H": {
             "type": "color_picker",

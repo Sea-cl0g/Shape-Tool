@@ -26,7 +26,7 @@ class SafeLoad{
             return false;
         }
         //ファイルの型が想定通りか？
-        if (!filePath.endsWith(fileType)) {
+        if (!filePath.endsWith(fileType)){
             return false;
         }
         return true;
