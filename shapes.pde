@@ -22,14 +22,14 @@ class Shape extends Block {
     }
 
     void updateState(int stateIndex, boolean isTouched) {
-        if (!hasMouseTouched && isTouched) {
+        if (!hasShapeTouched && isTouched) {
             if (isMouseLeftClicking && !status[stateIndex]) {
                 isMouseLeftClicking = false;
                 status[stateIndex] = true; // 該当状態を選択
                 resetStatesExcept(stateIndex); // 他の状態をリセット
             }
-            hasMouseTouched = true;
-        } else if (!isTouched && isMouseLeftClicking && !hasMouseTouched) {
+            hasShapeTouched = true;
+        } else if (!isTouched && isMouseLeftClicking && !hasShapeTouched) {
             status[stateIndex] = false;
         }
     }
@@ -106,7 +106,7 @@ class Shape extends Block {
             pointTh
         );
         updateState(index, isTouched);
-        if (status[index] && mousePressed && mouseButton == LEFT && !hasMouseTouched) {
+        if (status[index] && mousePressed && mouseButton == LEFT && !hasShapeTouched && !hasMouseTouched) {
             return getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
         }
         return new PVector(0, 0);
@@ -191,7 +191,7 @@ class Ellipse extends Shape {
             cos(radian) * (mouseY - ellipsePos.y) - sin(radian) * (mouseX - ellipsePos.x) + ellipsePos.y
         );//programmed by rin
         updateState(0, isTouched);
-        if (status[0] && mousePressed && mouseButton == LEFT && !theme.isFillMode && !theme.isStrokeMode) {
+        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched && !theme.isFillMode && !theme.isStrokeMode) {
             PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
             x += mouseMove.x;
             y += mouseMove.y;
@@ -325,7 +325,7 @@ class Rectangle extends Shape {
             cos(radian) * (mouseY - rectPos.y) - sin(radian) * (mouseX - rectPos.x) + rectPos.y
         );//programmed by rin
         updateState(0, isTouched);
-        if (status[0] && mousePressed && mouseButton == LEFT && !theme.isFillMode && !theme.isStrokeMode) {
+        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched && !theme.isFillMode && !theme.isStrokeMode) {
             PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
             x += mouseMove.x;
             y += mouseMove.y;

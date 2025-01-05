@@ -40,9 +40,6 @@ class Canvas{
 
     //図形の編集
     void duplicate_layer(){
-        println();
-        println("try copy");
-        println(shapes);
         int sizeBuffer = shapes.size();
         for(int i = 0; i < sizeBuffer; i++){
             Shape shape = shapes.get(i);
@@ -54,17 +51,54 @@ class Canvas{
                 shapes.add(new Rectangle(rect));
             }
         }
-
-        println(shapes);
-        for(Shape shape : shapes){
-            println(shape.x, shape.y);
-        }
     }
     void raise_layer(){
+        // status[0]がtrueのShapeを格納するリスト
+        ArrayList<Shape> toRaise = new ArrayList<Shape>();
+        
+        // status[0]がtrueの要素をtoRaiseに追加
+        for (Shape item : shapes) {
+            if (item.status[0]) {
+                toRaise.add(item);
+            }
+        }
+        println(toRaise);
+        // toRaise内のShapeを順番に前に移動
+        for (Shape item : toRaise) {
+            int index = shapes.indexOf(item);
+            if (index < shapes.size() - 1) {
+                // 要素を1つ前に持ち上げる
+                shapes.set(index, shapes.get(index + 1));
+                shapes.set(index + 1, item);
+            }
+        }
     }
+
     void lower_layer(){
+        // shapes リストを逆順にループ
+        for (int i = shapes.size() - 1; i >= 0; i--) {
+            Shape item = shapes.get(i);
+            // status[0] が true の場合
+            if (item.status[0] == true) {
+            // リスト内で一つ前に移動
+                if (i > 0) {
+                    // i番目の要素と、i-1番目の要素を入れ替える
+                    shapes.set(i, shapes.get(i - 1));
+                    shapes.set(i - 1, item);
+                }
+            }
+        }
     }
     void delete_shape(){
+        int i = 0;
+        while(i < shapes.size()){
+            Shape shape = shapes.get(i);
+            if(shape.status[0]){
+                shapes.remove(i);
+            }else{
+                i++;
+            }
+        }
     }
     
     //processing4のコードで出力

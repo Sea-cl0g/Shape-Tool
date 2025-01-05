@@ -7,7 +7,7 @@
     "layer": 2,
 
     "button_types": {
-        "maru": "eachRoundedButton"
+        "maru": "squareButton"
     },
     "colors": {
         "defaultCol": "#FFFFFF",
@@ -17,8 +17,7 @@
         "x_pos": 9,
         "y_pos": 1,
         "b_size": 1.2,
-        "r_point": 0.3,
-        "counter": 0
+        "counter": 1
     },
     "layouts": {
         "buttonLayout": {

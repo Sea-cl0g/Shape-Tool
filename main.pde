@@ -8,6 +8,7 @@ boolean fillColorJustChanged, strokeColorJustChanged;
 boolean isMouseLeftClicking, isMouseRightClicking, isMouseCenterClicking;
 boolean hasMouseLeftClicked;
 boolean hasMouseTouched;
+boolean hasShapeTouched;
 boolean isKeyPressing;
 
 String configPath = "data/config.json";
@@ -31,6 +32,7 @@ void draw() {
   fillColorJustChanged = false;
   strokeColorJustChanged = false;
   hasMouseTouched = false;
+  hasShapeTouched = false;
   background(255, 255, 255);
   theme.drawGUI();
   //checkBlocks(1, 1, "vertical", "CORNER");
