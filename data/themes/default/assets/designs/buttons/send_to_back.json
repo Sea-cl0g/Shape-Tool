@@ -5,9 +5,8 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
-
     "button_types": {
-        "maru": "squareButton"
+        "maru": "eachRoundedButton"
     },
     "colors": {
         "defaultCol": "#FFFFFF",
@@ -16,7 +15,8 @@
     "floats": {
         "x_pos": 9,
         "y_pos": 1,
-        "b_size": 1.2,
+        "b_size": 0.8,
+        "r_point": 0.2,
         "counter": 5
     },
     "layouts": {
@@ -25,8 +25,8 @@
             "y_point": "$y_pos",
             "width_point": "$b_size",
             "height_point": "$b_size",
-            "tr_point": "$r_point",
-            "br_point": "$r_point"
+            "tl_point": "$r_point",
+            "bl_point": "$r_point"
         }
     },
     "images": {
@@ -44,11 +44,10 @@
     },
     "strokes": {
         "defaultStroke": {
-            "stroke_point": 0.1,
+            "stroke_point": 0.05,
             "color": "#AAAAAA"
         }
     },
-
     "elements": {
         "@MAIN_BUTTON": {
             "type": "button",

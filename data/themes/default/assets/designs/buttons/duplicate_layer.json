@@ -5,7 +5,6 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
-
     "button_types": {
         "maru": "eachRoundedButton"
     },
@@ -16,8 +15,8 @@
     "floats": {
         "x_pos": 9,
         "y_pos": 1,
-        "b_size": 1.2,
-        "r_point": 0.3,
+        "b_size": 0.8,
+        "r_point": 0.2,
         "counter": 0
     },
     "layouts": {
@@ -45,11 +44,10 @@
     },
     "strokes": {
         "defaultStroke": {
-            "stroke_point": 0.1,
+            "stroke_point": 0.05,
             "color": "#AAAAAA"
         }
     },
-
     "elements": {
         "@MAIN_BUTTON": {
             "type": "button",
