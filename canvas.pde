@@ -114,8 +114,36 @@ class Canvas{
         }
     }
 
+    //layerの移動
+    void move_up_1px(){
+        for(Shape item : shapes){
+            if(item.status[0]){
+                item.y -= 1;
+            }
+        }
+    }
+    void move_down_1px(){
+        for(Shape item : shapes){
+            if(item.status[0]){
+                item.y += 1;
+            }
+        }
+    }
+    void move_right_1px(){
+        for(Shape item : shapes){
+            if(item.status[0]){
+                item.x += 1;
+            }
+        }
+    }
+    void move_left_1px(){
+        for(Shape item : shapes){
+            if(item.status[0]){
+                item.x -= 1;
+            }
+        }
+    }
 
-    
     //processing4のコードで出力
     void convert_code(){
         ConvertCode coc = new ConvertCode();

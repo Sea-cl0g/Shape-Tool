@@ -112,6 +112,8 @@
             "path": "buttons/send_to_back.json",
             "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SEND_TO_BACK" }]
         },
+
+
         "move_up_1px": {
             "path": "buttons/move_up_1px.json",
             "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_UP_1PX" }]
@@ -128,6 +130,8 @@
             "path": "buttons/move_left_1px.json",
             "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_MOVE_LEFT_1PX" }]
         },
+
+
         "rotate_left_90": {
             "path": "buttons/rotate_left_90.json",
             "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ROTATE_LEFT_90" }]
@@ -136,6 +140,8 @@
             "path": "buttons/rotate_right_90.json",
             "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_ROTATE_RIGHT_90" }]
         },
+
+        
         "flip_y_axis": {
             "path": "buttons/flip_y_axis.json",
             "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_FLIP_Y_AXIS" }]

@@ -478,6 +478,20 @@ class Theme{
             break;
 
 
+            case "FANC_MOVE_UP_1PX" :
+                function = () -> canvas.move_up_1px();
+            break;
+            case "FANC_MOVE_DOWN_1PX" :
+                function = () -> canvas.move_down_1px();
+            break;
+            case "FANC_MOVE_RIGHT_1PX" :
+                function = () -> canvas.move_right_1px();
+            break;
+            case "FANC_MOVE_LEFT_1PX" :
+                function = () -> canvas.move_left_1px();
+            break;
+
+
             case "FANC_EXPORT_TO_PROCESSING" :
                 function = () -> canvas.convert_code();
             break;	
