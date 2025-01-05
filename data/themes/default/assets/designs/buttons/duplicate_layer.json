@@ -1,34 +1,39 @@
 {
     "description": "Most basic and easy-to-see color theme",
     "author": "boo_manKnow",
-    "containerAnker": "topRight",
+    "containerAnker": "bottomRight",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
-    
+
     "button_types": {
-        "maru": "squareButton"
+        "maru": "eachRoundedButton"
     },
     "colors": {
-        "defaultCol": "#4a7083ff"
+        "defaultCol": "#FFFFFF",
+        "selectedCol": "#d4dde1"
     },
     "floats": {
-        "x_pos": 4,
-        "y_pos": 4,
-        "b_size": 1.7
+        "x_pos": 9,
+        "y_pos": 1,
+        "b_size": 1.2,
+        "r_point": 0.2,
+        "counter": 0
     },
     "layouts": {
         "buttonLayout": {
-            "x_point": "$x_pos",
+            "x_point": "$counter * $b_size + $x_pos",
             "y_point": "$y_pos",
             "width_point": "$b_size",
-            "height_point": "$b_size"
+            "height_point": "$b_size",
+            "tr_point": "$r_point",
+            "br_point": "$r_point"
         }
     },
     "images": {
         "main": {
             "size": 0.8,
-            "path": "icon/TMP_ICON1.svg"
+            "path": "icon/TMP_ICON2.svg"
         }
     },
     "shadows": {
@@ -39,14 +44,14 @@
         }
     },
     "strokes": {
-        "buttonStroke": {
+        "defaultStroke": {
             "stroke_point": 0.1,
-            "color": "#4a7083ff"
+            "color": "#AAAAAA"
         }
     },
 
     "elements": {
-        "@FILL_BUTTON": {
+        "@MAIN_BUTTON": {
             "type": "button",
             "style": [
                 {
@@ -54,26 +59,23 @@
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
                     "fill": "$defaultCol",
-                    "stroke": "$buttonStroke",
+                    "stroke": "$defaultStroke",
                     "image": "$main"
                 },
                 {
                     "predicate": "touched",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
-                    "stroke": {
-                        "stroke_point": 0.1,
-                        "color": "#ffffff"
-                    },
+                    "fill": "$selectedCol",
+                    "stroke": "$defaultStroke",
                     "image": "$main"
                 },
                 {
                     "predicate": "clicked",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
-                    "stroke": "$buttonStroke",
+                    "fill": "$selectedCol",
+                    "stroke": "$defaultStroke",
                     "image": "$main"
                 }
             ]
@@ -87,7 +89,7 @@
                 "height_point": 1
             },
             "text": {
-                "text": "fill",
+                "text": "stroke",
                 "text_align": "LEFT",
                 "text_size": 0.6,
                 "text_col": "#FFFFFF"

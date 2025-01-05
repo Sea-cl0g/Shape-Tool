@@ -1,5 +1,3 @@
-
-
 class Shape extends Block {
     color fillCol, strokeCol;
     float strokeWeight;
@@ -13,6 +11,14 @@ class Shape extends Block {
         this.x = x;
         this.y = y;
         this.radian = 0;
+    }
+
+    boolean[] statusCopy(){
+        boolean[] copy = new boolean[status.length];
+        for(int i = 0; i < status.length; i++){
+            copy[i] = status[i];
+        }
+        return copy;
     }
 
     void updateState(int stateIndex, boolean isTouched) {
@@ -147,6 +153,22 @@ class Ellipse extends Shape {
         super(x, y);
         resetEllipse(w, h, fillCol, strokeCol);
     }
+    Ellipse(Ellipse item) {
+        super(item.x, item.y);
+
+        this.fillCol = item.fillCol;
+        this.strokeCol = item.strokeCol;
+        this.strokeWeight = item.strokeWeight;
+        this.status = item.statusCopy();
+        item.status = new boolean[item.status.length];
+        this.isAnyStateActive = item.isAnyStateActive;
+        this.x = item.x;
+        this.y = item.y;
+        this.radian = item.radian;
+
+        this.w = item.w;
+        this.h = item.h;
+    }
 
     void resetEllipse(float w, float h, color fillCol, color strokeCol){
         this.w = w;
@@ -256,6 +278,26 @@ class Rectangle extends Shape {
     Rectangle(float x, float y, float w, float h, color fillCol, color strokeCol) {
         super(x, y);
         resetRectangle(w, h, fillCol, strokeCol);
+    }
+    Rectangle(Rectangle item) {
+        super(item.x, item.y);
+
+        this.fillCol = item.fillCol;
+        this.strokeCol = item.strokeCol;
+        this.strokeWeight = item.strokeWeight;
+        this.status = item.statusCopy();
+        item.status = new boolean[item.status.length];
+        this.isAnyStateActive = item.isAnyStateActive;
+        this.x = item.x;
+        this.y = item.y;
+        this.radian = item.radian;
+
+        this.w = item.w;
+        this.h = item.h;
+        this.tl = item.tl;
+        this.tr = item.tr;
+        this.br = item.br;
+        this.bl = item.bl;
     }
 
     void resetRectangle(float w, float h, color fillCol, color strokeCol){

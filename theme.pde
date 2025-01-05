@@ -12,7 +12,7 @@ class Theme{
     ArrayList<ArrayList<Object>> save = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> load = new ArrayList<ArrayList<Object>>();
 
-    boolean isFillMode, isStrokeMode, isSaveMode, isLoadMode;
+    boolean isFillMode, isStrokeMode, isSaveMode, isLoadMode, isExportMode, isOptionMode;
 
     int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index){
         ArrayList<Object> newLayer = new ArrayList<Object>();
@@ -65,10 +65,26 @@ class Theme{
         }
         isLoadMode = !isLoadMode;
     }
+    
+    void tgl_option_mode(){
+        if(!isOptionMode){
+            exceptMode();
+        }
+        isOptionMode = !isOptionMode;
+    }
+
+    void tgl_export_mode(){
+        if(!isExportMode){
+            exceptMode();
+        }
+        isExportMode = !isExportMode;
+    }
 
     void exceptMode(){
         isFillMode = false;
         isStrokeMode = false;
+        isOptionMode = false;
+        isExportMode = false;
         isSaveMode = false;
         isLoadMode = false;
     }
@@ -88,8 +104,8 @@ class Theme{
         //ステータスを調べる
         checkLayerStatus(load, !isLoadMode);
         checkLayerStatus(save, !isSaveMode);
-        checkLayerStatus(export);
-        checkLayerStatus(option);
+        checkLayerStatus(export, !isExportMode);
+        checkLayerStatus(option, !isOptionMode);
         checkLayerStatus(strokePallet, !isStrokeMode);
         checkLayerStatus(fillPallet, !isFillMode);
         checkLayerStatus(main);
@@ -102,13 +118,16 @@ class Theme{
         if(isStrokeMode){
             drawLayer(strokePallet);
         }
-        drawLayer(option);
-        drawLayer(export);
+        if(isOptionMode){
+            drawLayer(option);
+        }
+        if(isExportMode){
+            drawLayer(export);
+        }
         if(isSaveMode){
             drawLayer(save);
         }
         if(isLoadMode){
-            println("te");
             drawLayer(load);
         }
     }
@@ -365,9 +384,9 @@ class Theme{
                             function = buttonFanctionPrepare(queryType);
                         }else if(elementName.equals("@FILL_BUTTON")){
                             function = buttonFanctionPrepare(queryType);
-                            if(queryType.equals("TGL_STROKE_PALLET_MODE")){
+                            if(queryType.equals("FANC_TGL_FILL_PALLET_MODE")){
                                 colorIndex = 0;
-                            }else if(queryType.equals("TGL_FILL_PALLET_MODE")){
+                            }else if(queryType.equals("FANC_TGL_STROKE_PALLET_MODE")){
                                 colorIndex = 1;
                             }
                         }
@@ -414,18 +433,45 @@ class Theme{
             case "FANC_ADD_ELLIPSE" :
                 function = () -> canvas.add_ellipse();
             break;
-            case "TGL_STROKE_PALLET_MODE" :
-                function = () -> tgl_fillPallet_mode();
-            break;	
-            case "TGL_FILL_PALLET_MODE" :
+            case "FANC_ADD_TRIANGLE" :
+                function = () -> canvas.add_ellipse();
+            break;
+
+
+            case "FANC_TGL_STROKE_PALLET_MODE" :
                 function = () -> tgl_strokePallet_mode();
-            break;	
-            case "TGL_SAVE_MODE" :
+            break;
+            case "FANC_TGL_FILL_PALLET_MODE" :
+                function = () -> tgl_fillPallet_mode();
+            break;
+            case "FANC_TGL_OPTION_MODE" :
+                function = () -> tgl_option_mode();
+            break;
+            case "FANC_TGL_EXPORT_MODE" :
+                function = () -> tgl_export_mode();
+            break;
+            case "FANC_TGL_SAVE_MODE" :
                 function = () -> tgl_save_mode();
-            break;	
-            case "TGL_LOAD_MODE" :
+            break;
+            case "FANC_TGL_LOAD_MODE" :
                 function = () -> tgl_load_mode();
             break;	
+
+
+            case "FANC_DUPLICATE_SHAPE" :
+                function = () -> canvas.duplicate_layer();
+            break;
+            case "FANC_RAISE_LAYER" :
+                function = () -> canvas.raise_layer();
+            break;
+            case "FANC_LOWER_LAYER" :
+                function = () -> canvas.lower_layer();
+            break;
+            case "FANC_DELETE_SHAPE" :
+                function = () -> canvas.delete_shape();
+            break;
+
+
             case "FANC_EXPORT_TO_PROCESSING" :
                 function = () -> canvas.convert_code();
             break;	

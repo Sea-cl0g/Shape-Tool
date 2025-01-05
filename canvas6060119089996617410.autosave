@@ -1,4 +1,3 @@
-class Canvas{
     ArrayList<Shape> shapes = new ArrayList<Shape>();
     color[] colorPallet = new color[2];
     boolean dragged;
@@ -40,24 +39,19 @@ class Canvas{
 
     //図形の編集
     void duplicate_layer(){
-        println();
-        println("try copy");
         println(shapes);
-        int sizeBuffer = shapes.size();
-        for(int i = 0; i < sizeBuffer; i++){
-            Shape shape = shapes.get(i);
-            if(shape.status[0] && shape.getClass() == Ellipse.class){
-                Ellipse ellipse = (Ellipse) shape;
-                shapes.add(new Ellipse(ellipse));
-            }else if(shape.status[0] && shape.getClass() == Rectangle.class){
-                Rectangle rect = (Rectangle) shape;
-                shapes.add(new Rectangle(rect));
-            }
+        ArrayList<Shape> buffer = new ArrayList<Shape>();
+        for(Shape item : shapes){
+            buffer.add((Shape) item.clone());
         }
-
-        println(shapes);
-        for(Shape shape : shapes){
-            println(shape.x, shape.y);
+        for(Shape shape : buffer){
+            if(shape.status[0] && shape.getClass() == Rectangle.class){
+                Rectangle rect = (Rectangle) shape;
+                shapes.add(rect);
+            }else if(shape.status[0] && shape.getClass() == Ellipse.class){
+                Ellipse ellipse = (Ellipse) shape;
+                shapes.add(ellipse);
+            }
         }
     }
     void raise_layer(){

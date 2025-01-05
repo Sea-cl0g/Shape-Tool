@@ -5,7 +5,6 @@
     "blockMode": "vertical",
     "blockAnker": "CORNER",
     "layer": 2,
-
     "button_types": {
         "maru": "roundedSquareButton"
     },
@@ -13,9 +12,9 @@
         "defaultCol": "#4a7083ff"
     },
     "layouts": {
-        "default": {
+        "buttonLayout": {
             "x_point": 0.5,
-            "y_point": 1,
+            "y_point": 3,
             "width_point": 1.6,
             "height_point": 1.6,
             "r_point": 0.3
@@ -35,12 +34,12 @@
         }
     },
     "strokes": {
-        "main": {
+        "buttonStroke": {
             "stroke_point": 0,
             "color": "#42c8ed"
         }
     },
-
+    
     "elements": {
         "@MAIN_BUTTON": {
             "type": "button",
@@ -48,7 +47,7 @@
                 {
                     "predicate": "normal",
                     "button_type": "$maru",
-                    "layout": "$default",
+                    "layout": "$buttonLayout",
                     "fill": "$defaultCol",
                     "image": "$main",
                     "shadow": "$main"
@@ -56,7 +55,7 @@
                 {
                     "predicate": "touched",
                     "button_type": "$maru",
-                    "layout": "$default",
+                    "layout": "$buttonLayout",
                     "fill": "$defaultCol",
                     "stroke": {
                         "stroke_point": 0.1,
@@ -68,7 +67,7 @@
                 {
                     "predicate": "clicked",
                     "button_type": "$maru",
-                    "layout": "$default",
+                    "layout": "$buttonLayout",
                     "fill": "$defaultCol",
                     "image": "$main",
                     "shadow": "$main"

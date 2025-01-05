@@ -53,38 +53,42 @@
         "tgl_fill_pallet_mode": {
             "path": "buttons/tgl_fill_pallet_mode.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "TGL_STROKE_PALLET_MODE"},
-                {"Name": "@FILL_BUTTON", "Query": "TGL_STROKE_PALLET_MODE"}
+                {"Name": "@MAIN_BUTTON", "Query": "FANC_TGL_FILL_PALLET_MODE"},
+                {"Name": "@FILL_BUTTON", "Query": "FANC_TGL_FILL_PALLET_MODE"}
             ]
         },
         "tgl_stroke_pallet_mode": {
             "path": "buttons/tgl_stroke_pallet_mode.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "TGL_FILL_PALLET_MODE"},
-                {"Name": "@FILL_BUTTON", "Query": "TGL_FILL_PALLET_MODE"}
+                {"Name": "@MAIN_BUTTON", "Query": "FANC_TGL_STROKE_PALLET_MODE"},
+                {"Name": "@FILL_BUTTON", "Query": "FANC_TGL_STROKE_PALLET_MODE"}
+            ]
+        },
+        "tgl_option_mode": {
+            "path": "buttons/tgl_option_mode.json",
+            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_TGL_OPTION_MODE" }]
+        },
+        "tgl_export_mode": {
+            "path": "buttons/tgl_export_mode.json",
+            "queries": [
+                {"Name": "@MAIN_BUTTON", "Query": "FANC_TGL_EXPORT_MODE"}
             ]
         },
         "tgl_save_mode": {
             "path": "buttons/tgl_save_mode.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "TGL_SAVE_MODE"}
+                {"Name": "@MAIN_BUTTON", "Query": "FANC_TGL_SAVE_MODE"}
             ]
         },
         "tgl_load_mode": {
             "path": "buttons/tgl_load_mode.json",
             "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "TGL_LOAD_MODE"}
-            ]
-        },
-        "tgl_export_mode": {
-            "path": "buttons/tgl_export_mode.json",
-            "queries": [
-                {"Name": "@MAIN_BUTTON", "Query": "TGL_EXPORT_MODE"}
+                {"Name": "@MAIN_BUTTON", "Query": "FANC_TGL_LOAD_MODE"}
             ]
         },
 
         
-        "duplicate": {
+        "duplicate_layer": {
             "path": "buttons/duplicate_layer.json",
             "queries": [{"Name": "@MAIN_BUTTON", "Query": "FANC_DUPLICATE_SHAPE"}]
         },
@@ -191,10 +195,6 @@
         "export_to_processing": {
             "path": "buttons/export_to_processing.json",
             "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_EXPORT_TO_PROCESSING" }]
-        },
-        "settings_button": {
-            "path": "buttons/settings_button.json",
-            "queries": [{ "Name": "@MAIN_BUTTON", "Query": "FANC_SETTINGS_BUTTON" }]
         },
 
 
