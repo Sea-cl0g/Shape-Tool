@@ -470,6 +470,12 @@ class Theme{
             case "FANC_DELETE_SHAPE" :
                 function = () -> canvas.delete_shape();
             break;
+            case "FANC_BRING_TO_FRONT" :
+                function = () -> canvas.bring_to_front();
+            break;
+            case "FANC_SEND_TO_BACK" :
+                function = () -> canvas.send_to_back();
+            break;
 
 
             case "FANC_EXPORT_TO_PROCESSING" :

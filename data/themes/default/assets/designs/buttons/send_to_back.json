@@ -1,0 +1,83 @@
+{
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
+    "containerAnker": "bottomRight",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+
+    "button_types": {
+        "maru": "squareButton"
+    },
+    "colors": {
+        "defaultCol": "#FFFFFF",
+        "selectedCol": "#d4dde1"
+    },
+    "floats": {
+        "x_pos": 9,
+        "y_pos": 1,
+        "b_size": 1.2,
+        "counter": 5
+    },
+    "layouts": {
+        "buttonLayout": {
+            "x_point": "$counter * $b_size + $x_pos",
+            "y_point": "$y_pos",
+            "width_point": "$b_size",
+            "height_point": "$b_size",
+            "tr_point": "$r_point",
+            "br_point": "$r_point"
+        }
+    },
+    "images": {
+        "main": {
+            "size": 0.8,
+            "path": "icon/TMP_ICON2.svg"
+        }
+    },
+    "shadows": {
+        "main": {
+            "shadowMode": "BOTTOMRIGHT",
+            "shadowDistPoint": 0.2,
+            "color": "#222222"
+        }
+    },
+    "strokes": {
+        "defaultStroke": {
+            "stroke_point": 0.1,
+            "color": "#AAAAAA"
+        }
+    },
+
+    "elements": {
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$defaultCol",
+                    "stroke": "$defaultStroke",
+                    "image": "$main"
+                },
+                {
+                    "predicate": "touched",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$selectedCol",
+                    "stroke": "$defaultStroke",
+                    "image": "$main"
+                },
+                {
+                    "predicate": "clicked",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$selectedCol",
+                    "stroke": "$defaultStroke",
+                    "image": "$main"
+                }
+            ]
+        }
+    }
+}

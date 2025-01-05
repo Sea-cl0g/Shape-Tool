@@ -52,40 +52,21 @@ class Canvas{
             }
         }
     }
-    void raise_layer(){
-        // status[0]がtrueのShapeを格納するリスト
-        ArrayList<Shape> toRaise = new ArrayList<Shape>();
-        
-        // status[0]がtrueの要素をtoRaiseに追加
-        for (Shape item : shapes) {
-            if (item.status[0]) {
-                toRaise.add(item);
-            }
-        }
-        println(toRaise);
-        // toRaise内のShapeを順番に前に移動
-        for (Shape item : toRaise) {
-            int index = shapes.indexOf(item);
-            if (index < shapes.size() - 1) {
-                // 要素を1つ前に持ち上げる
-                shapes.set(index, shapes.get(index + 1));
-                shapes.set(index + 1, item);
+    void raise_layer() {
+        for (int i = shapes.size() - 1; i >= 0; i--) {
+            Shape item = shapes.get(i);
+            if (item.status[0] && i < shapes.size() - 1) {
+                shapes.remove(i);
+                shapes.add(i + 1, item);
             }
         }
     }
-
-    void lower_layer(){
-        // shapes リストを逆順にループ
-        for (int i = shapes.size() - 1; i >= 0; i--) {
+    void lower_layer() {
+        for (int i = 0; i < shapes.size(); i++) {
             Shape item = shapes.get(i);
-            // status[0] が true の場合
-            if (item.status[0] == true) {
-            // リスト内で一つ前に移動
-                if (i > 0) {
-                    // i番目の要素と、i-1番目の要素を入れ替える
-                    shapes.set(i, shapes.get(i - 1));
-                    shapes.set(i - 1, item);
-                }
+            if (item.status[0] && i > 0) {
+                shapes.remove(i);
+                shapes.add(i - 1, item);
             }
         }
     }
@@ -100,6 +81,40 @@ class Canvas{
             }
         }
     }
+    void bring_to_front(){
+        ArrayList<Shape> toFront = new ArrayList<Shape>();
+        for(Shape item : shapes){
+            if(item.status[0]){
+                toFront.add(item);
+            }
+        }
+        for(Shape item : toFront){
+            int index = shapes.indexOf(item);
+            if(index < shapes.size() - 1){
+                shapes.remove(index);
+                shapes.add(item);
+            }
+        }
+    }
+    void send_to_back(){
+        ArrayList<Shape> toBack = new ArrayList<Shape>();
+        for(Shape item : shapes){
+            if(item.status[0]){
+                toBack.add(item);
+            }
+        }
+        int arraySize = toBack.size();
+        for(int i = arraySize - 1; 0 <= i; i--){
+            Shape item = toBack.get(i);
+            int index = shapes.indexOf(item);
+            if(0 <= index){
+                shapes.remove(index);
+                shapes.add(0, item);
+            }
+        }
+    }
+
+
     
     //processing4のコードで出力
     void convert_code(){
