@@ -710,7 +710,7 @@ class ImageData{
     float size;
     PShape svg;
     PImage image;
-    boolean svgTgl;
+    boolean svgTgl = true;
 
     ImageData(Object imageObj, JSONObject variableJSON){
         if(imageObj != null){
@@ -729,17 +729,19 @@ class ImageData{
             }
             this.size = readFloat(imageEJSON.get("size"), variableJSON);
             String path = imageEJSON.safeGetString("path");
-            svgTgl = false;
             if(path.endsWith(".svg")){
                 this.svg = safeLoad.svgLoad(path);
-                svgTgl = true;
                 if(!imageEJSON.isNull("color")){
                     color overrideCol = readColor(imageEJSON.safeGetString("color"), variableJSON);
                     changeImageColor(this.svg, overrideCol);
                 }
             }else{
+                svgTgl = false;
                 this.image = safeLoad.imageLoad(path);
             }
+        }else{
+            this.size = 0.0;
+            this.svg = loadShape("data/ERROR_ICON.svg");
         }
     }
 

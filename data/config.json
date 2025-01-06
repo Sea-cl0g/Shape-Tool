@@ -556,6 +556,7 @@
         },
         "open_file": {
             "path": "buttons/open_file.json",
+            "layerMode": "load",
             "queries": [
                 {
                     "Name": "@MAIN_BUTTON",

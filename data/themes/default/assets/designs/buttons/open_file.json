@@ -9,7 +9,7 @@
         "maru": "horizontallyRoundedButton"
     },
     "colors": {
-        "defaultCol": "#e0243b"
+        "defaultCol": "#3faf81"
     },
     "layouts": {
         "buttonLayout": {
@@ -29,7 +29,7 @@
         "main": {
             "shadowMode": "BOTTOM",
             "shadowDistPoint": 0.2,
-            "color": "#76161b"
+            "color": "#40924f"
         }
     },
     "elements": {
@@ -37,7 +37,7 @@
             "type": "text_block",
             "layout": "$buttonLayout",
             "text": {
-                "text": "SAVE",
+                "text": "LOAD",
                 "text_align": "CENTER",
                 "text_size": 0.8,
                 "text_col": "#FFFFFF"
