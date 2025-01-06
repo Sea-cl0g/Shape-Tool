@@ -43,19 +43,23 @@ class Canvas{
         int sizeBuffer = shapes.size();
         for(int i = 0; i < sizeBuffer; i++){
             Shape shape = shapes.get(i);
-            if(shape.status[0] && shape.getClass() == Ellipse.class){
-                Ellipse ellipse = (Ellipse) shape;
-                shapes.add(new Ellipse(ellipse));
-            }else if(shape.status[0] && shape.getClass() == Rectangle.class){
-                Rectangle rect = (Rectangle) shape;
-                shapes.add(new Rectangle(rect));
+            if(shape.isAnyStateActive() && shape.getClass() == Ellipse.class){
+                Ellipse copy = new Ellipse((Ellipse) shape);
+                copy.x -= 1;
+                copy.y -= 1;
+                shapes.add(copy);
+            }else if(shape.isAnyStateActive() && shape.getClass() == Rectangle.class){
+                Rectangle copy = new Rectangle((Rectangle) shape);
+                copy.x -= 1;
+                copy.y -= 1;
+                shapes.add(copy);
             }
         }
     }
     void raise_layer(){
         for (int i = shapes.size() - 1; i >= 0; i--){
             Shape item = shapes.get(i);
-            if (item.status[0] && i < shapes.size() - 1){
+            if (item.isAnyStateActive() && i < shapes.size() - 1){
                 shapes.remove(i);
                 shapes.add(i + 1, item);
             }
@@ -64,7 +68,7 @@ class Canvas{
     void lower_layer(){
         for (int i = 0; i < shapes.size(); i++){
             Shape item = shapes.get(i);
-            if (item.status[0] && i > 0){
+            if (item.isAnyStateActive() && i > 0){
                 shapes.remove(i);
                 shapes.add(i - 1, item);
             }
@@ -74,7 +78,7 @@ class Canvas{
         int i = 0;
         while(i < shapes.size()){
             Shape shape = shapes.get(i);
-            if(shape.status[0]){
+            if(shape.isAnyStateActive()){
                 shapes.remove(i);
             }else{
                 i++;
@@ -84,7 +88,7 @@ class Canvas{
     void bring_to_front(){
         ArrayList<Shape> toFront = new ArrayList<Shape>();
         for(Shape item : shapes){
-            if(item.status[0]){
+            if(item.isAnyStateActive()){
                 toFront.add(item);
             }
         }
@@ -99,7 +103,7 @@ class Canvas{
     void send_to_back(){
         ArrayList<Shape> toBack = new ArrayList<Shape>();
         for(Shape item : shapes){
-            if(item.status[0]){
+            if(item.isAnyStateActive()){
                 toBack.add(item);
             }
         }
@@ -117,28 +121,28 @@ class Canvas{
     //図形の移動
     void move_up_1px(){
         for(Shape item : shapes){
-            if(item.status[0]){
+            if(item.isAnyStateActive()){
                 item.y -= 1;
             }
         }
     }
     void move_down_1px(){
         for(Shape item : shapes){
-            if(item.status[0]){
+            if(item.isAnyStateActive()){
                 item.y += 1;
             }
         }
     }
     void move_right_1px(){
         for(Shape item : shapes){
-            if(item.status[0]){
+            if(item.isAnyStateActive()){
                 item.x += 1;
             }
         }
     }
     void move_left_1px(){
         for(Shape item : shapes){
-            if(item.status[0]){
+            if(item.isAnyStateActive()){
                 item.x -= 1;
             }
         }
@@ -147,14 +151,14 @@ class Canvas{
     //図形の回転
     void rotate_left_90(){
         for(Shape item : shapes){
-            if(item.status[0]){
+            if(item.isAnyStateActive()){
                 item.radian -= HALF_PI;
             }
         }
     }
     void rotate_right_90(){
         for(Shape item : shapes){
-            if(item.status[0]){
+            if(item.isAnyStateActive()){
                 item.radian += HALF_PI;
             }
         }
