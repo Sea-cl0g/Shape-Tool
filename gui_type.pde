@@ -173,8 +173,8 @@ class TextBlock extends Base{
         super(splitW, splitH, drawMode, layoutData, strokeData, fillCol);
         
         this.text = textData.text;
-        String[] splitText = splitTokens(text, "/n");
-        if(0 < splitText.length){
+        String[] splitText = splitTokens(text, "|");
+        if(1 < splitText.length){
             textArray = splitText;
             isTextArray = true;
         }
@@ -184,10 +184,18 @@ class TextBlock extends Base{
     }
 
     void drawTextBlock(){
+        if(isTextArray){
+            drawTextArray();
+        }else{
+            drawText();
+        }
+    }
+
+    void drawText(){
         drawBase();
+        fill(textColor);
         float textGSize = getContainerBlockSize(textSize, textSize).y;
         textSize(textGSize);
-        fill(textColor);
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
         switch (textAlign){
@@ -203,6 +211,33 @@ class TextBlock extends Base{
                 textAlign(LEFT, CENTER);
                 text(text, pos.x, pos.y + size.y / 2);
             break;	
+        }
+    }
+
+    void drawTextArray(){
+        drawBase();
+        fill(textColor);
+        float textGSize = getContainerBlockSize(textSize, textSize).y;
+        textSize(textGSize);
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size);
+        for(int i = 0; i < min(floor(size.y / textGSize), textArray.length); i++){
+            float yPos = pos.y + textGSize / 2 + textGSize * i;
+            String str = textArray[i];
+            switch (textAlign){
+                case "CENTER" :
+                    textAlign(CENTER, CENTER);
+                    text(str, pos.x + size.x / 2, yPos);
+                break;	
+                case "RIGHT" :
+                    textAlign(RIGHT, CENTER);
+                    text(str, pos.x + size.x, yPos);
+                break;	
+                default :
+                    textAlign(LEFT, CENTER);
+                    text(str, pos.x, yPos);
+                break;	
+            }
         }
     }
 }
@@ -301,7 +336,7 @@ class TextEditor extends TextBlock{
     }
 
     void drawTextBlock(){
-        super.drawTextBlock();
+        super.drawText();
         
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
