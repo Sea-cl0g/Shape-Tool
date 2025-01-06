@@ -57,7 +57,7 @@
                 "height_point": "$h"
             },
             "text": {
-                "text": "saves/new_project.json",
+                "text": "data/saves/new_project.json",
                 "text_align": "LEFT",
                 "text_size": 0.4,
                 "text_col": "#000000"

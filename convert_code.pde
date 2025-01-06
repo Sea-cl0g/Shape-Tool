@@ -1,5 +1,5 @@
-class ConvertCode extends Block{
-    ConvertCode(){
+class Processing4Code extends Block{
+    Processing4Code(){
         super(0, 0, 100, 100, 16, 16);
     }
 
@@ -67,4 +67,93 @@ class ConvertCode extends Block{
         return str(r) + ", " + str(g) + ", " + str(b) + ", " + str(a);
     }
 }
-    
+
+class ProjectCode{
+    JSONArray array_to_code(ArrayList<Shape> array){
+        JSONArray project = new JSONArray();
+        for(Shape item : array){
+            //JSONObjectの用意
+            JSONObject shapeData = new JSONObject();
+
+            //shape
+            shapeData.setInt("fillCol", item.fillCol);
+            shapeData.setFloat("strokeWeight", item.strokeWeight);
+            shapeData.setInt("strokeCol", item.strokeCol);
+            shapeData.setFloat("x", item.x);
+            shapeData.setFloat("y", item.y);
+            shapeData.setFloat("radian", item.radian);
+            
+            //図形ごとの処理
+            if(item.getClass() == Ellipse.class){
+                Ellipse ellipse = (Ellipse) item;
+                JSONObject prop = new JSONObject();
+
+                prop.setFloat("w", ellipse.w);
+                prop.setFloat("h", ellipse.h);
+                
+                shapeData.setString("label", "ellipse");
+                shapeData.setJSONObject("prop", prop);
+            }else if(item.getClass() == Rectangle.class){
+                Rectangle rect = (Rectangle) item;
+                JSONObject prop = new JSONObject();
+
+                prop.setFloat("w", rect.w);
+                prop.setFloat("h", rect.h);
+                prop.setFloat("tl", rect.tl);
+                prop.setFloat("tr", rect.tr);
+                prop.setFloat("br", rect.br);
+                prop.setFloat("bl", rect.bl);
+                
+                shapeData.setString("label", "rectangle");
+                shapeData.setJSONObject("prop", prop);
+            }
+            
+            //JSONArrayに追加
+            project.append(shapeData);
+        }
+        println(project);
+        return project;
+    }
+
+
+    ArrayList<Shape> code_to_array(String path){
+        ArrayList<Shape> shapeArray = new ArrayList<Shape>();
+        JSONArray project = loadJSONArray(path);
+        for(int i = 0; i < project.size(); i++){
+            //JSONObjectの用意
+            JSONObject shapeData = project.getJSONObject(i);
+
+            //shape
+            float x = shapeData.getFloat("x");
+            float y = shapeData.getFloat("y");
+            color fillCol = shapeData.getInt("fillCol");
+            color strokeCol = shapeData.getInt("strokeCol");
+            float strokeWeight = shapeData.getFloat("strokeWeight");
+            float radian = shapeData.getFloat("radian");
+            
+            //図形ごとの処理
+            if(shapeData.getString("label").equals("ellipse")){
+                JSONObject prop = shapeData.getJSONObject("prop");
+                float w = prop.getFloat("w");
+                float h = prop.getFloat("h");
+                Ellipse ellipse = new Ellipse(x, y, w, h, fillCol, strokeCol);
+
+                shapeArray.add(ellipse);
+            }else if(shapeData.getString("label").equals("rectangle")){
+                JSONObject prop = shapeData.getJSONObject("prop");
+                float w = prop.getFloat("w");
+                float h = prop.getFloat("h");
+                Rectangle rectangle = new Rectangle(x, y, w, h, fillCol, strokeCol);
+
+                println(prop);
+                rectangle.tl = prop.getFloat("tl");
+                rectangle.tr = prop.getFloat("tr");
+                rectangle.br = prop.getFloat("br");
+                rectangle.bl = prop.getFloat("bl");
+
+                shapeArray.add(rectangle);
+            }
+        }
+        return shapeArray;
+    }
+}

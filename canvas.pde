@@ -246,15 +246,21 @@ class Canvas{
 
     //save project
     void save_project(){
+        String path = "data/saves/test.json"; 
+        ProjectCode coc = new ProjectCode();
+        saveJSONArray(coc.array_to_code(shapes), path);
     }
 
     //load project
     void open_file(){
+        String path = "data/saves/test.json";
+        ProjectCode coc = new ProjectCode();
+        shapes = coc.code_to_array(path);
     }
 
     //processing4のコードで出力
     void convert_code(){
-        ConvertCode coc = new ConvertCode();
+        Processing4Code coc = new Processing4Code();
         coc.export_to_processing();
     }
     
