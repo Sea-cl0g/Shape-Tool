@@ -10,15 +10,15 @@
     },
     "colors": {
         "defaultCol": "#FFFFFF",
-        "selectedCol": "#e0e9e7",
+        "clickedCol": "#e0e9e7",
         "pointCol": "#857f8e"
     },
     "floats": {
-        "x_pos": 10,
+        "x_pos": 9,
         "y_pos": 2,
         "b_size": 0.8,
         "r_point": 0.2,
-        "x_counter": 0,
+        "x_counter": 1,
         "y_counter": 1
     },
     "layouts": {
@@ -32,7 +32,7 @@
     "images": {
         "main": {
             "size": 0.8,
-            "path": "icon/TMP_ICON2.svg",
+            "path": "icon/move_up.svg",
             "color": "$pointCol"
         }
     },
@@ -65,7 +65,7 @@
                     "predicate": "touched",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$selectedCol",
+                    "fill": "$clickedCol",
                     "stroke": "$defaultStroke",
                     "image": "$main"
                 },
@@ -73,7 +73,7 @@
                     "predicate": "clicked",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$selectedCol",
+                    "fill": "$defaultCol",
                     "stroke": "$defaultStroke",
                     "image": "$main"
                 }

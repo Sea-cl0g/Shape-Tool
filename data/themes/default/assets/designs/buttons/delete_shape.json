@@ -10,7 +10,7 @@
     },
     "colors": {
         "defaultCol": "#FFFFFF",
-        "selectedCol": "#e0e9e7",
+        "clickedCol": "#e0e9e7",
         "pointCol": "#857f8e"
     },
     "floats": {
@@ -30,7 +30,7 @@
     "images": {
         "main": {
             "size": 0.8,
-            "path": "icon/TMP_ICON2.svg",
+            "path": "icon/delete_shape.svg",
             "color": "$pointCol"
         }
     },
@@ -63,7 +63,7 @@
                     "predicate": "touched",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$selectedCol",
+                    "fill": "$clickedCol",
                     "stroke": "$defaultStroke",
                     "image": "$main"
                 },
@@ -71,7 +71,7 @@
                     "predicate": "clicked",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$selectedCol",
+                    "fill": "$defaultCol",
                     "stroke": "$defaultStroke",
                     "image": "$main"
                 }
