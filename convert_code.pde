@@ -138,6 +138,9 @@ class ProjectCode{
                 float h = prop.getFloat("h");
                 Ellipse ellipse = new Ellipse(x, y, w, h, fillCol, strokeCol);
 
+                ellipse.strokeWeight = strokeWeight;
+                ellipse.radian = radian;
+
                 shapeArray.add(ellipse);
             }else if(shapeData.getString("label").equals("rectangle")){
                 JSONObject prop = shapeData.getJSONObject("prop");
@@ -145,7 +148,9 @@ class ProjectCode{
                 float h = prop.getFloat("h");
                 Rectangle rectangle = new Rectangle(x, y, w, h, fillCol, strokeCol);
 
-                println(prop);
+                rectangle.strokeWeight = strokeWeight;
+                rectangle.radian = radian;
+
                 rectangle.tl = prop.getFloat("tl");
                 rectangle.tr = prop.getFloat("tr");
                 rectangle.br = prop.getFloat("br");

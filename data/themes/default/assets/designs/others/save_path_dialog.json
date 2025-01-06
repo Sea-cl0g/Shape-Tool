@@ -48,7 +48,7 @@
             },
             "fillCol": "#FFFFFF00"
         },
-        "e3": {
+        "@MAIN_TEXT_EDITOR": {
             "type": "text_editor",
             "layout": {
                 "x_point": 0,
@@ -57,7 +57,7 @@
                 "height_point": "$h"
             },
             "text": {
-                "text": "data/saves/new_project.json",
+                "text": "",
                 "text_align": "LEFT",
                 "text_size": 0.4,
                 "text_col": "#000000"
