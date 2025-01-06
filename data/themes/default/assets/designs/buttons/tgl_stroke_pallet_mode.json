@@ -27,7 +27,8 @@
     "images": {
         "main": {
             "size": 0.8,
-            "path": "icon/TMP_ICON1.svg"
+            "path": "icon/apple_stroke.svg",
+            "color": "#ffffff"
         }
     },
     "shadows": {
