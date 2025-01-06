@@ -18,21 +18,22 @@
         "y_pos": 1,
         "b_size": 0.8,
         "r_point": 0.2,
-        "counter": 0
+        "x_counter": 0,
+        "y_counter": 1
     },
     "layouts": {
         "buttonLayout": {
-            "x_point": "$counter * $b_size + $x_pos",
-            "y_point": "$y_pos",
+            "x_point": "$x_counter * $b_size + $x_pos",
+            "y_point": "$y_counter * $b_size + $y_pos",
             "width_point": "$b_size",
             "height_point": "$b_size",
-            "br_point": "$r_point"
+            "tr_point": "$r_point"
         }
     },
     "images": {
         "main": {
             "size": 0.8,
-            "path": "icon/duplicate_layer.svg",
+            "path": "icon/TMP_ICON1.svg",
             "color": "$pointCol"
         }
     },

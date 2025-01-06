@@ -500,6 +500,34 @@ class Theme{
             break;
 
 
+            case "FANC_FLIP_Y_AXIS" :
+                function = () -> canvas.flip_y_axis();
+            break;
+            case "FANC_FLIP_X_AXIS" :
+                function = () -> canvas.flip_x_axis();
+            break;
+
+
+            case "FANC_DOUBLE_WIDTH" :
+                function = () -> canvas.double_width();
+            break;
+            case "FANC_DOUBLE_HEIGHT" :
+                function = () -> canvas.double_height();
+            break;
+            case "FANC_DOUBLE_RATIO" :
+                function = () -> canvas.double_ratio();
+            break;
+            case "FANC_HALF_WIDTH" :
+                function = () -> canvas.half_width();
+            break;
+            case "FANC_HALF_HEIGHT" :
+                function = () -> canvas.half_height();
+            break;
+            case "FANC_HALF_RATIO" :
+                function = () -> canvas.half_ratio();
+            break;
+
+
             case "FANC_ZOOM_IN" :
                 function = () -> canvas.zoom_in();
             break;
@@ -511,6 +539,12 @@ class Theme{
             break;
 
 
+            case "FANC_SAVE_PROJECT" :
+                function = () -> canvas.save_project();
+            break;	
+            case "FANC_OPEN_FILE" :
+                function = () -> canvas.open_file();
+            break;	
             case "FANC_EXPORT_TO_PROCESSING" :
                 function = () -> canvas.convert_code();
             break;	

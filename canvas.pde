@@ -164,6 +164,94 @@ class Canvas{
         }
     }
 
+    //図形を反転
+    void flip_y_axis(){
+        println("flip_y_axis");
+    }
+    void flip_x_axis(){
+        println("flip_x_axis");
+    }
+
+    //図形を拡大、縮小
+    void double_width(){
+        for(Shape item : shapes){
+            if(item.isAnyStateActive() && item.getClass() == Ellipse.class){
+                Ellipse ellipse = (Ellipse) item;
+                ellipse.w *= 2;
+            }else if(item.isAnyStateActive() && item.getClass() == Rectangle.class){
+                Rectangle rect = (Rectangle) item;
+                rect.w *= 2;
+            }
+        }
+    }
+    void double_height(){
+        for(Shape item : shapes){
+            if(item.isAnyStateActive() && item.getClass() == Ellipse.class){
+                Ellipse ellipse = (Ellipse) item;
+                ellipse.h *= 2;
+            }else if(item.isAnyStateActive() && item.getClass() == Rectangle.class){
+                Rectangle rect = (Rectangle) item;
+                rect.h *= 2;
+            }
+        }
+    }
+    void double_ratio(){
+        for(Shape item : shapes){
+            if(item.isAnyStateActive() && item.getClass() == Ellipse.class){
+                Ellipse ellipse = (Ellipse) item;
+                ellipse.w *= 2;
+                ellipse.h *= 2;
+            }else if(item.isAnyStateActive() && item.getClass() == Rectangle.class){
+                Rectangle rect = (Rectangle) item;
+                rect.w *= 2;
+                rect.h *= 2;
+            }
+        }
+    }
+    void half_width(){
+        for(Shape item : shapes){
+            if(item.isAnyStateActive() && item.getClass() == Ellipse.class){
+                Ellipse ellipse = (Ellipse) item;
+                ellipse.w /= 2;
+            }else if(item.isAnyStateActive() && item.getClass() == Rectangle.class){
+                Rectangle rect = (Rectangle) item;
+                rect.w /= 2;
+            }
+        }
+    }
+    void half_height(){
+        for(Shape item : shapes){
+            if(item.isAnyStateActive() && item.getClass() == Ellipse.class){
+                Ellipse ellipse = (Ellipse) item;
+                ellipse.h /= 2;
+            }else if(item.isAnyStateActive() && item.getClass() == Rectangle.class){
+                Rectangle rect = (Rectangle) item;
+                rect.h /= 2;
+            }
+        }
+    }
+    void half_ratio(){
+        for(Shape item : shapes){
+            if(item.isAnyStateActive() && item.getClass() == Ellipse.class){
+                Ellipse ellipse = (Ellipse) item;
+                ellipse.w /= 2;
+                ellipse.h /= 2;
+            }else if(item.isAnyStateActive() && item.getClass() == Rectangle.class){
+                Rectangle rect = (Rectangle) item;
+                rect.w /= 2;
+                rect.h /= 2;
+            }
+        }
+    }
+
+    //save project
+    void save_project(){
+    }
+
+    //load project
+    void open_file(){
+    }
+
     //processing4のコードで出力
     void convert_code(){
         ConvertCode coc = new ConvertCode();

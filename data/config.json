@@ -327,24 +327,6 @@
                 }
             ]
         },
-        "save_project": {
-            "path": "buttons/save_project.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_SAVE_PROJECT"
-                }
-            ]
-        },
-        "open_file": {
-            "path": "buttons/open_file.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_OPEN_FILE"
-                }
-            ]
-        },
         "export_to_processing": {
             "path": "buttons/export_to_processing.json",
             "queries": [
@@ -536,6 +518,16 @@
                 }
             ]
         },
+        "save_project": {
+            "path": "buttons/save_project.json",
+            "layerMode": "save",
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_SAVE_PROJECT"
+                }
+            ]
+        },
         "load1": {
             "path": "bases/load1.json",
             "layerMode": "load"
@@ -559,6 +551,15 @@
                 {
                     "Name": "@MAIN_TEXT_EDITOR",
                     "Query": "LOAD_PATH"
+                }
+            ]
+        },
+        "open_file": {
+            "path": "buttons/open_file.json",
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "FANC_OPEN_FILE"
                 }
             ]
         }
