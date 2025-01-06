@@ -82,6 +82,17 @@ class SafeLoad{
 }
 
 //--------------------------------------------------
+class PointString{
+    String pool;
+    PointString(){
+        pool = "";
+    }
+    PointString(String text){
+        pool = text;
+    }
+}
+
+//--------------------------------------------------
 String[] getReverseSortedStringArrayFromJSONObject(JSONObject json){
     String[] array = new String[json.keys().size()];
     int i = 0;

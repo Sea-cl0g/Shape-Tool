@@ -210,9 +210,12 @@ class TextEditor extends TextBlock{
     int brinkTimer = 0;
     int keyRepeatMax = 10;
     int keyRepeat = 0;
+    PointString pointerText;
 
-    TextEditor(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, TextData textData, StrokeData strokeData, color fillCol){
+    TextEditor(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, TextData textData, StrokeData strokeData, color fillCol,  PointString pointerText){
         super(splitW, splitH, drawMode, layoutData, textData, strokeData, fillCol);
+        this.pointerText = pointerText;
+        this.text = pointerText.pool;
     }
 
     void checkStatus(float mouseX, float mouseY){
@@ -232,6 +235,7 @@ class TextEditor extends TextBlock{
         if(isSelected){
             if(isKeyPressing && keyRepeat <= 0){
                 editText();
+                pointerText.pool = text;
                 keyRepeat = keyRepeatMax;
             }
             countUpTimer();

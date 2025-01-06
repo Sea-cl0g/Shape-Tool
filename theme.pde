@@ -345,7 +345,14 @@ class Theme{
                     textData = new TextData(elementEJSON.get("text"), variableJSON);
                     stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
-                    layers.get(layerPos).add(new TextEditor(16, 16, drawMode, layout, textData, stroke, fillCol));
+                    PointString pointerText = new PointString();
+                    println("isElementQuery:", isElementQuery);
+                    if(isElementQuery){
+                        if(elementName.equals("@MAIN_TEXT_EDITOR")){
+                            pointerText = textEditorPrepare(queryType);
+                        }
+                    }
+                    layers.get(layerPos).add(new TextEditor(16, 16, drawMode, layout, textData, stroke, fillCol, pointerText));
                 break;
                 case "color_picker" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
@@ -423,9 +430,21 @@ class Theme{
         return "";
     }
 
+    PointString textEditorPrepare(String query){
+        println("textEditorPrepare:", query);
+        switch (query) {
+            case "SAVE_PATH" :
+                return canvas.savePath;
+            case "LOAD_PATH" :
+                return canvas.loadPath;
+            case "THEME_PATH" :
+                return canvas.themePath;
+        }
+        return new PointString();
+    }
+
     Runnable buttonFanctionPrepare(String query){
         Runnable function;
-        println(query);
         switch (query){
             case "FANC_ADD_RECTANGLE" :
                 function = () -> canvas.add_rectangle();
