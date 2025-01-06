@@ -38,8 +38,8 @@
                 "y_point": "$y_pos",
                 "width_point": "$r * -2 + $w",
                 "height_point": "$r * -2 + $h",
-                "tl_point": 0.6,
-                "br_point": 0.6
+                "tl_point": "$r",
+                "br_point": "$r"
             },
             "fillCol": "#FFFFFF"
         },
