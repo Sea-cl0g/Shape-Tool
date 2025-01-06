@@ -163,6 +163,8 @@ class ColorPicker extends Block{
 //--------------------------------------------------
 class TextBlock extends Base{
     String text;
+    String[] textArray;
+    boolean isTextArray;
     String textAlign;
     float textSize;
     color textColor;
@@ -171,6 +173,11 @@ class TextBlock extends Base{
         super(splitW, splitH, drawMode, layoutData, strokeData, fillCol);
         
         this.text = textData.text;
+        String[] splitText = splitTokens(text, "/n");
+        if(0 < splitText.length){
+            textArray = splitText;
+            isTextArray = true;
+        }
         this.textAlign = textData.textAlign;
         this.textSize = textData.textSize;
         this.textColor = textData.textColor;

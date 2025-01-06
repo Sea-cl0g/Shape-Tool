@@ -290,9 +290,6 @@ class Canvas{
     }
     void zoom_reset(){
         scale = 1.0;
-        println(loadPath.pool);
-        println(savePath.pool);
-        println(themePath.pool);
     }
 }
 

@@ -346,7 +346,6 @@ class Theme{
                     stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     PointString pointerText = new PointString();
-                    println("isElementQuery:", isElementQuery);
                     if(isElementQuery){
                         if(elementName.equals("@MAIN_TEXT_EDITOR")){
                             pointerText = textEditorPrepare(queryType);
@@ -431,7 +430,6 @@ class Theme{
     }
 
     PointString textEditorPrepare(String query){
-        println("textEditorPrepare:", query);
         switch (query) {
             case "SAVE_PATH" :
                 return canvas.savePath;
@@ -571,7 +569,6 @@ class Theme{
                 function = null;
             break;
         }
-        println(function);
         return function;
     }
 
