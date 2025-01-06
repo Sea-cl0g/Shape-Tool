@@ -572,6 +572,13 @@ class Base extends Block{
         this.bl = layoutData.bl_point;
         this.strokeCol = strokeData.strokeCol;
         this.strokeW = strokeData.stroke_point;
+        
+        if(r != 0.0){
+            tl = tl != 0.0 ? tl : r;
+            tr = tr != 0.0 ? tr : r;
+            br = br != 0.0 ? br : r;
+            bl = bl != 0.0 ? bl : r;
+        }
     }
 
     void drawBase(){
@@ -584,17 +591,7 @@ class Base extends Block{
                 float strokeGW = getContainerBlockSize(strokeW, strokeW).y;
                 strokeWeight(strokeGW);
             }
-            float loTl = 0;
-            float loTr = 0;
-            float loBr = 0;
-            float loBl = 0;
-            if(r != 0.0){
-                loTl = tl != 0.0 ? tl : r;
-                loTr = tr != 0.0 ? tr : r;
-                loBr = br != 0.0 ? br : r;
-                loBl = bl != 0.0 ? bl : r;
-            }
-            box(x, y, w, h, loTl, loTr, loBr, loBl);
+            box(x, y, w, h, tl, tr, br, bl);
         }
     }
 
