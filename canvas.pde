@@ -256,10 +256,8 @@ class Canvas{
     //save project
     void save_project(){
         String path = savePath.pool; 
-        if(safeLoad.canLoad(path, ".json")){
-            ProjectCode coc = new ProjectCode();
-            saveJSONArray(coc.array_to_code(shapes), path);
-        }
+        ProjectCode coc = new ProjectCode();
+        saveJSONArray(coc.array_to_code(shapes), path);
     }
 
     //load project
