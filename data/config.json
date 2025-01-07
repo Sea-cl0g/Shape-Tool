@@ -327,15 +327,12 @@
                 }
             ]
         },
-        "export_to_processing": {
-            "path": "buttons/export_to_processing.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_EXPORT_TO_PROCESSING"
-                }
-            ]
-        },
+
+
+
+
+
+        
         "fill_pallet1": {
             "path": "bases/fill_pallet1.json",
             "layerMode": "fillPallet"
@@ -386,6 +383,12 @@
                 }
             ]
         },
+
+
+
+
+
+        
         "stroke_pallet1": {
             "path": "bases/stroke_pallet1.json",
             "layerMode": "coloarPallet"
@@ -440,6 +443,12 @@
                 }
             ]
         },
+
+
+
+
+
+        
         "option1": {
             "path": "bases/option1.json",
             "layerMode": "option"
@@ -466,6 +475,12 @@
                 }
             ]
         },
+
+
+
+
+
+        
         "export1": {
             "path": "bases/export1.json",
             "layerMode": "export"
@@ -492,6 +507,42 @@
                 }
             ]
         },
+        "convert_code":{
+            "path": "others/convert_code.json",
+            "layerMode": "export",
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "CONVERT_CODE"
+                }
+            ]
+        },
+        "save_code_as_text_file":{
+            "path": "others/save_code_as_text_file.json",
+            "layerMode": "export",
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "SAVE_CODE_AS_TEXT_FILE"
+                }
+            ]
+        },
+        "save_code_to_clipboard":{
+            "path": "others/save_code_to_clipboard.json",
+            "layerMode": "export",
+            "queries": [
+                {
+                    "Name": "@MAIN_BUTTON",
+                    "Query": "SAVE_CODE_TO_CLIPBOARD"
+                }
+            ]
+        },
+
+
+
+
+
+
         "save1": {
             "path": "bases/save1.json",
             "layerMode": "save"
@@ -528,6 +579,12 @@
                 }
             ]
         },
+
+
+
+
+
+        
         "load1": {
             "path": "bases/load1.json",
             "layerMode": "load"
