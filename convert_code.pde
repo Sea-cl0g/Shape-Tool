@@ -8,10 +8,11 @@ class Processing4Code extends Block{
         exportList.add("void shapeToolExport(float x, float y){");
         for (int i = 0; i < canvas.shapes.size(); i++) {
             exportList.add("    pushMatrix();");
-            Object shapeObj = canvas.shapes.get(i);
+            Shape shapeObj = canvas.shapes.get(i);
+            exportList.add("    fill(" + getSplitedColor(shapeObj.fillCol) + ");");
+            exportList.add("    stroke(" + getSplitedColor(shapeObj.strokeCol) + ");");
             if (shapeObj.getClass() == Rectangle.class) {
                 Rectangle shapeRect = (Rectangle) shapeObj;
-                exportList.add("    fill(" + getSplitedColor(shapeRect.fillCol) + ");");
                 
                 float x = shapeRect.x;
                 float y = shapeRect.y;
@@ -25,6 +26,7 @@ class Processing4Code extends Block{
                 exportList.add("    translate(" + x + " + x, " + y + " + y);");
                 exportList.add("    rotate(" + shapeRect.radian + ");");
                 exportList.add("    rectMode(CENTER);");
+                
                 if (tl != 0.0 || tr != 0.0 || br != 0.0 || bl != 0.0) {
                     exportList.add("    rect(0, 0, " + w + ", " + h + ", " + tl + ", " + tr + ", " + br + ", " + bl + ");");
                 } else{
@@ -33,7 +35,6 @@ class Processing4Code extends Block{
                 exportList.add("    rectMode(CORNER);");
             } else if (shapeObj.getClass() == Ellipse.class) {
                 Ellipse shapeEllipse = (Ellipse) shapeObj;
-                exportList.add("    fill(" + getSplitedColor(shapeEllipse.fillCol) + ");");
                 
                 float x = shapeEllipse.x;
                 float y = shapeEllipse.y;
