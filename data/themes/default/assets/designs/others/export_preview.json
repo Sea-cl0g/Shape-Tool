@@ -15,7 +15,7 @@
     },
 
     "elements": {
-        "e1": {
+        "@MAIN_TEXTARRAY_BLOCK": {
             "type": "text_block",
             "layout": {
                 "x_point": "$x_pos",
@@ -24,7 +24,7 @@
                 "height_point": "$r * -3 + $h"
             },
             "text": {
-                "text": "void setup(){|    size(500, 500);|}",
+                "text": "null",
                 "text_align": "LEFT",
                 "text_size": 0.4,
                 "text_col": "#000000"

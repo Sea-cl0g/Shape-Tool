@@ -338,6 +338,19 @@ class Theme{
                     textData = new TextData(elementEJSON.get("text"), variableJSON);
                     stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    if(isElementQuery){
+                        if(elementName.equals("@MAIN_TEXT_BLOCK")){
+                            PointString pointerText = new PointString();
+                            pointerText = textBlockPrepare(queryType);
+                            layers.get(layerPos).add(new TextBlock(16, 16, drawMode, layout, textData, stroke, fillCol, pointerText));
+                            break;
+                        }else if(elementName.equals("@MAIN_TEXTARRAY_BLOCK")){
+                            PointStringArray pointerTextArray = new PointStringArray();
+                            pointerTextArray = textArrayBlockPrepare(queryType);
+                            layers.get(layerPos).add(new TextBlock(16, 16, drawMode, layout, textData, stroke, fillCol, pointerTextArray));
+                            break;
+                        }
+                    }
                     layers.get(layerPos).add(new TextBlock(16, 16, drawMode, layout, textData, stroke, fillCol));
                 break;
                 case "text_editor" :
@@ -439,6 +452,20 @@ class Theme{
                 return canvas.themePath;
         }
         return new PointString();
+    }
+
+    PointString textBlockPrepare(String query){
+        switch (query) {
+        }
+        return new PointString();
+    }
+
+    PointStringArray textArrayBlockPrepare(String query){
+        switch (query) {
+            case "CODE_PREVIEW" :
+                return canvas.exportPreview;
+        }
+        return new PointStringArray();
     }
 
     Runnable buttonFanctionPrepare(String query){

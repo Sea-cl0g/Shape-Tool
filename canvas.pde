@@ -5,6 +5,7 @@ class Canvas{
     PVector move;
     float scale;
     PointString loadPath, savePath, themePath;
+    PointStringArray exportPreview;
     
 
     Canvas(){
@@ -16,6 +17,8 @@ class Canvas{
         loadPath = new PointString("data/saves/project.json");
         savePath = new PointString("data/saves/new_project.json");
         themePath = new PointString();
+        String[] test = {"apple", "banana", "grape"};
+        exportPreview = new PointStringArray(test);
     }
 
     void process(){

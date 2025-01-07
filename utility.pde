@@ -93,6 +93,17 @@ class PointString{
 }
 
 //--------------------------------------------------
+class PointStringArray{
+    String[] pool;
+    PointStringArray(){
+        pool = new String[0];
+    }
+    PointStringArray(String[] textArray){
+        pool = textArray;
+    }
+}
+
+//--------------------------------------------------
 String[] getReverseSortedStringArrayFromJSONObject(JSONObject json){
     String[] array = new String[json.keys().size()];
     int i = 0;

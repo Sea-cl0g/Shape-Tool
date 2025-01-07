@@ -168,23 +168,47 @@ class TextBlock extends Base{
     String textAlign;
     float textSize;
     color textColor;
+    PointString importText;
+    PointStringArray importTextArray;
 
     TextBlock(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, TextData textData, StrokeData strokeData, color fillCol){
         super(splitW, splitH, drawMode, layoutData, strokeData, fillCol);
-        
+        textPrepare(textData);
+    }
+
+    TextBlock(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, TextData textData, StrokeData strokeData, color fillCol, PointString importText){
+        super(splitW, splitH, drawMode, layoutData, strokeData, fillCol);
+        this.importText = importText;
+        textPrepare(textData);
+    }
+
+    TextBlock(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, TextData textData, StrokeData strokeData, color fillCol, PointStringArray importTextArray){
+        super(splitW, splitH, drawMode, layoutData, strokeData, fillCol);
+        this.importTextArray = importTextArray;
+        textPrepare(textData);
+    }
+
+    void textPrepare(TextData textData){
         this.text = textData.text;
-        String[] splitText = splitTokens(text, "|");
-        if(1 < splitText.length){
-            textArray = splitText;
-            isTextArray = true;
-        }
+        textArray = getSplitedText(text);
         this.textAlign = textData.textAlign;
         this.textSize = textData.textSize;
         this.textColor = textData.textColor;
     }
 
+    String[] getSplitedText(String str){
+        return splitTokens(str, "|");
+    }
+
     void drawTextBlock(){
-        if(isTextArray){
+        if(importText != null){
+            text = importText.pool;
+            textArray = getSplitedText(text);
+        }else if(importTextArray != null){
+            textArray = importTextArray.pool;
+        }
+
+        if(1 < textArray.length){
             drawTextArray();
         }else{
             drawText();
@@ -252,12 +276,12 @@ class TextEditor extends TextBlock{
     int brinkTimer = 0;
     int keyRepeatMax = 10;
     int keyRepeat = 0;
-    PointString pointerText;
+    PointString exportText;
 
-    TextEditor(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, TextData textData, StrokeData strokeData, color fillCol,  PointString pointerText){
+    TextEditor(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, TextData textData, StrokeData strokeData, color fillCol,  PointString exportText){
         super(splitW, splitH, drawMode, layoutData, textData, strokeData, fillCol);
-        this.pointerText = pointerText;
-        this.text = pointerText.pool;
+        this.exportText = exportText;
+        this.text = exportText.pool;
     }
 
     void checkStatus(float mouseX, float mouseY){
@@ -277,7 +301,7 @@ class TextEditor extends TextBlock{
         if(isSelected){
             if(isKeyPressing && keyRepeat <= 0){
                 editText();
-                pointerText.pool = text;
+                exportText.pool = text;
                 keyRepeat = keyRepeatMax;
             }
             countUpTimer();
