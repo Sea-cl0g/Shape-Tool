@@ -281,7 +281,7 @@ class Canvas{
     }
     //コンバートしたコードをテキストファイルに保存
     void copy_code_to_clipboard(){
-
+        copyStrings(exportPreview.pool);
     }
     
     //キャンバス関係のボタン

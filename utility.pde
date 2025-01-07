@@ -2,6 +2,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+
 class SafeLoad{
     String ERROR_SVG_PATH, ERROR_IMAGE_PATH, DEFAULT_THEME_DIR, currThemeDir;
 
@@ -112,4 +115,10 @@ String[] getReverseSortedStringArrayFromJSONObject(JSONObject json){
         i++;
     }
     return reverse(sort(array));
+}
+
+void copyStrings(String[] lines) {
+    String combinedText = String.join("\n", lines);
+    StringSelection stringSelection = new StringSelection(combinedText);
+    Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 }
