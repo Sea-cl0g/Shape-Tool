@@ -8,10 +8,11 @@
 
     "floats":{
         "x_pos": 0,
-        "y_pos": -2,
+        "y_pos": 0,
         "w": 14,
-        "h": 10,
-        "r": 0.5
+        "h": 14,
+        "r": 0.5,
+        "th": 2
     },
 
     "elements": {
@@ -21,12 +22,12 @@
                 "x_point": "$x_pos",
                 "y_point": "$y_pos",
                 "width_point": "$r * -3 + $w",
-                "height_point": "$r * -3 + $h"
+                "height_point": "$r * -3 + $h - $th"
             },
             "text": {
                 "text": "null",
                 "text_align": "LEFT",
-                "text_size": 0.4,
+                "text_size": 0.3,
                 "text_col": "#000000"
             },
             "fillCol": "#FFFFFF00"
@@ -37,9 +38,11 @@
                 "x_point": "$x_pos",
                 "y_point": "$y_pos",
                 "width_point": "$r * -2 + $w",
-                "height_point": "$r * -2 + $h",
+                "height_point": "$r * -2 + $h - $th",
                 "tl_point": "$r",
-                "br_point": "$r"
+                "br_point": "$r",
+                "tr_point": "$r / 4",
+                "bl_point": "$r / 4"
             },
             "fillCol": "#FFFFFF"
         },

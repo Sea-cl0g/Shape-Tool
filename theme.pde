@@ -78,6 +78,7 @@ class Theme{
             exceptMode();
         }
         isExportMode = !isExportMode;
+        canvas.convert_code();
     }
 
     void exceptMode(){
@@ -585,13 +586,23 @@ class Theme{
 
             case "FANC_SAVE_PROJECT" :
                 function = () -> canvas.save_project();
-            break;	
+            break;
             case "FANC_OPEN_FILE" :
                 function = () -> canvas.open_file();
-            break;	
-            case "FANC_EXPORT_TO_PROCESSING" :
+            break;
+
+
+            case "CONVERT_CODE" :
                 function = () -> canvas.convert_code();
             break;	
+            case "SAVE_CODE_AS_TEXT_FILE" :
+                function = () -> canvas.save_code_as_text_file();
+            break;	
+            case "COPY_CODE_TO_CLIPBOARD" :
+                function = () -> canvas.copy_code_to_clipboard();
+            break;	
+
+
             default:
                 function = null;
             break;

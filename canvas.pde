@@ -270,10 +270,18 @@ class Canvas{
         }
     }
 
-    //processing4のコードで出力
+    //図形をprocessing4のコードにコンバート
     void convert_code(){
         Processing4Code coc = new Processing4Code();
-        coc.export_to_processing();
+        exportPreview.pool = coc.export_to_processing();
+    }
+    //コンバートしたコードをテキストファイルに保存
+    void save_code_as_text_file(){
+        saveStrings("data/saves/export_test.txt", exportPreview.pool);
+    }
+    //コンバートしたコードをテキストファイルに保存
+    void copy_code_to_clipboard(){
+
     }
     
     //キャンバス関係のボタン

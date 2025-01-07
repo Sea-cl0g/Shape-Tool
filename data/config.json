@@ -508,7 +508,7 @@
             ]
         },
         "convert_code":{
-            "path": "others/convert_code.json",
+            "path": "buttons/convert_code.json",
             "layerMode": "export",
             "queries": [
                 {
@@ -518,7 +518,7 @@
             ]
         },
         "save_code_as_text_file":{
-            "path": "others/save_code_as_text_file.json",
+            "path": "buttons/save_code_as_text_file.json",
             "layerMode": "export",
             "queries": [
                 {
@@ -527,13 +527,13 @@
                 }
             ]
         },
-        "save_code_to_clipboard":{
-            "path": "others/save_code_to_clipboard.json",
+        "copy_code_to_clipboard":{
+            "path": "buttons/copy_code_to_clipboard.json",
             "layerMode": "export",
             "queries": [
                 {
                     "Name": "@MAIN_BUTTON",
-                    "Query": "SAVE_CODE_TO_CLIPBOARD"
+                    "Query": "COPY_CODE_TO_CLIPBOARD"
                 }
             ]
         },
