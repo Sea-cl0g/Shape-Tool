@@ -4,7 +4,7 @@ class Canvas{
     boolean dragged;
     PVector move;
     float scale;
-    PointString loadPath, savePath, themePath;
+    PointString loadPath, savePath, themePath, exportPath;
     PointStringArray exportPreview;
     
 
@@ -16,6 +16,7 @@ class Canvas{
 
         loadPath = new PointString("data/saves/project.json");
         savePath = new PointString("data/saves/new_project.json");
+        exportPath = new PointString("data/saves/new_export.txt");
         themePath = new PointString();
         String[] test = {"apple", "banana", "grape"};
         exportPreview = new PointStringArray(test);
@@ -277,7 +278,7 @@ class Canvas{
     }
     //コンバートしたコードをテキストファイルに保存
     void save_code_as_text_file(){
-        saveStrings("data/saves/export_test.txt", exportPreview.pool);
+        saveStrings(exportPath.pool, exportPreview.pool);
     }
     //コンバートしたコードをテキストファイルに保存
     void copy_code_to_clipboard(){

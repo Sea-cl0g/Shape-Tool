@@ -451,6 +451,8 @@ class Theme{
                 return canvas.loadPath;
             case "THEME_PATH" :
                 return canvas.themePath;
+            case "EXPORT_PATH" :
+                return canvas.exportPath;
         }
         return new PointString();
     }

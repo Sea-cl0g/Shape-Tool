@@ -507,6 +507,16 @@
                 }
             ]
         },
+        "export_path_dialog": {
+            "path": "others/export_path_dialog.json",
+            "layerMode": "export",
+            "queries": [
+                {
+                    "Name": "@MAIN_TEXT_EDITOR",
+                    "Query": "EXPORT_PATH"
+                }
+            ]
+        },
         "convert_code":{
             "path": "buttons/convert_code.json",
             "layerMode": "export",

@@ -4,7 +4,7 @@
     "containerAnker": "center",
     "blockMode": "both",
     "blockAnker": "CENTER",
-    "layer": 1,
+    "layer": 0,
     "elements": {
         "e1": {
             "type": "base",
