@@ -1,8 +1,9 @@
 {
-    "current_theme": "data/themes/default",
-    "DEFAULT_THEME_DIR": "data/themes/default",
+    "current_theme": "data/themes/red",
+    "DEFAULT_THEME_PATH": "data/themes/default",
     "ERROR_SVG_PATH": "data/ERROR_ICON.svg",
     "ERROR_IMAGE_PATH": "data/ERROR_ICON.png",
+
     "assets": {
         "main1": {
             "path": "bases/main1.json"
@@ -28,9 +29,13 @@
         "main8": {
             "path": "bases/main8.json"
         },
+
+
         "canvas": {
             "path": "others/canvas.json"
         },
+
+
         "add_rectangle": {
             "path": "buttons/add_rectangle.json",
             "queries": [
@@ -58,6 +63,8 @@
                 }
             ]
         },
+
+
         "tgl_fill_pallet_mode": {
             "path": "buttons/tgl_fill_pallet_mode.json",
             "queries": [
@@ -120,6 +127,8 @@
                 }
             ]
         },
+
+
         "duplicate_layer": {
             "path": "buttons/duplicate_layer.json",
             "queries": [
@@ -228,6 +237,8 @@
                 }
             ]
         },
+
+        
         "flip_y_axis": {
             "path": "buttons/flip_y_axis.json",
             "queries": [
@@ -246,6 +257,8 @@
                 }
             ]
         },
+
+
         "double_width": {
             "path": "buttons/double_width.json",
             "queries": [
@@ -300,6 +313,8 @@
                 }
             ]
         },
+
+
         "zoom_in": {
             "path": "buttons/zoom_in.json",
             "queries": [
@@ -327,6 +342,12 @@
                 }
             ]
         },
+
+
+
+
+
+
         "fill_pallet1": {
             "path": "bases/fill_pallet1.json",
             "layerMode": "fillPallet"
@@ -377,6 +398,12 @@
                 }
             ]
         },
+        
+
+
+
+
+
         "stroke_pallet1": {
             "path": "bases/stroke_pallet1.json",
             "layerMode": "coloarPallet"
@@ -431,6 +458,12 @@
                 }
             ]
         },
+
+
+
+
+
+        
         "settings1": {
             "path": "bases/settings1.json",
             "layerMode": "settings"
@@ -457,6 +490,12 @@
                 }
             ]
         },
+
+
+
+
+
+        
         "export1": {
             "path": "bases/export1.json",
             "layerMode": "export"
@@ -523,6 +562,12 @@
                 }
             ]
         },
+
+
+
+
+
+        
         "save1": {
             "path": "bases/save1.json",
             "layerMode": "save"
@@ -559,6 +604,12 @@
                 }
             ]
         },
+
+
+
+
+
+        
         "load1": {
             "path": "bases/load1.json",
             "layerMode": "load"
