@@ -17,7 +17,7 @@ class Canvas{
         loadPath = new PointString("data/saves/project.json");
         savePath = new PointString("data/saves/new_project.json");
         exportPath = new PointString("data/saves/new_export.txt");
-        themePath = new PointString();
+        themePath = new PointString(config.getString("current_theme"));
         String[] test = {"apple", "banana", "grape"};
         exportPreview = new PointStringArray(test);
     }

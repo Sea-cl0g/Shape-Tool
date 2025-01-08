@@ -91,6 +91,17 @@ class Theme{
     }
     
     //====================================================================================================
+    void changeCurrentTheme(String path) {
+        if (safeLoad.canLoad(path, ".json")) {
+            config.setString("current_theme", path);
+            saveJSONObject(config, configPath);
+        }else{
+            config.setString("current_theme", config.getString("DEFAULT_THEME_PATH"));
+            saveJSONObject(config, configPath);
+        }
+    }
+        
+    //====================================================================================================
     int width_buffer, height_buffer;
     boolean isWindowSizeChanged;
     void drawGUI() {

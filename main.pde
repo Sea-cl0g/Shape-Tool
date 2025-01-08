@@ -35,14 +35,17 @@ void draw(){
   hasShapeTouched = false;
   background(255, 255, 255);
   theme.drawGUI();
-  //checkBlocks(1, 1, "vertical", "CORNER");
 }
 
 //--------------------------------------------------
 void softPrepare(){
   config = loadJSONObject(configPath);
+
   safeLoad = new SafeLoad();
+
   theme = new Theme();
+  theme.changeCurrentTheme(config.getString("current_theme"));
+
   canvas = new Canvas();
 }
 
