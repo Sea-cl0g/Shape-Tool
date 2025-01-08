@@ -607,7 +607,9 @@ class Base extends Block{
     }
 
     void drawBase(){
-        if(alpha(fillCol) != 0.0){
+        if(alpha(fillCol) == 0.0){
+            noFill();
+        }else{
             fill(fillCol);
         }
         if(alpha(strokeCol) == 0.0 || strokeW == 0.0){
