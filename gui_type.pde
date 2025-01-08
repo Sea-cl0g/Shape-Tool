@@ -271,7 +271,6 @@ class TextEditor extends TextBlock{
     boolean isSelected = false;
     int cursor;
     int th = 3;
-    int cursorH = 6;
     int brinkMax = 60;
     int brinkTimer = 0;
     int keyRepeatMax = 10;
@@ -363,12 +362,14 @@ class TextEditor extends TextBlock{
         super.drawText();
         
         PVector size = getContainerBlockSize(w, h);
-        PVector pos = getObjectPos(x, y, w, h, size);
+        float boxCenterGpos = getObjectPos(x, y, w, h, size).y + size.y / 2;
+        float textGSize = getContainerBlockSize(textSize, textSize).y;
+        float textTh = textGSize / 2.0;
         if(isSelected && brinkTimer < brinkMax / 2){
-            stroke(255, 0, 0);
+            stroke(textColor);
             strokeWeight(1);
             float cursorX = getCursorX();
-            line(cursorX, pos.y + cursorH, cursorX, pos.y + size.y - cursorH);
+            line(cursorX, boxCenterGpos - textTh, cursorX, boxCenterGpos + textTh);
         }
     }
 
