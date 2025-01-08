@@ -361,13 +361,13 @@ class TextEditor extends TextBlock{
     void drawTextBlock(){
         super.drawText();
         
-        PVector size = getContainerBlockSize(w, h);
-        float boxCenterGpos = getObjectPos(x, y, w, h, size).y + size.y / 2;
-        float textGSize = getContainerBlockSize(textSize, textSize).y;
-        float textTh = textGSize / 2.0;
         if(isSelected && brinkTimer < brinkMax / 2){
             stroke(textColor);
             strokeWeight(1);
+            PVector size = getContainerBlockSize(w, h);
+            float boxCenterGpos = getObjectPos(x, y, w, h, size).y + size.y / 2;
+            float textGSize = getContainerBlockSize(textSize, textSize).y;
+            float textTh = textGSize / 2.0;
             float cursorX = getCursorX();
             line(cursorX, boxCenterGpos - textTh, cursorX, boxCenterGpos + textTh);
         }
