@@ -6,76 +6,72 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 
 class SafeLoad{
-    String ERROR_SVG_PATH, ERROR_IMAGE_PATH, DEFAULT_THEME_DIR, currThemeDir;
-
-    SafeLoad(){
+    String ERROR_SVG_PATH, ERROR_IMAGE_PATH, DEFAULT_THEME_PATH, currThemeDir;
+    
+    SafeLoad() {
         ERROR_SVG_PATH = config.getString("ERROR_SVG_PATH");
         ERROR_IMAGE_PATH = config.getString("ERROR_IMAGE_PATH");
-        DEFAULT_THEME_DIR = config.getString("DEFAULT_THEME_DIR");
+        DEFAULT_THEME_PATH = config.getString("DEFAULT_THEME_PATH");
         currThemeDir = config.getString("current_theme");
     }
-
-    boolean canLoad(String filePath, String fileType){
+    
+    boolean canLoad(String filePath, String fileType) {
         //パスのファイルが存在するか？
-        if(filePath.startsWith("/")){
+        if (filePath.startsWith("/")) {
             filePath = sketchPath() + filePath;
-        }else if(filePath.startsWith("./")){
+        } else if (filePath.startsWith("./")) {
             filePath = sketchPath() + filePath.substring(1);
-        }else{
+        } else{
             filePath = sketchPath() + "/" + filePath;
         }
         Path apath = Paths.get(filePath);
-        if(!Files.exists(apath)){
+        if (!Files.exists(apath)) {
             return false;
         }
         //ファイルの型が想定通りか？
-        if (!filePath.endsWith(fileType)){
+        if (!filePath.endsWith(fileType)) {
             return false;
         }
         return true;
     }
-
-    JSONObject assetLoad(String assetPath){
+    
+    JSONObject assetLoad(String assetPath) {
         String currThemeAsset = currThemeDir + "/assets/designs/" + assetPath;
-        String defaultThemeAsset = DEFAULT_THEME_DIR + "/assets/designs/" + assetPath;
-        if(canLoad(currThemeAsset, ".json")){
+        if (canLoad(currThemeAsset, ".json")) {
             println("assetLoad-Log: " + currThemeAsset + " has loaded!!");
-            return loadJSONObject(currThemeAsset);
-        }else if(canLoad(defaultThemeAsset, ".json")){
-            println("assetLoad-INSTEAD: " + defaultThemeAsset + " has loaded!!");
             return loadJSONObject(currThemeAsset);
         }
         println("assetLoad-ERROR: " + defaultThemeAsset + " does not exist.");
         return new JSONObject();
     }
-
-    PShape svgLoad(String imagePath){
+    
+    PShape svgLoad(String imagePath) {
         String currThemeAsset = currThemeDir + "/assets/images/" + imagePath;
-        String defaultThemeAsset = DEFAULT_THEME_DIR + "/assets/images/" + imagePath;
-        if(canLoad(currThemeAsset, ".svg")){
+        String defaultThemeAsset = DEFAULT_THEME_PATH + "/assets/images/" + imagePath;
+        if (canLoad(currThemeAsset, ".svg")) {
             println("svgLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadShape(currThemeAsset);
-        }else if(canLoad(ERROR_SVG_PATH, ".svg")){
+        } else if (canLoad(ERROR_SVG_PATH, ".svg")) {
             println("svgLoad-ERROR: " + ERROR_SVG_PATH + " has loaded!");
             return loadShape(ERROR_SVG_PATH);
         }
         println("svgLoad-ERROR: Could not load any files!");
         return new PShape();
     }
-
-    PImage imageLoad(String imagePath){
+    
+    PImage imageLoad(String imagePath) {
         String currThemeAsset = currThemeDir + "/assets/images/" + imagePath;
-        String defaultThemeAsset = DEFAULT_THEME_DIR + "/assets/images/" + imagePath;
-        if(canLoad(currThemeAsset, ".png")){
+        String defaultThemeAsset = DEFAULT_THEME_PATH + "/assets/images/" + imagePath;
+        if (canLoad(currThemeAsset, ".png")) {
             println("imageLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadImage(currThemeAsset);
-        }else if(canLoad(currThemeAsset, ".gif")){
+        } else if (canLoad(currThemeAsset, ".gif")) {
             println("imageLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadImage(currThemeAsset);
-        }else if(canLoad(currThemeAsset, ".jpeg") || canLoad(currThemeAsset, ".jpg")){
+        } else if (canLoad(currThemeAsset, ".jpeg") || canLoad(currThemeAsset, ".jpg")) {
             println("imageLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadImage(currThemeAsset);
-        }else if(canLoad(ERROR_IMAGE_PATH, ".png")){
+        } else if (canLoad(ERROR_IMAGE_PATH, ".png")) {
             println("imageLoad-ERROR: " + ERROR_IMAGE_PATH + " has loaded!");
             return loadImage(ERROR_IMAGE_PATH);
         }
@@ -87,10 +83,10 @@ class SafeLoad{
 //--------------------------------------------------
 class PointString{
     String pool;
-    PointString(){
+    PointString() {
         pool = "";
     }
-    PointString(String text){
+    PointString(String text) {
         pool = text;
     }
 }
@@ -98,19 +94,19 @@ class PointString{
 //--------------------------------------------------
 class PointStringArray{
     String[] pool;
-    PointStringArray(){
+    PointStringArray() {
         pool = new String[0];
     }
-    PointStringArray(String[] textArray){
+    PointStringArray(String[] textArray) {
         pool = textArray;
     }
 }
 
 //--------------------------------------------------
-String[] getReverseSortedStringArrayFromJSONObject(JSONObject json){
+String[] getReverseSortedStringArrayFromJSONObject(JSONObject json) {
     String[] array = new String[json.keys().size()];
     int i = 0;
-    for(Object jsonObj : json.keys()){
+    for (Object jsonObj : json.keys()) {
         array[i] = (String) jsonObj;
         i++;
     }
