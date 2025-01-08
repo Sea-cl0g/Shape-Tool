@@ -609,15 +609,15 @@ class Base extends Block{
     void drawBase(){
         if(alpha(fillCol) != 0.0){
             fill(fillCol);
-            if(alpha(fillCol) == 0.0){
-                noStroke();
-            }else{
-                stroke(strokeCol);
-                float strokeGW = getContainerBlockSize(strokeW, strokeW).y;
-                strokeWeight(strokeGW);
-            }
-            box(x, y, w, h, tl, tr, br, bl);
         }
+        if(alpha(strokeCol) == 0.0 || strokeW == 0.0){
+            noStroke();
+        }else{
+            stroke(strokeCol);
+            float strokeGW = getContainerBlockSize(strokeW, strokeW).y;
+            strokeWeight(strokeGW);
+        }
+        box(x, y, w, h, tl, tr, br, bl);
     }
 
     void checkStatus(float mouseX, float mouseY){
