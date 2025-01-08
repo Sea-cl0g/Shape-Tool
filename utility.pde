@@ -6,13 +6,11 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 
 class SafeLoad{
-    String ERROR_SVG_PATH, ERROR_IMAGE_PATH, DEFAULT_THEME_PATH, currThemeDir;
+    String ERROR_SVG_PATH, ERROR_IMAGE_PATH;
     
     SafeLoad() {
         ERROR_SVG_PATH = config.getString("ERROR_SVG_PATH");
         ERROR_IMAGE_PATH = config.getString("ERROR_IMAGE_PATH");
-        DEFAULT_THEME_PATH = config.getString("DEFAULT_THEME_PATH");
-        currThemeDir = config.getString("current_theme");
     }
     
     boolean canLoad(String filePath, String fileType) {
@@ -36,18 +34,17 @@ class SafeLoad{
     }
     
     JSONObject assetLoad(String assetPath) {
-        String currThemeAsset = currThemeDir + "/assets/designs/" + assetPath;
+        String currThemeAsset = config.getString("current_theme") + "/assets/designs/" + assetPath;
         if (canLoad(currThemeAsset, ".json")) {
             println("assetLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadJSONObject(currThemeAsset);
         }
-        println("assetLoad-ERROR: " + defaultThemeAsset + " does not exist.");
+        println("assetLoad-ERROR: " + currThemeAsset + " does not exist.");
         return new JSONObject();
     }
     
     PShape svgLoad(String imagePath) {
-        String currThemeAsset = currThemeDir + "/assets/images/" + imagePath;
-        String defaultThemeAsset = DEFAULT_THEME_PATH + "/assets/images/" + imagePath;
+        String currThemeAsset = config.getString("current_theme") + "/assets/images/" + imagePath;
         if (canLoad(currThemeAsset, ".svg")) {
             println("svgLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadShape(currThemeAsset);
@@ -60,8 +57,7 @@ class SafeLoad{
     }
     
     PImage imageLoad(String imagePath) {
-        String currThemeAsset = currThemeDir + "/assets/images/" + imagePath;
-        String defaultThemeAsset = DEFAULT_THEME_PATH + "/assets/images/" + imagePath;
+        String currThemeAsset = config.getString("current_theme") + "/assets/images/" + imagePath;
         if (canLoad(currThemeAsset, ".png")) {
             println("imageLoad-Log: " + currThemeAsset + " has loaded!!");
             return loadImage(currThemeAsset);
