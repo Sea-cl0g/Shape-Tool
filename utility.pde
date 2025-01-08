@@ -32,6 +32,22 @@ class SafeLoad{
         }
         return true;
     }
+
+    boolean canLoad(String path) {
+        //パスのファイルが存在するか？
+        if (path.startsWith("/")) {
+            path = sketchPath() + path;
+        } else if (path.startsWith("./")) {
+            path = sketchPath() + path.substring(1);
+        } else{
+            path = sketchPath() + "/" + path;
+        }
+        Path apath = Paths.get(path);
+        if (!Files.exists(apath)) {
+            return false;
+        }
+        return true;
+    }
     
     JSONObject assetLoad(String assetPath) {
         String currThemeAsset = config.getString("current_theme") + "/assets/designs/" + assetPath;
