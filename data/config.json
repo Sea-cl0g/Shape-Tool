@@ -3,6 +3,7 @@
     "DEFAULT_THEME_PATH": "data/themes/default",
     "ERROR_SVG_PATH": "data/ERROR_ICON.svg",
     "ERROR_IMAGE_PATH": "data/ERROR_ICON.png",
+    
 
     "assets": {
         "main1": {
