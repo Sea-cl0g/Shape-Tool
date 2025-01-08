@@ -12,7 +12,12 @@ class Theme{
     ArrayList<ArrayList<Object>> save = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> load = new ArrayList<ArrayList<Object>>();
     
-    boolean isFillMode, isStrokeMode, isSaveMode, isLoadMode, isExportMode, isSettingsMode;
+    boolean isFillMode = true;
+    boolean isStrokeMode = true;
+    boolean isSaveMode = true;
+    boolean isLoadMode = true;
+    boolean isExportMode = true;
+    boolean isSettingsMode = true;
     
     int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index) {
         ArrayList<Object> newLayer = new ArrayList<Object>();
@@ -92,7 +97,7 @@ class Theme{
     
     //====================================================================================================
     void changeCurrentTheme(String path) {
-        if (safeLoad.canLoad(path, ".json")) {
+        if (safeLoad.canLoad(path)) {
             config.setString("current_theme", path);
             saveJSONObject(config, configPath);
         }else{
@@ -498,24 +503,30 @@ class Theme{
             
             case "FANC_TGL_STROKE_PALLET_MODE" :
                 function = () -> tgl_strokePallet_mode();
+                isStrokeMode = false;
                 break;
             case "FANC_TGL_FILL_PALLET_MODE" :
                 function = () -> tgl_fillPallet_mode();
+                isFillMode = false;
                 break;
             case "FANC_TGL_SETTINGS_MODE" :
                 function = () -> tgl_settings_mode();
+                isSettingsMode = false;
                 break;
             case "FANC_TGL_EXPORT_MODE" :
                 function = () -> tgl_export_mode();
+                isExportMode = false;
                 break;
             case "FANC_TGL_SAVE_MODE" :
                 function = () -> tgl_save_mode();
+                isSaveMode = false;
                 break;
             case "FANC_TGL_LOAD_MODE" :
                 function = () -> tgl_load_mode();
+                isLoadMode = false;
                 break;	
             
-            
+
             case "FANC_DUPLICATE_SHAPE" :
                 function = () -> canvas.duplicate_layer();
                 break;
