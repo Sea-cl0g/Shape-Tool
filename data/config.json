@@ -84,12 +84,12 @@
                 }
             ]
         },
-        "tgl_option_mode": {
-            "path": "buttons/tgl_option_mode.json",
+        "tgl_settings_mode": {
+            "path": "buttons/tgl_settings_mode.json",
             "queries": [
                 {
                     "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_TGL_OPTION_MODE"
+                    "Query": "FANC_TGL_SETTINGS_MODE"
                 }
             ]
         },
@@ -327,12 +327,6 @@
                 }
             ]
         },
-
-
-
-
-
-        
         "fill_pallet1": {
             "path": "bases/fill_pallet1.json",
             "layerMode": "fillPallet"
@@ -383,12 +377,6 @@
                 }
             ]
         },
-
-
-
-
-
-        
         "stroke_pallet1": {
             "path": "bases/stroke_pallet1.json",
             "layerMode": "coloarPallet"
@@ -443,31 +431,25 @@
                 }
             ]
         },
-
-
-
-
-
-        
-        "option1": {
-            "path": "bases/option1.json",
-            "layerMode": "option"
+        "settings1": {
+            "path": "bases/settings1.json",
+            "layerMode": "settings"
         },
-        "option2": {
-            "path": "bases/option2.json",
-            "layerMode": "option"
+        "settings2": {
+            "path": "bases/settings2.json",
+            "layerMode": "settings"
         },
-        "option3": {
-            "path": "bases/option2.json",
-            "layerMode": "option"
+        "settings3": {
+            "path": "bases/settings2.json",
+            "layerMode": "settings"
         },
-        "option4": {
-            "path": "bases/option2.json",
-            "layerMode": "option"
+        "settings4": {
+            "path": "bases/settings2.json",
+            "layerMode": "settings"
         },
         "theme_path_dialog": {
             "path": "others/theme_path_dialog.json",
-            "layerMode": "option",
+            "layerMode": "settings",
             "queries": [
                 {
                     "Name": "@MAIN_TEXT_EDITOR",
@@ -475,12 +457,6 @@
                 }
             ]
         },
-
-
-
-
-
-        
         "export1": {
             "path": "bases/export1.json",
             "layerMode": "export"
@@ -517,7 +493,7 @@
                 }
             ]
         },
-        "convert_code":{
+        "convert_code": {
             "path": "buttons/convert_code.json",
             "layerMode": "export",
             "queries": [
@@ -527,7 +503,7 @@
                 }
             ]
         },
-        "save_code_as_text_file":{
+        "save_code_as_text_file": {
             "path": "buttons/save_code_as_text_file.json",
             "layerMode": "export",
             "queries": [
@@ -537,7 +513,7 @@
                 }
             ]
         },
-        "copy_code_to_clipboard":{
+        "copy_code_to_clipboard": {
             "path": "buttons/copy_code_to_clipboard.json",
             "layerMode": "export",
             "queries": [
@@ -547,12 +523,6 @@
                 }
             ]
         },
-
-
-
-
-
-
         "save1": {
             "path": "bases/save1.json",
             "layerMode": "save"
@@ -589,12 +559,6 @@
                 }
             ]
         },
-
-
-
-
-
-        
         "load1": {
             "path": "bases/load1.json",
             "layerMode": "load"

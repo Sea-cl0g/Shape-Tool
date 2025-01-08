@@ -3,100 +3,100 @@
 
 class Theme{
     JSONObject variableJSON = new JSONObject();
-
+    
     ArrayList<ArrayList<Object>> main = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> fillPallet = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> strokePallet = new ArrayList<ArrayList<Object>>();
-    ArrayList<ArrayList<Object>> option = new ArrayList<ArrayList<Object>>();
+    ArrayList<ArrayList<Object>> settings = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> export = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> save = new ArrayList<ArrayList<Object>>();
     ArrayList<ArrayList<Object>> load = new ArrayList<ArrayList<Object>>();
-
-    boolean isFillMode, isStrokeMode, isSaveMode, isLoadMode, isExportMode, isOptionMode;
-
-    int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index){
+    
+    boolean isFillMode, isStrokeMode, isSaveMode, isLoadMode, isExportMode, isSettingsMode;
+    
+    int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index) {
         ArrayList<Object> newLayer = new ArrayList<Object>();
         newLayer.add(index);
-        if(layers.size() > 0){
+        if (layers.size() > 0) {
             int i = 0;
-            while(i < layers.size()){
+            while(i < layers.size()) {
                 int cmpIndex = (int) layers.get(i).get(0);
-                if(index < cmpIndex){
+                if (index < cmpIndex) {
                     break;
-                }else if(index == cmpIndex){
+                } else if (index == cmpIndex) {
                     return i;
                 }
                 i++;
             }
             layers.add(i, newLayer);
             return i;
-        }else{
+        } else{
             layers.add(newLayer);
             return 0;
         }
     }
-
+    
     //====================================================================================================
     //tgl_mode
-    void tgl_fillPallet_mode(){
-        if(!isFillMode){
+    void tgl_fillPallet_mode() {
+        if (!isFillMode) {
             exceptMode();
         }
         isFillMode = !isFillMode;
     }
-
-    void tgl_strokePallet_mode(){
-        if(!isStrokeMode){
+    
+    void tgl_strokePallet_mode() {
+        if (!isStrokeMode) {
             exceptMode();
         }
         isStrokeMode = !isStrokeMode;
     }
-
-    void tgl_save_mode(){
-        if(!isSaveMode){
+    
+    void tgl_save_mode() {
+        if (!isSaveMode) {
             exceptMode();
         }
         isSaveMode = !isSaveMode;
     }
-
-    void tgl_load_mode(){
-        if(!isLoadMode){
+    
+    void tgl_load_mode() {
+        if (!isLoadMode) {
             exceptMode();
         }
         isLoadMode = !isLoadMode;
     }
     
-    void tgl_option_mode(){
-        if(!isOptionMode){
+    void tgl_settings_mode() {
+        if (!isSettingsMode) {
             exceptMode();
         }
-        isOptionMode = !isOptionMode;
+        isSettingsMode = !isSettingsMode;
     }
-
-    void tgl_export_mode(){
-        if(!isExportMode){
+    
+    void tgl_export_mode() {
+        if (!isExportMode) {
             exceptMode();
         }
         isExportMode = !isExportMode;
         canvas.convert_code();
     }
-
-    void exceptMode(){
+    
+    void exceptMode() {
         isFillMode = false;
         isStrokeMode = false;
-        isOptionMode = false;
+        isSettingsMode = false;
         isExportMode = false;
         isSaveMode = false;
         isLoadMode = false;
     }
-
+    
     //====================================================================================================
     int width_buffer, height_buffer;
     boolean isWindowSizeChanged;
-    void drawGUI(){
+    void drawGUI() {
         rectMode(CORNER);
         isWindowSizeChanged = false;
-        if(width != width_buffer || height != height_buffer){
+        if (width != width_buffer || height != height_buffer) {
             isWindowSizeChanged = true;
             width_buffer = width;
             height_buffer = height;
@@ -106,142 +106,142 @@ class Theme{
         checkLayerStatus(load, !isLoadMode);
         checkLayerStatus(save, !isSaveMode);
         checkLayerStatus(export, !isExportMode);
-        checkLayerStatus(option, !isOptionMode);
+        checkLayerStatus(settings, !isSettingsMode);
         checkLayerStatus(strokePallet, !isStrokeMode);
         checkLayerStatus(fillPallet, !isFillMode);
         checkLayerStatus(main);
-
+        
         //レイヤーの描画を行う
         drawLayer(main);
-        if(isFillMode){
+        if (isFillMode) {
             drawLayer(fillPallet);
         }
-        if(isStrokeMode){
+        if (isStrokeMode) {
             drawLayer(strokePallet);
         }
-        if(isOptionMode){
-            drawLayer(option);
+        if (isSettingsMode) {
+            drawLayer(settings);
         }
-        if(isExportMode){
+        if (isExportMode) {
             drawLayer(export);
         }
-        if(isSaveMode){
+        if (isSaveMode) {
             drawLayer(save);
         }
-        if(isLoadMode){
+        if (isLoadMode) {
             drawLayer(load);
         }
     }
-
-    void checkLayerStatus(ArrayList<ArrayList<Object>> layers){
+    
+    void checkLayerStatus(ArrayList<ArrayList<Object>> layers) {
         checkLayerStatus(layers, false);
     }
-    void checkLayerStatus(ArrayList<ArrayList<Object>> layers, boolean onlySizeCheck){
-        for(int i = layers.size() - 1; 0 <= i; i--){
+    void checkLayerStatus(ArrayList<ArrayList<Object>> layers, boolean onlySizeCheck) {
+        for (int i = layers.size() - 1; 0 <= i; i--) {
             ArrayList<Object> eachLayer = layers.get(i);
-            for(int q = eachLayer.size() - 1; 0 <= q; q--){
+            for (int q = eachLayer.size() - 1; 0 <= q; q--) {
                 Object guiObj = eachLayer.get(q);
-                if(guiObj.getClass() == Base.class){
+                if (guiObj.getClass() == Base.class) {
                     Base base = (Base) guiObj;
-                    if(isWindowSizeChanged){
+                    if (isWindowSizeChanged) {
                         base.sizeW = width;
                         base.sizeH = height;
                     }
-                    if(!onlySizeCheck){
+                    if (!onlySizeCheck) {
                         base.checkStatus(mouseX, mouseY);
                     }
-                }else if(guiObj.getClass() == TextBlock.class){
+                } else if (guiObj.getClass() == TextBlock.class) {
                     TextBlock textBlock = (TextBlock) guiObj;
-                    if(isWindowSizeChanged){
+                    if (isWindowSizeChanged) {
                         textBlock.sizeW = width;
                         textBlock.sizeH = height;
                     }
-                    if(!onlySizeCheck){
+                    if (!onlySizeCheck) {
                         textBlock.checkStatus(mouseX, mouseY);
                     }
-                }else if(guiObj.getClass() == TextEditor.class){
+                } else if (guiObj.getClass() == TextEditor.class) {
                     TextEditor textEditor = (TextEditor) guiObj;
-                    if(isWindowSizeChanged){
+                    if (isWindowSizeChanged) {
                         textEditor.sizeW = width;
                         textEditor.sizeH = height;
                     }
-                    if(!onlySizeCheck){
+                    if (!onlySizeCheck) {
                         textEditor.checkStatus(mouseX, mouseY);
                     }
-                }else if(guiObj.getClass() == ColorPicker.class){
+                } else if (guiObj.getClass() == ColorPicker.class) {
                     ColorPicker colorPicker = (ColorPicker) guiObj;
-                    if(isWindowSizeChanged){
+                    if (isWindowSizeChanged) {
                         colorPicker.sizeW = width;
                         colorPicker.sizeH = height;
                     }
-                    if(!onlySizeCheck){
+                    if (!onlySizeCheck) {
                         colorPicker.checkStatus(mouseX, mouseY);
                     }
-                }else if(guiObj.getClass() == CanvasBlock.class){
+                } else if (guiObj.getClass() == CanvasBlock.class) {
                     CanvasBlock canvasBlock = (CanvasBlock) guiObj;
-                    if(isWindowSizeChanged){
+                    if (isWindowSizeChanged) {
                         canvasBlock.sizeW = width;
                         canvasBlock.sizeH = height;
                     }
-                    if(!onlySizeCheck){
+                    if (!onlySizeCheck) {
                         canvasBlock.checkShapesStatus();
                         canvas.process();
                     }
-                }else if(guiObj.getClass() == Easel.class){
+                } else if (guiObj.getClass() == Easel.class) {
                     Easel easel = (Easel) guiObj;
-                    if(isWindowSizeChanged){
+                    if (isWindowSizeChanged) {
                         easel.sizeW = width;
                         easel.sizeH = height;
                     }
-                }else if(guiObj.getClass() == ImageBlock.class){
+                } else if (guiObj.getClass() == ImageBlock.class) {
                     ImageBlock imageBlock = (ImageBlock) guiObj;
-                    if(isWindowSizeChanged){
+                    if (isWindowSizeChanged) {
                         imageBlock.sizeW = width;
                         imageBlock.sizeH = height;
                     }
-                    if(!onlySizeCheck){
+                    if (!onlySizeCheck) {
                         imageBlock.checkStatus(mouseX, mouseY);
                     }
-                }else if(guiObj.getClass() == Button.class){
+                } else if (guiObj.getClass() == Button.class) {
                     Button button = (Button) guiObj;
-                    if(isWindowSizeChanged){
+                    if (isWindowSizeChanged) {
                         button.sizeW = width;
                         button.sizeH = height;
                     }
-                    if(!onlySizeCheck){
+                    if (!onlySizeCheck) {
                         button.checkStatus(mouseX, mouseY);
                     }
                 }
             }
         }
     }
-
-    void drawLayer(ArrayList<ArrayList<Object>> layers){
-        for(ArrayList<Object> eachLayer : layers){
-            for(Object guiObj : eachLayer){
-                if(guiObj.getClass() == Base.class){
+    
+    void drawLayer(ArrayList<ArrayList<Object>> layers) {
+        for (ArrayList < Object > eachLayer : layers) {
+            for (Object guiObj : eachLayer) {
+                if (guiObj.getClass() == Base.class) {
                     Base base = (Base) guiObj;
                     base.drawBase();
-                }else if(guiObj.getClass() == TextBlock.class){
+                } else if (guiObj.getClass() == TextBlock.class) {
                     TextBlock textBlock = (TextBlock) guiObj;
                     textBlock.drawTextBlock();
-                }else if(guiObj.getClass() == TextEditor.class){
+                } else if (guiObj.getClass() == TextEditor.class) {
                     TextEditor textEditor = (TextEditor) guiObj;
                     textEditor.drawTextBlock();
-                }else if(guiObj.getClass() == ColorPicker.class){
+                } else if (guiObj.getClass() == ColorPicker.class) {
                     ColorPicker colorPicker = (ColorPicker) guiObj;
                     colorPicker.drawColPicker();
-                }else if(guiObj.getClass() == CanvasBlock.class){
+                } else if (guiObj.getClass() == CanvasBlock.class) {
                     CanvasBlock canvasBlock = (CanvasBlock) guiObj;
                     canvasBlock.drawEasel();
                     canvasBlock.drawItems();
-                }else if(guiObj.getClass() == Easel.class){
+                } else if (guiObj.getClass() == Easel.class) {
                     Easel easel = (Easel) guiObj;
                     easel.drawEasel();
-                }else if(guiObj.getClass() == ImageBlock.class){
+                } else if (guiObj.getClass() == ImageBlock.class) {
                     ImageBlock imageBlock = (ImageBlock) guiObj;
                     imageBlock.drawImageBlock();
-                }else if(guiObj.getClass() == Button.class){
+                } else if (guiObj.getClass() == Button.class) {
                     Button button = (Button) guiObj;
                     button.drawButton();
                 }
@@ -249,36 +249,36 @@ class Theme{
         }
     }
     //====================================================================================================
-    void loadTheme(){
+    void loadTheme() {
         println("Theme Loading...");
         JSONObject assets = config.getJSONObject("assets");
-        for(Object assetNameObj : assets.keys()){
+        for (Object assetNameObj : assets.keys()) {
             String assetName = (String) assetNameObj;
             JSONObject asset = assets.getJSONObject(assetName);
             JSONObject designJSON = safeLoad.assetLoad(asset.getString("path"));
-            if(designJSON.keys().size() != 0){
+            if (designJSON.keys().size() != 0) {
                 String layerName = asset.getString("layerMode") != null ? asset.getString("layerMode") : "main";
-                switch (layerName){
+                switch(layerName) {
                     case "fillPallet" :
                         readDesign(fillPallet, asset, designJSON);
-                    break;	
+                        break;	
                     case "strokePallet" :
                         readDesign(strokePallet, asset, designJSON);
-                    break;	
-                    case "option" :
-                        readDesign(option, asset, designJSON);
-                    break;	
+                        break;	
+                    case "settings" :
+                        readDesign(settings, asset, designJSON);
+                        break;	
                     case "export" :
                         readDesign(export, asset, designJSON);
-                    break;	
+                        break;	
                     case "save" :
                         readDesign(save, asset, designJSON);
-                    break;	
+                        break;	
                     case "load" :
                         readDesign(load, asset, designJSON);
-                    break;	
+                        break;	
                     default :
-                        readDesign(main, asset, designJSON);
+                    readDesign(main, asset, designJSON);
                     break;	
                 }
             }
@@ -289,8 +289,8 @@ class Theme{
         println(fillPallet);
         println("strokePallet");
         println(strokePallet);
-        println("option");
-        println(option);
+        println("settings");
+        println(settings);
         println("export");
         println(export);
         println("save");
@@ -298,23 +298,23 @@ class Theme{
         println("load");
         println(load);
     }
-
-    void readDesign(ArrayList<ArrayList<Object>> layers, JSONObject asset, JSONObject designJSON){
+    
+    void readDesign(ArrayList<ArrayList<Object>> layers, JSONObject asset, JSONObject designJSON) {
         buildVariableJSON(designJSON);
         JSONObject elements = designJSON.getJSONObject("elements");
         JSONArray configQuery = asset.getJSONArray("queries");
         DrawMode drawMode = new DrawMode(designJSON);
-
+        
         int layerPos = setLayerAtPosition(layers, designJSON.isNull("layer") ? 0 : designJSON.getInt("layer"));
-
+        
         String[] elementNameList = getReverseSortedStringArrayFromJSONObject(elements);
         
-        for(String elementName : elementNameList){
+        for (String elementName : elementNameList) {
             boolean isElementQuery = false;
             String queryType = null;
-            if(configQuery != null){
-                for(int i = 0; i < configQuery.size(); i++){
-                    if(configQuery.getJSONObject(i).getString("Name").equals(elementName)){
+            if (configQuery != null) {
+                for (int i = 0; i < configQuery.size(); i++) {
+                    if (configQuery.getJSONObject(i).getString("Name").equals(elementName)) {
                         isElementQuery = true;
                         queryType = configQuery.getJSONObject(i).getString("Query");
                     }
@@ -327,25 +327,25 @@ class Theme{
             ImageData imageData;
             color fillCol;
             StrokeData stroke;
-            switch (elementEJSON.safeGetString("type")){
+            switch(elementEJSON.safeGetString("type")) {
                 case "base" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
                     layers.get(layerPos).add(new Base(16, 16, drawMode, layout, stroke, fillCol));
-                break;
+                    break;
                 case "text_block" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     textData = new TextData(elementEJSON.get("text"), variableJSON);
                     stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
-                    if(isElementQuery){
-                        if(elementName.equals("@MAIN_TEXT_BLOCK")){
+                    if (isElementQuery) {
+                        if (elementName.equals("@MAIN_TEXT_BLOCK")) {
                             PointString pointerText = new PointString();
                             pointerText = textBlockPrepare(queryType);
                             layers.get(layerPos).add(new TextBlock(16, 16, drawMode, layout, textData, stroke, fillCol, pointerText));
                             break;
-                        }else if(elementName.equals("@MAIN_TEXTARRAY_BLOCK")){
+                        } else if (elementName.equals("@MAIN_TEXTARRAY_BLOCK")) {
                             PointStringArray pointerTextArray = new PointStringArray();
                             pointerTextArray = textArrayBlockPrepare(queryType);
                             layers.get(layerPos).add(new TextBlock(16, 16, drawMode, layout, textData, stroke, fillCol, pointerTextArray));
@@ -353,306 +353,306 @@ class Theme{
                         }
                     }
                     layers.get(layerPos).add(new TextBlock(16, 16, drawMode, layout, textData, stroke, fillCol));
-                break;
+                    break;
                 case "text_editor" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     textData = new TextData(elementEJSON.get("text"), variableJSON);
                     stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     PointString pointerText = new PointString();
-                    if(isElementQuery){
-                        if(elementName.equals("@MAIN_TEXT_EDITOR")){
+                    if (isElementQuery) {
+                        if (elementName.equals("@MAIN_TEXT_EDITOR")) {
                             pointerText = textEditorPrepare(queryType);
                         }
                     }
                     layers.get(layerPos).add(new TextEditor(16, 16, drawMode, layout, textData, stroke, fillCol, pointerText));
-                break;
+                    break;
                 case "color_picker" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     int colorPalletIndex = -1;
                     String pickerMode = "";
-                    if(isElementQuery){
-                        if(elementName.startsWith("@FILL_")){
+                    if (isElementQuery) {
+                        if (elementName.startsWith("@FILL_")) {
                             colorPalletIndex = 0;
-                        }else if(elementName.startsWith("@STROKE_")){
+                        } else if (elementName.startsWith("@STROKE_")) {
                             colorPalletIndex = 1;
                         }
                         pickerMode = getPickerMode(elementName);
                     }
                     layers.get(layerPos).add(new ColorPicker(16, 16, drawMode, layout, colorPalletIndex, pickerMode));
-                break;
+                    break;
                 case "canvas" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     layers.get(layerPos).add(new CanvasBlock(16, 16, drawMode, layout, fillCol));
-                break;	
+                    break;	
                 case "easel" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
                     layers.get(layerPos).add(new Easel(16, 16, drawMode, layout, fillCol));
-                break;
+                    break;
                 case "image_block" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     imageData = new ImageData(elementEJSON.get("image"), variableJSON);
                     layers.get(layerPos).add(new ImageBlock(16, 16, drawMode, layout, imageData));
-                break;
+                    break;
                 case "button" :
                     Runnable function = null;
                     int colorIndex = -1;
-                    if(isElementQuery){
-                        if(elementName.equals("@MAIN_BUTTON")){
+                    if (isElementQuery) {
+                        if (elementName.equals("@MAIN_BUTTON")) {
                             function = buttonFanctionPrepare(queryType);
-                        }else if(elementName.equals("@FILL_BUTTON")){
+                        } else if (elementName.equals("@FILL_BUTTON")) {
                             function = buttonFanctionPrepare(queryType);
-                            if(queryType.equals("FANC_TGL_FILL_PALLET_MODE")){
+                            if (queryType.equals("FANC_TGL_FILL_PALLET_MODE")) {
                                 colorIndex = 0;
-                            }else if(queryType.equals("FANC_TGL_STROKE_PALLET_MODE")){
+                            } else if (queryType.equals("FANC_TGL_STROKE_PALLET_MODE")) {
                                 colorIndex = 1;
                             }
                         }
                     }
                     EasyJSONArray styles = elementEJSON.safeGetEasyJSONArray("style");
                     Button button = buildButton(drawMode, styles, function);
-                    if(colorIndex != -1){
+                    if (colorIndex != -1) {
                         button.colorIndex = colorIndex;
                     }
                     layers.get(layerPos).add(button);
-                break;
+                    break;
             }
         }
     }
-
-    String getPickerMode(String elementName){
-        if(elementName.endsWith("_HSB_H")){
+    
+    String getPickerMode(String elementName) {
+        if (elementName.endsWith("_HSB_H")) {
             return "HSB_H";
-        }else if(elementName.endsWith("_HSB_S")){
+        } else if (elementName.endsWith("_HSB_S")) {
             return "HSB_S";
-        }else if(elementName.endsWith("_HSB_B")){
+        } else if (elementName.endsWith("_HSB_B")) {
             return "HSB_B";
-        }else if(elementName.endsWith("_RGB_R")){
+        } else if (elementName.endsWith("_RGB_R")) {
             return "HSB_R";
-        }else if(elementName.endsWith("_RGB_G")){
+        } else if (elementName.endsWith("_RGB_G")) {
             return "HSB_G";
-        }else if(elementName.endsWith("_RGB_B")){
+        } else if (elementName.endsWith("_RGB_B")) {
             return "HSB_B";
-        }else if(elementName.endsWith("_ALPHA")){
+        } else if (elementName.endsWith("_ALPHA")) {
             return "ALPHA";
-        }else if(elementName.endsWith("STROKE_WEIGHT")){
+        } else if (elementName.endsWith("STROKE_WEIGHT")) {
             return "STROKE_WEIGHT";
         }
         return "";
     }
-
-    PointString textEditorPrepare(String query){
-        switch (query) {
+    
+    PointString textEditorPrepare(String query) {
+        switch(query) {
             case "SAVE_PATH" :
                 return canvas.savePath;
-            case "LOAD_PATH" :
+                case"LOAD_PATH" :
                 return canvas.loadPath;
-            case "THEME_PATH" :
+                case"THEME_PATH" :
                 return canvas.themePath;
-            case "EXPORT_PATH" :
+                case"EXPORT_PATH" :
                 return canvas.exportPath;
         }
         return new PointString();
     }
-
-    PointString textBlockPrepare(String query){
-        switch (query) {
+    
+    PointString textBlockPrepare(String query) {
+        switch(query) {
         }
         return new PointString();
     }
-
-    PointStringArray textArrayBlockPrepare(String query){
-        switch (query) {
+    
+    PointStringArray textArrayBlockPrepare(String query) {
+        switch(query) {
             case "CODE_PREVIEW" :
                 return canvas.exportPreview;
         }
         return new PointStringArray();
     }
-
-    Runnable buttonFanctionPrepare(String query){
+    
+    Runnable buttonFanctionPrepare(String query) {
         Runnable function;
-        switch (query){
+        switch(query) {
             case "FANC_ADD_RECTANGLE" :
                 function = () -> canvas.add_rectangle();
-            break;
+                break;
             case "FANC_ADD_ELLIPSE" :
                 function = () -> canvas.add_ellipse();
-            break;
+                break;
             case "FANC_ADD_TRIANGLE" :
                 function = () -> canvas.add_ellipse();
-            break;
-
-
+                break;
+            
+            
             case "FANC_TGL_STROKE_PALLET_MODE" :
                 function = () -> tgl_strokePallet_mode();
-            break;
+                break;
             case "FANC_TGL_FILL_PALLET_MODE" :
                 function = () -> tgl_fillPallet_mode();
-            break;
-            case "FANC_TGL_OPTION_MODE" :
-                function = () -> tgl_option_mode();
-            break;
+                break;
+            case "FANC_TGL_SETTINGS_MODE" :
+                function = () -> tgl_settings_mode();
+                break;
             case "FANC_TGL_EXPORT_MODE" :
                 function = () -> tgl_export_mode();
-            break;
+                break;
             case "FANC_TGL_SAVE_MODE" :
                 function = () -> tgl_save_mode();
-            break;
+                break;
             case "FANC_TGL_LOAD_MODE" :
                 function = () -> tgl_load_mode();
-            break;	
-
-
+                break;	
+            
+            
             case "FANC_DUPLICATE_SHAPE" :
                 function = () -> canvas.duplicate_layer();
-            break;
+                break;
             case "FANC_RAISE_LAYER" :
                 function = () -> canvas.raise_layer();
-            break;
+                break;
             case "FANC_LOWER_LAYER" :
                 function = () -> canvas.lower_layer();
-            break;
+                break;
             case "FANC_DELETE_SHAPE" :
                 function = () -> canvas.delete_shape();
-            break;
+                break;
             case "FANC_BRING_TO_FRONT" :
                 function = () -> canvas.bring_to_front();
-            break;
+                break;
             case "FANC_SEND_TO_BACK" :
                 function = () -> canvas.send_to_back();
-            break;
-
-
+                break;
+            
+            
             case "FANC_MOVE_UP_1PX" :
                 function = () -> canvas.move_up_1px();
-            break;
+                break;
             case "FANC_MOVE_DOWN_1PX" :
                 function = () -> canvas.move_down_1px();
-            break;
+                break;
             case "FANC_MOVE_RIGHT_1PX" :
                 function = () -> canvas.move_right_1px();
-            break;
+                break;
             case "FANC_MOVE_LEFT_1PX" :
                 function = () -> canvas.move_left_1px();
-            break;
-
-
+                break;
+            
+            
             case "FANC_ROTATE_LEFT_90" :
                 function = () -> canvas.rotate_left_90();
-            break;
+                break;
             case "FANC_ROTATE_RIGHT_90" :
                 function = () -> canvas.rotate_right_90();
-            break;
-
-
+                break;
+            
+            
             case "FANC_FLIP_Y_AXIS" :
                 function = () -> canvas.flip_y_axis();
-            break;
+                break;
             case "FANC_FLIP_X_AXIS" :
                 function = () -> canvas.flip_x_axis();
-            break;
-
-
+                break;
+            
+            
             case "FANC_DOUBLE_WIDTH" :
                 function = () -> canvas.double_width();
-            break;
+                break;
             case "FANC_DOUBLE_HEIGHT" :
                 function = () -> canvas.double_height();
-            break;
+                break;
             case "FANC_DOUBLE_RATIO" :
                 function = () -> canvas.double_ratio();
-            break;
+                break;
             case "FANC_HALF_WIDTH" :
                 function = () -> canvas.half_width();
-            break;
+                break;
             case "FANC_HALF_HEIGHT" :
                 function = () -> canvas.half_height();
-            break;
+                break;
             case "FANC_HALF_RATIO" :
                 function = () -> canvas.half_ratio();
-            break;
-
-
+                break;
+            
+            
             case "FANC_ZOOM_IN" :
                 function = () -> canvas.zoom_in();
-            break;
+                break;
             case "FANC_ZOOM_OUT" :
                 function = () -> canvas.zoom_out();
-            break;
+                break;
             case "FANC_RESET_ZOOM" :
                 function = () -> canvas.zoom_reset();
-            break;
-
-
+                break;
+            
+            
             case "FANC_SAVE_PROJECT" :
                 function = () -> canvas.save_project();
-            break;
+                break;
             case "FANC_OPEN_FILE" :
                 function = () -> canvas.open_file();
-            break;
-
-
+                break;
+            
+            
             case "CONVERT_CODE" :
                 function = () -> canvas.convert_code();
-            break;	
+                break;	
             case "SAVE_CODE_AS_TEXT_FILE" :
                 function = () -> canvas.save_code_as_text_file();
-            break;	
+                break;	
             case "COPY_CODE_TO_CLIPBOARD" :
                 function = () -> canvas.copy_code_to_clipboard();
-            break;	
-
-
+                break;	
+            
+            
             default:
-                function = null;
+            function = null;
             break;
         }
         return function;
     }
-
-    Button buildButton(DrawMode drawMode, EasyJSONArray styleList, Runnable function){
+    
+    Button buildButton(DrawMode drawMode, EasyJSONArray styleList, Runnable function) {
         StyleData normal = new StyleData();
         StyleData touched = new StyleData();
         StyleData clicked = new StyleData();
         StyleData selected = new StyleData();
-        for(int i = 0; i < styleList.size(); i++){
+        for (int i = 0; i < styleList.size(); i++) {
             EasyJSONObject style = styleList.safeGetEasyJSONObject(i);
             Object predicateObj = style.get("predicate");
             JSONArray query = new JSONArray();
-            if(predicateObj.getClass() == String.class){
+            if (predicateObj.getClass() == String.class) {
                 String predicate_tmp = (String) predicateObj;
                 query.append(predicate_tmp);
-            }else{
+            } else{
                 query = (JSONArray) predicateObj;
             }
-            for(int q = 0; q < query.size(); q++){
-                switch (query.getString(q)){
+            for (int q = 0; q < query.size(); q++) {
+                switch(query.getString(q)) {
                     case "normal" :
                         normal.readData(style, variableJSON);
-                    break;
+                        break;
                     case "touched" :
                         touched.readData(style, variableJSON);
-                    break;	
+                        break;	
                     case "clicked" :
                         clicked.readData(style, variableJSON);
-                    break;
+                        break;
                     case "selected" :
                         selected.readData(style, variableJSON);
-                    break;
+                        break;
                 }
             }
         }
         return new Button(16, 16, drawMode, normal, touched, clicked, function);
     }
-
-    void buildVariableJSON(JSONObject design){
-        for(Object keyObj : design.keys()){
+    
+    void buildVariableJSON(JSONObject design) {
+        for (Object keyObj : design.keys()) {
             String key = (String) keyObj;
-            if(!key.equals("elements")){
+            if (!key.equals("elements")) {
                 Object valueObj = design.get(key);
-                if(valueObj.getClass() == JSONObject.class){
+                if (valueObj.getClass() == JSONObject.class) {
                     JSONObject value = (JSONObject) valueObj;
                     variableJSON.setJSONObject(key, value);
                 }
@@ -664,8 +664,8 @@ class Theme{
 //--------------------------------------------------
 class DrawMode{
     String containerAnker, blockMode, blockAnker;
-
-    DrawMode(JSONObject drawModeJSON){
+    
+    DrawMode(JSONObject drawModeJSON) {
         EasyJSONObject drawModeEJSON = new EasyJSONObject(drawModeJSON);
         this.containerAnker = drawModeEJSON.safeGetString("containerAnker", "topLeft");
         this.blockMode = drawModeEJSON.safeGetString("blockMode", "vertical");
@@ -681,10 +681,10 @@ class StyleData{
     StrokeData strokeData;
     ImageData imageData;
     ShadowData shadowData;
-
-    void readData(EasyJSONObject styleEJSON, JSONObject variableJSON){
+    
+    void readData(EasyJSONObject styleEJSON, JSONObject variableJSON) {
         buttonType = readButtonType(styleEJSON.safeGetString("button_type"), variableJSON);
-
+        
         fillCol = readColor(styleEJSON.safeGetString("fill"), variableJSON);
         layoutData = new LayoutData(styleEJSON.get("layout"), variableJSON);
         strokeData = new StrokeData(styleEJSON.get("stroke"), variableJSON);
@@ -692,11 +692,11 @@ class StyleData{
         shadowData = new ShadowData(styleEJSON.get("shadow"), variableJSON);
     }
     
-    String readButtonType(String buttonTypeData, JSONObject variableJSON){
-        if(buttonTypeData.startsWith("$")){
+    String readButtonType(String buttonTypeData, JSONObject variableJSON) {
+        if (buttonTypeData.startsWith("$")) {
             String variableName = buttonTypeData.substring(1);
             return variableJSON.getJSONObject("button_types").getString(variableName);
-
+            
         }
         return buttonTypeData;
     }
@@ -706,20 +706,20 @@ class StyleData{
 class LayoutData{
     float x_point, y_point, width_point, height_point;
     float r_point, tl_point, tr_point, br_point, bl_point;
-
-    LayoutData(Object layoutObj, JSONObject variableJSON){
-        if(layoutObj != null){
+    
+    LayoutData(Object layoutObj, JSONObject variableJSON) {
+        if (layoutObj != null) {
             EasyJSONObject layoutEJSON = new EasyJSONObject();
-            if(layoutObj.getClass() == String.class){
+            if (layoutObj.getClass() == String.class) {
                 String layoutStr = (String) layoutObj;
-                if(layoutStr.startsWith("$")){
+                if (layoutStr.startsWith("$")) {
                     String variableName = layoutStr.substring(1);
                     layoutEJSON = new EasyJSONObject(variableJSON.getJSONObject("layouts").getJSONObject(variableName));
                 }
-            }else if(layoutObj.getClass() == JSONObject.class){
+            } else if (layoutObj.getClass() == JSONObject.class) {
                 JSONObject layoutJSON = (JSONObject) layoutObj;
                 layoutEJSON = new EasyJSONObject(layoutJSON);
-            }else{
+            } else{
                 layoutEJSON = new EasyJSONObject();
             }
             this.x_point = readFloat(layoutEJSON.get("x_point"), variableJSON);
@@ -739,20 +739,20 @@ class LayoutData{
 class StrokeData{
     float stroke_point;
     color strokeCol;
-
-    StrokeData(Object strokeObj, JSONObject variableJSON){
-        if(strokeObj != null){
+    
+    StrokeData(Object strokeObj, JSONObject variableJSON) {
+        if (strokeObj != null) {
             EasyJSONObject strokeEJSON = new EasyJSONObject();
-            if(strokeObj.getClass() == String.class){
+            if (strokeObj.getClass() == String.class) {
                 String strokeStr = (String) strokeObj;
-                if(strokeStr.startsWith("$")){
+                if (strokeStr.startsWith("$")) {
                     String variableName = strokeStr.substring(1);
                     strokeEJSON = new EasyJSONObject(variableJSON.getJSONObject("strokes").getJSONObject(variableName));
                 }
-            }else if(strokeObj.getClass() == JSONObject.class){
+            } else if (strokeObj.getClass() == JSONObject.class) {
                 JSONObject strokeJSON = (JSONObject) strokeObj;
                 strokeEJSON = new EasyJSONObject(strokeJSON);
-            }else{
+            } else{
                 strokeEJSON = new EasyJSONObject();
             }
             this.stroke_point = readFloat(strokeEJSON.get("stroke_point"), variableJSON);
@@ -767,47 +767,47 @@ class ImageData{
     PShape svg;
     PImage image;
     boolean svgTgl = true;
-
-    ImageData(Object imageObj, JSONObject variableJSON){
-        if(imageObj != null){
+    
+    ImageData(Object imageObj, JSONObject variableJSON) {
+        if (imageObj != null) {
             EasyJSONObject imageEJSON = new EasyJSONObject();
-            if(imageObj.getClass() == String.class){
+            if (imageObj.getClass() == String.class) {
                 String imageStr = (String) imageObj;
-                if(imageStr.startsWith("$")){
+                if (imageStr.startsWith("$")) {
                     String variableName = imageStr.substring(1);
                     imageEJSON = new EasyJSONObject(variableJSON.getJSONObject("images").getJSONObject(variableName));
                 }
-            }else if(imageObj.getClass() == JSONObject.class){
+            } else if (imageObj.getClass() == JSONObject.class) {
                 JSONObject imageJSON = (JSONObject) imageObj;
                 imageEJSON = new EasyJSONObject(imageJSON);
-            }else{
+            } else{
                 imageEJSON = new EasyJSONObject();
             }
             this.size = readFloat(imageEJSON.get("size"), variableJSON);
             String path = imageEJSON.safeGetString("path");
-            if(path.endsWith(".svg")){
+            if (path.endsWith(".svg")) {
                 this.svg = safeLoad.svgLoad(path);
-                if(!imageEJSON.isNull("color")){
+                if (!imageEJSON.isNull("color")) {
                     color overrideCol = readColor(imageEJSON.safeGetString("color"), variableJSON);
                     changeImageColor(this.svg, overrideCol);
                 }
-            }else{
+            } else{
                 svgTgl = false;
                 this.image = safeLoad.imageLoad(path);
             }
-        }else{
+        } else{
             this.size = 0.0;
             this.svg = loadShape("data/ERROR_ICON.svg");
         }
     }
-
-    void changeImageColor(PShape shape, color overrideCol){
-        if(shape == null) return;
-        if(shape.getChildCount() > 0){
-            for (int i = 0; i < shape.getChildCount(); i++){
+    
+    void changeImageColor(PShape shape, color overrideCol) {
+        if (shape == null) return;
+        if (shape.getChildCount() > 0) {
+            for (int i = 0; i < shape.getChildCount(); i++) {
                 changeImageColor(shape.getChild(i), overrideCol);
             }
-        }else{
+        } else{
             shape.setFill(overrideCol);
             shape.setStroke(overrideCol);
         }
@@ -820,19 +820,19 @@ class ShadowData{
     float shadowDistPoint;
     color shadowCol;
     
-    ShadowData(Object shadowObj, JSONObject variableJSON){
-        if(shadowObj != null){
+    ShadowData(Object shadowObj, JSONObject variableJSON) {
+        if (shadowObj != null) {
             EasyJSONObject shadowEJSON = new EasyJSONObject();
-            if(shadowObj.getClass() == String.class){
+            if (shadowObj.getClass() == String.class) {
                 String shadowStr = (String) shadowObj;
-                if(shadowStr.startsWith("$")){
+                if (shadowStr.startsWith("$")) {
                     String variableName = shadowStr.substring(1);
                     shadowEJSON = new EasyJSONObject(variableJSON.getJSONObject("shadows").getJSONObject(variableName));
                 }
-            }else if(shadowObj.getClass() == JSONObject.class){
+            } else if (shadowObj.getClass() == JSONObject.class) {
                 JSONObject shadowJSON = (JSONObject) shadowObj;
                 shadowEJSON = new EasyJSONObject(shadowJSON);
-            }else{
+            } else{
                 shadowEJSON = new EasyJSONObject();
             }
             this.shadowMode = shadowEJSON.safeGetString("shadowMode");
@@ -849,19 +849,19 @@ class TextData{
     float textSize;
     color textColor;
     
-    TextData(Object textObj, JSONObject variableJSON){
-        if(textObj != null){
+    TextData(Object textObj, JSONObject variableJSON) {
+        if (textObj != null) {
             EasyJSONObject textEJSON = new EasyJSONObject();
-            if(textObj.getClass() == String.class){
+            if (textObj.getClass() == String.class) {
                 String textStr = (String) textObj;
-                if(textStr.startsWith("$")){
+                if (textStr.startsWith("$")) {
                     String variableName = textStr.substring(1);
                     textEJSON = new EasyJSONObject(variableJSON.getJSONObject("texts").getJSONObject(variableName));
                 }
-            }else if(textObj.getClass() == JSONObject.class){
+            } else if (textObj.getClass() == JSONObject.class) {
                 JSONObject textJSON = (JSONObject) textObj;
                 textEJSON = new EasyJSONObject(textJSON);
-            }else{
+            } else{
                 textEJSON = new EasyJSONObject();
             }
             this.text = textEJSON.safeGetString("text");
@@ -873,8 +873,8 @@ class TextData{
 }
 
 //--------------------------------------------------
-color hexToColor(String hex){
-    if(hex.startsWith("#")){
+color hexToColor(String hex) {
+    if (hex.startsWith("#")) {
         hex = hex.substring(1);
     }
     
@@ -885,25 +885,25 @@ color hexToColor(String hex){
     return color(r, g, b, a);
 }
 
-color readColor(String colorPool, JSONObject variableJSON){
-    if(colorPool.startsWith("$")){
+color readColor(String colorPool, JSONObject variableJSON) {
+    if (colorPool.startsWith("$")) {
         String variableName = colorPool.substring(1);
         return hexToColor(variableJSON.getJSONObject("colors").getString(variableName));
     }
     return hexToColor(colorPool);
 }
 
-float readFloat(Object objPool, JSONObject variableJSON){if(objPool != null){
-        if(objPool instanceof Number){
-            return ((Number) objPool).floatValue();
-        }else if(objPool.getClass() == String.class){
+float readFloat(Object objPool, JSONObject variableJSON) {if (objPool != null) {
+        if (objPool instanceof Number) {
+            return((Number) objPool).floatValue();
+        } else if (objPool.getClass() == String.class) {
             String floatPool = objPool.toString();
             String[] pool = splitTokens(floatPool);
-            for(int i = 0; i < pool.length; i++){
-                if(pool[i].startsWith("$")){
+            for (int i = 0; i < pool.length; i++) {
+                if (pool[i].startsWith("$")) {
                     String variableName = pool[i].substring(1);
                     float variable = 0.0;
-                    if(!variableJSON.getJSONObject("floats").isNull(variableName)){
+                    if (!variableJSON.getJSONObject("floats").isNull(variableName)) {
                         variable = variableJSON.getJSONObject("floats").getFloat(variableName);
                     }
                     pool[i] = String.valueOf(variable);
@@ -915,29 +915,29 @@ float readFloat(Object objPool, JSONObject variableJSON){if(objPool != null){
     return 0.0;
 }
 
-float calculateExpression(String[] tokens){
-  float result = Float.parseFloat(tokens[0]);
-
-  for(int i = 1; i < tokens.length; i += 2){
-    String operator = tokens[i];
-    float operand = Float.parseFloat(tokens[i + 1]);
+float calculateExpression(String[] tokens) {
+    float result = Float.parseFloat(tokens[0]);
     
-    switch (operator){
-      case "+":
-        result += operand;
-        break;
-      case "-":
-        result -= operand;
-        break;
-      case "*":
-        result *= operand;
-        break;
-      case "/":
-        result /= operand;
-        break;
-      default:
-        throw new IllegalArgumentException("Unsupported operator: " + operator);
+    for (int i = 1; i < tokens.length; i += 2) {
+        String operator = tokens[i];
+        float operand = Float.parseFloat(tokens[i + 1]);
+        
+        switch(operator) {
+            case "+":
+                result += operand;
+                break;
+            case "-":
+                result -= operand;
+                break;
+            case "*":
+                result *= operand;
+                break;
+            case "/":
+                result /= operand;
+                break;
+            default:
+            throw new IllegalArgumentException("Unsupported operator: " + operator);
+        }
     }
-  }
-  return result;
+    return result;
 }
