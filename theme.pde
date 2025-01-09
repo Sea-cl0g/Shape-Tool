@@ -625,6 +625,11 @@ class Theme{
             case "COPY_CODE_TO_CLIPBOARD" :
                 function = () -> canvas.copy_code_to_clipboard();
                 break;	
+
+
+            case "FANC_LOAD_THEME" :
+                function = () -> canvas.load_theme();
+                break;	
             
             
             default:

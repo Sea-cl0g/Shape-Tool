@@ -37,7 +37,7 @@
                     "fill": "$buttonFill",
                     "image": {
                         "size": 0.8,
-                        "path": "icon/save.svg",
+                        "path": "icon/reload.svg",
                         "color": "$iconFill"
                     }
                 },
@@ -48,7 +48,7 @@
                     "fill": "$buttonFill",
                     "image": {
                         "size": 0.8,
-                        "path": "icon/save.svg",
+                        "path": "icon/reload.svg",
                         "color": "$iconTouched"
                     }
                 },
@@ -59,7 +59,7 @@
                     "fill": "$buttonFill",
                     "image": {
                         "size": 0.8,
-                        "path": "icon/save.svg",
+                        "path": "icon/reload.svg",
                         "color": "$buttonFill"
                     }
                 }

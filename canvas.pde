@@ -301,6 +301,13 @@ class Canvas{
     void zoom_reset(){
         scale = 1.0;
     }
+
+    //テーマのロード
+    void load_theme(){
+        theme = new Theme();
+        theme.changeCurrentTheme(themePath.pool);
+        theme.loadTheme();
+    }
 }
 
 //--------------------------------------------------
