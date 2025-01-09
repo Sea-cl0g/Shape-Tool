@@ -1,6 +1,8 @@
 # LICENCE
 > The source code is licensed under the [MIT License](https://opensource.org/license/mit).
-> Icons used in this program are licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
+> All images in this repository, except for the icon files (e.g., "icon.png", "icon.svg") and "shape-tool_logo.svg", are licensed under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
+> The icon design of this software pays tribute to the Processing 4 icon. Processing 4 is software developed and maintained by the Processing Foundation, and copyrights for its icons and logos are owned by their respective rights holders.
+> This icon design was inspired by the Processing 4 icon but is not officially endorsed by or affiliated with the Processing Foundation.
 
 ## MIT License
 
