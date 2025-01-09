@@ -27,7 +27,7 @@
         "main": {
             "size": 0.8,
             "path": "icon/save.svg",
-            "color":"#f4e9db"
+            "color": "#f4e9db"
         }
     },
     "shadows": {
@@ -51,7 +51,7 @@
                     "predicate": "normal",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "image": "$main",
                     "shadow": "$main"
                 },
@@ -59,7 +59,7 @@
                     "predicate": "touched",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "stroke": {
                         "stroke_point": 0.1,
                         "color": "#f4e9db"
@@ -71,7 +71,7 @@
                     "predicate": "clicked",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "image": "$main",
                     "shadow": "$main"
                 }

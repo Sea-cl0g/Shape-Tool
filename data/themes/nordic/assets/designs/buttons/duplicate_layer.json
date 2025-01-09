@@ -59,7 +59,7 @@
                     "predicate": "normal",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "stroke": "$defaultStroke",
                     "image": "$defaultImage"
                 },
@@ -67,7 +67,7 @@
                     "predicate": "touched",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "stroke": "$tStroke",
                     "image": "$tImage"
                 },
@@ -75,7 +75,7 @@
                     "predicate": "clicked",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "stroke": "$defaultStroke",
                     "image": "$defaultImage"
                 }

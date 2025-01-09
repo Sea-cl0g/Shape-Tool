@@ -19,7 +19,7 @@
             "height_point": 1.4
         }
     },
-    "strokes":{
+    "strokes": {
         "selectedStroke": {
             "stroke_point": 0.1,
             "color": "#FFFFFF"
@@ -51,14 +51,14 @@
                     "predicate": "normal",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "shadow": "$main"
                 },
                 {
                     "predicate": "touched",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "stroke": "$selectedStroke",
                     "shadow": "$main"
                 },
@@ -66,7 +66,7 @@
                     "predicate": "clicked",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "shadow": "$main"
                 }
             ]

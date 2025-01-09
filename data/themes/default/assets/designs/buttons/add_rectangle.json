@@ -41,7 +41,7 @@
                     "predicate": "normal",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "image": "$main",
                     "shadow": "$main"
                 },
@@ -49,7 +49,7 @@
                     "predicate": "touched",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "stroke": {
                         "stroke_point": 0.1,
                         "color": "#ffffff"
@@ -61,7 +61,7 @@
                     "predicate": "clicked",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$defaultCol",
+                    "fillCol": "$defaultCol",
                     "image": "$main",
                     "shadow": "$main"
                 }

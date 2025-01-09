@@ -35,7 +35,7 @@
                     "predicate": "normal",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$buttonFill",
+                    "fillCol": "$buttonFill",
                     "image": {
                         "size": 0.8,
                         "path": "icon/save_code_as_text_file.svg",
@@ -46,7 +46,7 @@
                     "predicate": "touched",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$buttonTouched",
+                    "fillCol": "$buttonTouched",
                     "image": {
                         "size": 0.8,
                         "path": "icon/save_code_as_text_file.svg",
@@ -57,7 +57,7 @@
                     "predicate": "clicked",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$buttonClicked",
+                    "fillCol": "$buttonClicked",
                     "stroke": {
                         "stroke_point": 0.1,
                         "color": "#ffffff"
