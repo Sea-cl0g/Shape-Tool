@@ -5,7 +5,6 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
-
     "button_types": {
         "maru": "roundedSquareButton"
     },
@@ -16,7 +15,7 @@
         "iconFill": "#0088F6",
         "iconTouched": "#002172"
     },
-    "floats":{
+    "floats": {
         "b_size": 1
     },
     "layouts": {
@@ -25,10 +24,9 @@
             "y_point": -6.25,
             "width_point": "$b_size",
             "height_point": "$b_size",
-            "r_point": "$b_size / 2"
+            "r_point": "$r_point"
         }
     },
-
     "elements": {
         "@MAIN_BUTTON": {
             "type": "button",

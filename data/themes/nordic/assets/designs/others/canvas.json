@@ -1,0 +1,36 @@
+{
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
+    "containerAnker": "center",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 0,
+
+    "floats":{
+        "canvas": 12,
+        "ege": 0.5
+    },
+
+    "elements": {
+        "e1": {
+            "type": "canvas",
+            "layout": {
+                "x_point": 0,
+                "y_point": 0,
+                "width_point": "$canvas",
+                "height_point": "$canvas"
+            },
+            "fillCol": "#e9cf97"
+        },
+        "e2": {
+            "type": "easel",
+            "layout": {
+                "x_point": 0,
+                "y_point": 0,
+                "width_point": "$canvas + $ege",
+                "height_point": "$canvas + $ege"
+            },
+            "fillCol": "#aaa64c55"
+        }
+    }
+}

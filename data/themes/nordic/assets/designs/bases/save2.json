@@ -1,0 +1,202 @@
+{
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
+    "containerAnker": "center",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 10,
+
+
+    "floats":{
+        "h": 3,
+        "w": 14,
+        "y": -7,
+        "e": 1,
+        "halfE": 0.5
+    },
+    "colors":{
+        "pink": "#f4b3c2"
+    },
+
+
+    "elements": {
+        "zzz": {
+            "type": "base",
+            "layout": {
+                "x_point": 0,
+                "y_point": "$y - 1",
+                "width_point": "$w",
+                "height_point": "$h + 2.2"
+            },
+            "fillCol": "$pink"
+        },
+        "e1": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e2": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 1",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e3": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 2",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e4": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 3",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e5": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 4",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e6": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 5",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e7": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 6",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e8": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 7",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e9": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 8",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e10": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 9",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e11": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 10",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e12": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 11",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e13": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 12",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        },
+        "e14": {
+            "type": "base",
+            "layout": {
+                "x_point": "$w / -2 + $halfE + 13",
+                "y_point": "$h / 2 + $y",
+                "width_point": "$e",
+                "height_point": "$e",
+                "br_point": "$e / 2",
+                "bl_point": "$e / 2"
+            },
+            "fillCol": "$pink"
+        }
+    }
+}

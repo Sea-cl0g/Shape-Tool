@@ -10,13 +10,14 @@
     },
     "colors": {
         "defaultCol": "#FFFFFF",
-        "clickedCol": "#e0e9e7",
+        "touchedCol": "#e0e9e7",
         "pointCol": "#857f8e"
     },
     "floats": {
         "x_pos": 9,
         "y_pos": 1,
         "b_size": 0.8,
+        "r_point": 0.2,
         "counter": 3
     },
     "layouts": {
@@ -63,7 +64,7 @@
                     "predicate": "touched",
                     "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fill": "$clickedCol",
+                    "fill": "$touchedCol",
                     "stroke": "$defaultStroke",
                     "image": "$main"
                 },

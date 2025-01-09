@@ -22,8 +22,9 @@
     },
     "images": {
         "main": {
-            "size": 0.8,
-            "path": "icon/TMP_ICON1.svg"
+            "size": 0.6,
+            "path": "icon/processing4.svg",
+            "color": "#ffffff"
         }
     },
     "shadows": {

@@ -1,0 +1,69 @@
+{
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
+    "containerAnker": "center",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+
+    "button_types": {
+        "maru": "roundedSquareButton"
+    },
+    "colors": {
+        "buttonFill": "#FFFFFF00",
+        "iconFill": "#000000",
+        "iconTouched": "#6ec3ee"
+    },
+    "floats":{
+        "b_size": 1
+    },
+    "layouts": {
+        "buttonLayout": {
+            "x_point": 5,
+            "y_point": -4,
+            "width_point": "$b_size",
+            "height_point": "$b_size"
+        }
+    },
+
+    "elements": {
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$buttonFill",
+                    "image": {
+                        "size": 0.8,
+                        "path": "icon/copy_code_to_clipboard.svg",
+                        "color": "$iconFill"
+                    }
+                },
+                {
+                    "predicate": "touched",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$buttonFill",
+                    "image": {
+                        "size": 0.8,
+                        "path": "icon/copy_code_to_clipboard.svg",
+                        "color": "$iconTouched"
+                    }
+                },
+                {
+                    "predicate": "clicked",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$buttonFill",
+                    "image": {
+                        "size": 0.8,
+                        "path": "icon/copy_code_to_clipboard.svg",
+                        "color": "$buttonFill"
+                    }
+                }
+            ]
+        }
+    }
+}

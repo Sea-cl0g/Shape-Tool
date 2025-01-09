@@ -1,651 +1,501 @@
 {
-    "current_theme": "data/themes/red",
-    "DEFAULT_THEME_PATH": "data/themes/default",
-    "ERROR_SVG_PATH": "data/ERROR_ICON.svg",
-    "ERROR_IMAGE_PATH": "data/ERROR_ICON.png",
-    
-
-    "assets": {
-        "main1": {
-            "path": "bases/main1.json"
-        },
-        "main2": {
-            "path": "bases/main2.json"
-        },
-        "main3": {
-            "path": "bases/main3.json"
-        },
-        "main4": {
-            "path": "bases/main4.json"
-        },
-        "main5": {
-            "path": "bases/main5.json"
-        },
-        "main6": {
-            "path": "bases/main6.json"
-        },
-        "main7": {
-            "path": "bases/main7.json"
-        },
-        "main8": {
-            "path": "bases/main8.json"
-        },
-
-
-        "canvas": {
-            "path": "others/canvas.json"
-        },
-
-
-        "add_rectangle": {
-            "path": "buttons/add_rectangle.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_ADD_RECTANGLE"
-                }
-            ]
-        },
-        "add_ellipse": {
-            "path": "buttons/add_ellipse.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_ADD_ELLIPSE"
-                }
-            ]
-        },
-        "add_triangle": {
-            "path": "buttons/add_triangle.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_ADD_TRIANGLE"
-                }
-            ]
-        },
-
-
-        "tgl_fill_pallet_mode": {
-            "path": "buttons/tgl_fill_pallet_mode.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_TGL_FILL_PALLET_MODE"
-                },
-                {
-                    "Name": "@FILL_BUTTON",
-                    "Query": "FANC_TGL_FILL_PALLET_MODE"
-                }
-            ]
-        },
-        "tgl_stroke_pallet_mode": {
-            "path": "buttons/tgl_stroke_pallet_mode.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_TGL_STROKE_PALLET_MODE"
-                },
-                {
-                    "Name": "@FILL_BUTTON",
-                    "Query": "FANC_TGL_STROKE_PALLET_MODE"
-                }
-            ]
-        },
-        "tgl_settings_mode": {
-            "path": "buttons/tgl_settings_mode.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_TGL_SETTINGS_MODE"
-                }
-            ]
-        },
-        "tgl_export_mode": {
-            "path": "buttons/tgl_export_mode.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_TGL_EXPORT_MODE"
-                }
-            ]
-        },
-        "tgl_save_mode": {
-            "path": "buttons/tgl_save_mode.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_TGL_SAVE_MODE"
-                }
-            ]
-        },
-        "tgl_load_mode": {
-            "path": "buttons/tgl_load_mode.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_TGL_LOAD_MODE"
-                }
-            ]
-        },
-
-
-        "duplicate_layer": {
-            "path": "buttons/duplicate_layer.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_DUPLICATE_SHAPE"
-                }
-            ]
-        },
-        "raise_layer": {
-            "path": "buttons/raise_layer.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_RAISE_LAYER"
-                }
-            ]
-        },
-        "lower_layer": {
-            "path": "buttons/lower_layer.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_LOWER_LAYER"
-                }
-            ]
-        },
-        "delete_shape": {
-            "path": "buttons/delete_shape.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_DELETE_SHAPE"
-                }
-            ]
-        },
-        "bring_to_front": {
-            "path": "buttons/bring_to_front.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_BRING_TO_FRONT"
-                }
-            ]
-        },
-        "send_to_back": {
-            "path": "buttons/send_to_back.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_SEND_TO_BACK"
-                }
-            ]
-        },
-        "move_up_1px": {
-            "path": "buttons/move_up_1px.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_MOVE_UP_1PX"
-                }
-            ]
-        },
-        "move_down_1px": {
-            "path": "buttons/move_down_1px.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_MOVE_DOWN_1PX"
-                }
-            ]
-        },
-        "move_right_1px": {
-            "path": "buttons/move_right_1px.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_MOVE_RIGHT_1PX"
-                }
-            ]
-        },
-        "move_left_1px": {
-            "path": "buttons/move_left_1px.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_MOVE_LEFT_1PX"
-                }
-            ]
-        },
-        "rotate_left_90": {
-            "path": "buttons/rotate_left_90.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_ROTATE_LEFT_90"
-                }
-            ]
-        },
-        "rotate_right_90": {
-            "path": "buttons/rotate_right_90.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_ROTATE_RIGHT_90"
-                }
-            ]
-        },
-
-        
-        "flip_y_axis": {
-            "path": "buttons/flip_y_axis.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_FLIP_Y_AXIS"
-                }
-            ]
-        },
-        "flip_x_axis": {
-            "path": "buttons/flip_x_axis.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_FLIP_X_AXIS"
-                }
-            ]
-        },
-
-
-        "double_width": {
-            "path": "buttons/double_width.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_DOUBLE_WIDTH"
-                }
-            ]
-        },
-        "double_height": {
-            "path": "buttons/double_height.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_DOUBLE_HEIGHT"
-                }
-            ]
-        },
-        "double_ratio": {
-            "path": "buttons/double_ratio.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_DOUBLE_RATIO"
-                }
-            ]
-        },
-        "half_width": {
-            "path": "buttons/half_width.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_HALF_WIDTH"
-                }
-            ]
-        },
-        "half_height": {
-            "path": "buttons/half_height.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_HALF_HEIGHT"
-                }
-            ]
-        },
-        "half_ratio": {
-            "path": "buttons/half_ratio.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_HALF_RATIO"
-                }
-            ]
-        },
-
-
-        "zoom_in": {
-            "path": "buttons/zoom_in.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_ZOOM_IN"
-                }
-            ]
-        },
-        "zoom_out": {
-            "path": "buttons/zoom_out.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_ZOOM_OUT"
-                }
-            ]
-        },
-        "reset_zoom": {
-            "path": "buttons/reset_zoom.json",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_RESET_ZOOM"
-                }
-            ]
-        },
-
-
-
-
-
-
-        "fill_pallet1": {
-            "path": "bases/fill_pallet1.json",
-            "layerMode": "fillPallet"
-        },
-        "fill_pallet2": {
-            "path": "bases/fill_pallet2.json",
-            "layerMode": "fillPallet"
-        },
-        "fill_pallet3": {
-            "path": "bases/fill_pallet3.json",
-            "layerMode": "fillPallet"
-        },
-        "fill_pallet4": {
-            "path": "bases/fill_pallet4.json",
-            "layerMode": "fillPallet"
-        },
-        "fill_pickers": {
-            "path": "others/fill_pickers.json",
-            "layerMode": "fillPallet",
-            "queries": [
-                {
-                    "Name": "@FILL_HSB_H",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@FILL_HSB_S",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@FILL_HSB_B",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@FILL_RGB_R",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@FILL_RGB_G",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@FILL_RGB_B",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@FILL_ALPHA",
-                    "Query": "NULL"
-                }
-            ]
-        },
-        
-
-
-
-
-
-        "stroke_pallet1": {
-            "path": "bases/stroke_pallet1.json",
-            "layerMode": "coloarPallet"
-        },
-        "stroke_pallet2": {
-            "path": "bases/stroke_pallet2.json",
-            "layerMode": "coloarPallet"
-        },
-        "stroke_pallet3": {
-            "path": "bases/stroke_pallet3.json",
-            "layerMode": "coloarPallet"
-        },
-        "stroke_pallet4": {
-            "path": "bases/stroke_pallet4.json",
-            "layerMode": "coloarPallet"
-        },
-        "stroke_pickers": {
-            "path": "others/stroke_pickers.json",
-            "layerMode": "strokePallet",
-            "queries": [
-                {
-                    "Name": "@STROKE_HSB_H",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@STROKE_HSB_S",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@STROKE_HSB_B",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@STROKE_RGB_R",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@STROKE_RGB_G",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@STROKE_RGB_B",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@STROKE_ALPHA",
-                    "Query": "NULL"
-                },
-                {
-                    "Name": "@STROKE_WEIGHT",
-                    "Query": "NULL"
-                }
-            ]
-        },
-
-
-
-
-
-        
-        "settings1": {
-            "path": "bases/settings1.json",
-            "layerMode": "settings"
-        },
-        "settings2": {
-            "path": "bases/settings2.json",
-            "layerMode": "settings"
-        },
-        "settings3": {
-            "path": "bases/settings2.json",
-            "layerMode": "settings"
-        },
-        "settings4": {
-            "path": "bases/settings2.json",
-            "layerMode": "settings"
-        },
-        "theme_path_dialog": {
-            "path": "others/theme_path_dialog.json",
-            "layerMode": "settings",
-            "queries": [
-                {
-                    "Name": "@MAIN_TEXT_EDITOR",
-                    "Query": "THEME_PATH"
-                }
-            ]
-        },
-
-
-
-
-
-        
-        "export1": {
-            "path": "bases/export1.json",
-            "layerMode": "export"
-        },
-        "export2": {
-            "path": "bases/export2.json",
-            "layerMode": "export"
-        },
-        "export3": {
-            "path": "bases/export3.json",
-            "layerMode": "export"
-        },
-        "export4": {
-            "path": "bases/export4.json",
-            "layerMode": "export"
-        },
-        "export_preview": {
-            "path": "others/export_preview.json",
-            "layerMode": "export",
-            "queries": [
-                {
-                    "Name": "@MAIN_TEXTARRAY_BLOCK",
-                    "Query": "CODE_PREVIEW"
-                }
-            ]
-        },
-        "export_path_dialog": {
-            "path": "others/export_path_dialog.json",
-            "layerMode": "export",
-            "queries": [
-                {
-                    "Name": "@MAIN_TEXT_EDITOR",
-                    "Query": "EXPORT_PATH"
-                }
-            ]
-        },
-        "convert_code": {
-            "path": "buttons/convert_code.json",
-            "layerMode": "export",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "CONVERT_CODE"
-                }
-            ]
-        },
-        "save_code_as_text_file": {
-            "path": "buttons/save_code_as_text_file.json",
-            "layerMode": "export",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "SAVE_CODE_AS_TEXT_FILE"
-                }
-            ]
-        },
-        "copy_code_to_clipboard": {
-            "path": "buttons/copy_code_to_clipboard.json",
-            "layerMode": "export",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "COPY_CODE_TO_CLIPBOARD"
-                }
-            ]
-        },
-
-
-
-
-
-        
-        "save1": {
-            "path": "bases/save1.json",
-            "layerMode": "save"
-        },
-        "save2": {
-            "path": "bases/save2.json",
-            "layerMode": "save"
-        },
-        "save3": {
-            "path": "bases/save3.json",
-            "layerMode": "save"
-        },
-        "save4": {
-            "path": "bases/save4.json",
-            "layerMode": "save"
-        },
-        "save_path_dialog": {
-            "path": "others/save_path_dialog.json",
-            "layerMode": "save",
-            "queries": [
-                {
-                    "Name": "@MAIN_TEXT_EDITOR",
-                    "Query": "SAVE_PATH"
-                }
-            ]
-        },
-        "save_project": {
-            "path": "buttons/save_project.json",
-            "layerMode": "save",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_SAVE_PROJECT"
-                }
-            ]
-        },
-
-
-
-
-
-        
-        "load1": {
-            "path": "bases/load1.json",
-            "layerMode": "load"
-        },
-        "load2": {
-            "path": "bases/load2.json",
-            "layerMode": "load"
-        },
-        "load3": {
-            "path": "bases/load3.json",
-            "layerMode": "load"
-        },
-        "load4": {
-            "path": "bases/load4.json",
-            "layerMode": "load"
-        },
-        "load_path_dialog": {
-            "path": "others/load_path_dialog.json",
-            "layerMode": "load",
-            "queries": [
-                {
-                    "Name": "@MAIN_TEXT_EDITOR",
-                    "Query": "LOAD_PATH"
-                }
-            ]
-        },
-        "open_file": {
-            "path": "buttons/open_file.json",
-            "layerMode": "load",
-            "queries": [
-                {
-                    "Name": "@MAIN_BUTTON",
-                    "Query": "FANC_OPEN_FILE"
-                }
-            ]
+  "ERROR_SVG_PATH": "data/ERROR_ICON.svg",
+  "DEFAULT_THEME_PATH": "data/themes/default",
+  "ERROR_IMAGE_PATH": "data/ERROR_ICON.png",
+  "assets": {
+    "tgl_fill_pallet_mode": {
+      "path": "buttons/tgl_fill_pallet_mode.json",
+      "queries": [
+        {
+          "Query": "FANC_TGL_FILL_PALLET_MODE",
+          "Name": "@MAIN_BUTTON"
+        },
+        {
+          "Query": "FANC_TGL_FILL_PALLET_MODE",
+          "Name": "@FILL_BUTTON"
         }
+      ]
+    },
+    "tgl_stroke_pallet_mode": {
+      "path": "buttons/tgl_stroke_pallet_mode.json",
+      "queries": [
+        {
+          "Query": "FANC_TGL_STROKE_PALLET_MODE",
+          "Name": "@MAIN_BUTTON"
+        },
+        {
+          "Query": "FANC_TGL_STROKE_PALLET_MODE",
+          "Name": "@FILL_BUTTON"
+        }
+      ]
+    },
+    "move_up_1px": {
+      "path": "buttons/move_up_1px.json",
+      "queries": [{
+        "Query": "FANC_MOVE_UP_1PX",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "export1": {
+      "path": "bases/export1.json",
+      "layerMode": "export"
+    },
+    "export3": {
+      "path": "bases/export3.json",
+      "layerMode": "export"
+    },
+    "export2": {
+      "path": "bases/export2.json",
+      "layerMode": "export"
+    },
+    "rotate_right_90": {
+      "path": "buttons/rotate_right_90.json",
+      "queries": [{
+        "Query": "FANC_ROTATE_RIGHT_90",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "save_path_dialog": {
+      "path": "others/save_path_dialog.json",
+      "layerMode": "save",
+      "queries": [{
+        "Query": "SAVE_PATH",
+        "Name": "@MAIN_TEXT_EDITOR"
+      }]
+    },
+    "stroke_pickers": {
+      "path": "others/stroke_pickers.json",
+      "layerMode": "strokePallet",
+      "queries": [
+        {
+          "Query": "NULL",
+          "Name": "@STROKE_HSB_H"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@STROKE_HSB_S"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@STROKE_HSB_B"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@STROKE_RGB_R"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@STROKE_RGB_G"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@STROKE_RGB_B"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@STROKE_ALPHA"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@STROKE_WEIGHT"
+        }
+      ]
+    },
+    "export_path_dialog": {
+      "path": "others/export_path_dialog.json",
+      "layerMode": "export",
+      "queries": [{
+        "Query": "EXPORT_PATH",
+        "Name": "@MAIN_TEXT_EDITOR"
+      }]
+    },
+    "duplicate_layer": {
+      "path": "buttons/duplicate_layer.json",
+      "queries": [{
+        "Query": "FANC_DUPLICATE_SHAPE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "tgl_load_mode": {
+      "path": "buttons/tgl_load_mode.json",
+      "queries": [{
+        "Query": "FANC_TGL_LOAD_MODE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "tgl_export_mode": {
+      "path": "buttons/tgl_export_mode.json",
+      "queries": [{
+        "Query": "FANC_TGL_EXPORT_MODE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "delete_shape": {
+      "path": "buttons/delete_shape.json",
+      "queries": [{
+        "Query": "FANC_DELETE_SHAPE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "export_preview": {
+      "path": "others/export_preview.json",
+      "layerMode": "export",
+      "queries": [{
+        "Query": "CODE_PREVIEW",
+        "Name": "@MAIN_TEXTARRAY_BLOCK"
+      }]
+    },
+    "canvas": {"path": "others/canvas.json"},
+    "settings3": {
+      "path": "bases/settings2.json",
+      "layerMode": "settings"
+    },
+    "settings4": {
+      "path": "bases/settings2.json",
+      "layerMode": "settings"
+    },
+    "add_rectangle": {
+      "path": "buttons/add_rectangle.json",
+      "queries": [{
+        "Query": "FANC_ADD_RECTANGLE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "add_ellipse": {
+      "path": "buttons/add_ellipse.json",
+      "queries": [{
+        "Query": "FANC_ADD_ELLIPSE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "move_down_1px": {
+      "path": "buttons/move_down_1px.json",
+      "queries": [{
+        "Query": "FANC_MOVE_DOWN_1PX",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "load3": {
+      "path": "bases/load3.json",
+      "layerMode": "load"
+    },
+    "load2": {
+      "path": "bases/load2.json",
+      "layerMode": "load"
+    },
+    "double_ratio": {
+      "path": "buttons/double_ratio.json",
+      "queries": [{
+        "Query": "FANC_DOUBLE_RATIO",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "load4": {
+      "path": "bases/load4.json",
+      "layerMode": "load"
+    },
+    "load1": {
+      "path": "bases/load1.json",
+      "layerMode": "load"
+    },
+    "lower_layer": {
+      "path": "buttons/lower_layer.json",
+      "queries": [{
+        "Query": "FANC_LOWER_LAYER",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "main6": {"path": "bases/main6.json"},
+    "main5": {"path": "bases/main5.json"},
+    "main8": {"path": "bases/main8.json"},
+    "main7": {"path": "bases/main7.json"},
+    "main2": {"path": "bases/main2.json"},
+    "tgl_save_mode": {
+      "path": "buttons/tgl_save_mode.json",
+      "queries": [{
+        "Query": "FANC_TGL_SAVE_MODE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "fill_pallet3": {
+      "path": "bases/fill_pallet3.json",
+      "layerMode": "fillPallet"
+    },
+    "main1": {"path": "bases/main1.json"},
+    "rotate_left_90": {
+      "path": "buttons/rotate_left_90.json",
+      "queries": [{
+        "Query": "FANC_ROTATE_LEFT_90",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "fill_pallet2": {
+      "path": "bases/fill_pallet2.json",
+      "layerMode": "fillPallet"
+    },
+    "main4": {"path": "bases/main4.json"},
+    "fill_pallet1": {
+      "path": "bases/fill_pallet1.json",
+      "layerMode": "fillPallet"
+    },
+    "main3": {"path": "bases/main3.json"},
+    "save_project": {
+      "path": "buttons/save_project.json",
+      "layerMode": "save",
+      "queries": [{
+        "Query": "FANC_SAVE_PROJECT",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "flip_y_axis": {
+      "path": "buttons/flip_y_axis.json",
+      "queries": [{
+        "Query": "FANC_FLIP_Y_AXIS",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "settings1": {
+      "path": "bases/settings1.json",
+      "layerMode": "settings"
+    },
+    "fill_pallet4": {
+      "path": "bases/fill_pallet4.json",
+      "layerMode": "fillPallet"
+    },
+    "settings2": {
+      "path": "bases/settings2.json",
+      "layerMode": "settings"
+    },
+    "half_height": {
+      "path": "buttons/half_height.json",
+      "queries": [{
+        "Query": "FANC_HALF_HEIGHT",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "raise_layer": {
+      "path": "buttons/raise_layer.json",
+      "queries": [{
+        "Query": "FANC_RAISE_LAYER",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "flip_x_axis": {
+      "path": "buttons/flip_x_axis.json",
+      "queries": [{
+        "Query": "FANC_FLIP_X_AXIS",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "save3": {
+      "path": "bases/save3.json",
+      "layerMode": "save"
+    },
+    "reset_zoom": {
+      "path": "buttons/reset_zoom.json",
+      "queries": [{
+        "Query": "FANC_RESET_ZOOM",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "save4": {
+      "path": "bases/save4.json",
+      "layerMode": "save"
+    },
+    "save1": {
+      "path": "bases/save1.json",
+      "layerMode": "save"
+    },
+    "convert_code": {
+      "path": "buttons/convert_code.json",
+      "layerMode": "export",
+      "queries": [{
+        "Query": "CONVERT_CODE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "copy_code_to_clipboard": {
+      "path": "buttons/copy_code_to_clipboard.json",
+      "layerMode": "export",
+      "queries": [{
+        "Query": "COPY_CODE_TO_CLIPBOARD",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "save2": {
+      "path": "bases/save2.json",
+      "layerMode": "save"
+    },
+    "tgl_settings_mode": {
+      "path": "buttons/tgl_settings_mode.json",
+      "queries": [{
+        "Query": "FANC_TGL_SETTINGS_MODE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "double_width": {
+      "path": "buttons/double_width.json",
+      "queries": [{
+        "Query": "FANC_DOUBLE_WIDTH",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "zoom_out": {
+      "path": "buttons/zoom_out.json",
+      "queries": [{
+        "Query": "FANC_ZOOM_OUT",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "zoom_in": {
+      "path": "buttons/zoom_in.json",
+      "queries": [{
+        "Query": "FANC_ZOOM_IN",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "stroke_pallet2": {
+      "path": "bases/stroke_pallet2.json",
+      "layerMode": "coloarPallet"
+    },
+    "stroke_pallet1": {
+      "path": "bases/stroke_pallet1.json",
+      "layerMode": "coloarPallet"
+    },
+    "save_code_as_text_file": {
+      "path": "buttons/save_code_as_text_file.json",
+      "layerMode": "export",
+      "queries": [{
+        "Query": "SAVE_CODE_AS_TEXT_FILE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "fill_pickers": {
+      "path": "others/fill_pickers.json",
+      "layerMode": "fillPallet",
+      "queries": [
+        {
+          "Query": "NULL",
+          "Name": "@FILL_HSB_H"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@FILL_HSB_S"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@FILL_HSB_B"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@FILL_RGB_R"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@FILL_RGB_G"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@FILL_RGB_B"
+        },
+        {
+          "Query": "NULL",
+          "Name": "@FILL_ALPHA"
+        }
+      ]
+    },
+    "double_height": {
+      "path": "buttons/double_height.json",
+      "queries": [{
+        "Query": "FANC_DOUBLE_HEIGHT",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "half_width": {
+      "path": "buttons/half_width.json",
+      "queries": [{
+        "Query": "FANC_HALF_WIDTH",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "move_left_1px": {
+      "path": "buttons/move_left_1px.json",
+      "queries": [{
+        "Query": "FANC_MOVE_LEFT_1PX",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "add_triangle": {
+      "path": "buttons/add_triangle.json",
+      "queries": [{
+        "Query": "FANC_ADD_TRIANGLE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "stroke_pallet4": {
+      "path": "bases/stroke_pallet4.json",
+      "layerMode": "coloarPallet"
+    },
+    "stroke_pallet3": {
+      "path": "bases/stroke_pallet3.json",
+      "layerMode": "coloarPallet"
+    },
+    "bring_to_front": {
+      "path": "buttons/bring_to_front.json",
+      "queries": [{
+        "Query": "FANC_BRING_TO_FRONT",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "theme_path_dialog": {
+      "path": "others/theme_path_dialog.json",
+      "layerMode": "settings",
+      "queries": [{
+        "Query": "THEME_PATH",
+        "Name": "@MAIN_TEXT_EDITOR"
+      }]
+    },
+    "half_ratio": {
+      "path": "buttons/half_ratio.json",
+      "queries": [{
+        "Query": "FANC_HALF_RATIO",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "load_path_dialog": {
+      "path": "others/load_path_dialog.json",
+      "layerMode": "load",
+      "queries": [{
+        "Query": "LOAD_PATH",
+        "Name": "@MAIN_TEXT_EDITOR"
+      }]
+    },
+    "move_right_1px": {
+      "path": "buttons/move_right_1px.json",
+      "queries": [{
+        "Query": "FANC_MOVE_RIGHT_1PX",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "send_to_back": {
+      "path": "buttons/send_to_back.json",
+      "queries": [{
+        "Query": "FANC_SEND_TO_BACK",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "open_file": {
+      "path": "buttons/open_file.json",
+      "layerMode": "load",
+      "queries": [{
+        "Query": "FANC_OPEN_FILE",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
+    "export4": {
+      "path": "bases/export4.json",
+      "layerMode": "export"
     }
+  },
+  "current_theme": "data/themes/nordic"
 }

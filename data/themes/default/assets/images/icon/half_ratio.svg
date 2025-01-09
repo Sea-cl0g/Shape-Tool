@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120"
+   height="120"
+   viewBox="0 0 120 120"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <path
+       style="stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:7.3;stroke-dasharray:6, 18"
+       d="m 18.03125,15.03125 a 3,3 0 0 0 -3,3 3,3 0 0 0 3,3 h 6 a 3,3 0 0 0 3,-3 3,3 0 0 0 -3,-3 z m 24,0 a 3,3 0 0 0 -3,3 3,3 0 0 0 3,3 h 6 a 3,3 0 0 0 3,-3 3,3 0 0 0 -3,-3 z m 24,0 a 3,3 0 0 0 -3,3 3,3 0 0 0 3,3 h 6 a 3,3 0 0 0 3,-3 3,3 0 0 0 -3,-3 z m 24,0 a 3,3 0 0 0 -3,3 3,3 0 0 0 3,3 h 6 a 3,3 0 0 0 3,-3 3,3 0 0 0 -3,-3 z m 11.9375,12.0625 a 3,3 0 0 0 -3,3 v 6 a 3,3 0 0 0 3,3 3,3 0 0 0 3,-3 v -6 a 3,3 0 0 0 -3,-3 z m -83.9375,5.685547 a 3,3 0 0 0 -3,3 v 6 a 3,3 0 0 0 3,3 3,3 0 0 0 3,-3 v -6 a 3,3 0 0 0 -3,-3 z m 83.9375,18.314453 a 3,3 0 0 0 -3,3 v 6 a 3,3 0 0 0 3,3 3,3 0 0 0 3,-3 v -6 a 3,3 0 0 0 -3,-3 z m -83.9375,5.685547 a 3,3 0 0 0 -3,3 v 6 a 3,3 0 0 0 3,3 3,3 0 0 0 3,-3 v -6 a 3,3 0 0 0 -3,-3 z m 83.9375,18.314453 a 3,3 0 0 0 -3,3 v 6 a 3,3 0 0 0 3,3 3,3 0 0 0 3,-3 v -6 a 3,3 0 0 0 -3,-3 z m -83.9375,5.685547 a 3,3 0 0 0 -3,3 v 6 a 3,3 0 0 0 3,3 3,3 0 0 0 3,-3 v -6 a 3,3 0 0 0 -3,-3 z m 5.810547,18.189453 a 3,3 0 0 0 -3,3 3,3 0 0 0 3,3 h 6 a 3,3 0 0 0 3,-3 3,3 0 0 0 -3,-3 z m 24,0 a 3,3 0 0 0 -3,3 3,3 0 0 0 3,3 h 6 a 3,3 0 0 0 3,-3 3,3 0 0 0 -3,-3 z m 24,0 a 3,3 0 0 0 -3,3 3,3 0 0 0 3,3 h 6 a 3,3 0 0 0 3,-3 3,3 0 0 0 -3,-3 z m 24,0 a 3,3 0 0 0 -3,3 3,3 0 0 0 3,3 h 6.000003 a 3,3 0 0 0 3,-3 3,3 0 0 0 -3,-3 z"
+       id="rect25" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:7.3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect27"
+       width="41.968517"
+       height="41.968517"
+       x="39.015739"
+       y="39.015739" />
+    <path
+       id="rect28"
+       style="stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:7.3;stroke-dashoffset:17.406"
+       d="m 47.871094,51.166016 a 3,3 0 0 0 -3,3 3,3 0 0 0 3,3 H 59.015625 L 30.591797,85.589844 a 3.0003,3.0003 0 0 0 1.361328,4.986328 3.0003,3.0003 0 0 0 2.880859,-0.742188 L 63.257812,61.410156 v 11.142578 a 3,3 0 0 0 3,3 3,3 0 0 0 3,-3 V 54.166016 a 3.0003,3.0003 0 0 0 -3,-3 z" />
+  </g>
+</svg>

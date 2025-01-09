@@ -1,0 +1,79 @@
+{
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
+    "containerAnker": "topLeft",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+    "button_types": {
+        "maru": "roundedSquareButton"
+    },
+
+
+    "colors": {
+        "defaultCol": "#ea5514"
+    },
+    "floats":{
+        "b_size":3
+    },
+    "layouts": {
+        "buttonLayout": {
+            "x_point": 4,
+            "y_point": 8,
+            "width_point": "$b_size",
+            "height_point": "$b_size",
+            "r_point": "$b_size / 2"
+        }
+    },
+    "images": {
+        "main": {
+            "size": 0.8,
+            "path": "icon/add_ellipse.svg",
+            "color":"#f4e9db"
+        }
+    },
+    "shadows": {
+        "main": {
+            "shadowMode": "BOTTOM",
+            "shadowDistPoint": 0.2,
+            "color": "#539b46"
+        }
+    },
+
+
+    "elements": {
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$defaultCol",
+                    "image": "$main",
+                    "shadow": "$main"
+                },
+                {
+                    "predicate": "touched",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$defaultCol",
+                    "stroke": {
+                        "stroke_point": 0.1,
+                        "color": "#f4e9db"
+                    },
+                    "image": "$main",
+                    "shadow": "$main"
+                },
+                {
+                    "predicate": "clicked",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$defaultCol",
+                    "image": "$main",
+                    "shadow": "$main"
+                }
+            ]
+        }
+    }
+}

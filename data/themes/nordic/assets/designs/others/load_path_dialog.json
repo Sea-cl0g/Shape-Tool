@@ -1,0 +1,51 @@
+{
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
+    "containerAnker": "center",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+
+
+    "floats": {
+        "base_w": 12,
+        "h": 1,
+        "y_pos": 6,
+        "label_shadow_pos": 0.02,
+        "r": 0.5
+    },
+    "colors": {
+        "text_box_back_col": "#171F27"
+    },
+
+    
+    "elements": {
+        "@MAIN_TEXT_EDITOR": {
+            "type": "text_editor",
+            "layout": {
+                "x_point": 0,
+                "y_point": "$y_pos",
+                "width_point": "$r * -2 + $base_w - 1",
+                "height_point": "$h"
+            },
+            "text": {
+                "text": "",
+                "text_align": "LEFT",
+                "text_size": 0.4,
+                "text_col": "#FFFFFF"
+            },
+            "fillCol": "#FFFFFF00"
+        },
+        "e4": {
+            "type": "base",
+            "layout": {
+                "x_point": 0,
+                "y_point": "$y_pos",
+                "width_point": "$r * -2 + $base_w",
+                "height_point": "$h",
+                "r_point": 0.1
+            },
+            "fillCol": "$text_box_back_col"
+        }
+    }
+}

@@ -1,0 +1,85 @@
+{
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
+    "containerAnker": "bottomRight",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+    "button_types": {
+        "maru": "eachRoundedButton"
+    },
+    "colors": {
+        "defaultCol": "#d3d4d3",
+        "pointCol": "#6d6667",
+        "tPointCol": "#b3aea9"
+    },
+    "floats": {
+        "x_pos": 9,
+        "y_pos": 1,
+        "b_size": 0.8,
+        "x_counter": 1,
+        "y_counter": 0
+    },
+    "layouts": {
+        "buttonLayout": {
+            "x_point": "$x_counter * $b_size + $x_pos",
+            "y_point": "$y_counter * $b_size + $y_pos",
+            "width_point": "$b_size",
+            "height_point": "$b_size",
+            "bl_point": "$b_size / 2"
+        }
+    },
+    "images": {
+        "defaultImage": {
+            "size": 0.8,
+            "path": "icon/delete_shape.svg",
+            "color": "$pointCol"
+        },
+        "tImage": {
+            "size": 0.8,
+            "path": "icon/delete_shape.svg",
+            "color": "$tPointCol"
+        }
+    },
+    "strokes": {
+        "defaultStroke": {
+            "stroke_point": 0.05,
+            "color": "$pointCol"
+        },
+        "tStroke": {
+            "stroke_point": 0.05,
+            "color": "$pointCol"
+        }
+    },
+    "elements": {
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$defaultCol",
+                    "stroke": "$defaultStroke",
+                    "image": "$defaultImage"
+                },
+                {
+                    "predicate": "touched",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$defaultCol",
+                    "stroke": "$tStroke",
+                    "image": "$tImage"
+                },
+                {
+                    "predicate": "clicked",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$defaultCol",
+                    "stroke": "$defaultStroke",
+                    "image": "$defaultImage"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,89 @@
+{
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
+    "containerAnker": "topRight",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+    "button_types": {
+        "maru": "eachRoundedButton"
+    },
+    "colors": {
+        "defaultCol": "#4a7083ff"
+    },
+    "floats": {
+        "x_pos": 3,
+        "y_pos": 4,
+        "b_size": 2
+    },
+    "layouts": {
+        "buttonLayout": {
+            "x_point": "$x_pos",
+            "y_point": "$y_pos",
+            "width_point": "$b_size",
+            "height_point": "$b_size",
+            "tr_point": "$b_size / 2",
+            "bl_point": "$b_size / 2"
+        },
+        "textLayout": {
+            "x_point": "$x_pos",
+            "y_point": "$b_size * -3 / 4 + $y_pos",
+            "width_point": 2,
+            "height_point": 0.6
+        }
+    },
+    "strokes": {
+        "buttonStroke": {
+            "stroke_point": 0.2,
+            "color": "#ea8c0a"
+        }
+    },
+    "elements": {
+        "@FILL_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$defaultCol",
+                    "stroke": "$buttonStroke"
+                },
+                {
+                    "predicate": "touched",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$defaultCol",
+                    "stroke": {
+                        "stroke_point": 0.1,
+                        "color": "#f4e9db"
+                    }
+                },
+                {
+                    "predicate": "clicked",
+                    "button_type": "$maru",
+                    "layout": "$buttonLayout",
+                    "fill": "$defaultCol",
+                    "stroke": "$buttonStroke"
+                }
+            ]
+        },
+        "e1": {
+            "type": "text_block",
+            "layout": "$textLayout",
+            "text": {
+                "text": "stroke",
+                "text_align": "CENTER",
+                "text_size": 0.6,
+                "text_col": "#f4e9db"
+            },
+            "fillCol": "#539b46"
+        },
+        "e3": {
+            "type": "base",
+            "layout": "$buttonLayout",
+            "fillCol": "#FFFFFF00",
+            "stroke": "$buttonStroke"
+        }
+    }
+}

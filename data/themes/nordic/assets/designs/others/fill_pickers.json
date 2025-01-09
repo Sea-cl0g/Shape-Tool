@@ -1,0 +1,90 @@
+{
+    "description": "Most basic and easy-to-see color theme",
+    "author": "boo_manKnow",
+    "containerAnker": "topRight",
+    "blockMode": "vertical",
+    "blockAnker": "CORNER",
+    "layer": 10,
+
+
+    "colors": {
+        "noFill": "#FFFFFF00"
+    },
+    "floats": {
+        "x_pos": 0.5,
+        "y_pos": 5.2,
+        "w": 7,
+        "th": 1,
+        "picker": 0.2,
+        "b_x_pos": 5,
+        "b_y_pos": 3,
+        "b_size": 2
+    },
+
+
+    "elements": {
+        "@FILL_HSB_H": {
+            "type": "color_picker",
+            "layout": {
+                "x_point": "$th / 2 + $x_pos",
+                "y_point": "$picker * 1 + $y_pos",
+                "width_point": "$w - $th",
+                "height_point": "$picker"
+            }
+        },
+        "@FILL_HSB_S": {
+            "type": "color_picker",
+            "layout": {
+                "x_point": "$th / 2 + $x_pos",
+                "y_point": "$picker * 3 + $y_pos",
+                "width_point": "$w - $th",
+                "height_point": "$picker"
+            }
+        },
+        "@FILL_HSB_B": {
+            "type": "color_picker",
+            "layout": {
+                "x_point": "$th / 2 + $x_pos",
+                "y_point": "$picker * 5 + $y_pos",
+                "width_point": "$w - $th",
+                "height_point": "$picker"
+            }
+        },
+        "@FILL_ALPHA": {
+            "type": "color_picker",
+            "layout": {
+                "x_point": "$th / 2 + $x_pos",
+                "y_point": "$picker * 7 + $y_pos",
+                "width_point": "$w - $th",
+                "height_point": "$picker"
+            }
+        },
+        "e1": {
+            "type": "base",
+            "layout": {
+                "x_point": "$x_pos",
+                "y_point": "$y_pos",
+                "width_point": "$w",
+                "height_point": "$picker * 9",
+                "r_point": 0.2
+            },
+            "fillCol": "#9c9e9c"
+        },
+        "e2": {
+            "type": "text_block",
+            "layout": {
+                "x_point": "$b_x_pos - 1",
+                "y_point": "$b_size * 3 / 4 + $b_y_pos - 0.3",
+                "width_point": 2,
+                "height_point": 0.6
+            },
+            "text": {
+                "text": "Fill",
+                "text_align": "CENTER",
+                "text_size": 0.6,
+                "text_col": "#f4e9db"
+            },
+            "fillCol": "#c12c1f"
+        }
+    }
+}
