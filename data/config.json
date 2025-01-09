@@ -4,6 +4,7 @@
     "ERROR_SVG_PATH": "data/ERROR_ICON.svg",
     "ERROR_IMAGE_PATH": "data/ERROR_ICON.png",
 
+
     "assets": {
         "main1": {
             "path": "bases/main1.json"
@@ -494,6 +495,7 @@
         },
         "load_theme":{
           "path": "buttons/load_theme.json",
+          "layerMode": "settings",
           "queries": [
               {
                   "Name": "@MAIN_BUTTON",
