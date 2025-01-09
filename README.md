@@ -15,6 +15,10 @@
 
 <br>
 
+詳細は、[**Shape-Tool Docs**](https://docs-shapetool.notion.site/jp)をご確認ください。
+
+<br>
+
 ## 💡Requirement
 このプログラムはprocessing4.3で開発されました。
 
