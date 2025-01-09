@@ -1,16 +1,14 @@
 {
-    "description": "Most basic and easy-to-see color theme",
+    "description": "Warm and welcoming design pack inspired by a Nordic village",
     "author": "boo_manKnow",
     "containerAnker": "center",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 0,
-
-    "floats":{
+    "floats": {
         "canvas": 12,
         "ege": 0.5
     },
-
     "elements": {
         "e1": {
             "type": "canvas",

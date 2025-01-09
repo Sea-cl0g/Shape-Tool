@@ -1,18 +1,16 @@
 {
-    "description": "Most basic and easy-to-see color theme",
+    "description": "It's the default theme pack! Hello!",
     "author": "boo_manKnow",
     "containerAnker": "center",
     "blockMode": "both",
     "blockAnker": "CENTER",
     "layer": 1,
-
-    "floats":{
+    "floats": {
         "y": -6,
         "shadow_dist": 0.1,
         "text_size": 2,
         "w": 11
     },
-
     "elements": {
         "e1": {
             "type": "text_block",

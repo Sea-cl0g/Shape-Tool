@@ -1,11 +1,10 @@
 {
-    "description": "Most basic and easy-to-see color theme",
+    "description": "It's the default theme pack! Hello!",
     "author": "boo_manKnow",
     "containerAnker": "center",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 4,
-
     "floats": {
         "base_w": 14,
         "h": 1,
@@ -16,7 +15,6 @@
     "colors": {
         "text_box_back_col": "#171F27"
     },
-    
     "elements": {
         "@MAIN_TEXT_EDITOR": {
             "type": "text_editor",

@@ -1,24 +1,20 @@
 {
-    "description": "Most basic and easy-to-see color theme",
+    "description": "Warm and welcoming design pack inspired by a Nordic village",
     "author": "boo_manKnow",
     "containerAnker": "center",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 10,
-
-
-    "floats":{
+    "floats": {
         "h": 3,
         "w": 14,
         "y": -7,
         "e": 1,
         "halfE": 0.5
     },
-    "colors":{
+    "colors": {
         "blue": "#26499d"
     },
-
-
     "elements": {
         "zzz": {
             "type": "base",

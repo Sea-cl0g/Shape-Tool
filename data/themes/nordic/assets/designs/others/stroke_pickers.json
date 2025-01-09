@@ -1,12 +1,10 @@
 {
-    "description": "Most basic and easy-to-see color theme",
+    "description": "Warm and welcoming design pack inspired by a Nordic village",
     "author": "boo_manKnow",
     "containerAnker": "topRight",
     "blockMode": "vertical",
     "blockAnker": "CORNER",
     "layer": 10,
-
-
     "colors": {
         "noFill": "#FFFFFF00"
     },
@@ -20,8 +18,6 @@
         "b_y_pos": 3,
         "b_size": 2
     },
-
-
     "elements": {
         "@STROKE_HSB_H": {
             "type": "color_picker",

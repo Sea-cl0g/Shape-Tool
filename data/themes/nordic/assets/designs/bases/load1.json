@@ -1,12 +1,10 @@
 {
-    "description": "Most basic and easy-to-see color theme",
+    "description": "Warm and welcoming design pack inspired by a Nordic village",
     "author": "boo_manKnow",
     "containerAnker": "center",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 0,
-
-
     "elements": {
         "e3": {
             "type": "base",
@@ -18,7 +16,7 @@
             },
             "fillCol": "#ddc5b8"
         },
-        "e2":{
+        "e2": {
             "type": "base",
             "layout": {
                 "x_point": 0,
@@ -28,7 +26,7 @@
             },
             "fillCol": "#5b462b"
         },
-        "e1":{
+        "e1": {
             "type": "image_block",
             "layout": {
                 "x_point": 0,
@@ -43,7 +41,7 @@
             },
             "fillCol": "#a9744300"
         },
-        "e0":{
+        "e0": {
             "type": "text_block",
             "layout": {
                 "x_point": 0,
@@ -52,13 +50,12 @@
                 "height_point": 4
             },
             "text": {
-                "text": 
-                "You can load a project in json format.| Projects can be saved from the SAVE menu.",
+                "text": "You can load a project in json format.| Projects can be saved from the SAVE menu.",
                 "text_align": "CENTER",
                 "text_size": 0.45,
                 "text_col": "#372e27"
             },
-            "fillCol":"#ffffff00"
+            "fillCol": "#ffffff00"
         }
     }
 }
