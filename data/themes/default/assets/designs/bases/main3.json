@@ -3,8 +3,8 @@
     "author": "boo_manKnow",
     "containerAnker": "center",
     "blockMode": "vertical",
-    "blockAnker": "CORNER",
-    "layer": 1,
+    "blockAnker": "CENTER",
+    "layer": -1,
     "elements": {
         "e1": {
             "type": "image_block",
@@ -17,7 +17,7 @@
             "image": {
                 "size": 1,
                 "path": "icon/shape-tool_logo.svg",
-                "color": "#a97443"
+                "color": "#857f8e"
             },
             "fillCol": "#00000000"
         }
