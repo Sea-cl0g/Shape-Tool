@@ -712,7 +712,7 @@ class StyleData{
     void readData(EasyJSONObject styleEJSON, JSONObject variableJSON) {
         buttonType = readButtonType(styleEJSON.safeGetString("button_type"), variableJSON);
         
-        fillCol = readColor(styleEJSON.safeGetString("fill"), variableJSON);
+        fillCol = readColor(styleEJSON.safeGetString("fillCol"), variableJSON);
         layoutData = new LayoutData(styleEJSON.get("layout"), variableJSON);
         strokeData = new StrokeData(styleEJSON.get("stroke"), variableJSON);
         imageData = new ImageData(styleEJSON.get("image"), variableJSON);
