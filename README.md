@@ -1,5 +1,24 @@
-# Shape-Tool
+![header](https://github.com/user-attachments/assets/965a85b3-1d8d-4fb8-831f-d36d9da670bc)
+<br>
+<br>
+## 📌Features
+「Shape-Tool」を利用すると、Processing 4で描画する図形をより直感的にデザインできるようになります。作成した図形は、Processing 4のコードとしてエクスポート可能です。これにより、ゲームなどの開発時に、図形を描画する関数の引数の調整など面倒な作業を省略できるようになります。
 
+- ### プログラミングの学習を支援！
+    Shape-Toolを使えば、図形を描画する際の複雑な引数調整に悩む必要はありません。引数の数値を微調整して理想の形を探るといった、本質的でない作業から解放されます。空いた時間を使って、プログラミングの本来の楽しさであるアイデアの実現やロジックの構築を楽しみましょう！Processing 4のコードとしてエクスポートすることも簡単で、初心者でもすぐに使いこなせます！
+
+- ### 十人十色のツールデザイン
+    GUIのデザインをカスタマイズするのも簡単！ソースコードを変更する必要はなく、`data/themes`ディレクトリにテーマフォルダ（ThemePack）を追加するだけで、自分だけのデザインを作成できます。
+
+- ### プロジェクトを保存する
+    Shape-Toolでは、作成したプロジェクトをJSON形式で保存・ロード可能です。いつでも編集を再開でき、効率的な開発をサポートします。
+
+<br>
+
+## 💡Requirement
+このプログラムはprocessing4.3で開発されました。
+
+<br>
 
 ## 🪪Licence
 The source code is licensed under the [MIT License](https://opensource.org/license/mit).
