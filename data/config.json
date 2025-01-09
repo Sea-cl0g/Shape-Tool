@@ -1,7 +1,7 @@
 {
-  "ERROR_SVG_PATH": "data/ERROR_ICON.svg",
+  "ERROR_SVG_PATH": "data/assets/ERROR_ICON.svg",
   "DEFAULT_THEME_PATH": "data/themes/default",
-  "ERROR_IMAGE_PATH": "data/ERROR_ICON.png",
+  "ERROR_IMAGE_PATH": "data/assets/ERROR_ICON.png",
   "assets": {
     "tgl_fill_pallet_mode": {
       "path": "buttons/tgl_fill_pallet_mode.json",
@@ -505,5 +505,5 @@
       "layerMode": "export"
     }
   },
-  "current_theme": "data/themes/nordic"
+  "current_theme": "data/themes/default"
 }

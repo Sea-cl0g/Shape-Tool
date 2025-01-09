@@ -18,6 +18,7 @@ JSONObject config;
 void setup(){
   size(800, 450);
   surface.setResizable(true);
+  surface.setIcon(loadImage("icon.png"));
 
   selectLineCol = color(#5894f5);
   unselectedLineCol = color(#b348fa);

@@ -100,12 +100,12 @@ class Theme{
         if (safeLoad.canLoad(path)) {
             config.setString("current_theme", path);
             saveJSONObject(config, configPath);
-        }else{
+        } else{
             config.setString("current_theme", config.getString("DEFAULT_THEME_PATH"));
             saveJSONObject(config, configPath);
         }
     }
-        
+    
     //====================================================================================================
     int width_buffer, height_buffer;
     boolean isWindowSizeChanged;
@@ -526,7 +526,7 @@ class Theme{
                 isLoadMode = false;
                 break;	
             
-
+            
             case "FANC_DUPLICATE_SHAPE" :
                 function = () -> canvas.duplicate_layer();
                 break;
@@ -625,8 +625,8 @@ class Theme{
             case "COPY_CODE_TO_CLIPBOARD" :
                 function = () -> canvas.copy_code_to_clipboard();
                 break;	
-
-
+            
+            
             case "FANC_LOAD_THEME" :
                 function = () -> canvas.load_theme();
                 break;	
@@ -824,7 +824,7 @@ class ImageData{
             }
         } else{
             this.size = 0.0;
-            this.svg = loadShape("data/ERROR_ICON.svg");
+            this.svg = loadShape("data/assets/null.svg");
         }
     }
     
