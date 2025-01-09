@@ -270,7 +270,7 @@ class TextBlock extends Base{
 class TextEditor extends TextBlock{
     boolean isSelected = false;
     int cursor;
-    int th = 3;
+    int th = 4;
     int brinkMax = 60;
     int brinkTimer = 0;
     int keyRepeatMax = 10;
