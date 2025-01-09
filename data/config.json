@@ -179,6 +179,14 @@
       "path": "bases/load3.json",
       "layerMode": "load"
     },
+    "load_theme": {
+      "path": "buttons/load_theme.json",
+      "layerMode": "settings",
+      "queries": [{
+        "Query": "FANC_LOAD_THEME",
+        "Name": "@MAIN_BUTTON"
+      }]
+    },
     "load2": {
       "path": "bases/load2.json",
       "layerMode": "load"
@@ -497,5 +505,5 @@
       "layerMode": "export"
     }
   },
-  "current_theme": "data/themes/nordic"
+  "current_theme": "data/themes/default"
 }
