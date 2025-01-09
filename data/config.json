@@ -492,6 +492,15 @@
                 }
             ]
         },
+        "load_theme":{
+          "path": "buttons/load_theme.json",
+          "queries": [
+              {
+                  "Name": "@MAIN_BUTTON",
+                  "Query": "FANC_LOAD_THEME"
+              }
+          ]
+        },
 
 
 
