@@ -419,7 +419,7 @@ class TextEditor extends TextBlock{
 }
 
 //--------------------------------------------------
-class ImageBlock extends Block{
+class ImageBlock extends Base{
     DrawMode drawMode;
     float x, y, w, h;
     ImageData img;
@@ -438,7 +438,7 @@ class ImageBlock extends Block{
     }
     
     void drawImageBlock(){
-drawBase();
+        drawBase();
         fill(0, 255, 0);
         if(img.svgTgl){
             drawSVG(x, y, w, h, img.w_scale, img.h_scale, img.scale, img.svg);

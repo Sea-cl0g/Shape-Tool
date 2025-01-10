@@ -410,7 +410,9 @@ class Theme{
                 case "image_block" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     imageData = new ImageData(elementEJSON.get("image"), variableJSON);
-                    layers.get(layerPos).add(new ImageBlock(16, 16, drawMode, layout, imageData));
+                    stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol", ERROR_COLOR), variableJSON);
+                    layers.get(layerPos).add(new ImageBlock(16, 16, drawMode, layout, imageData, stroke, fillCol));
                     break;
                 case "button" :
                     Runnable function = null;
