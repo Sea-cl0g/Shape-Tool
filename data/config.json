@@ -175,10 +175,6 @@
         "Name": "@MAIN_BUTTON"
       }]
     },
-    "load3": {
-      "path": "bases/load3.json",
-      "layerMode": "load"
-    },
     "load_theme": {
       "path": "buttons/load_theme.json",
       "layerMode": "settings",
@@ -186,6 +182,10 @@
         "Query": "FANC_LOAD_THEME",
         "Name": "@MAIN_BUTTON"
       }]
+    },
+    "load3": {
+      "path": "bases/load3.json",
+      "layerMode": "load"
     },
     "load2": {
       "path": "bases/load2.json",
@@ -505,5 +505,6 @@
       "layerMode": "export"
     }
   },
-  "current_theme": "data/themes/default"
+  "current_theme": "data/themes/classic",
+  "ERROR_COLOR": "#ff00ff00"
 }

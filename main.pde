@@ -11,8 +11,11 @@ boolean hasMouseTouched;
 boolean hasShapeTouched;
 boolean isKeyPressing;
 
+
 String configPath = "data/config.json";
 JSONObject config;
+
+String ERROR_COLOR;
 
 //--------------------------------------------------
 void setup(){
@@ -45,6 +48,7 @@ void softPrepare(){
   safeLoad = new SafeLoad();
 
   theme = new Theme();
+  ERROR_COLOR = config.getString("ERROR_COLOR");
   theme.changeCurrentTheme(config.getString("current_theme"));
 
   canvas = new Canvas();

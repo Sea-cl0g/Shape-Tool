@@ -346,7 +346,7 @@ class Theme{
             switch(elementEJSON.safeGetString("type")) {
                 case "base" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
-                    fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol", ERROR_COLOR), variableJSON);
                     stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
                     layers.get(layerPos).add(new Base(16, 16, drawMode, layout, stroke, fillCol));
                     break;
@@ -354,7 +354,7 @@ class Theme{
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     textData = new TextData(elementEJSON.get("text"), variableJSON);
                     stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
-                    fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol", ERROR_COLOR), variableJSON);
                     if (isElementQuery) {
                         if (elementName.equals("@MAIN_TEXT_BLOCK")) {
                             PointString pointerText = new PointString();
@@ -374,7 +374,7 @@ class Theme{
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
                     textData = new TextData(elementEJSON.get("text"), variableJSON);
                     stroke = new StrokeData(elementEJSON.get("stroke"), variableJSON);
-                    fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol", ERROR_COLOR), variableJSON);
                     PointString pointerText = new PointString();
                     if (isElementQuery) {
                         if (elementName.equals("@MAIN_TEXT_EDITOR")) {
@@ -399,12 +399,12 @@ class Theme{
                     break;
                 case "canvas" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
-                    fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol", ERROR_COLOR), variableJSON);
                     layers.get(layerPos).add(new CanvasBlock(16, 16, drawMode, layout, fillCol));
                     break;	
                 case "easel" :
                     layout = new LayoutData(elementEJSON.get("layout"), variableJSON);
-                    fillCol = readColor(elementEJSON.safeGetString("fillCol"), variableJSON);
+                    fillCol = readColor(elementEJSON.safeGetString("fillCol", ERROR_COLOR), variableJSON);
                     layers.get(layerPos).add(new Easel(16, 16, drawMode, layout, fillCol));
                     break;
                 case "image_block" :
@@ -714,7 +714,7 @@ class StyleData{
     void readData(EasyJSONObject styleEJSON, JSONObject variableJSON) {
         buttonType = readButtonType(styleEJSON.safeGetString("button_type"), variableJSON);
         
-        fillCol = readColor(styleEJSON.safeGetString("fillCol"), variableJSON);
+        fillCol = readColor(styleEJSON.safeGetString("fillCol", ERROR_COLOR), variableJSON);
         layoutData = new LayoutData(styleEJSON.get("layout"), variableJSON);
         strokeData = new StrokeData(styleEJSON.get("stroke"), variableJSON);
         imageData = new ImageData(styleEJSON.get("image"), variableJSON);
@@ -785,7 +785,7 @@ class StrokeData{
                 strokeEJSON = new EasyJSONObject();
             }
             this.stroke_point = readFloat(strokeEJSON.get("stroke_point"), variableJSON);
-            this.strokeCol = readColor(strokeEJSON.safeGetString("color"), variableJSON);
+            this.strokeCol = readColor(strokeEJSON.safeGetString("color", ERROR_COLOR), variableJSON);
         }
     }
 }
@@ -815,16 +815,16 @@ class ImageData{
             this.scale  = readFloat(imageEJSON.get("scale"), variableJSON);
             this.w_scale = readFloat(imageEJSON.get("w_scale"), variableJSON);
             this.h_scale = readFloat(imageEJSON.get("h_scale"), variableJSON);
-
-scale = scale != 0.0 ? scale : 1.0;
+            
+            scale = scale != 0.0 ? scale : 1.0;
             w_scale = w_scale != 0.0 ? w_scale : 1.0;
             h_scale = h_scale != 0.0 ? h_scale : 1.0;
-
+            
             String path = imageEJSON.safeGetString("path");
             if (path.endsWith(".svg")) {
                 this.svg = safeLoad.svgLoad(path);
                 if (!imageEJSON.isNull("color")) {
-                    color overrideCol = readColor(imageEJSON.safeGetString("color"), variableJSON);
+                    color overrideCol = readColor(imageEJSON.safeGetString("color", ERROR_COLOR), variableJSON);
                     changeImageColor(this.svg, overrideCol);
                 }
             } else{
@@ -872,7 +872,7 @@ class ShadowData{
             }
             this.shadowMode = shadowEJSON.safeGetString("shadowMode");
             this.shadowDistPoint = readFloat(shadowEJSON.get("shadowDistPoint"), variableJSON);
-            this.shadowCol = readColor(shadowEJSON.safeGetString("color"), variableJSON);
+            this.shadowCol = readColor(shadowEJSON.safeGetString("color", ERROR_COLOR), variableJSON);
         }
     }
 }
