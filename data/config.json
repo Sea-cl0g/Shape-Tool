@@ -1,8 +1,9 @@
 {
-    "current_theme": "data/themes/red",
+    "current_theme": "data/themes/default",
     "DEFAULT_THEME_PATH": "data/themes/default",
     "ERROR_SVG_PATH": "data/ERROR_ICON.svg",
     "ERROR_IMAGE_PATH": "data/ERROR_ICON.png",
+    "ERROR_COLOR": "#ff00ff",
 
 
     "assets": {
