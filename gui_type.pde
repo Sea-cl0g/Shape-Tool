@@ -422,7 +422,9 @@ class TextEditor extends TextBlock{
 class ImageBlock extends Block{
     DrawMode drawMode;
     float x, y, w, h;
-    ImageData imageData;
+    ImageData img;
+    
+
     ImageBlock(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, ImageData imageData){
         super(splitW, splitH);
         setContainerAnker(drawMode.containerAnker);
@@ -432,14 +434,14 @@ class ImageBlock extends Block{
         this.y = layoutData.y_point;
         this.w = layoutData.width_point;
         this.h = layoutData.height_point;
-        this.imageData = imageData;
+        this.img = imageData;
     }
     
     void drawImageBlock(){
-        if(imageData.svgTgl){
-            drawSVG(x, y, w, h, imageData.size, imageData.svg);
+        if(img.svgTgl){
+            drawSVG(x, y, w, h, img.w_scale, img.h_scale, img.svg);
         }else{
-            drawImage(x, y, w, h, imageData.size, imageData.image);
+            drawImage(x, y, w, h, img.w_scale, img.h_scale, img.image);
         }
     }
     
@@ -510,7 +512,7 @@ class Button extends ButtonTemplate{
         }
         LayoutData layoutData = style.layoutData;
         StrokeData strokeData = style.strokeData;
-        ImageData imageData = style.imageData;
+        ImageData img = style.imageData;
         ShadowData shadowData = style.shadowData;
 
         setContainerAnker(drawMode.containerAnker);
@@ -556,18 +558,17 @@ class Button extends ButtonTemplate{
             break;	
         }
 
-        if(imageData.svgTgl){
+        if(img.svgTgl){
             drawSVG(
                 layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                imageData.size, imageData.svg
+                img.w_scale, img.h_scale, img.svg
             );
         }else{
             drawImage(
                 layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                imageData.size, imageData.image
+                img.w_scale, img.h_scale, img.image
             );
         }
-        
     }
 }
 

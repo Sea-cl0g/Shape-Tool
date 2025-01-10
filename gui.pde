@@ -217,22 +217,26 @@ class Block extends Container{
     }
 
     // 画像の表示
-    void drawSVG(float x, float y, float w, float h, float scale, PShape svg){
+    void drawSVG(float x, float y, float w, float h, float w_scale, float h_scale, PShape svg){
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
 
-        PVector imageSize = getContainerBlockSize(w * scale, h * scale);
-        PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
-        shape(svg, pos.x + speaceSize.x, pos.y + speaceSize.y, imageSize.x, imageSize.y);
+        float squareSize = min(size.x, size.y);
+        PVector imageGSize = new PVector(squareSize * w_scale, squareSize * h_scale);
+        PVector imageGPos = new PVector(pos.x + size.x / 2 - imageGSize.x / 2, pos.y + size.y / 2 - imageGSize.y / 2);
+
+        shape(svg, imageGPos.x, imageGPos.y, imageGSize.x, imageGSize.y);
     }
 
-    void drawImage(float x, float y, float w, float h, float scale, PImage image){
+    void drawImage(float x, float y, float w, float h, float w_scale, float h_scale, PImage image){
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
 
-        PVector imageSize = getContainerBlockSize(w * scale, h * scale);
-        PVector speaceSize = getContainerBlockSize((w - w * scale) / 2, (h - h * scale) / 2);
-        image(image, pos.x + speaceSize.x, pos.y + speaceSize.y, imageSize.x, imageSize.y);
+        float squareSize = min(size.x, size.y);
+        PVector imageGSize = new PVector(squareSize * w_scale, squareSize * h_scale);
+        PVector imageGPos = new PVector(pos.x + size.x / 2 - imageGSize.x / 2, pos.y + size.y / 2 - imageGSize.y / 2);
+
+        image(image, imageGPos.x, imageGPos.y, imageGSize.x, imageGSize.y);
     }
 
 

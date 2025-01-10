@@ -790,7 +790,7 @@ class StrokeData{
 
 //--------------------------------------------------
 class ImageData{
-    float size;
+    float w_scale, h_scale;
     PShape svg;
     PImage image;
     boolean svgTgl = true;
@@ -810,7 +810,13 @@ class ImageData{
             } else{
                 imageEJSON = new EasyJSONObject();
             }
-            this.size = readFloat(imageEJSON.get("size"), variableJSON);
+            float scale = readFloat(imageEJSON.get("scale"), variableJSON);
+            this.w_scale = readFloat(imageEJSON.get("w_scale"), variableJSON);
+            this.h_scale = readFloat(imageEJSON.get("h_scale"), variableJSON);
+
+            w_scale = w_scale != 0.0 ? w_scale : scale != 0.0 ? scale : 1.0;
+            h_scale = h_scale != 0.0 ? h_scale : scale != 0.0 ? scale : 1.0;
+
             String path = imageEJSON.safeGetString("path");
             if (path.endsWith(".svg")) {
                 this.svg = safeLoad.svgLoad(path);
@@ -823,7 +829,6 @@ class ImageData{
                 this.image = safeLoad.imageLoad(path);
             }
         } else{
-            this.size = 0.0;
             this.svg = loadShape("data/assets/null.svg");
         }
     }
