@@ -5,11 +5,9 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": -1,
-
-    "floats":{
+    "floats": {
         "x": -4
     },
-
     "elements": {
         "e1": {
             "type": "image_block",
@@ -20,7 +18,7 @@
                 "height_point": 8
             },
             "image": {
-                "size": 1,
+                "scale": 1,
                 "path": "icon/shape-tool_logo.svg",
                 "color": "#857f8e"
             },

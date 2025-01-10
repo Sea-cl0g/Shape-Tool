@@ -35,7 +35,7 @@
                 "height_point": 12
             },
             "image": {
-                "size": 1,
+                "scale": 1,
                 "path": "icon/sign.svg",
                 "color": "#a97443"
             },
