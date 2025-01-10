@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="97.48156"
+   height="97.773994"
+   viewBox="0 0 97.48156 97.773994"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-11.259224,-11.096655)">
+    <path
+       style="font-size:131.167px;font-family:Century;-inkscape-font-specification:Century;text-align:center;letter-spacing:0px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:3.04938;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:7.3"
+       d="m 12.783914,12.621345 h 46.689819 q 15.819458,0 24.145489,7.173195 8.326031,7.173196 8.326031,18.765593 0,11.592396 -7.685567,17.676804 -10.567654,8.390077 -26.066881,8.390077 H 41.284558 v 32.343427 q 0,2.818041 1.344974,4.034919 1.793299,1.53712 4.80348,1.53712 h 10.759793 v 4.80348 H 12.783914 v -4.80348 h 9.478866 q 2.818041,0 4.098969,-1.08879 1.344974,-1.15284 1.344974,-3.074229 V 22.868767 q 0,-2.882087 -1.665206,-4.163015 -1.665206,-1.280928 -6.276546,-1.280928 h -6.981057 z m 28.500644,47.330282 h 12.873325 q 12.23286,0 17.612757,-5.059665 5.443943,-5.123711 5.443943,-16.8442 0,-8.197938 -2.433763,-12.553093 -2.433763,-4.419201 -7.173195,-6.532732 -4.675387,-2.113531 -15.43518,-2.113531 -7.10915,0 -9.030542,1.344975 -1.857345,1.344974 -1.857345,4.675386 z"
+       id="text1"
+       aria-label="P" />
+    <path
+       style="font-size:42.6667px;font-family:Century;-inkscape-font-specification:Century;text-align:center;letter-spacing:0px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:7.3"
+       d="M 70.432418,96.761668 47.494901,87.094994 v -2.500002 l 22.937517,-9.64584 v 3.000002 l -19.208347,7.875006 19.208347,7.916672 z m 13.31251,-27.270854 -9.166674,30.812526 h -2.687502 l 9.187507,-30.812526 z m 1.458332,5.458338 22.93752,9.666673 v 2.500002 l -22.93752,9.645841 v -3.000002 l 19.20835,-7.89584 -19.20835,-7.916672 z"
+       id="text2"
+       aria-label="&lt;/&gt;" />
+  </g>
+</svg>

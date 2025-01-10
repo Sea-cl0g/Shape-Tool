@@ -31,12 +31,12 @@
     },
     "images": {
         "defaultImage": {
-            "size": 0.8,
+            "scale": 0.8,
             "path": "icon/lower_layer.svg",
             "color": "$pointCol"
         },
         "tImage": {
-            "size": 0.8,
+            "scale": 0.8,
             "path": "icon/lower_layer.svg",
             "color": "$tPointCol"
         }

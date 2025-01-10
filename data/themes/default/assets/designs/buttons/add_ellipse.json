@@ -22,7 +22,7 @@
     },
     "images": {
         "main": {
-            "size": 0.8,
+            "scale": 0.8,
             "path": "icon/add_ellipse.svg"
         }
     },

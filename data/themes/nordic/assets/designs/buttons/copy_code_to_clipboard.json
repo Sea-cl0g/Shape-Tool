@@ -34,7 +34,7 @@
                     "layout": "$buttonLayout",
                     "fillCol": "$buttonFill",
                     "image": {
-                        "size": 0.8,
+                        "scale": 0.8,
                         "path": "icon/copy_code_to_clipboard.svg",
                         "color": "$iconFill"
                     }
@@ -45,7 +45,7 @@
                     "layout": "$buttonLayout",
                     "fillCol": "$buttonFill",
                     "image": {
-                        "size": 0.8,
+                        "scale": 0.8,
                         "path": "icon/copy_code_to_clipboard.svg",
                         "color": "$iconTouched"
                     }
@@ -56,7 +56,7 @@
                     "layout": "$buttonLayout",
                     "fillCol": "$buttonFill",
                     "image": {
-                        "size": 0.8,
+                        "scale": 0.8,
                         "path": "icon/copy_code_to_clipboard.svg",
                         "color": "$buttonFill"
                     }

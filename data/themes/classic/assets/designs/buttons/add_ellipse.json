@@ -1,0 +1,68 @@
+{
+    "description": "It's the default theme pack! Hello!",
+    "author": "boo_manKnow",
+    "containerAnker": "topLeft",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+    "button_types": {
+        "maru": "roundedSquareButton"
+    },
+    "colors": {
+        "defaultCol": "#ffffff00",
+        "touchedCol": "#ffffff22"
+    },
+    "layouts": {
+        "defaultLayout": {
+            "x_point": 1,
+            "y_point": 6,
+            "width_point": 1.8,
+            "height_point": 1.8
+        },
+        "touchedLayout": {
+            "x_point": 1,
+            "y_point": 6,
+            "width_point": 1.6,
+            "height_point": 1.6
+        }
+    },
+    "images": {
+        "main": {
+            "scale": 0.8,
+            "path": "icon/add_ellipse.svg",
+            "color": "#ffffff"
+        }
+    },
+    "elements": {
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "button_type": "$maru",
+                    "layout": "$defaultLayout",
+                    "fillCol": "$defaultCol",
+                    "image": "$main"
+                },
+                {
+                    "predicate": "touched",
+                    "button_type": "$maru",
+                    "layout": "$touchedLayout",
+                    "fillCol": "$touchedCol",
+                    "stroke": {
+                        "stroke_point": 0.1,
+                        "color": "#333333"
+                    },
+                    "image": "$main"
+                },
+                {
+                    "predicate": "clicked",
+                    "button_type": "$maru",
+                    "layout": "$defaultLayout",
+                    "fillCol": "$defaultCol",
+                    "image": "$main"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,80 @@
+{
+    "description": "It's the default theme pack! Hello!",
+    "author": "boo_manKnow",
+    "containerAnker": "topRight",
+    "blockMode": "vertical",
+    "blockAnker": "CORNER",
+    "layer": 2,
+    "button_types": {
+        "maru": "squareButton"
+    },
+    "colors": {
+        "defaultCol": "#ffffff22",
+        "touchedCol": "#ffffff11",
+        "clickedCol": "#ffffff33"
+    },
+    "floats": {
+        "baseW": 10,
+        "count": 0,
+        "th": 0.1,
+        "h": 1
+    },
+    "layouts": {
+        "defaultLayout": {
+            "x_point": "$baseW / 4 * $count",
+            "y_point": 1,
+            "width_point": "$baseW / 4",
+            "height_point": "$h"
+        },
+        "touchedLayout": {
+            "x_point": "$baseW / 4 * $count",
+            "y_point": 1,
+            "width_point": "$baseW / 4",
+            "height_point": "$h - $th"
+        }
+    },
+    "images": {
+        "main": {
+            "scale": 0.8,
+            "path": "icon/settings.svg",
+            "color": "#ffffff"
+        }
+    },
+    "shadows": {
+        "defaultShadow": {
+            "shadowMode": "BOTTOM",
+            "shadowDistPoint": 0.1,
+            "color": "#222222"
+        }
+    },
+    "elements": {
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "button_type": "$maru",
+                    "layout": "$defaultLayout",
+                    "fillCol": "$defaultCol",
+                    "shadow": "$defaultShadow",
+                    "image": "$main"
+                },
+                {
+                    "predicate": "touched",
+                    "button_type": "$maru",
+                    "layout": "$defaultLayout",
+                    "fillCol": "$touchedCol",
+                    "shadow": "$defaultShadow",
+                    "image": "$main"
+                },
+                {
+                    "predicate": "clicked",
+                    "button_type": "$maru",
+                    "layout": "$touchedLayout",
+                    "fillCol": "$clickedCol",
+                    "image": "$main"
+                }
+            ]
+        }
+    }
+}
