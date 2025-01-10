@@ -222,7 +222,7 @@ class Block extends Container{
         PVector pos = getObjectPos(x, y, w, h, size);
 
         float squareSize = min(size.x, size.y);
-        PVector imageGSize = new PVector(squareSize * w_scale, squareSize * h_scale);
+        PVector imageGSize = new PVector(squareSize * w_scale * scale, squareSize * h_scale * scale);
         PVector imageGPos = new PVector(pos.x + size.x / 2 - imageGSize.x / 2, pos.y + size.y / 2 - imageGSize.y / 2);
 
         shape(svg, imageGPos.x, imageGPos.y, imageGSize.x, imageGSize.y);
