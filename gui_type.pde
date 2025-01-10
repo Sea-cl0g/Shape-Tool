@@ -425,8 +425,8 @@ class ImageBlock extends Block{
     ImageData img;
     
 
-    ImageBlock(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, ImageData imageData){
-        super(splitW, splitH);
+    ImageBlock(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, ImageData imageData, StrokeData strokeData, color fillCol){
+        super(splitW, splitH, drawMode, layoutData, strokeData, fillCol);
         setContainerAnker(drawMode.containerAnker);
         setBlockMode(drawMode.blockMode);
         setBlockAnker(drawMode.blockAnker);
@@ -438,10 +438,12 @@ class ImageBlock extends Block{
     }
     
     void drawImageBlock(){
+drawBase();
+        fill(0, 255, 0);
         if(img.svgTgl){
-            drawSVG(x, y, w, h, img.w_scale, img.h_scale, img.svg);
+            drawSVG(x, y, w, h, img.w_scale, img.h_scale, img.scale, img.svg);
         }else{
-            drawImage(x, y, w, h, img.w_scale, img.h_scale, img.image);
+            drawImage(x, y, w, h, img.w_scale, img.h_scale, img.scale, img.image);
         }
     }
     
@@ -561,12 +563,12 @@ class Button extends ButtonTemplate{
         if(img.svgTgl){
             drawSVG(
                 layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                img.w_scale, img.h_scale, img.svg
+                img.w_scale, img.h_scale, img.scale, img.svg
             );
         }else{
             drawImage(
                 layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                img.w_scale, img.h_scale, img.image
+                img.w_scale, img.h_scale, img.scale, img.image
             );
         }
     }

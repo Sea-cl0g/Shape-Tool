@@ -217,7 +217,7 @@ class Block extends Container{
     }
 
     // 画像の表示
-    void drawSVG(float x, float y, float w, float h, float w_scale, float h_scale, PShape svg){
+    void drawSVG(float x, float y, float w, float h, float w_scale, float h_scale, float scale, PShape svg){
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
 
@@ -228,12 +228,12 @@ class Block extends Container{
         shape(svg, imageGPos.x, imageGPos.y, imageGSize.x, imageGSize.y);
     }
 
-    void drawImage(float x, float y, float w, float h, float w_scale, float h_scale, PImage image){
+    void drawImage(float x, float y, float w, float h, float w_scale, float h_scale, float scale, PImage image){
         PVector size = getContainerBlockSize(w, h);
         PVector pos = getObjectPos(x, y, w, h, size);
 
         float squareSize = min(size.x, size.y);
-        PVector imageGSize = new PVector(squareSize * w_scale, squareSize * h_scale);
+        PVector imageGSize = new PVector(squareSize * w_scale * scale, squareSize * h_scale * scale);
         PVector imageGPos = new PVector(pos.x + size.x / 2 - imageGSize.x / 2, pos.y + size.y / 2 - imageGSize.y / 2);
 
         image(image, imageGPos.x, imageGPos.y, imageGSize.x, imageGSize.y);
