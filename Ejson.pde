@@ -25,7 +25,7 @@ class EasyJSONObject{
     return childJsonArray == null ? new EasyJSONArray() : new EasyJSONArray(childJsonArray);
   }
 
-  // JSONObjectクラス関数のオーバーライド
+  // オーバーライド
   Object get(String key){
     return jsonObj.get(key);
   }
@@ -69,7 +69,7 @@ class EasyJSONArray extends JSONArray{
     return childJsonArray == null ? new EasyJSONArray() : new EasyJSONArray(childJsonArray);
   }
 
-  // JSONObjectクラス関数のオーバーライド
+  // オーバーライド
   int size(){
     return jsonArray.size();
   }
