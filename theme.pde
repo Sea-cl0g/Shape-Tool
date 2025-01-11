@@ -762,7 +762,7 @@ class LayoutData{
 
 //--------------------------------------------------
 class StrokeData{
-    float stroke_point;
+    float strokePoint;
     color strokeCol;
     
     StrokeData(Object strokeObj, JSONObject variableJSON) {
@@ -780,8 +780,11 @@ class StrokeData{
             } else{
                 strokeEJSON = new EasyJSONObject();
             }
-            this.stroke_point = readFloat(strokeEJSON.get("stroke_point"), variableJSON);
+            this.strokePoint = readFloat(strokeEJSON.get("stroke_point"), variableJSON);
             this.strokeCol = readColor(strokeEJSON.safeGetString("color", ERROR_COLOR), variableJSON);
+        }else{
+            strokePoint = 0.0;
+            strokeCol = color(0, 0, 0, 0);
         }
     }
 }
@@ -869,6 +872,9 @@ class ShadowData{
             this.shadowMode = shadowEJSON.safeGetString("shadowMode");
             this.shadowDistPoint = readFloat(shadowEJSON.get("shadowDistPoint"), variableJSON);
             this.shadowCol = readColor(shadowEJSON.safeGetString("color", ERROR_COLOR), variableJSON);
+        }else{
+            this.shadowDistPoint = 0.0;
+            this.shadowCol = color(0, 0, 0, 0);
         }
     }
 }
