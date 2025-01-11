@@ -15,7 +15,7 @@
 
 <br>
 
-詳細は、[**Shape-Tool Docs**](https://docs-shapetool.notion.site/jp)をご確認ください。
+詳細は、[**Shape-Tool Docs [日本語版]**](https://docs-shapetool.notion.site/jp)をご確認ください。
 
 <br>
 
