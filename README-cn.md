@@ -15,7 +15,7 @@
 
 <br>
 
-更多信息，请参阅 [Shape-Tool Docs [中文版]](https://docs-shapetool.notion.site/cn)。
+更多信息，请参阅 [**Shape-Tool Docs [中文版]**](https://docs-shapetool.notion.site/cn)。
 
 <br>
 
