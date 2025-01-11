@@ -722,7 +722,7 @@ class StyleData{
 //--------------------------------------------------
 class LayoutData{
     float x_point, y_point, width_point, height_point;
-    float r_point, tl_point, tr_point, br_point, bl_point;
+    float tl_point, tr_point, br_point, bl_point;
     
     LayoutData(Object layoutObj, JSONObject variableJSON) {
         if (layoutObj != null) {
@@ -739,15 +739,23 @@ class LayoutData{
             } else{
                 layoutEJSON = new EasyJSONObject();
             }
+            
             this.x_point = readFloat(layoutEJSON.get("x_point"), variableJSON);
             this.y_point = readFloat(layoutEJSON.get("y_point"), variableJSON);
             this.width_point = readFloat(layoutEJSON.get("width_point"), variableJSON);
             this.height_point = readFloat(layoutEJSON.get("height_point"), variableJSON);
-            this.r_point = readFloat(layoutEJSON.get("r_point"), variableJSON);
+
+            float r_point = readFloat(layoutEJSON.get("r_point"), variableJSON);
             this.tl_point = readFloat(layoutEJSON.get("tl_point"), variableJSON);
             this.tr_point = readFloat(layoutEJSON.get("tr_point"), variableJSON);
             this.br_point = readFloat(layoutEJSON.get("br_point"), variableJSON);
             this.bl_point = readFloat(layoutEJSON.get("bl_point"), variableJSON);
+            if(r_point != 0.0){
+                tl_point = tl_point != 0.0 ? tl_point : r_point;
+                tr_point = tr_point != 0.0 ? tr_point : r_point;
+                br_point = br_point != 0.0 ? br_point : r_point;
+                bl_point = bl_point != 0.0 ? bl_point : r_point;
+            }
         }
     }
 }

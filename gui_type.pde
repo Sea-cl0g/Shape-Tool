@@ -614,7 +614,6 @@ class Base extends Block{
         this.y = layoutData.y_point;
         this.w = layoutData.width_point;
         this.h = layoutData.height_point;
-        this.r = layoutData.r_point;
         this.tl = layoutData.tl_point;
         this.tr = layoutData.tr_point;
         this.br = layoutData.br_point;
@@ -622,12 +621,6 @@ class Base extends Block{
         this.strokeCol = strokeData.strokeCol;
         this.strokeW = strokeData.strokePoint;
         
-        if(r != 0.0){
-            tl = tl != 0.0 ? tl : r;
-            tr = tr != 0.0 ? tr : r;
-            br = br != 0.0 ? br : r;
-            bl = bl != 0.0 ? bl : r;
-        }
     }
 
     void drawBase(){
