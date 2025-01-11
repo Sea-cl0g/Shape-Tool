@@ -136,10 +136,11 @@ class ColorPicker extends Block{
                 fill(colElement1, colElement2, colElement3, i);
             }
             
+            int li = max - i - 1;
             if(drawMode.blockAnker.equals("CORNER")){
-                box(x, y, w - eachWidth * i, h);
+                box(x + eachWidth * li, y, eachWidth * 2, h);
             }else{
-                box(x - w / 2, y - h / 2, w - eachWidth * i, h);
+                box(x + eachWidth * li - w / 2, y - h / 2, eachWidth * 2, h);
             }
         }
         colorMode(RGB, 255, 255, 255);
