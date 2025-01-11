@@ -468,8 +468,8 @@ class Button extends Block{
     
     Button(int splitW, int splitH, DrawMode drawMode, StyleData normal, StyleData touched, StyleData clicked, Runnable onClick){
         super(splitW, splitH);
-        this.normal = normal;
         this.drawMode = drawMode;
+        this.normal = normal;
         this.touched = touched;
         this.clicked = clicked;
         this.onClick = onClick;
@@ -507,7 +507,6 @@ class Button extends Block{
     }
 
     void display(StyleData style){
-        String buttonType = style.buttonType;
         color fillCol;
         color[] canvasPallet = canvas.colorPallet;
         if(0 <= colorIndex && colorIndex < canvasPallet.length){
@@ -515,11 +514,17 @@ class Button extends Block{
         }else{
             fillCol = style.fillCol;
         }
-        LayoutData layoutData = style.layoutData;
-        StrokeData strokeData = style.strokeData;
-        ImageData img = style.imageData;
-        ShadowData shadowData = style.shadowData;
 
+        LayoutData layoutData = style.layoutData;
+        float x = layoutData.x_point;
+        float y = layoutData.y_point;
+        float w = layoutData.width_point;
+        float h = layoutData.height_point;
+        float tl = layoutData.tl_point;
+        float tr = layoutData.tr_point;
+        float br = layoutData.br_point;
+        float bl = layoutData.bl_point;
+        
         setContainerAnker(drawMode.containerAnker);
         setBlockMode(drawMode.blockMode);
         setBlockAnker(drawMode.blockAnker);

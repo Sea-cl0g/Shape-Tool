@@ -704,7 +704,6 @@ class DrawMode{
 
 //--------------------------------------------------
 class StyleData{
-    String buttonType;
     color fillCol;
     LayoutData layoutData;
     StrokeData strokeData;
@@ -712,22 +711,11 @@ class StyleData{
     ShadowData shadowData;
     
     void readData(EasyJSONObject styleEJSON, JSONObject variableJSON) {
-        buttonType = readButtonType(styleEJSON.safeGetString("button_type"), variableJSON);
-        
         fillCol = readColor(styleEJSON.safeGetString("fillCol", ERROR_COLOR), variableJSON);
         layoutData = new LayoutData(styleEJSON.get("layout"), variableJSON);
         strokeData = new StrokeData(styleEJSON.get("stroke"), variableJSON);
         imageData = new ImageData(styleEJSON.get("image"), variableJSON);
         shadowData = new ShadowData(styleEJSON.get("shadow"), variableJSON);
-    }
-    
-    String readButtonType(String buttonTypeData, JSONObject variableJSON) {
-        if (buttonTypeData.startsWith("$")) {
-            String variableName = buttonTypeData.substring(1);
-            return variableJSON.getJSONObject("button_types").getString(variableName);
-            
-        }
-        return buttonTypeData;
     }
 }
 
