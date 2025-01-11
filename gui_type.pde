@@ -5,7 +5,6 @@ class ColorPicker extends Block{
     int colorPalletIndex;
     String pickerMode;
     int colorMax = 255;
-    float pickNum = 125;
 
     ColorPicker(int splitW, int splitH, DrawMode drawMode, LayoutData layoutData, int colorPalletIndex, String pickerMode){
         super(splitW, splitH);
@@ -24,21 +23,6 @@ class ColorPicker extends Block{
         this.br = layoutData.br_point;
         this.bl = layoutData.bl_point;
         this.colorPalletIndex = colorPalletIndex;
-        if(pickerMode.endsWith("HSB_H")){
-            pickNum = hue(canvas.colorPallet[colorPalletIndex]);
-        }else if(pickerMode.endsWith("HSB_S")){
-            pickNum = saturation(canvas.colorPallet[colorPalletIndex]);
-        }else if(pickerMode.endsWith("HSB_B")){
-            pickNum = brightness(canvas.colorPallet[colorPalletIndex]);
-        }else if(pickerMode.endsWith("RGB_R")){
-            pickNum = red(canvas.colorPallet[colorPalletIndex]);
-        }else if(pickerMode.endsWith("RGB_G")){
-            pickNum = green(canvas.colorPallet[colorPalletIndex]);
-        }else if(pickerMode.endsWith("RGB_B")){
-            pickNum = blue(canvas.colorPallet[colorPalletIndex]);
-        }else if(pickerMode.endsWith("ALPHA")){
-            pickNum = alpha(canvas.colorPallet[colorPalletIndex]);
-        }
     }
 
     void drawColPicker(){
@@ -51,9 +35,6 @@ class ColorPicker extends Block{
         boolean isTouched = isPointInBox(x, y, w, h, mouseX, mouseY);
         if(!hasMouseTouched && isTouched){
             if(mousePressed && mouseButton == LEFT){
-                PVector size = getContainerBlockSize(w, h);
-                PVector pos = getObjectPos(x, y, w, h, size);
-                pickNum = map(mouseX, pos.x, pos.x + size.x, 0, colorMax + 1);
                 canvas.colorPallet[colorPalletIndex] = getPickedColor();
                 if(colorPalletIndex == 0){
                     fillColorJustChanged = true;
@@ -71,6 +52,10 @@ class ColorPicker extends Block{
         float colElement2;
         float colElement3;
         float colElement4;
+
+        PVector size = getContainerBlockSize(w, h);
+        PVector pos = getObjectPos(x, y, w, h, size);
+        float pickNum = map(mouseX, pos.x, pos.x + size.x, 0, colorMax + 1);
         if(pickerMode.startsWith("HSB")){
             colElement1 = hue(canvas.colorPallet[colorPalletIndex]);
             colElement2 = saturation(canvas.colorPallet[colorPalletIndex]);
@@ -105,6 +90,7 @@ class ColorPicker extends Block{
         float colElement3;
         float colElement4;
         noStroke();
+        println(pickerMode);
         if(pickerMode.startsWith("HSB")){
             colElement1 = hue(canvas.colorPallet[colorPalletIndex]);
             colElement2 = saturation(canvas.colorPallet[colorPalletIndex]);
@@ -127,11 +113,11 @@ class ColorPicker extends Block{
             }else if(pickerMode.endsWith("HSB_B")){
                 fill(0, 0, i, colElement4);
             }else if(pickerMode.endsWith("RGB_R")){
-                fill(i, colElement2, colElement3, colElement4);
+                fill(i, 0, 0, 255);
             }else if(pickerMode.endsWith("RGB_G")){
-                fill(colElement1, i, colElement2, colElement4);
+                fill(0, i, 0, 255);
             }else if(pickerMode.endsWith("RGB_B")){
-                fill(colElement1, colElement2, i, colElement4);
+                fill(0, 0, i, 255);
             }else if(pickerMode.endsWith("ALPHA")){
                 fill(colElement1, colElement2, colElement3, i);
             }
@@ -150,6 +136,28 @@ class ColorPicker extends Block{
     void drawPickPoint(){
         PVector colorPickerSize = getContainerBlockSize(w, h);
         PVector colorPickerPos = getObjectPos(x, y, w, h, colorPickerSize);
+        
+        float pickNum = 0;
+        if(pickerMode.endsWith("HSB_H")){
+            colorMode(HSB, 255, 255, 255);
+            pickNum = hue(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("HSB_S")){
+            colorMode(HSB, 255, 255, 255);
+            pickNum = saturation(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("HSB_B")){
+            colorMode(HSB, 255, 255, 255);
+            pickNum = brightness(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("RGB_R")){
+            pickNum = red(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("RGB_G")){
+            pickNum = green(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("RGB_B")){
+            pickNum = blue(canvas.colorPallet[colorPalletIndex]);
+        }else if(pickerMode.endsWith("ALPHA")){
+            pickNum = alpha(canvas.colorPallet[colorPalletIndex]);
+        }
+        colorMode(RGB, 255, 255, 255);
+
         float pointX = map(pickNum, 0, colorMax, colorPickerPos.x, colorPickerPos.x + colorPickerSize.x);
         fill(255);
         stroke(0);
