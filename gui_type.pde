@@ -465,7 +465,7 @@ class ImageBlock extends Base{
 }
 
 //--------------------------------------------------
-class Button extends ButtonTemplate{
+class Button extends Block{
     DrawMode drawMode;
     StyleData normal, touched, clicked;
     Runnable onClick;
@@ -530,55 +530,68 @@ class Button extends ButtonTemplate{
         setBlockMode(drawMode.blockMode);
         setBlockAnker(drawMode.blockAnker);
 
-        setFillCol(fillCol);
-        setShadowCol(shadowData.shadowCol);
-        setStrokeCol(strokeData.strokeCol);
-        setStrokePoint(strokeData.stroke_point);
-        switch (buttonType){
-            case "squareButton" :
-                drawSquareButton(
-                    layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                    shadowData.shadowMode, shadowData.shadowDistPoint
-                );
-            break;
-            case "roundedSquareButton" :
-                drawRoundedSquareButton(
-                    layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                    layoutData.r_point, 
-                    shadowData.shadowMode, shadowData.shadowDistPoint
-                );
-            break;	
-            case "eachRoundedButton" :
-                drawEachRoundedButton(
-                    layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                    layoutData.tl_point, layoutData.tr_point, layoutData.br_point, layoutData.bl_point, 
-                    shadowData.shadowMode, shadowData.shadowDistPoint
-                );
-            break;	
-            case "horizontallyRoundedButton" :
-                drawHorizontallyRoundedButton(
-                    layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                    shadowData.shadowMode, shadowData.shadowDistPoint
-                );
-            break;	
-            case "verticallyRoundedButton" :
-                drawVerticallyRoundedButton(
-                    layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                    shadowData.shadowMode, shadowData.shadowDistPoint
-                );
-            break;	
+        ShadowData shadowData = style.shadowData;
+        if(shadowData.shadowDistPoint != 0.0 && alpha(shadowData.shadowCol) != 0.0){
+            PVector shadowPos = getShadowPos(x, y, shadowData.shadowMode, shadowData.shadowDistPoint);
+            fill(shadowData.shadowCol);
+            noStroke();
+            box(shadowPos.x, shadowPos.y, w, h, tl, tr, br, bl);
         }
 
-        if(img.svgTgl){
-            drawSVG(
-                layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                img.w_scale, img.h_scale, img.scale, img.svg
-            );
+        StrokeData strokeData = style.strokeData;
+        if(strokeData.strokePoint != 0.0 && alpha(strokeData.strokeCol) != 0.0){
+            strokeWeight(getContainerBlockSize(strokeData.strokePoint, strokeData.strokePoint).x);
+            stroke(strokeData.strokeCol);
         }else{
-            drawImage(
-                layoutData.x_point, layoutData.y_point, layoutData.width_point, layoutData.height_point, 
-                img.w_scale, img.h_scale, img.scale, img.image
-            );
+            noStroke();
+        }
+        
+        fill(fillCol);
+        box(x, y, w, h, tl, tr, br, bl);
+        
+        ImageData img = style.imageData;
+        if(img.svgTgl){
+            drawSVG(x, y, w, h, img.w_scale, img.h_scale, img.scale, img.svg);
+        }else{
+            drawImage(x, y, w, h, img.w_scale, img.h_scale, img.scale, img.image);
+        }
+    }
+
+    
+    PVector getShadowPos(float x, float y, String shadowMode, float shadowDist){
+        int calcModeX = 1;
+        int calcModeY = 1;
+        switch (containerAnker){
+            case "topRight" :
+                calcModeX = -1;
+            break;	
+            case "bottomLeft" :
+                calcModeY = -1;
+            break;	
+            case "bottomRight" :
+                calcModeX = -1;
+                calcModeY = -1;
+            break;	
+        }
+        switch (shadowMode){
+            case "BOTTOM" :
+                return new PVector(x, y + shadowDist * calcModeY);
+            case "TOP" :
+                return new PVector(x, y - shadowDist);
+            case "RIGHT" :
+                return new PVector(x + shadowDist * calcModeX, y);
+            case "LEFT" :
+                return new PVector(x - shadowDist * calcModeX, y);
+            case "BOTTOMRIGHT" :
+                return new PVector(x + shadowDist * calcModeX, y + shadowDist * calcModeY);
+            case "BOTTOMLEFT" :
+                return new PVector(x - shadowDist * calcModeX, y + shadowDist * calcModeY);
+            case "TOPRIGHT" :
+                return new PVector(x + shadowDist * calcModeX, y - shadowDist * calcModeY);
+            case "TOPLEFT" :
+                return new PVector(x - shadowDist * calcModeX, y - shadowDist * calcModeY);
+            default :
+                return new PVector(x, y);
         }
     }
 }
@@ -608,7 +621,7 @@ class Base extends Block{
         this.br = layoutData.br_point;
         this.bl = layoutData.bl_point;
         this.strokeCol = strokeData.strokeCol;
-        this.strokeW = strokeData.stroke_point;
+        this.strokeW = strokeData.strokePoint;
         
         if(r != 0.0){
             tl = tl != 0.0 ? tl : r;
