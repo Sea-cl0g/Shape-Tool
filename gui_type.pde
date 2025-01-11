@@ -1,7 +1,6 @@
 class ColorPicker extends Block{
     DrawMode drawMode;
     float x, y, w, h;
-    float r, tl, tr, br, bl;
     int colorPalletIndex;
     String pickerMode;
     int colorMax = 255;
@@ -17,11 +16,6 @@ class ColorPicker extends Block{
         this.y = layoutData.y_point;
         this.w = layoutData.width_point;
         this.h = layoutData.height_point;
-        this.r = layoutData.r_point;
-        this.tl = layoutData.tl_point;
-        this.tr = layoutData.tr_point;
-        this.br = layoutData.br_point;
-        this.bl = layoutData.bl_point;
         this.colorPalletIndex = colorPalletIndex;
     }
 
