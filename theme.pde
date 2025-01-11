@@ -448,11 +448,11 @@ class Theme{
         } else if (elementName.endsWith("_HSB_B")) {
             return "HSB_B";
         } else if (elementName.endsWith("_RGB_R")) {
-            return "HSB_R";
+            return "RGB_R";
         } else if (elementName.endsWith("_RGB_G")) {
-            return "HSB_G";
+            return "RGB_G";
         } else if (elementName.endsWith("_RGB_B")) {
-            return "HSB_B";
+            return "RGB_B";
         } else if (elementName.endsWith("_ALPHA")) {
             return "ALPHA";
         } else if (elementName.endsWith("STROKE_WEIGHT")) {
