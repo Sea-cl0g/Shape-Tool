@@ -21,23 +21,22 @@
     },
     "layouts": {
         "defaultLayout": {
-            "x_point": "$baseW / 4 * $count",
+            "x_point": "$baseW / 5 * $count",
             "y_point": 1,
-            "width_point": "$baseW / 4",
+            "width_point": "$baseW / 5",
             "height_point": "$h"
         },
         "touchedLayout": {
-            "x_point": "$baseW / 4 * $count",
+            "x_point": "$baseW / 5 * $count",
             "y_point": 1,
-            "width_point": "$baseW / 4",
+            "width_point": "$baseW / 5",
             "height_point": "$h - $th"
         }
     },
     "images": {
         "main": {
             "scale": 0.8,
-            "path": "icon/settings.svg",
-            "color": "#ffffff"
+            "path": "icon/stroke.svg"
         }
     },
     "shadows": {
