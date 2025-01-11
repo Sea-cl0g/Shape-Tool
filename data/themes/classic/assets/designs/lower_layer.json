@@ -1,13 +1,10 @@
 {
     "description": "It's the default theme pack! Hello!",
     "author": "boo_manKnow",
-    "containerAnker": "bottomLeft",
+    "containerAnker": "bottomRight",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
-    "button_types": {
-        "maru": "eachRoundedButton"
-    },
     "colors": {
         "defaultCol": "#FFFFFF",
         "touchedCol": "#e0e9e7",
@@ -15,16 +12,15 @@
     },
     "floats": {
         "x_pos": 9,
-        "y_pos": 2,
+        "y_pos": 1,
         "b_size": 0.8,
         "r_point": 0.2,
-        "x_counter": 1,
-        "y_counter": 0
+        "counter": 3
     },
     "layouts": {
         "buttonLayout": {
-            "x_point": "$x_counter * $b_size + $x_pos",
-            "y_point": "$y_counter * $b_size + $y_pos",
+            "x_point": "$counter * $b_size + $x_pos",
+            "y_point": "$y_pos",
             "width_point": "$b_size",
             "height_point": "$b_size"
         }
@@ -32,7 +28,7 @@
     "images": {
         "main": {
             "scale": 0.8,
-            "path": "icon/move_down.svg",
+            "path": "icon/lower_layer.svg",
             "color": "$pointCol"
         }
     },
@@ -55,7 +51,6 @@
             "style": [
                 {
                     "predicate": "normal",
-                    "button_type": "$maru",
                     "layout": "$buttonLayout",
                     "fillCol": "$defaultCol",
                     "stroke": "$defaultStroke",
@@ -63,7 +58,6 @@
                 },
                 {
                     "predicate": "touched",
-                    "button_type": "$maru",
                     "layout": "$buttonLayout",
                     "fillCol": "$touchedCol",
                     "stroke": "$defaultStroke",
@@ -71,7 +65,6 @@
                 },
                 {
                     "predicate": "clicked",
-                    "button_type": "$maru",
                     "layout": "$buttonLayout",
                     "fillCol": "$defaultCol",
                     "stroke": "$defaultStroke",

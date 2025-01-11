@@ -5,9 +5,6 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
-    "button_types": {
-        "maru": "roundedSquareButton"
-    },
     "colors": {
         "defaultCol": "#ffffff00",
         "touchedCol": "#ffffff22"
@@ -39,14 +36,12 @@
             "style": [
                 {
                     "predicate": "normal",
-                    "button_type": "$maru",
                     "layout": "$defaultLayout",
                     "fillCol": "$defaultCol",
                     "image": "$main"
                 },
                 {
                     "predicate": "touched",
-                    "button_type": "$maru",
                     "layout": "$touchedLayout",
                     "fillCol": "$touchedCol",
                     "stroke": {
@@ -57,7 +52,6 @@
                 },
                 {
                     "predicate": "clicked",
-                    "button_type": "$maru",
                     "layout": "$defaultLayout",
                     "fillCol": "$defaultCol",
                     "image": "$main"

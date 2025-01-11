@@ -5,9 +5,6 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 3,
-    "button_types": {
-        "maru": "roundedSquareButton"
-    },
     "colors": {
         "buttonFill": "#FFFFFF00",
         "iconFill": "#FFFFFF",
@@ -30,7 +27,6 @@
             "style": [
                 {
                     "predicate": "normal",
-                    "button_type": "$maru",
                     "layout": "$buttonLayout",
                     "fillCol": "$buttonFill",
                     "image": {
@@ -41,7 +37,6 @@
                 },
                 {
                     "predicate": "touched",
-                    "button_type": "$maru",
                     "layout": "$buttonLayout",
                     "fillCol": "$buttonFill",
                     "image": {
@@ -52,7 +47,6 @@
                 },
                 {
                     "predicate": "clicked",
-                    "button_type": "$maru",
                     "layout": "$buttonLayout",
                     "fillCol": "$buttonFill",
                     "image": {

@@ -3,36 +3,24 @@
     "author": "boo_manKnow",
     "containerAnker": "bottomRight",
     "blockMode": "vertical",
-    "blockAnker": "CENTER",
+    "blockAnker": "CORNER",
     "layer": 2,
-    "button_types": {
-        "maru": "squareButton"
-    },
     "colors": {
-        "defaultCol": "#FFFFFF",
-        "touchedCol": "#e0e9e7",
-        "pointCol": "#857f8e"
-    },
-    "floats": {
-        "x_pos": 9,
-        "y_pos": 1,
-        "b_size": 0.8,
-        "r_point": 0.2,
-        "counter": 2
+        "defaultCol": "#4a7083ff"
     },
     "layouts": {
         "buttonLayout": {
-            "x_point": "$counter * $b_size + $x_pos",
-            "y_point": "$y_pos",
-            "width_point": "$b_size",
-            "height_point": "$b_size"
+            "x_point": 0.5,
+            "y_point": 7,
+            "width_point": 1.6,
+            "height_point": 1.6,
+            "r_point": 0.3
         }
     },
     "images": {
         "main": {
             "scale": 0.8,
-            "path": "icon/raise_layer.svg",
-            "color": "$pointCol"
+            "path": "icon/save.svg"
         }
     },
     "shadows": {
@@ -43,9 +31,9 @@
         }
     },
     "strokes": {
-        "defaultStroke": {
-            "stroke_point": 0.05,
-            "color": "$pointCol"
+        "main": {
+            "stroke_point": 0,
+            "color": "#42c8ed"
         }
     },
     "elements": {
@@ -54,27 +42,28 @@
             "style": [
                 {
                     "predicate": "normal",
-                    "button_type": "$maru",
                     "layout": "$buttonLayout",
                     "fillCol": "$defaultCol",
-                    "stroke": "$defaultStroke",
-                    "image": "$main"
+                    "image": "$main",
+                    "shadow": "$main"
                 },
                 {
                     "predicate": "touched",
-                    "button_type": "$maru",
                     "layout": "$buttonLayout",
-                    "fillCol": "$touchedCol",
-                    "stroke": "$defaultStroke",
-                    "image": "$main"
+                    "fillCol": "$defaultCol",
+                    "stroke": {
+                        "stroke_point": 0.1,
+                        "color": "#ffffff"
+                    },
+                    "image": "$main",
+                    "shadow": "$main"
                 },
                 {
                     "predicate": "clicked",
-                    "button_type": "$maru",
                     "layout": "$buttonLayout",
                     "fillCol": "$defaultCol",
-                    "stroke": "$defaultStroke",
-                    "image": "$main"
+                    "image": "$main",
+                    "shadow": "$main"
                 }
             ]
         }

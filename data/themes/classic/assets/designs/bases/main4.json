@@ -19,7 +19,7 @@
             },
             "image": {
                 "scale": 1,
-                "path": "icon/shape-tool_logo.svg",
+                "path": "./../../../../icon.svg",
                 "color": "#857f8e"
             },
             "fillCol": "#00000000"

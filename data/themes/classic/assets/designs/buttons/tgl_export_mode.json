@@ -5,9 +5,6 @@
     "blockMode": "vertical",
     "blockAnker": "CORNER",
     "layer": 2,
-    "button_types": {
-        "maru": "squareButton"
-    },
     "colors": {
         "defaultCol": "#ffffff22",
         "touchedCol": "#ffffff11",
@@ -36,8 +33,7 @@
     "images": {
         "main": {
             "scale": 0.8,
-            "path": "icon/settings.svg",
-            "color": "#ffffff"
+            "path": "icon/export.svg"
         }
     },
     "shadows": {
@@ -53,7 +49,6 @@
             "style": [
                 {
                     "predicate": "normal",
-                    "button_type": "$maru",
                     "layout": "$defaultLayout",
                     "fillCol": "$defaultCol",
                     "shadow": "$defaultShadow",
@@ -61,7 +56,6 @@
                 },
                 {
                     "predicate": "touched",
-                    "button_type": "$maru",
                     "layout": "$defaultLayout",
                     "fillCol": "$touchedCol",
                     "shadow": "$defaultShadow",
@@ -69,7 +63,6 @@
                 },
                 {
                     "predicate": "clicked",
-                    "button_type": "$maru",
                     "layout": "$touchedLayout",
                     "fillCol": "$clickedCol",
                     "image": "$main"
