@@ -191,7 +191,7 @@ class Ellipse extends Shape{
             cos(radian) * (mouseY - ellipsePos.y) - sin(radian) * (mouseX - ellipsePos.x) + ellipsePos.y
         );//programmed by rin
         updateState(0, isTouched);
-        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched && !theme.isFillMode && !theme.isStrokeMode){
+        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched){
             PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
             x += mouseMove.x;
             y += mouseMove.y;
@@ -325,7 +325,7 @@ class Rectangle extends Shape{
             cos(radian) * (mouseY - rectPos.y) - sin(radian) * (mouseX - rectPos.x) + rectPos.y
         );//programmed by rin
         updateState(0, isTouched);
-        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched && !theme.isFillMode && !theme.isStrokeMode){
+        if (status[0] && mousePressed && mouseButton == LEFT && !hasMouseTouched){
             PVector mouseMove = getContainerBlockPoint(mouseX - pmouseX, mouseY - pmouseY);
             x += mouseMove.x;
             y += mouseMove.y;
