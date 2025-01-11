@@ -84,7 +84,6 @@ class ColorPicker extends Block{
         float colElement3;
         float colElement4;
         noStroke();
-        println(pickerMode);
         if(pickerMode.startsWith("HSB")){
             colElement1 = hue(canvas.colorPallet[colorPalletIndex]);
             colElement2 = saturation(canvas.colorPallet[colorPalletIndex]);
