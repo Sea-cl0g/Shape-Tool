@@ -1,65 +1,61 @@
 {
-    "containerAnker": "center",
+    "containerAnker": "topLeft",
     "blockMode": "vertical",
-    "blockAnker": "CENTER",
+    "blockAnker": "CORNER",
     "layer": 2,
+
+
     "colors": {
-        "defaultCol": "#e0243b"
+        "iconFill": "#1A79D0",
+        "iconTouched": "#ff9200ff"
+    },"floats": {
+        "x_pos": 0,
+        "y_pos": 0,
+        "b_size": 1,
+        "block_w": 10,
+        "block_h": 0.7,
+        "x_counter": 10
     },
-    "layouts": {
-        "buttonLayout": {
-            "x_point": 0,
-            "y_point": 2,
-            "width_point": 5,
-            "height_point": 1.4
+    "layouts":{
+        "buttonLayout":{
+            "x_point": "$x_counter * $b_size + $x_pos - 1 + $block_w",
+            "y_point": "1 - $block_h / 2",
+            "width_point": "$block_h",
+            "height_point": "$block_h"
         }
     },
-    "strokes": {
-        "selectedStroke": {
-            "stroke_point": 0.1,
-            "color": "#FFFFFF"
-        }
-    },
-    "shadows": {
-        "main": {
-            "shadowMode": "BOTTOM",
-            "shadowDistPoint": 0.2,
-            "color": "#76161b"
-        }
-    },
+
+
     "elements": {
-        "@ALPHA": {
-            "type": "text_block",
-            "layout": "$buttonLayout",
-            "text": {
-                "text": "SAVE",
-                "text_align": "CENTER",
-                "text_size": 0.8,
-                "text_col": "#FFFFFF"
-            },
-            "fillCol": "#FFFFFF00"
-        },
         "@MAIN_BUTTON": {
             "type": "button",
             "style": [
                 {
                     "predicate": "normal",
                     "layout": "$buttonLayout",
-                    "fillCol": "$defaultCol",
-                    "shadow": "$main"
+                    "image": {
+                        "scale": 1,
+                        "path": "icon/save.svg",
+                        "color": "$iconFill"
+                    }
                 },
                 {
                     "predicate": "touched",
                     "layout": "$buttonLayout",
-                    "fillCol": "$defaultCol",
-                    "stroke": "$selectedStroke",
-                    "shadow": "$main"
+                    "image": {
+                        "scale": 1,
+                        "path": "icon/save.svg",
+                        "color": "$iconTouched"
+                    }
                 },
                 {
                     "predicate": "clicked",
                     "layout": "$buttonLayout",
-                    "fillCol": "$defaultCol",
-                    "shadow": "$main"
+                    "image": {
+                        "scale": 1,
+                        "path": "icon/save.svg",
+                        "color": "$iconFill"
+                    }
                 }
             ]
         }

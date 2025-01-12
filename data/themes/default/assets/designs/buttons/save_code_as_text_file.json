@@ -3,6 +3,8 @@
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
+
+
     "colors": {
         "iconFill": "#ffffff",
         "iconTouched": "#ff9200ff",
@@ -24,6 +26,8 @@
             "r_point": "$r_point"
         }
     },
+
+    
     "elements": {
         "@MAIN_BUTTON": {
             "type": "button",

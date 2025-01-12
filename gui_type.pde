@@ -100,11 +100,11 @@ class ColorPicker extends Block{
         setBlockAnker("CORNER");
         for(int i = 0; i < max; i++){
             if(pickerMode.endsWith("HSB_H")){
-                fill(i, 255, 255, colElement4);
+                fill(i, 255, 255, 255);
             }else if(pickerMode.endsWith("HSB_S")){
-                fill(colElement1, i, colElement3, colElement4);
+                fill(colElement1, i, colElement3, 255);
             }else if(pickerMode.endsWith("HSB_B")){
-                fill(0, 0, i, colElement4);
+                fill(0, 0, i, 255);
             }else if(pickerMode.endsWith("RGB_R")){
                 fill(i, 0, 0, 255);
             }else if(pickerMode.endsWith("RGB_G")){

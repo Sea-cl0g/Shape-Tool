@@ -186,7 +186,7 @@
             "type": "text_block",
             "layout": {
                 "x_point": "$x_pos",
-                "y_point": "7 * $dist + $y_pos",
+                "y_point": "8 * $dist + $y_pos",
                 "width_point": "$w - 0.05",
                 "height_point": "$h - 0.05"
             },

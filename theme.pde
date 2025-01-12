@@ -19,6 +19,13 @@ class Theme{
     boolean isExportMode = true;
     boolean isSettingsMode = true;
     
+    boolean isTglFillButtonExist;
+    boolean isTglStrokeButtonExist;
+    boolean isTglSaveButtonExist;
+    boolean isTglLoadButtonExist;
+    boolean isTglExportButtonExist;
+    boolean isTglSettingsButtonExist;
+
     int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index) {
         ArrayList<Object> newLayer = new ArrayList<Object>();
         newLayer.add(index);
@@ -87,12 +94,12 @@ class Theme{
     }
     
     void exceptMode() {
-        isFillMode = false;
-        isStrokeMode = false;
-        isSettingsMode = false;
-        isExportMode = false;
-        isSaveMode = false;
-        isLoadMode = false;
+        isFillMode = !isTglFillButtonExist ? isFillMode : false;
+        isStrokeMode = !isTglStrokeButtonExist ? isStrokeMode : false;
+        isSettingsMode = !isTglSettingsButtonExist ? isSettingsMode : false;
+        isExportMode = !isTglExportButtonExist ? isExportMode : false;
+        isSaveMode = !isTglSaveButtonExist ? isSaveMode : false;
+        isLoadMode = !isTglLoadButtonExist ? isLoadMode : false;
     }
     
     //====================================================================================================
@@ -505,26 +512,32 @@ class Theme{
             
             case "FANC_TGL_STROKE_PALLET_MODE" :
                 function = () -> tgl_strokePallet_mode();
+                isTglStrokeButtonExist = true;
                 isStrokeMode = false;
                 break;
             case "FANC_TGL_FILL_PALLET_MODE" :
                 function = () -> tgl_fillPallet_mode();
+                isTglFillButtonExist = true;
                 isFillMode = false;
                 break;
             case "FANC_TGL_SETTINGS_MODE" :
                 function = () -> tgl_settings_mode();
+                isTglSettingsButtonExist = true;
                 isSettingsMode = false;
                 break;
             case "FANC_TGL_EXPORT_MODE" :
                 function = () -> tgl_export_mode();
+                isTglExportButtonExist = true;
                 isExportMode = false;
                 break;
             case "FANC_TGL_SAVE_MODE" :
                 function = () -> tgl_save_mode();
+                isTglSaveButtonExist = true;
                 isSaveMode = false;
                 break;
             case "FANC_TGL_LOAD_MODE" :
                 function = () -> tgl_load_mode();
+                isTglLoadButtonExist = true;
                 isLoadMode = false;
                 break;	
             

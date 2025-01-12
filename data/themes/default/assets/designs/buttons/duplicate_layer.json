@@ -1,47 +1,39 @@
 {
-    "containerAnker": "bottomRight",
+    "containerAnker": "topLeft",
     "blockMode": "vertical",
-    "blockAnker": "CENTER",
+    "blockAnker": "CORNER",
     "layer": 2,
     "colors": {
-        "defaultCol": "#FFFFFF",
-        "touchedCol": "#e0e9e7",
-        "pointCol": "#857f8e"
+        "touchedCol": "#ffffff33",
+        "clickedCol": "#ffffff55"
     },
     "floats": {
-        "x_pos": 9,
-        "y_pos": 1,
-        "b_size": 0.8,
-        "r_point": 0.2,
-        "counter": 0
+        "x_pos": 0,
+        "y_pos": 0,
+        "b_size": 1,
+        "x_counter": 9
     },
     "layouts": {
-        "buttonLayout": {
-            "x_point": "$counter * $b_size + $x_pos",
-            "y_point": "$y_pos",
+        "defaultLayout": {
+            "x_point": "$x_counter * $b_size + $x_pos",
+            "y_point": 0,
             "width_point": "$b_size",
             "height_point": "$b_size",
-            "br_point": "$r_point"
+            "r_point": 0.2
+        },
+        "touchedLayout": {
+            "x_point": "$x_counter * $b_size + $x_pos",
+            "y_point": 0,
+            "width_point": "$b_size",
+            "height_point": "$b_size",
+            "r_point": 0.2
         }
     },
     "images": {
         "main": {
-            "scale": 0.8,
-            "path": "icon/duplicate_layer.svg",
-            "color": "$pointCol"
-        }
-    },
-    "shadows": {
-        "main": {
-            "shadowMode": "BOTTOMRIGHT",
-            "shadowDistPoint": 0.2,
-            "color": "#222222"
-        }
-    },
-    "strokes": {
-        "defaultStroke": {
-            "stroke_point": 0.05,
-            "color": "$pointCol"
+            "path": "icon/duplicate.svg",
+            "scale": 0.7,
+            "color": "#ffffff"
         }
     },
     "elements": {
@@ -50,23 +42,19 @@
             "style": [
                 {
                     "predicate": "normal",
-                    "layout": "$buttonLayout",
-                    "fillCol": "$defaultCol",
-                    "stroke": "$defaultStroke",
+                    "layout": "$defaultLayout",
                     "image": "$main"
                 },
                 {
                     "predicate": "touched",
-                    "layout": "$buttonLayout",
+                    "layout": "$defaultLayout",
                     "fillCol": "$touchedCol",
-                    "stroke": "$defaultStroke",
                     "image": "$main"
                 },
                 {
                     "predicate": "clicked",
-                    "layout": "$buttonLayout",
-                    "fillCol": "$defaultCol",
-                    "stroke": "$defaultStroke",
+                    "layout": "$touchedLayout",
+                    "fillCol": "$clickedCol",
                     "image": "$main"
                 }
             ]
