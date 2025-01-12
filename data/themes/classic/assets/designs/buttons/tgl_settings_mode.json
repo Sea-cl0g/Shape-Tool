@@ -1,47 +1,38 @@
 {
-    "description": "It's the default theme pack! Hello!",
-    "author": "boo_manKnow",
-    "containerAnker": "topRight",
+    "containerAnker": "bottomRight",
     "blockMode": "vertical",
     "blockAnker": "CORNER",
     "layer": 2,
     "colors": {
-        "defaultCol": "#ffffff22",
-        "touchedCol": "#ffffff11",
-        "clickedCol": "#ffffff33"
-    },
-    "floats": {
-        "baseW": 10,
-        "count": 0,
-        "th": 0.1,
-        "h": 1
+        "defaultCol": "#4a7083ff"
     },
     "layouts": {
-        "defaultLayout": {
-            "x_point": "$baseW / 5 * $count",
+        "buttonLayout": {
+            "x_point": 0.5,
             "y_point": 1,
-            "width_point": "$baseW / 5",
-            "height_point": "$h"
-        },
-        "touchedLayout": {
-            "x_point": "$baseW / 5 * $count",
-            "y_point": 1,
-            "width_point": "$baseW / 5",
-            "height_point": "$h - $th"
+            "width_point": 1.6,
+            "height_point": 1.6,
+            "r_point": 0.3
         }
     },
     "images": {
         "main": {
-            "scale": 0.6,
-            "path": "icon/setting.svg",
+            "scale": 0.8,
+            "path": "icon/settings.svg",
             "color": "#ffffff"
         }
     },
     "shadows": {
-        "defaultShadow": {
-            "shadowMode": "BOTTOM",
-            "shadowDistPoint": 0.1,
+        "main": {
+            "shadowMode": "BOTTOMRIGHT",
+            "shadowDistPoint": 0.2,
             "color": "#222222"
+        }
+    },
+    "strokes": {
+        "main": {
+            "stroke_point": 0,
+            "color": "#42c8ed"
         }
     },
     "elements": {
@@ -50,23 +41,28 @@
             "style": [
                 {
                     "predicate": "normal",
-                    "layout": "$defaultLayout",
+                    "layout": "$buttonLayout",
                     "fillCol": "$defaultCol",
-                    "shadow": "$defaultShadow",
-                    "image": "$main"
+                    "image": "$main",
+                    "shadow": "$main"
                 },
                 {
                     "predicate": "touched",
-                    "layout": "$defaultLayout",
-                    "fillCol": "$touchedCol",
-                    "shadow": "$defaultShadow",
-                    "image": "$main"
+                    "layout": "$buttonLayout",
+                    "fillCol": "$defaultCol",
+                    "stroke": {
+                        "stroke_point": 0.1,
+                        "color": "#ffffff"
+                    },
+                    "image": "$main",
+                    "shadow": "$main"
                 },
                 {
                     "predicate": "clicked",
-                    "layout": "$touchedLayout",
-                    "fillCol": "$clickedCol",
-                    "image": "$main"
+                    "layout": "$buttonLayout",
+                    "fillCol": "$defaultCol",
+                    "image": "$main",
+                    "shadow": "$main"
                 }
             ]
         }

@@ -1,24 +1,24 @@
 {
-    "description": "It's the default theme pack! Hello!",
-    "author": "boo_manKnow",
-    "containerAnker": "center",
+    "containerAnker": "bottomRight",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
     "colors": {
-        "buttonFill": "#FFFFFF",
-        "buttonTouched": "#DDDDDD",
-        "buttonClicked": "#0068E1",
-        "iconFill": "#0088F6",
-        "iconTouched": "#002172"
+        "iconFill": "#ffffff",
+        "iconTouched": "#ff9200ff",
+        "iconClicked": "#d100ffff"
     },
     "floats": {
+        "x_pos": 5,
+        "y_pos": 1.5,
+        "w": 8,
+        "h": 0.5,
         "b_size": 1
     },
     "layouts": {
         "buttonLayout": {
-            "x_point": -6,
-            "y_point": -6.25,
+            "x_point": "$w / -2 + $x_pos + 0.5",
+            "y_point": "$h / 2 + $y_pos",
             "width_point": "$b_size",
             "height_point": "$b_size",
             "r_point": "$r_point"
@@ -31,35 +31,28 @@
                 {
                     "predicate": "normal",
                     "layout": "$buttonLayout",
-                    "fillCol": "$buttonFill",
                     "image": {
                         "scale": 0.8,
-                        "path": "icon/save_code_as_text_file.svg",
+                        "path": "icon/save.svg",
                         "color": "$iconFill"
                     }
                 },
                 {
                     "predicate": "touched",
                     "layout": "$buttonLayout",
-                    "fillCol": "$buttonTouched",
                     "image": {
                         "scale": 0.8,
-                        "path": "icon/save_code_as_text_file.svg",
+                        "path": "icon/save.svg",
                         "color": "$iconTouched"
                     }
                 },
                 {
                     "predicate": "clicked",
                     "layout": "$buttonLayout",
-                    "fillCol": "$buttonClicked",
-                    "stroke": {
-                        "stroke_point": 0.1,
-                        "color": "#ffffff"
-                    },
                     "image": {
                         "scale": 0.8,
-                        "path": "icon/save_code_as_text_file.svg",
-                        "color": "$buttonFill"
+                        "path": "icon/save.svg",
+                        "color": "$iconFill"
                     }
                 }
             ]

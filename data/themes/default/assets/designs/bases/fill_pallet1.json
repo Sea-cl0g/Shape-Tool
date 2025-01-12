@@ -1,19 +1,13 @@
 {
-    "description": "It's the default theme pack! Hello!",
-    "author": "boo_manKnow",
     "containerAnker": "topRight",
     "blockMode": "vertical",
     "blockAnker": "CORNER",
-    "layer": 2,
-
-    
+    "layer": 10,
     "floats": {
         "baseW": 10,
         "count": 4,
         "h": 1
     },
-
-    
     "elements": {
         "base": {
             "type": "base",
@@ -23,7 +17,7 @@
                 "width_point": "$baseW / 5",
                 "height_point": "$h"
             },
-            "fillCol": "#00000055"
+            "fillCol": "#00000060"
         }
     }
 }

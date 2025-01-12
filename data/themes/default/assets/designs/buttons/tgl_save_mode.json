@@ -1,6 +1,4 @@
 {
-    "description": "It's the default theme pack! Hello!",
-    "author": "boo_manKnow",
     "containerAnker": "bottomRight",
     "blockMode": "vertical",
     "blockAnker": "CORNER",
@@ -20,8 +18,7 @@
     "images": {
         "main": {
             "scale": 0.8,
-            "path": "icon/save.svg",
-            "color": "#ffffff"
+            "path": "icon/save.svg"
         }
     },
     "shadows": {

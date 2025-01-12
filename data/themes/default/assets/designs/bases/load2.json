@@ -1,5 +1,5 @@
 {
-    "containerAnker": "bottomRight",
+    "containerAnker": "topRight",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 1,
@@ -8,21 +8,21 @@
     },
     "floats": {
         "x_pos": 5,
-        "y_pos": 1.5,
+        "y_pos": 3,
         "w": 8,
-        "h": 0.5
+        "h": 3
     },
     "elements": {
-        "@MAIN_TEXT_EDITOR": {
-            "type": "text_editor",
+        "@MAIN_TEXTARRAY_BLOCK": {
+            "type": "text_block",
             "layout": {
                 "x_point": "$x_pos",
-                "y_point": "$h / 2 + $y_pos",
+                "y_point": "$h / 2 + $y_pos + 0.5",
                 "width_point": "$w",
-                "height_point": "$h"
+                "height_point": "$h - 0.5"
             },
             "text": {
-                "text": "Text",
+                "text": "Load the project saved in json format.| |> Caution! <|Work currently in progress will be overwritten.",
                 "text_align": "LEFT",
                 "text_size": 0.3,
                 "text_col": "#ffffff"
@@ -34,13 +34,13 @@
                 "x_point": "$x_pos",
                 "y_point": "$h / 2 + $y_pos",
                 "width_point": "$w + 0.5",
-                "height_point": "$h + 0.2",
-                "r_point": 0.2
+                "height_point": "$h + 0.5",
+                "r_point": 0.1
             },
             "fillCol": "#222222",
             "stroke": {
                 "stroke_point": 0.1,
-                "color": "#222222"
+                "color": "#555555"
             }
         }
     }

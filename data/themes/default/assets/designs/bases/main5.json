@@ -1,20 +1,20 @@
 {
-    "description": "It's the default theme pack! Hello!",
-    "author": "boo_manKnow",
     "containerAnker": "center",
     "blockMode": "both",
     "blockAnker": "CENTER",
-    "layer": 1,
+    "layer": -10,
+    
+
     "elements": {
         "e1": {
             "type": "base",
             "layout": {
                 "x_point": 0,
                 "y_point": 0,
-                "width_point": 12,
-                "height_point": 16
+                "width_point": 18,
+                "height_point": 18
             },
-            "fillCol": "#505050EE"
+            "fillCol": "#dddddd"
         }
     }
 }

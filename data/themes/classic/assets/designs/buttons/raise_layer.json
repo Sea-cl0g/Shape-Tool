@@ -1,6 +1,4 @@
 {
-    "description": "It's the default theme pack! Hello!",
-    "author": "boo_manKnow",
     "containerAnker": "bottomRight",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
@@ -15,22 +13,20 @@
         "y_pos": 1,
         "b_size": 0.8,
         "r_point": 0.2,
-        "x_counter": 1,
-        "y_counter": 1
+        "counter": 2
     },
     "layouts": {
         "buttonLayout": {
-            "x_point": "$x_counter * $b_size + $x_pos",
-            "y_point": "$y_counter * $b_size + $y_pos",
+            "x_point": "$counter * $b_size + $x_pos",
+            "y_point": "$y_pos",
             "width_point": "$b_size",
-            "height_point": "$b_size",
-            "tl_point": "$r_point"
+            "height_point": "$b_size"
         }
     },
     "images": {
         "main": {
             "scale": 0.8,
-            "path": "icon/double_ratio.svg",
+            "path": "icon/raise_layer.svg",
             "color": "$pointCol"
         }
     },

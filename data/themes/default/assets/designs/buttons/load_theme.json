@@ -1,67 +1,59 @@
 {
-    "description": "It's the default theme pack! Hello!",
-    "author": "boo_manKnow",
-    "containerAnker": "center",
+    "containerAnker": "bottomRight",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
     "layer": 2,
     "colors": {
-        "defaultCol": "#ecd443"
+        "iconFill": "#ffffff",
+        "iconTouched": "#ff9200ff",
+        "iconClicked": "#d100ffff"
+    },
+    "floats": {
+        "x_pos": 5,
+        "y_pos": 1.5,
+        "w": 8,
+        "h": 0.5,
+        "b_size": 1
     },
     "layouts": {
         "buttonLayout": {
-            "x_point": 0,
-            "y_point": 6,
-            "width_point": 8,
-            "height_point": 1.4
-        }
-    },
-    "strokes": {
-        "selectedStroke": {
-            "stroke_point": 0.1,
-            "color": "#FFFFFF"
-        }
-    },
-    "shadows": {
-        "main": {
-            "shadowMode": "BOTTOM",
-            "shadowDistPoint": 0.2,
-            "color": "#a08224"
+            "x_point": "$w / -2 + $x_pos + 0.5",
+            "y_point": "$h / 2 + $y_pos",
+            "width_point": "$b_size",
+            "height_point": "$b_size",
+            "r_point": "$r_point"
         }
     },
     "elements": {
-        "@ALPHA": {
-            "type": "text_block",
-            "layout": "$buttonLayout",
-            "text": {
-                "text": "RELOAD THEME",
-                "text_align": "CENTER",
-                "text_size": 0.8,
-                "text_col": "#FFFFFF"
-            },
-            "fillCol": "#FFFFFF00"
-        },
         "@MAIN_BUTTON": {
             "type": "button",
             "style": [
                 {
                     "predicate": "normal",
                     "layout": "$buttonLayout",
-                    "fillCol": "$defaultCol",
-                    "shadow": "$main"
+                    "image": {
+                        "scale": 0.8,
+                        "path": "icon/convert_code.svg",
+                        "color": "$iconFill"
+                    }
                 },
                 {
                     "predicate": "touched",
                     "layout": "$buttonLayout",
-                    "fillCol": "$defaultCol",
-                    "stroke": "$selectedStroke",
-                    "shadow": "$main"
+                    "image": {
+                        "scale": 0.8,
+                        "path": "icon/convert_code.svg",
+                        "color": "$iconTouched"
+                    }
                 },
                 {
                     "predicate": "clicked",
                     "layout": "$buttonLayout",
-                    "fillCol": "$defaultCol",
-                    "shadow": "$main"
+                    "image": {
+                        "scale": 0.8,
+                        "path": "icon/convert_code.svg",
+                        "color": "$iconFill"
+                    }
                 }
             ]
         }

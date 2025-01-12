@@ -1,83 +1,47 @@
 {
-    "description": "It's the default theme pack! Hello!",
-    "author": "boo_manKnow",
-    "containerAnker": "center",
-    "blockMode": "horizontal",
+    "containerAnker": "topRight",
+    "blockMode": "vertical",
     "blockAnker": "CENTER",
-    "layer": 10,
-    "floats": {
-        "w": 10,
-        "h": 0.6,
-        "label_x": 0,
-        "label_y": -0.8,
-        "label_shadow_pos": 0.02
-    },
+    "layer": 1,
     "colors": {
-        "text_box_back_col": "#FFFFFF"
+        "noFill": "#FFFFFF00"
+    },
+    "floats": {
+        "x_pos": 5,
+        "y_pos": 7,
+        "w": 8,
+        "h": 0.5
     },
     "elements": {
-        "e1": {
-            "type": "text_block",
-            "layout": {
-                "x_point": "$label_x",
-                "y_point": "$label_y",
-                "width_point": 10,
-                "height_point": 1
-            },
-            "text": {
-                "text": "LOAD PATH",
-                "text_align": "CENTER",
-                "text_size": 0.4,
-                "text_col": "$text_box_back_col"
-            },
-            "fillCol": "#FFFFFF00"
-        },
-        "e2": {
-            "type": "text_block",
-            "layout": {
-                "x_point": "$label_x",
-                "y_point": "$label_y + $label_shadow_pos",
-                "width_point": 10,
-                "height_point": 1
-            },
-            "text": {
-                "text": "LOAD PATH",
-                "text_align": "CENTER",
-                "text_size": 0.4,
-                "text_col": "#000000"
-            },
-            "fillCol": "#FFFFFF00"
-        },
         "@MAIN_TEXT_EDITOR": {
             "type": "text_editor",
             "layout": {
-                "x_point": 0,
-                "y_point": 0,
-                "width_point": "$w - 1",
+                "x_point": "$x_pos",
+                "y_point": "$h / 2 + $y_pos",
+                "width_point": "$w",
                 "height_point": "$h"
             },
             "text": {
-                "text": "",
+                "text": "Text",
                 "text_align": "LEFT",
-                "text_size": 0.4,
-                "text_col": "#000000"
-            },
-            "fillCol": "#FFFFFF00"
+                "text_size": 0.3,
+                "text_col": "#ffffff"
+            }
         },
-        "e4": {
+        "e1": {
             "type": "base",
-            "stroke": {
-                "stroke_point": 0.08,
-                "color": "#000000"
-            },
             "layout": {
-                "x_point": 0,
-                "y_point": 0,
-                "width_point": "$w",
-                "height_point": "$h",
-                "r_point": 0.1
+                "x_point": "$x_pos",
+                "y_point": "$h / 2 + $y_pos",
+                "width_point": "$w + 0.5",
+                "height_point": "$h + 0.2",
+                "r_point": 0.2
             },
-            "fillCol": "$text_box_back_col"
+            "fillCol": "#222222",
+            "stroke": {
+                "stroke_point": 0.1,
+                "color": "#222222"
+            }
         }
     }
 }

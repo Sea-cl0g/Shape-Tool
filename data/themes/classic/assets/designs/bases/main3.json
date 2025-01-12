@@ -1,20 +1,23 @@
 {
-    "description": "It's the default theme pack! Hello!",
-    "author": "boo_manKnow",
-    "containerAnker": "topLeft",
-    "blockMode": "both",
-    "blockAnker": "CORNER",
-    "layer": 1,
+    "containerAnker": "center",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": -1,
     "elements": {
         "e1": {
-            "type": "base",
+            "type": "image_block",
             "layout": {
                 "x_point": 0,
                 "y_point": 0,
-                "width_point": 16,
-                "height_point": 1
+                "width_point": 8,
+                "height_point": 8
             },
-            "fillCol": "#222222"
+            "image": {
+                "scale": 1,
+                "path": "./../../../../icon.svg",
+                "color": "#857f8e"
+            },
+            "fillCol": "#00000000"
         }
     }
 }

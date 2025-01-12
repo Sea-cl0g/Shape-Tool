@@ -1,6 +1,4 @@
 {
-    "description": "It's the default theme pack! Hello!",
-    "author": "boo_manKnow",
     "containerAnker": "bottomRight",
     "blockMode": "vertical",
     "blockAnker": "CENTER",
@@ -15,7 +13,7 @@
         "y_pos": 1,
         "b_size": 0.8,
         "r_point": 0.2,
-        "counter": 3
+        "counter": 1
     },
     "layouts": {
         "buttonLayout": {
@@ -28,7 +26,7 @@
     "images": {
         "main": {
             "scale": 0.8,
-            "path": "icon/lower_layer.svg",
+            "path": "icon/delete_shape.svg",
             "color": "$pointCol"
         }
     },
