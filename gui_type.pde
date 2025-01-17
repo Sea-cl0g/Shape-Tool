@@ -310,7 +310,7 @@ class TextEditor extends TextBlock{
             }
         }
         if(isSelected){
-            if(isKeyPressing && keyRepeat <= 0){
+            if(keyPressed && keyRepeat <= 0){
                 editText();
                 exportText.pool = text;
                 keyRepeat = keyRepeatMax;

@@ -8,7 +8,6 @@ boolean isMouseLeftClicking, isMouseRightClicking, isMouseCenterClicking;
 boolean hasMouseLeftClicked;
 boolean hasMouseTouched;
 boolean hasShapeTouched;
-boolean isKeyPressing;
 
 
 String configPath = "data/config.json";
@@ -38,6 +37,7 @@ void draw(){
   hasShapeTouched = false;
   background(255, 255, 255);
   theme.drawGUI();
+  println();
 }
 
 //--------------------------------------------------
@@ -89,14 +89,6 @@ void mouseWheel(MouseEvent mouseEvent){
   else if(wheel > 0){
     canvas.zoom_out();
   }
-}
-
-void keyPressed(){
-  isKeyPressing = true;
-}
-
-void keyReleased(){
-  isKeyPressing = false;
 }
 
 //--------------------------------------------------
