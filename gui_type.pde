@@ -51,10 +51,6 @@ class ColorPicker extends Block{
         PVector colorPickerSize = getContainerBlockSize(w, h);
         PVector colorPickerPos = getObjectPos(x, y, w, h, colorPickerSize);
         pickNum = map(mouseX, colorPickerPos.x, colorPickerPos.x + colorPickerSize.x, 0, colorMax);
-        
-        //println(red(canvas.colorPallet[colorPalletIndex]), green(canvas.colorPallet[colorPalletIndex]), blue(canvas.colorPallet[colorPalletIndex]));
-        println(hue(canvas.colorPallet[colorPalletIndex]), saturation(canvas.colorPallet[colorPalletIndex]), brightness(canvas.colorPallet[colorPalletIndex]));
-        println("↓");
 
         if(pickerMode.startsWith("HSB")){
             colElement1 = hue(canvas.colorPallet[colorPalletIndex]);
@@ -80,9 +76,7 @@ class ColorPicker extends Block{
             returnCol = color(colElement1, colElement2, colElement3, pickNum);
         }
         colorMode(RGB, 255, 255, 255);
-
-        println(hue(returnCol), saturation(returnCol), brightness(returnCol));
-        println();
+        
         return returnCol;
     }
 
