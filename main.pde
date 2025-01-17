@@ -1,4 +1,3 @@
-//マジックナンバー16を修正する
 SafeLoad safeLoad;
 Theme theme;
 Canvas canvas;
