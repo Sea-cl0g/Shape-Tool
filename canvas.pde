@@ -1,5 +1,7 @@
 class Canvas{
     ArrayList<Shape> shapes = new ArrayList<Shape>();
+    ArrayList<PVector> moveStack = new  ArrayList<PVector>();
+    ArrayList<PVector> rotateStack = new  ArrayList<PVector>();
     color[] colorPallet = new color[2];
     boolean dragged;
     PVector move;
@@ -351,25 +353,24 @@ class CanvasBlock extends Easel{
         rectMode(CENTER);
         PVector canvasSize = getContainerBlockSize(w * canvas.scale, h * canvas.scale);
         PVector canvasPos = getObjectPos(pos.x, pos.y, w * canvas.scale, h * canvas.scale, canvasSize);
+        boolean isMoveStackEmpty = canvas.moveStack.size() == 0;
         for(int i = canvas.shapes.size() - 1; 0 <= i; i--){
-            pushMatrix();
-            Shape shapeObj = canvas.shapes.get(i);
-            if(shapeObj.getClass() == Rectangle.class){
-                Rectangle shape = (Rectangle) shapeObj;
-                shape.sizeW = canvasSize.x;
-                shape.sizeH = canvasSize.y;
-                shape.anchorX = canvasPos.x;
-                shape.anchorY = canvasPos.y;
-                shape.checkStatus();
-            }else if(shapeObj.getClass() == Ellipse.class){
-                Ellipse shape = (Ellipse) shapeObj;
-                shape.sizeW = canvasSize.x;
-                shape.sizeH = canvasSize.y;
-                shape.anchorX = canvasPos.x;
-                shape.anchorY = canvasPos.y;
-                shape.checkStatus();
+            Shape shape = canvas.shapes.get(i);
+            shape.sizeW = canvasSize.x;
+            shape.sizeH = canvasSize.y;
+            shape.anchorX = canvasPos.x;
+            shape.anchorY = canvasPos.y;
+            if(isMoveStackEmpty){
+                pushMatrix();
+                if(shape.getClass() == Rectangle.class){
+                    Rectangle rect = (Rectangle) shape;
+                    rect.checkStatus();
+                }else if(shape.getClass() == Ellipse.class){
+                    Ellipse ellipse = (Ellipse) shape;
+                    ellipse.checkStatus();
+                }
+                popMatrix();
             }
-            popMatrix();
         }
         rectMode(CORNER);
     }
