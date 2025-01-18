@@ -25,7 +25,7 @@ class Theme{
     boolean isTglLoadButtonExist;
     boolean isTglExportButtonExist;
     boolean isTglSettingsButtonExist;
-
+    
     int setLayerAtPosition(ArrayList<ArrayList<Object>> layers, int index) {
         ArrayList<Object> newLayer = new ArrayList<Object>();
         newLayer.add(index);
@@ -104,11 +104,13 @@ class Theme{
     
     //====================================================================================================
     void changeCurrentTheme(String path) {
-        if (safeLoad.canLoad(path)) {
+        if (safeLoad.canLoad(path + "/pack.meta", "meta")) {
             config.setString("current_theme", path);
             saveJSONObject(config, configPath);
         } else{
-            config.setString("current_theme", config.getString("DEFAULT_THEME_PATH"));
+            String default_path = config.getString("DEFAULT_THEME_PATH");
+            config.setString("current_theme", default_path);
+            canvas.themePath.pool = default_path;
             saveJSONObject(config, configPath);
         }
     }
@@ -757,13 +759,13 @@ class LayoutData{
             this.y_point = readFloat(layoutEJSON.get("y_point"), variableJSON);
             this.width_point = readFloat(layoutEJSON.get("width_point"), variableJSON);
             this.height_point = readFloat(layoutEJSON.get("height_point"), variableJSON);
-
+            
             float r_point = readFloat(layoutEJSON.get("r_point"), variableJSON);
             this.tl_point = readFloat(layoutEJSON.get("tl_point"), variableJSON);
             this.tr_point = readFloat(layoutEJSON.get("tr_point"), variableJSON);
             this.br_point = readFloat(layoutEJSON.get("br_point"), variableJSON);
             this.bl_point = readFloat(layoutEJSON.get("bl_point"), variableJSON);
-            if(r_point != 0.0){
+            if (r_point != 0.0) {
                 tl_point = tl_point != 0.0 ? tl_point : r_point;
                 tr_point = tr_point != 0.0 ? tr_point : r_point;
                 br_point = br_point != 0.0 ? br_point : r_point;
@@ -795,7 +797,7 @@ class StrokeData{
             }
             this.strokePoint = readFloat(strokeEJSON.get("stroke_point"), variableJSON);
             this.strokeCol = readColor(strokeEJSON.safeGetString("color", ERROR_COLOR), variableJSON);
-        }else{
+        } else{
             strokePoint = 0.0;
             strokeCol = color(0, 0, 0, 0);
         }
@@ -885,7 +887,7 @@ class ShadowData{
             this.shadowMode = shadowEJSON.safeGetString("shadowMode");
             this.shadowDistPoint = readFloat(shadowEJSON.get("shadowDistPoint"), variableJSON);
             this.shadowCol = readColor(shadowEJSON.safeGetString("color", ERROR_COLOR), variableJSON);
-        }else{
+        } else{
             this.shadowDistPoint = 0.0;
             this.shadowCol = color(0, 0, 0, 0);
         }
