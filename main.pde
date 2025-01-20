@@ -37,7 +37,6 @@ void draw(){
   hasShapeTouched = false;
   background(255, 255, 255);
   theme.drawGUI();
-  println();
 }
 
 //--------------------------------------------------
@@ -45,12 +44,11 @@ void softPrepare(){
   config = loadJSONObject(configPath);
 
   safeLoad = new SafeLoad();
-
   theme = new Theme();
+  canvas = new Canvas();
+
   ERROR_COLOR = config.getString("ERROR_COLOR");
   theme.changeCurrentTheme(config.getString("current_theme"));
-
-  canvas = new Canvas();
 }
 
 
