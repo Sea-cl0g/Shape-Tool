@@ -1,0 +1,64 @@
+{
+    "containerAnker": "topLeft",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+    "colors": {
+        "defaultCol": "#fffff0"
+    },
+    "layouts": {
+        "buttonLayout": {
+            "x_point": 1.5,
+            "y_point": 3,
+            "width_point": 2,
+            "height_point": 2,
+            "r_point": 0.3
+        }
+    },
+    "images": {
+        "main": {
+            "scale": 0.8,
+            "path": "icon/26.svg",
+            "color":"#000020"
+        }
+    },
+    "shadows": {
+        "main": {
+            "shadowMode": "CENTER",
+            "shadowDistPoint": 0.2,
+            "color": "#222222"
+        }
+    },
+    "elements": {
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$defaultCol",
+                    "image": "$main",
+                    "shadow": "$main"
+                },
+                {
+                    "predicate": "touched",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$defaultCol",
+                    "stroke": {
+                        "stroke_point": 0.1,
+                        "color": "#ffffff"
+                    },
+                    "image": "$main",
+                    "shadow": "$main"
+                },
+                {
+                    "predicate": "clicked",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$defaultCol",
+                    "image": "$main",
+                    "shadow": "$main"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120"
+   height="120"
+   viewBox="0 0 120 120"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <path
+       id="rect12"
+       style="fill:none;stroke:#000000;stroke-width:5.89777;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:7.3"
+       d="M 13.636957,36.561183 65.016858,23.983071 81.270709,45.350102 29.890811,57.928216 Z" />
+    <path
+       id="path12"
+       style="fill:none;stroke:#000000;stroke-width:5.89777;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:7.3"
+       d="M 71.221571,49.260738 78.332632,58.608816 26.952731,71.186926 10.698878,49.819896 20.332609,47.4615" />
+  </g>
+  <g
+     id="layer3"
+     transform="translate(0.6264235,19.51899)">
+    <path
+       id="rect13"
+       style="fill:none;stroke:#000000;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:7.3"
+       d="M 85.009064,59.840822 96.566218,79.397976 108.12337,59.840822" />
+    <path
+       id="rect14"
+       style="fill:none;stroke:#000000;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:7.3"
+       d="M 96.566218,75.864679 V 1.5152331 Z" />
+  </g>
+</svg>

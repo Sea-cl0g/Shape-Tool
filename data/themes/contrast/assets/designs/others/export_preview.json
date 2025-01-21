@@ -1,0 +1,57 @@
+{
+    "containerAnker": "center",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 1,
+    "floats": {
+        "x_pos": 0,
+        "y_pos": 0,
+        "w": 14,
+        "h": 14,
+        "r": 0.5,
+        "th": 2
+    },
+    "elements": {
+        "@MAIN_TEXTARRAY_BLOCK": {
+            "type": "text_block",
+            "layout": {
+                "x_point": "$x_pos",
+                "y_point": "$y_pos",
+                "width_point": "$r * -3 + $w",
+                "height_point": "$r * -3 + $h - $th"
+            },
+            "text": {
+                "text": "null",
+                "text_align": "LEFT",
+                "text_size": 0.3,
+                "text_col": "#000000"
+            },
+            "fillCol": "#FFFFFF00"
+        },
+        "e2": {
+            "type": "base",
+            "layout": {
+                "x_point": "$x_pos",
+                "y_point": "$y_pos",
+                "width_point": "$r * -2 + $w",
+                "height_point": "$r * -2 + $h - $th",
+                "tl_point": "$r",
+                "br_point": "$r",
+                "tr_point": "$r / 4",
+                "bl_point": "$r / 4"
+            },
+            "fillCol": "#FFFFFF"
+        },
+        "e3": {
+            "type": "base",
+            "layout": {
+                "x_point": "$x_pos",
+                "y_point": "$y_pos",
+                "width_point": "$w",
+                "height_point": "$h",
+                "r_point": "$r"
+            },
+            "fillCol": "#6BA0CC"
+        }
+    }
+}

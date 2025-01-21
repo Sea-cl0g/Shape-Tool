@@ -1,0 +1,74 @@
+{
+    "containerAnker": "bottomLeft",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+    "colors": {
+        "defaultCol": "#FFFFFF",
+        "touchedCol": "#ffffff",
+        "pointCol": "#ffffff"
+    },
+    "floats": {
+        "x_pos": 9,
+        "y_pos": 1,
+        "b_size": 0.8,
+        "r_point": 0.2,
+        "x_counter": 1
+    },
+    "layouts": {
+        "buttonLayout": {
+            "x_point": "$x_counter * $b_size + $x_pos",
+            "y_point": "$y_counter * $b_size + $y_pos",
+            "width_point": "$b_size",
+            "height_point": "$b_size"
+        }
+    },
+    "images": {
+        "main": {
+            "scale": 0.8,
+            "path": "icon/zoom_reset.svg",
+            "color": "000020"
+        }
+    },
+    "shadows": {
+        "main": {
+            "shadowMode": "center",
+            "shadowDistPoint": 0.2,
+            "color": "#222222"
+        }
+    },
+    "strokes": {
+        "defaultStroke": {
+            "stroke_point": 0.05,
+            "color": "#000020"
+        }
+    },
+    "elements": {
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$defaultCol",
+                    "stroke": "$defaultStroke",
+                    "image": "$main"
+                },
+                {
+                    "predicate": "touched",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$touchedCol",
+                    "stroke": "$defaultStroke",
+                    "image": "$main"
+                },
+                {
+                    "predicate": "clicked",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$defaultCol",
+                    "stroke": "$defaultStroke",
+                    "image": "$main"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "containerAnker": "center",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+    "colors": {
+        "defaultCol": "#c7a252"
+    },
+    "layouts": {
+        "buttonLayout": {
+            "x_point": 0,
+            "y_point": 2,
+            "width_point": 5,
+            "height_point": 1.4,
+            "r_point": 0.2
+        }
+    },
+    "strokes": {
+        "selectedStroke": {
+            "stroke_point": 0.1,
+            "color": "#FFFFF0"
+        }
+    },
+    "shadows": {
+        "main": {
+            "shadowMode": "BOTTOMRIGHT",
+            "shadowDistPoint": 0.2,
+            "color": "#602d1d"
+        }
+    },
+    "elements": {
+        "@ALPHA": {
+            "type": "text_block",
+            "layout": "$buttonLayout",
+            "text": {
+                "text": "LOAD",
+                "text_align": "CENTER",
+                "text_size": 0.8,
+                "text_col": "#FFFFFF"
+            },
+            "fillCol": "#FFFFFF00"
+        },
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$defaultCol",
+                    "shadow": "$main"
+                },
+                {
+                    "predicate": "touched",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$defaultCol",
+                    "stroke": "$selectedStroke",
+                    "shadow": "$main"
+                },
+                {
+                    "predicate": "clicked",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$defaultCol",
+                    "shadow": "$main"
+                }
+            ]
+        }
+    }
+}

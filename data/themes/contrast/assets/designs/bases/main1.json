@@ -1,0 +1,18 @@
+{
+    "containerAnker": "topLeft",
+    "blockMode": "vertical",
+    "blockAnker": "CORNER",
+    "layer": 1,
+    "elements": {
+        "e1": {
+            "type": "base",
+            "layout": {
+                "x_point": 0,
+                "y_point": 0,
+                "width_point": 8,
+                "height_point": 16
+            },
+            "fillCol": "#000050"
+        }
+    }
+}

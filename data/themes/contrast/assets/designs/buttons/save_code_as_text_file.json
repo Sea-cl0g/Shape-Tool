@@ -1,0 +1,66 @@
+{
+    "containerAnker": "center",
+    "blockMode": "vertical",
+    "blockAnker": "CENTER",
+    "layer": 2,
+    "colors": {
+        "buttonFill": "#FFFFFF",
+        "buttonTouched": "#DDDDDD",
+        "buttonClicked": "#0068E1",
+        "iconFill": "#0088F6",
+        "iconTouched": "#002172"
+    },
+    "floats": {
+        "b_size": 1
+    },
+    "layouts": {
+        "buttonLayout": {
+            "x_point": -6,
+            "y_point": -6.25,
+            "width_point": "$b_size",
+            "height_point": "$b_size",
+            "r_point": "$r_point"
+        }
+    },
+    "elements": {
+        "@MAIN_BUTTON": {
+            "type": "button",
+            "style": [
+                {
+                    "predicate": "normal",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$buttonFill",
+                    "image": {
+                        "scale": 0.8,
+                        "path": "icon/save_code_as_text_file.svg",
+                        "color": "$iconFill"
+                    }
+                },
+                {
+                    "predicate": "touched",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$buttonTouched",
+                    "image": {
+                        "scale": 0.8,
+                        "path": "icon/save_code_as_text_file.svg",
+                        "color": "$iconTouched"
+                    }
+                },
+                {
+                    "predicate": "clicked",
+                    "layout": "$buttonLayout",
+                    "fillCol": "$buttonClicked",
+                    "stroke": {
+                        "stroke_point": 0.1,
+                        "color": "#ffffff"
+                    },
+                    "image": {
+                        "scale": 0.8,
+                        "path": "icon/save_code_as_text_file.svg",
+                        "color": "$buttonFill"
+                    }
+                }
+            ]
+        }
+    }
+}
