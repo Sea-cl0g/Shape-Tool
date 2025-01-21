@@ -36,7 +36,7 @@ see [LICENSE](./LICENSE.md).
 
 <br>
 
-## 📚作者
+## 😏贡献者
 - boo_manKnow
 [<img width="16" alt="github-mark" src="https://github.com/user-attachments/assets/aac2e70c-0694-49e9-8648-1970c08a57bd">](https://github.com/Sea-cl0g)
 [<img width="16" alt="x-logo-black" src="https://github.com/user-attachments/assets/dc730c9f-8d64-493f-a78c-ff7206166759">](https://x.com/boo_manKnow408)
