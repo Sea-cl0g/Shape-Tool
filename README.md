@@ -49,4 +49,4 @@ see [LICENSE](./LICENSE.md).
 [<img width="16" alt="x-logo-black" src="https://github.com/user-attachments/assets/dc730c9f-8d64-493f-a78c-ff7206166759">](https://x.com/boo_manKnow408)
 [<img width="16" alt="qiita-image" src="https://github.com/user-attachments/assets/7ee1aa97-82b1-49b8-8e2b-1c2a0c0dc613">](https://qiita.com/boo_manKnow)
 
-- name
+- 匿名のチームメンバー7名（日本大学文理学部2024-後期-学問の扉-チーム05）
