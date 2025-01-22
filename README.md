@@ -44,9 +44,9 @@ see [LICENSE](./LICENSE.md).
 <br>
 
 ## 😏Contributors
-- ぼーまんのう
+- ぼーまんのう（日本大学文理学部2024-後期-学問の扉-チーム05 PM）
 [<img width="16" alt="github-mark" src="https://github.com/user-attachments/assets/aac2e70c-0694-49e9-8648-1970c08a57bd">](https://github.com/Sea-cl0g)
 [<img width="16" alt="x-logo-black" src="https://github.com/user-attachments/assets/dc730c9f-8d64-493f-a78c-ff7206166759">](https://x.com/boo_manKnow408)
 [<img width="16" alt="qiita-image" src="https://github.com/user-attachments/assets/7ee1aa97-82b1-49b8-8e2b-1c2a0c0dc613">](https://qiita.com/boo_manKnow)
 
-- 匿名のチームメンバー7名（日本大学文理学部2024-後期-学問の扉-チーム05）
+- 匿名を希望したチームメンバー7名（日本大学文理学部2024-後期-学問の扉-チーム05）
